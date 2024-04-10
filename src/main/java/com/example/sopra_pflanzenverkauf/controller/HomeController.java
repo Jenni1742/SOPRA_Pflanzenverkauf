@@ -17,5 +17,4 @@ public class HomeController {
         model.addAttribute("message", "Und hier sehen Sie ein ModelAttribut");
         return "home";
     }
-
 }
