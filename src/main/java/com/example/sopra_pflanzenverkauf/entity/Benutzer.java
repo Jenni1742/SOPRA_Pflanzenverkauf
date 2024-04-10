@@ -5,7 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
 @Entity
-public class User {
+public class Benutzer {
 
     @Id
     @GeneratedValue
@@ -15,7 +15,7 @@ public class User {
 
     private String password;
 
-    public User() {
+    public Benutzer() {
         // empty constructor for Hibernate
     }
 
