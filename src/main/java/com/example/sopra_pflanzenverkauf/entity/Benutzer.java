@@ -6,14 +6,12 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Benutzer {
-//Test
+
     @Id
     @GeneratedValue
     private Integer userId;
 
     private String username;
-
-    //TEST TEST ALAAAAAAAAAAAAAARM
 
     private String password;
 
