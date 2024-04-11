@@ -1,10 +1,11 @@
 package com.example.sopra_pflanzenverkauf.service;
 
 import com.example.sopra_pflanzenverkauf.entity.Benutzer;
+import com.example.sopra_pflanzenverkauf.entity.Rolle;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import com.example.sopra_pflanzenverkauf.service.RoleService;
+import com.example.sopra_pflanzenverkauf.service.RolleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class TestDataLoader implements ApplicationListener<ContextRefreshedEvent
     private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    private RoleService roleService;
+    private RolleService rolleService;
 
     @Autowired
     private UserService userService;
@@ -37,8 +38,8 @@ public class TestDataLoader implements ApplicationListener<ContextRefreshedEvent
         // Initialisieren Sie Beispielobjekte und speichern Sie diese über Ihre Services
         Rolle userRole = new Rolle("ROLE_USER");
         Rolle adminRole = new Rolle("ROLE_ADMIN");
-        roleService.saveRole(userRole);
-        roleService.saveRole(adminRole);
+        rolleService.saveRolle(userRole);
+        rolleService.saveRolle(adminRole);
 
         Set<Rolle> userRoles = new HashSet<>();
         userRoles.add(userRole);
