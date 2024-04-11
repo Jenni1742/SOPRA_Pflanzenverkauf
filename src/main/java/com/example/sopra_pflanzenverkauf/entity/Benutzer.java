@@ -3,6 +3,9 @@ package com.example.sopra_pflanzenverkauf.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToMany;
+import java.util.Set;
 
 @Entity
 public class Benutzer {
@@ -14,6 +17,11 @@ public class Benutzer {
     private String username;
 
     private String password;
+
+    private boolean enabled = true;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<Rolle> roles;
 
     public Benutzer() {
         // empty constructor for Hibernate
@@ -41,6 +49,22 @@ public class Benutzer {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<Rolle> getRoles() {
+        return rollen;
+    }
+
+    public void setRoles(Set<Rolle> rollen) {
+        this.roles = rollen;
     }
 
 }
