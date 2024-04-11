@@ -17,12 +17,12 @@ public class Benutzer {
     private String username;
 
     private String password;
-
+/*
     private boolean enabled = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Rolle> roles;
-
+*/
     public Benutzer() {
         // empty constructor for Hibernate
     }
@@ -50,7 +50,7 @@ public class Benutzer {
     public void setPassword(String password) {
         this.password = password;
     }
-
+/*
     public boolean isEnabled() {
         return enabled;
     }
@@ -66,5 +66,5 @@ public class Benutzer {
     public void setRoles(Set<Rolle> rollen) {
         this.roles = rollen;
     }
-
+*/
 }

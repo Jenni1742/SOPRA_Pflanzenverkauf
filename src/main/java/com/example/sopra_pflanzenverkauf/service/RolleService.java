@@ -1,5 +1,5 @@
 package com.example.sopra_pflanzenverkauf.service;
-
+/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.sopra_pflanzenverkauf.entity.Rolle;
@@ -21,3 +21,4 @@ public class RolleService {
         return rolleRepository.findAll();
     }
 }
+*/

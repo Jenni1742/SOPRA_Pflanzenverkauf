@@ -1,5 +1,5 @@
 package com.example.sopra_pflanzenverkauf.configuration;
-
+/*
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -58,8 +58,10 @@ public class SecurityConfiguration {
      *
      * @return BCryptPasswordEncoder bean.
      */
+/*
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
+*/

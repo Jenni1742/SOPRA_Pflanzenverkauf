@@ -1,5 +1,5 @@
 package com.example.sopra_pflanzenverkauf.service;
-
+/*
 import com.example.sopra_pflanzenverkauf.entity.Benutzer;
 import com.example.sopra_pflanzenverkauf.entity.Rolle;
 import org.springframework.context.ApplicationListener;
@@ -14,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import java.util.HashSet;
 import java.util.Set;
 
+/*
 @Component
 public class TestDataLoader implements ApplicationListener<ContextRefreshedEvent> {
     private static final Logger logger = LoggerFactory.getLogger(TestDataLoader.class);
@@ -31,6 +32,8 @@ public class TestDataLoader implements ApplicationListener<ContextRefreshedEvent
      * Diese Methode wird zum Aufsetzen von Testdaten für die Datenbank verwendet werden. Die Methode wird immer dann
      * ausgeführt, wenn der Spring Kontext initialisiert wurde, d.h. wenn Sie Ihren Server (neu-)starten.
      */
+
+/*
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         logger.info("Initialisiere Datenbank mit Testdaten...");
@@ -60,3 +63,4 @@ public class TestDataLoader implements ApplicationListener<ContextRefreshedEvent
         userService.saveUser(admin);
     }
 }
+*/

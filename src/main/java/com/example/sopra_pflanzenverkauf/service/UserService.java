@@ -7,7 +7,8 @@ import com.example.sopra_pflanzenverkauf.repository.BenutzerRepository;
 
 import java.util.List;
 @Service
-public class UserService implements UserDetailsService{
+public class UserService //implements UserDetailsService
+{
     @Autowired
 
     private BenutzerRepository userRepository;
@@ -20,12 +21,16 @@ public class UserService implements UserDetailsService{
         return userRepository.findAll();
     }
 
+
+
     /**
      * Sucht nach einem User mit einem bestimmten Usernamen.
      *
      * @param username der username.
      * @return User-Objekt.
      */
+
+    /*
     public Benutzer getUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
@@ -39,6 +44,8 @@ public class UserService implements UserDetailsService{
      *
      * @return User.
      */
+
+    /*
     public Benutzer getCurrentUser() {
         return getBenutzerByUsername(((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal()).getUsername());
@@ -50,6 +57,8 @@ public class UserService implements UserDetailsService{
      *
      * @return UserDetails Objekt der Spring Security.
      */
+
+    /*
     public org.springframework.security.core.userdetails.User getCurrentUserDetails() {
         return (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
@@ -62,6 +71,8 @@ public class UserService implements UserDetailsService{
      * @return UserDetails Objekt des Spring Security Frameworks.
      * @throws UsernameNotFoundException exception.
      */
+
+    /*
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Benutzer user = userRepository.findByUsername(username);
@@ -80,4 +91,5 @@ public class UserService implements UserDetailsService{
         }
         return grantedAuthorities;
     }
+     */
 }
