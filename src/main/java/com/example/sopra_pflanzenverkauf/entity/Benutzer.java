@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 
+/**
+ * Das ist mein Test Alessia
+ */
 @Entity
 public class Benutzer {
 //Test
