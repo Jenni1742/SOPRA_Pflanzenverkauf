@@ -9,6 +9,7 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
+
     private BenutzerRepository userRepository;
 
     public Benutzer saveUser(Benutzer user) {
