@@ -60,7 +60,7 @@ public class Benutzer {
     }
 
     public Set<Rolle> getRoles() {
-        return rollen;
+        return roles;
     }
 
     public void setRoles(Set<Rolle> rollen) {
