@@ -2,6 +2,7 @@ package com.example.sopra_pflanzenverkauf.service;
 
 import com.example.sopra_pflanzenverkauf.entity.Benutzer;
 import com.example.sopra_pflanzenverkauf.repository.BenutzerRepository;
+import com.example.sopra_pflanzenverkauf.entity.Rolle;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,21 +22,50 @@ import java.util.Objects;
 import java.util.Set;
 
 @Service
-public class UserService //implements UserDetailsService
-{
+public class UserService implements UserDetailsService {
 
     @Autowired
 
     private BenutzerRepository userRepository;
 
+
+
+
+    ////////////////////////Aus Demo Projekt
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    /**
+     * Constructor for spring dependency injection.
+     */
+    public UserService(BenutzerRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
+
+    /**
+     * Saves a user-object and encodes its password.
+     *
+     * @param benutzer the user to persist.
+     * @return the persisted user-object.
+     */
+    public Benutzer persistUser(Benutzer benutzer) {
+        // encode password before saving
+        benutzer.setPassword(bCryptPasswordEncoder.encode(benutzer.getPassword()));
+        return userRepository.save(benutzer);
+    }
+    ////////////////////////Aus Demo Projekt
+
+
+
+    /*
     public Benutzer saveUser(Benutzer user) {
         return userRepository.save(user);
     }
+    */
 
     public List<Benutzer> findAllUsers() {
         return userRepository.findAll();
     }
-
 
 
     /**
@@ -88,7 +118,7 @@ public class UserService //implements UserDetailsService
      */
 
 
-/*
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Benutzer user = userRepository.findByUsername(username);
@@ -107,5 +137,5 @@ public class UserService //implements UserDetailsService
         }
         return grantedAuthorities;
     }
-*/
+
 }

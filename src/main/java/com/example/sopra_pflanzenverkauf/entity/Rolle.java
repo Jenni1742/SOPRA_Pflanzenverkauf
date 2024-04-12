@@ -1,11 +1,12 @@
 package com.example.sopra_pflanzenverkauf.entity;
-/*
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
-public class Rolle {
+public class Rolle implements GrantedAuthority {
     @Id
     @GeneratedValue
     private Integer id;
@@ -19,6 +20,16 @@ public class Rolle {
     public Rolle(String rolename) {
         this.rolename = rolename;
     }
+
+
+    ////////////////////////Aus Demo Projekt
+    @Override
+    public String getAuthority(){
+        return rolename;
+    }
+    ////////////////////////Aus Demo Projekt
+
+
 
     public Integer getId() {
         return id;
@@ -36,4 +47,3 @@ public class Rolle {
         this.rolename = rolename;
     }
 }
-*/

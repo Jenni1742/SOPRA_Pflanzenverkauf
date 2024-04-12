@@ -1,20 +1,24 @@
 package com.example.sopra_pflanzenverkauf.service;
 
 import com.example.sopra_pflanzenverkauf.entity.Benutzer;
-//import com.example.sopra_pflanzenverkauf.entity.Rolle;
+import com.example.sopra_pflanzenverkauf.entity.Rolle;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-//import com.example.sopra_pflanzenverkauf.service.RolleService;
+import com.example.sopra_pflanzenverkauf.service.RolleService;
+import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
 
+/*
 @Component
 public class TestDataLoader implements ApplicationListener<ContextRefreshedEvent> {
     private static final Logger logger = LoggerFactory.getLogger(TestDataLoader.class);
@@ -33,7 +37,7 @@ public class TestDataLoader implements ApplicationListener<ContextRefreshedEvent
      * ausgeführt, wenn der Spring Kontext initialisiert wurde, d.h. wenn Sie Ihren Server (neu-)starten.
      */
 
-
+/*
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         logger.info("Initialisiere Datenbank mit Testdaten...");
@@ -49,7 +53,7 @@ public class TestDataLoader implements ApplicationListener<ContextRefreshedEvent
 
         Set<Rolle> adminRoles = new HashSet<>();
         adminRoles.add(adminRole);*/
-
+/*
         Benutzer jenniferKaisner = new Benutzer();
         jenniferKaisner.setUsername("JenniferK");
         jenniferKaisner.setPassword("1234");
@@ -60,7 +64,7 @@ public class TestDataLoader implements ApplicationListener<ContextRefreshedEvent
         jenniferKaisner.setEnabled(true);
         //jenniferKaisner.setPassword(passwordEncoder.encode("1234"));
         //jenniferKaisner.setRoles(userRoles);
-        userService.saveUser(jenniferKaisner);
+        //userService.saveUser(jenniferKaisner);
 
         /*
         Benutzer admin = new Benutzer();
@@ -70,5 +74,53 @@ public class TestDataLoader implements ApplicationListener<ContextRefreshedEvent
         //admin.setRoles(adminRoles);
         userService.saveUser(admin);
         */
+/*
     }
 }
+*/
+
+
+
+
+////////////////////////Aus Demo Projekt
+/**
+ *
+ * This class is responsible for setting up some test data.
+ */
+@Component
+public class TestDataLoader implements CommandLineRunner {
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private RolleService roleService;
+
+    /**
+     * Executed during Spring boot startup.
+     * @param args arguments.
+     * @throws Exception exception.
+     */
+    @Override
+    public void run(String... args) throws Exception {
+
+        // create roles
+        Rolle userRole = new Rolle();
+        userRole.setRolename("ROLE_USER");
+        roleService.persistRole(userRole);
+
+        Set<Rolle> userRoles = new HashSet<>();
+        userRoles.add(userRole);
+
+        // create users
+        Benutzer jenniferKaisner = new Benutzer();
+        jenniferKaisner.setEmail("Jennifer.Kaisner@mail.com");
+        jenniferKaisner.setUsername("JenniferK");
+        jenniferKaisner.setPassword("1234");
+        jenniferKaisner.setEnabled(true);
+        //jenniferKaisner.setNonLocked(true);
+        jenniferKaisner.setRoles(userRoles);
+        userService.persistUser(jenniferKaisner);
+    }
+}
+////////////////////////Aus Demo Projekt

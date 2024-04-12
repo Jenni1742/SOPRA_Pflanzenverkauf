@@ -12,6 +12,9 @@ public class Benutzer {
 
     @Id
     @GeneratedValue
+
+    //TODO: Profilbild
+
     private Integer userId;
 
     private String username;
@@ -26,13 +29,12 @@ public class Benutzer {
 
     private String plz;
 
-    //TODO: Profilbild
-
     private boolean enabled = true;
-/*
+
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Rolle> roles;
-*/
+
     public Benutzer() {
         // empty constructor for Hibernate
     }
@@ -100,13 +102,13 @@ public class Benutzer {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-/*
+
     public Set<Rolle> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Rolle> rollen) {
-        this.roles = rollen;
+    public void setRoles(Set<Rolle> roles) {
+        this.roles = roles;
     }
-*/
+
 }
