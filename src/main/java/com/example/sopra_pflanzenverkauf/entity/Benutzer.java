@@ -27,9 +27,9 @@ public class Benutzer {
     private String plz;
 
     //TODO: Profilbild
-/*
-    private boolean enabled = true;
 
+    private boolean enabled = true;
+/*
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Rolle> roles;
 */
@@ -92,7 +92,7 @@ public class Benutzer {
     public void setPlz(String plz) {
         this.plz = plz;
     }
-/*
+
     public boolean isEnabled() {
         return enabled;
     }
@@ -100,7 +100,7 @@ public class Benutzer {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
-
+/*
     public Set<Rolle> getRoles() {
         return roles;
     }
