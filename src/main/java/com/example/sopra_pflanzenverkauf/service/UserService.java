@@ -1,14 +1,29 @@
 package com.example.sopra_pflanzenverkauf.service;
 
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.example.sopra_pflanzenverkauf.entity.Benutzer;
 import com.example.sopra_pflanzenverkauf.repository.BenutzerRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
 @Service
 public class UserService //implements UserDetailsService
 {
+
     @Autowired
 
     private BenutzerRepository userRepository;
@@ -30,7 +45,7 @@ public class UserService //implements UserDetailsService
      * @return User-Objekt.
      */
 
-    /*
+
     public Benutzer getUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
@@ -45,9 +60,9 @@ public class UserService //implements UserDetailsService
      * @return User.
      */
 
-    /*
+
     public Benutzer getCurrentUser() {
-        return getBenutzerByUsername(((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext()
+        return getUserByUsername(((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal()).getUsername());
     }
 
@@ -58,7 +73,7 @@ public class UserService //implements UserDetailsService
      * @return UserDetails Objekt der Spring Security.
      */
 
-    /*
+
     public org.springframework.security.core.userdetails.User getCurrentUserDetails() {
         return (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
@@ -72,7 +87,8 @@ public class UserService //implements UserDetailsService
      * @throws UsernameNotFoundException exception.
      */
 
-    /*
+
+/*
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Benutzer user = userRepository.findByUsername(username);
@@ -91,5 +107,5 @@ public class UserService //implements UserDetailsService
         }
         return grantedAuthorities;
     }
-     */
+*/
 }

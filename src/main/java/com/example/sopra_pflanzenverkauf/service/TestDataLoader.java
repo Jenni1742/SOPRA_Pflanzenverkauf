@@ -57,6 +57,7 @@ public class TestDataLoader implements ApplicationListener<ContextRefreshedEvent
         jenniferKaisner.setLastName("Kaisner");
         jenniferKaisner.setEmail("Jennifer.Kaisner@beispiel.de");
         jenniferKaisner.setPlz("72108");
+        jenniferKaisner.setEnabled(true);
         //jenniferKaisner.setPassword(passwordEncoder.encode("1234"));
         //jenniferKaisner.setRoles(userRoles);
         userService.saveUser(jenniferKaisner);

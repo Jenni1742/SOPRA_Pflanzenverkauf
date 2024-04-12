@@ -3,6 +3,7 @@ package com.example.sopra_pflanzenverkauf.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -16,6 +17,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+
         http.authorizeHttpRequests()
             // alle Requests die ohne Login erreichbar sind
             .requestMatchers("/login", "/register", "/console/**").permitAll()
@@ -27,7 +30,7 @@ public class SecurityConfiguration {
             .anyRequest().authenticated()
             // füge CSRF token ein, welches evtl. für AJAX-requests benötigt wird
             .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-            .ignoringAntMatchers("/console/**")
+                //.ignoringAntMatchers("/console/**")
             // Request zum Aufruf der Login-Seite
             .and().formLogin().loginPage("/login").failureUrl("/login?error=true").permitAll()
             .defaultSuccessUrl("/", true)
