@@ -8,7 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * Controller für alle Requests, die lediglich statische HTML-Inhalte darstellen und keine
  * ModelAttribute verwenden.
  */
-/*
+
 @Controller
 public class StaticPageController implements WebMvcConfigurer{
     @Override
@@ -18,4 +18,3 @@ public class StaticPageController implements WebMvcConfigurer{
         // registry.addViewController("/imprint").setViewName("imprint");
     }
 }
-*/
