@@ -5,6 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
+
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,6 +21,8 @@ public class Benutzer {
     private Integer userId;
 
     private String username;
+
+    HashSet<String> usernameHashSet = new HashSet<>();
 
     private String password;
 
@@ -52,7 +57,12 @@ public class Benutzer {
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        if (usernameHashSet.contains(username)) {
+            throw new IllegalArgumentException("Username is already in use");
+        }else{
+            this.username = username;
+            usernameHashSet.add(username);
+        }
     }
 
     public String getPassword() {
