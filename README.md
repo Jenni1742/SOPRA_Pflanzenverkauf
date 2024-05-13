@@ -28,7 +28,8 @@ Vergewissern sie sich, dass Sie vor Benutzung, Java SE 17 installiert haben.
 
 **Ausführung:**
 1. Navigiere zu "gradlew.bat"
-2. Führen sie "#!/bin/sh" aus
-3. Localhost im browser öffnen
+2. Führe unter application -> bootRun aus 
+3. Warte bis alles geladen ist 
+3. Localhost im browser öffnen (localhost:8080)
 
 ******************************************************************
