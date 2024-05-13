@@ -123,6 +123,18 @@ public class TestDataLoader implements CommandLineRunner {
         userService.persistUser(jenniferKaisner);
 
 
+        // create users
+        Benutzer jenniferK = new Benutzer();
+        jenniferK.setEmail("Jennifer.K@mail.com");
+        jenniferK.setUsername("JenniferK");
+        jenniferK.setPassword("12345");
+        jenniferK.setEnabled(true);
+        //jenniferK.setNonLocked(true);
+        jenniferK.setRoles(userRoles);
+        userService.persistUser(jenniferK);
+
+
+
     }
 }
 ////////////////////////Aus Demo Projekt

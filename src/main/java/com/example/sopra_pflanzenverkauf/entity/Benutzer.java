@@ -1,14 +1,16 @@
 package com.example.sopra_pflanzenverkauf.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToMany;
+import com.example.sopra_pflanzenverkauf.SopraPflanzenverkaufApplication;
+import com.example.sopra_pflanzenverkauf.repository.BenutzerRepository;
+import jakarta.persistence.*;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
+
+import com.example.sopra_pflanzenverkauf.service.UserService;
+import org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorH2DatabaseImpl;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Entity
 public class Benutzer {
@@ -21,8 +23,6 @@ public class Benutzer {
     private Integer userId;
 
     private String username;
-
-    HashSet<String> usernameHashSet = new HashSet<>();
 
     private String password;
 
@@ -57,12 +57,7 @@ public class Benutzer {
     }
 
     public void setUsername(String username) {
-        if (usernameHashSet.contains(username)) {
-            throw new IllegalArgumentException("Username is already in use");
-        }else{
-            this.username = username;
-            usernameHashSet.add(username);
-        }
+        this.username = username;
     }
 
     public String getPassword() {
