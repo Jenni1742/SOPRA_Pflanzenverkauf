@@ -7,10 +7,18 @@
           crossorigin="anonymous"/>
     <title>RePlant</title>
 </head>
+<style>
+    .responsive-image {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+</style>
+
 <body>
 
-<img src="replant_logo.png" alt="RePlant Logo">
-<img src="images/replant_logo.png">
+<img src="images/reolant-logo.jpg" alt="RePlant Logo" class="responsive-image">
+
 
 <div class="container">
     <form th:action="@{/login}" method="POST" class="form-horizontal">
