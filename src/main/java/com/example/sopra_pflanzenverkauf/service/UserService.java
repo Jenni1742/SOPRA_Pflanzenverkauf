@@ -103,7 +103,6 @@ public class UserService implements UserDetailsService {
      * @return UserDetails Objekt der Spring Security.
      */
 
-
     public org.springframework.security.core.userdetails.User getCurrentUserDetails() {
         return (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
@@ -117,8 +116,6 @@ public class UserService implements UserDetailsService {
      * @throws UsernameNotFoundException exception.
      */
 
-
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Benutzer user = userRepository.findByUsername(username);
@@ -130,6 +127,12 @@ public class UserService implements UserDetailsService {
                 user.isEnabled(), true, true, user.isEnabled(), grantedAuthorities);
     }
 
+    /**
+     * Gibt die Berechtigungen (Rollen) eines Benutzers zurück.
+     *
+     * @param roleSet die Menge der Rollen des Benutzers.
+     * @return eine Liste von GrantedAuthority-Objekten.
+     */
     private List<GrantedAuthority> getUserAuthorities(Set<Rolle> roleSet) {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
         for (Rolle role : roleSet) {

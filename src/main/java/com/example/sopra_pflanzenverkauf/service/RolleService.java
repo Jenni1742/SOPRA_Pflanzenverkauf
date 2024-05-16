@@ -39,6 +39,12 @@ public class RolleService {
         return rolleRepository.save(role);
     }
 
+    /**
+     * Sucht nach einer Rolle anhand ihres Namens.
+     *
+     * @param rolename der Name der Rolle.
+     * @return die gefundene Rolle.
+     */
     public Rolle findRoleByName(String rolename) {
         return rolleRepository.findByRolename(rolename);
     }
