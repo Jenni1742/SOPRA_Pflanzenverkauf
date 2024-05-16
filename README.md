@@ -24,19 +24,19 @@ Matrikelnummer: 3661488
 
 **********USAGE**********
 
-Vergewissern Sie sich, dass Sie vor Benutzung, Java SE 17 installiert haben.
+Vergewissern sie sich, dass Sie vor Benutzung, Java SE 17 installiert haben.
 
 **Ausführung:**
-1. Navigiere zu "gradlew.bat".
-2. Führe unter application -> bootRun aus.
-3. Warte bis alles geladen ist. 
-4. Localhost im browser öffnen (localhost:8080).
+1. Navigiere zu "gradlew.bat"
+2. Führe unter application -> bootRun aus 
+3. Warte bis alles geladen ist 
+3. Localhost im browser öffnen (localhost:8080)
 
 ******************************************************************
 Beim Zugriff auf die Datenbank: 
-1. Die Seite localhost: 8080/console muss aufgerufen werden. 
+1. Die Seite localhost:8080/console muss aufgerufen werden 
 2. Dann öffnet sich das Fenster:
-![Bildschirmfoto 2024-05-13 um 10.36.02.png](..%2F..%2FDesktop%2FBildschirmfoto%202024-05-13%20um%2010.36.02.png).
-3. Achte darauf, dass bei JDBC URL "jdbc:h2:mem:testdb" steht.
+![Bildschirmfoto 2024-05-13 um 10.36.02.png](..%2F..%2FDesktop%2FBildschirmfoto%202024-05-13%20um%2010.36.02.png)
+3. Achte darauf, dass bei JDBC URL "jdbc:h2:mem:testdb" steht
 
 ******************************************************************
