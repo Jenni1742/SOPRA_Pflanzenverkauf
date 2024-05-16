@@ -1,30 +1,59 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous"/>
     <title>RePlant</title>
+    <style>
+        .responsive-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #2e8b57;
+            font-size: 36px;
+        }
+        p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .container {
+            margin-top: 20px;
+        }
+        .btn-green {
+            background-color: #2e8b57;
+            color: white;
+        }
+        .btn-green:hover {
+            background-color: #228b22;
+        }
+    </style>
 </head>
-<style>
-    .responsive-image {
-        width: 100%;
-        max-width: 300px;
-        height: auto;
-    }
-</style>
-
 <body>
 
 <img src="images/reolant-logo.jpg" alt="RePlant Logo" class="responsive-image">
 
+<h1>Willkommen bei rePlant!</h1>
+
+<p>Die Website, um deinen neuen/alten Pflanzenfreund zu finden oder deiner Pflanze ein neues Zuhause zu vermitteln. Worauf wartest du noch?</p>
+<p>Melde dich mit deinen Login-Daten an und erhalte Zugriff auf die gesamten plantHub-Funktionen!</p>
 
 <div class="container">
     <form th:action="@{/login}" method="POST" class="form-horizontal">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title" th:text="'rePlant Login'"></h4>
+                <h4 class="card-title" th:text="'Login'"></h4>
                 <div th:if="${param.error}" class="alert alert-danger">
                     <span th:text="'Login fehlgeschlagen.'"></span>
                 </div>
@@ -32,23 +61,25 @@
                     <span th:text="'Logout erfolgreich.'"></span>
                 </div>
                 <div class="row form-group">
-                    <div class="col-12 col-md-6">
+                    <div class="col-md-6 mx-auto">
                         <label>Username</label>
-                        <input type="text" id="username" name="username"  th:placeholder="'Username'" class="form-control"/><br/>
+                        <input type="text" id="username" name="username" th:placeholder="'Username'" class="form-control"/><br/>
                     </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-12 col-md-6">
+                    <div class="col-md-6 mx-auto">
                         <label>Password</label>
-                        <input type="password"  th:placeholder="'Password'" id="password" name="password" class="form-control"/><br/>
+                        <input type="password" th:placeholder="'Password'" id="password" name="password" class="form-control"/><br/>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer">
-                <button name="Submit" value="Login" type="Submit" th:text="'Login'" class="btn btn-primary"></button>
+                <div class="card-footer text-center">
+                    <button name="Submit" value="Login" type="Submit" th:text="'Login'" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn btn-green">Registrieren</button>
+                </div>
             </div>
         </div>
     </form>
 </div>
+
 </body>
 </html>
