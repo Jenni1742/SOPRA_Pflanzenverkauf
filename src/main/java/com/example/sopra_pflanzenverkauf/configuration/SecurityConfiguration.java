@@ -3,6 +3,7 @@ package com.example.sopra_pflanzenverkauf.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -59,7 +60,7 @@ public class SecurityConfiguration {
         return (web) -> web
                 .ignoring()
                 // gewähre immer Zugriff auf Dateien in den folgenden Ordnern
-                .requestMatchers("/resources/**", "/images/static/**", "/static/css/**", "/js/**", "/images/**");
+                .requestMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
     }
 
     /**
