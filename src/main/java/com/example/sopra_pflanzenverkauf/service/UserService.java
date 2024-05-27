@@ -1,8 +1,8 @@
 package com.example.sopra_pflanzenverkauf.service;
 
-import com.example.sopra_pflanzenverkauf.entity.Benutzer;
-import com.example.sopra_pflanzenverkauf.repository.BenutzerRepository;
-import com.example.sopra_pflanzenverkauf.entity.Rolle;
+import com.example.sopra_pflanzenverkauf.entity.User;
+import com.example.sopra_pflanzenverkauf.repository.UserRepository;
+import com.example.sopra_pflanzenverkauf.entity.Role;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,7 +14,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +24,7 @@ import java.util.Set;
 public class UserService implements UserDetailsService {
 
     @Autowired
-
-    private BenutzerRepository userRepository;
-
-
+    private UserRepository userRepository;
 
 
     ////////////////////////Aus Demo Projekt
@@ -37,7 +33,7 @@ public class UserService implements UserDetailsService {
     /**
      * Constructor for spring dependency injection.
      */
-    public UserService(BenutzerRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserService(UserRepository userRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
@@ -45,13 +41,13 @@ public class UserService implements UserDetailsService {
     /**
      * Saves a user-object and encodes its password.
      *
-     * @param benutzer the user to persist.
+     * @param user the user to persist.
      * @return the persisted user-object.
      */
-    public Benutzer persistUser(Benutzer benutzer) {
+    public User persistUser(User user) {
         // encode password before saving
-        benutzer.setPassword(bCryptPasswordEncoder.encode(benutzer.getPassword()));
-        return userRepository.save(benutzer);
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
     }
     ////////////////////////Aus Demo Projekt
 
@@ -63,7 +59,7 @@ public class UserService implements UserDetailsService {
     }
     */
 
-    public List<Benutzer> findAllUsers() {
+    public List<User> findAllUsers() {
         return userRepository.findAll();
     }
 
@@ -76,7 +72,7 @@ public class UserService implements UserDetailsService {
      */
 
 
-    public Benutzer getUserByUsername(String username) {
+    public User getUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
@@ -91,7 +87,7 @@ public class UserService implements UserDetailsService {
      */
 
 
-    public Benutzer getCurrentUser() {
+    public User getCurrentUser() {
         return getUserByUsername(((org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal()).getUsername());
     }
@@ -118,7 +114,7 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Benutzer user = userRepository.findByUsername(username);
+        User user = userRepository.findByUsername(username);
         if (Objects.isNull(user)) {
             throw new UsernameNotFoundException("Could not find the user for username " + username);
         }
@@ -133,9 +129,9 @@ public class UserService implements UserDetailsService {
      * @param roleSet die Menge der Rollen des Benutzers.
      * @return eine Liste von GrantedAuthority-Objekten.
      */
-    private List<GrantedAuthority> getUserAuthorities(Set<Rolle> roleSet) {
+    private List<GrantedAuthority> getUserAuthorities(Set<Role> roleSet) {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        for (Rolle role : roleSet) {
+        for (Role role : roleSet) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getRolename()));
         }
         return grantedAuthorities;

@@ -1,34 +1,36 @@
 package com.example.sopra_pflanzenverkauf.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 
 /**
  * The type Rolle.
  */
 @Entity
-public class Rolle implements GrantedAuthority {
+@Table(name = "Rolle")
+public class Role implements GrantedAuthority {
+
     @Id
     @GeneratedValue
-    private Integer id;
+    @Column(name = "RollenID")
+    private Integer roleId;
 
+    @Column(name = "Rollenname")
     private String rolename;
 
     /**
-     * Instantiates a new Rolle.
+     * Instantiates a new Role.
      */
-    public Rolle() {
+    public Role() {
         //empty constructor for Hibernate
     }
 
     /**
-     * Instantiates a new Rolle.
+     * Instantiates a new Role.
      *
      * @param rolename the rolename
      */
-    public Rolle(String rolename) {
+    public Role(String rolename) {
         this.rolename = rolename;
     }
 
@@ -41,13 +43,19 @@ public class Rolle implements GrantedAuthority {
     ////////////////////////Aus Demo Projekt
 
 
+
+
+    ///////////////////////////////////////////////
+    // Getter & Setter
+    ///////////////////////////////////////////////
+
     /**
      * Gets id.
      *
      * @return the id
      */
-    public Integer getId() {
-        return id;
+    public Integer getRoleId() {
+        return roleId;
     }
 
     /**
@@ -55,8 +63,8 @@ public class Rolle implements GrantedAuthority {
      *
      * @param id the id
      */
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRoleId(Integer id) {
+        this.roleId = id;
     }
 
     /**

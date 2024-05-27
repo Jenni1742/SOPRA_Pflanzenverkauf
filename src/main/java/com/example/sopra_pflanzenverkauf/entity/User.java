@@ -1,54 +1,58 @@
 package com.example.sopra_pflanzenverkauf.entity;
 
-import com.example.sopra_pflanzenverkauf.SopraPflanzenverkaufApplication;
-import com.example.sopra_pflanzenverkauf.repository.BenutzerRepository;
 import jakarta.persistence.*;
 
 import java.util.Set;
 
-import com.example.sopra_pflanzenverkauf.service.UserService;
-import org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorH2DatabaseImpl;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.GetMapping;
-
 /**
- * The type Benutzer.
+ * The Entity "Benutzer".
  */
 @Entity
-public class Benutzer {
-
+@Table(name = "Benutzer")
+public class User {
 
     @Id
     @GeneratedValue
 
     //TODO: Profilbild
 
+    @Column(name = "BenutzerID")
     private Integer userId;
 
+    @Column(name = "Benutzername")
     private String username;
 
+    @Column(name = "Passwort")
     private String password;
 
+    @Column(name = "Vorname")
     private String firstName;
 
+    @Column(name = "Nachname")
     private String lastName;
 
+    @Column(name = "E-mail")
     private String email;
 
+    @Column(name = "Postleitzahl")
     private String plz;
 
+    @Column(name = "aktiviert")
     private boolean enabled = true;
 
 
+    //TODO Wird wahrscheinlich nicht benötigt
+
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Rolle> roles;
+    @JoinTable(name = "benutzer_rolle", joinColumns = @JoinColumn(name = "benutzer_id"), inverseJoinColumns = @JoinColumn(name = "rolle_id"))
+    private Set<Role> roles;
+
+
 
     /**
-     * Instantiates a new Benutzer.
+     * Instantiates a new User.
      */
-    public Benutzer() {
+    public User() {
         // empty constructor for Hibernate
     }
 
@@ -56,7 +60,9 @@ public class Benutzer {
 
 
 
-    ///// Getter & Setter://///
+    ///////////////////////////////////////////////
+    // Getter & Setter
+    ///////////////////////////////////////////////
 
     /**
      * Gets user id.
@@ -202,21 +208,25 @@ public class Benutzer {
         this.enabled = enabled;
     }
 
+    //TODO Wird wahrscheinlich nicht benötigt (Jetzt gerade aber schon wegen Userservice)
+
     /**
      * Gets roles.
      *
      * @return the roles
-     */
-    public Set<Rolle> getRoles() {
+     * */
+    public Set<Role> getRoles() {
         return roles;
     }
+
+    //TODO Wird wahrscheinlich nicht benötigt (Jetzt gerade aber schon wegen Userservice)
 
     /**
      * Sets roles.
      *
      * @param roles the roles
-     */
-    public void setRoles(Set<Rolle> roles) {
+    */
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 

@@ -1,19 +1,11 @@
 package com.example.sopra_pflanzenverkauf.service;
 
-import com.example.sopra_pflanzenverkauf.entity.Benutzer;
-import com.example.sopra_pflanzenverkauf.entity.Rolle;
+import com.example.sopra_pflanzenverkauf.entity.User;
+import com.example.sopra_pflanzenverkauf.entity.Role;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import com.example.sopra_pflanzenverkauf.service.RolleService;
-import com.example.sopra_pflanzenverkauf.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -94,7 +86,7 @@ public class TestDataLoader implements CommandLineRunner {
     private UserService userService;
 
     @Autowired
-    private RolleService roleService;
+    private RoleService roleService;
 
     /**
      * Executed during Spring boot startup.
@@ -105,15 +97,15 @@ public class TestDataLoader implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         // create roles
-        Rolle userRole = new Rolle();
+        Role userRole = new Role();
         userRole.setRolename("ROLE_USER");
         roleService.persistRole(userRole);
 
-        Set<Rolle> userRoles = new HashSet<>();
+        Set<Role> userRoles = new HashSet<>();
         userRoles.add(userRole);
 
         // create users
-        Benutzer jenniferKaisner = new Benutzer();
+        User jenniferKaisner = new User();
         jenniferKaisner.setEmail("Jennifer.Kaisner@mail.com");
         jenniferKaisner.setUsername("JenniferK");
         jenniferKaisner.setPassword("1234");
@@ -125,7 +117,7 @@ public class TestDataLoader implements CommandLineRunner {
 
 
         // create users
-        Benutzer jenniferK = new Benutzer();
+        User jenniferK = new User();
         jenniferK.setEmail("Jennifer.K@mail.com");
         jenniferK.setUsername("JenniferKa");
         jenniferK.setPassword("12345");
