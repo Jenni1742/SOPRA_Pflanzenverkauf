@@ -27,7 +27,7 @@
             font-size: 36px;
         }
         p {
-            color: #555;
+            color: black;
             font-size: 18px;
             line-height: 1.6;
             margin-bottom: 20px;
@@ -39,9 +39,41 @@
             background-color: #017101;
             color: white;
         }
-        .btn-green:hover {
-            background-color: #228b22;
+        .btn-rePlantGrey {
+            background-color: #757575;
+            color: white;
         }
+        .btn-rePlantGreen:hover {
+            background-color: black;
+            color: white;
+            border-color: #017101;
+        }
+        .btn-rePlantGrey:hover {
+            background-color: black;
+            color: white;
+            border-color: #757575;
+        }
+        .btn-rePlantGreen:active {
+            background-color: #017101;
+            color: white;
+            border-color: #017101;
+            <!-- SchattenFarbeBlauzuGrünwechseln -->
+        }
+        .btn-rePlantGrey:active {
+            background-color: #757575;
+            color: white;
+            border-color: #757575;
+        <!-- SchattenFarbeBlauzuGrünwechseln -->
+        }
+        .card-rePlant{
+            background-color: #F0F0F0;
+            border-color: #017101;
+        }
+        .card-footer-rePlant{
+            background-color: #F0F0F0;
+            border-color: #F0F0F0;
+        }
+
     </style>
 </head>
 
@@ -58,16 +90,16 @@
 
 <div class="container">
     <form th:action="@{/login}" method="POST" class="form-horizontal">
-        <div class="card">
+        <div class="card card-rePlant">
             <div class="card-body">
                 <h4 class="card-title" th:text="'Login'"></h4>
                 <div th:if="${param.error}" class="alert alert-danger">
-                    <span th:text="'Login fehlgeschlagen.'"></span>
+                    <span th:text="'Login fehlgeschlagen. Der Benutzername oder das Passwort ist ungültig. Noch kein Benutzerkonto? Dann registriere dich jetzt.'"></span>
                 </div>
                 <div th:if="${param.logout}" class="alert alert-success">
                     <span th:text="'Logout erfolgreich.'"></span>
                 </div>
-                <div class="row form-group">
+                <div class="row form-group row-rePlant">
                     <div class="col-md-6 mx-auto">
                         <!-- <label>Username</label> -->
                         <input type="text" id="username" name="username" th:placeholder="'Benutzername'" class="form-control"/><br/>
@@ -79,9 +111,9 @@
                         <input type="password" th:placeholder="'Passwort'" id="password" name="password" class="form-control"/><br/>
                     </div>
                 </div>
-                <div class="card-footer text-center">
+                <div class="card-footer text-center card-footer-rePlant">
                     <button name="Submit" value="Login" type="Submit" th:text="'Login'" class="btn btn-rePlantGreen">Login</button>
-                    <button type="button" class="btn btn-rePlantGreen">Registrieren</button>
+                    <button type="button" class="btn btn-rePlantGrey">Registrieren</button>
                 </div>
             </div>
         </div>
