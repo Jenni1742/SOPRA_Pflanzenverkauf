@@ -23,11 +23,11 @@
             padding: 20px;
         }
         h1 {
-            color: #2e8b57;
+            color: #017101;
             font-size: 36px;
         }
         p {
-            color: #555;
+            color: black;
             font-size: 18px;
             line-height: 1.6;
             margin-bottom: 20px;
@@ -35,50 +35,85 @@
         .container {
             margin-top: 20px;
         }
-        .btn-green {
-            background-color: #2e8b57;
+        .btn-rePlantGreen {
+            background-color: #017101;
             color: white;
         }
-        .btn-green:hover {
-            background-color: #228b22;
+        .btn-rePlantGrey {
+            background-color: #757575;
+            color: white;
         }
+        .btn-rePlantGreen:hover {
+            background-color: black;
+            color: white;
+            border-color: #017101;
+        }
+        .btn-rePlantGrey:hover {
+            background-color: black;
+            color: white;
+            border-color: #757575;
+        }
+        .btn-rePlantGreen:active {
+            background-color: #017101;
+            color: white;
+            border-color: #017101;
+            <!-- SchattenFarbeBlauzuGrünwechseln -->
+        }
+        .btn-rePlantGrey:active {
+            background-color: #757575;
+            color: white;
+            border-color: #757575;
+        <!-- SchattenFarbeBlauzuGrünwechseln -->
+        }
+        .card-rePlant{
+            background-color: #F0F0F0;
+            border-color: #017101;
+        }
+        .card-footer-rePlant{
+            background-color: #F0F0F0;
+            border-color: #F0F0F0;
+        }
+
     </style>
 </head>
+
+
 <body>
 
 <img src="images/reolant-logo.jpg" alt="RePlant Logo" class="responsive-image">
 
-<h1>Willkommen bei rePlant!</h1>
+<h1> Du suchst nach einem Secondhand-Pflanzenverkauf? </h1>
+<h1> Dann bist du bei rePlant genau richtig! </h1>
 
-<p>Die Website, um deinen neuen/alten Pflanzenfreund zu finden oder deiner Pflanze ein neues Zuhause zu vermitteln. Worauf wartest du noch?</p>
-<p>Melde dich mit deinen Login-Daten an und erhalte Zugriff auf die gesamten plantHub-Funktionen!</p>
+<p> rePlant ist die richtige Webseite für Dich, um neue Pflanzen zu finden oder deiner Pflanze ein neues Zuhause zu vermitteln. </p>
+<p> Worauf wartest du noch? - Melde dich jetzt an!</p>
 
 <div class="container">
     <form th:action="@{/login}" method="POST" class="form-horizontal">
-        <div class="card">
+        <div class="card card-rePlant">
             <div class="card-body">
                 <h4 class="card-title" th:text="'Login'"></h4>
                 <div th:if="${param.error}" class="alert alert-danger">
-                    <span th:text="'Login fehlgeschlagen.'"></span>
+                    <span th:text="'Login fehlgeschlagen. Der Benutzername oder das Passwort ist ungültig. Noch kein Benutzerkonto? Dann registriere dich jetzt.'"></span>
                 </div>
                 <div th:if="${param.logout}" class="alert alert-success">
                     <span th:text="'Logout erfolgreich.'"></span>
                 </div>
-                <div class="row form-group">
+                <div class="row form-group row-rePlant">
                     <div class="col-md-6 mx-auto">
-                        <label>Username</label>
-                        <input type="text" id="username" name="username" th:placeholder="'Username'" class="form-control"/><br/>
+                        <!-- <label>Username</label> -->
+                        <input type="text" id="username" name="username" th:placeholder="'Benutzername'" class="form-control"/><br/>
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col-md-6 mx-auto">
-                        <label>Password</label>
-                        <input type="password" th:placeholder="'Password'" id="password" name="password" class="form-control"/><br/>
+                        <!-- <label>Password</label> -->
+                        <input type="password" th:placeholder="'Passwort'" id="password" name="password" class="form-control"/><br/>
                     </div>
                 </div>
-                <div class="card-footer text-center">
-                    <button name="Submit" value="Login" type="Submit" th:text="'Login'" class="btn btn-primary">Login</button>
-                    <button type="button" class="btn btn-green">Registrieren</button>
+                <div class="card-footer text-center card-footer-rePlant">
+                    <button name="Submit" value="Login" type="Submit" th:text="'Login'" class="btn btn-rePlantGreen">Login</button>
+                    <button type="button" class="btn btn-rePlantGrey">Registrieren</button>
                 </div>
             </div>
         </div>

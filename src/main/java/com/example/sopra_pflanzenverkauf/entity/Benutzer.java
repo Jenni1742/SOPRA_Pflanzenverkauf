@@ -8,6 +8,7 @@ import java.util.Set;
 
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorH2DatabaseImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  */
 @Entity
 public class Benutzer {
+
 
     @Id
     @GeneratedValue

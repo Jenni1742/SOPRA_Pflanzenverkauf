@@ -4,25 +4,104 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
 
 
     <style>
-        .navbar{
-        background-color: #017101;
+        .navbar {
+            background-color: #017101;
         }
     </style>
 </head>
 <body>
-<nav class="navbar nevbar-expand-lg " >
-    <div class="container">
-        <a class="navbar-brand" href="#">
-            <img src="images/reolant-logo.jpg" alt="Bootstrap" width="20%" height="20%">
-        </a>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <img src="images/reolant-logo.jpg" alt="Bootstrap" width="20%" height="20%">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Suche" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Suche</button>
+            </form>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Merkliste</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Spiele</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Wiki</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria>
+                        Profil
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
     </div>
 </nav>
 <p th:text="'Willkommen bei rePlant!'"></p>
 <p th:text="${message}"></p>
+
+<header>
+    <div class="container">
+        <div id="branding">
+            <h1 style="color: #017101;">Trending</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" ; style="color: #017101;">Home</a></li>
+                <li><a href="about.html" ; style="color: #017101;">Über uns</a></li>
+                <li><a href="contact.html" ; style="color: #017101;">Kontakt</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <section class="ads">
+        <div class="ad">
+            <h2><a href="ad1.html" style="color: #017101;">Anzeige 1</a></h2>
+            <p>Beschreibung der Anzeige 1...</p>
+        </div>
+        <div class="ad">
+            <h2><a href="ad2.html" style="color: #017101;">Anzeige 2</a></h2>
+            <p>Beschreibung der Anzeige 2...</p>
+        </div>
+        <!-- Weitere Anzeigen hier -->
+    </section>
+</div>
+<div class="container">
+    <section class="searches">
+        <div class="search">
+            <h2><a href="pflanzenfreund.html" style="color: #017101;">Pflanzenfreund finden</a></h2>
+            <p>Suchfeld nutzen</p>
+        </div>
+        <div class="search">
+            <h2><a href="createAd.html" style="color: #017101;">Pflanzen zum Verkauf einstellen</a></h2>
+            <p>Weiterleiten zur Anzeigenerstellung</p>
+        </div>
+
+    </section>
+</div>
+
 </body>
 </html>
