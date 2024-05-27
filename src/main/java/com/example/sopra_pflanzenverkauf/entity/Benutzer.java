@@ -50,6 +50,12 @@ public class Benutzer {
         // empty constructor for Hibernate
     }
 
+
+
+
+
+    ///// Getter & Setter://///
+
     /**
      * Gets user id.
      *

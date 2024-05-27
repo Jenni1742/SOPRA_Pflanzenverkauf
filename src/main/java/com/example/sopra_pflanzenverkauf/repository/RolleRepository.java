@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RolleRepository extends JpaRepository<Rolle, Integer>{
 
-    Rolle findByRolename(String roleName);
+    Rolle findByRolename(String roleName); //"findBy" ist Schlüsselwort für SELECT * FROM Rolle WHERE roleName = x
 }
 
