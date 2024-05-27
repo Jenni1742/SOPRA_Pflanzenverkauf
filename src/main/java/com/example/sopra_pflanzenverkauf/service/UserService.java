@@ -23,7 +23,7 @@ import java.util.Set;
 @Service
 public class UserService implements UserDetailsService {
 
-    @Autowired
+    @Autowired //Annotation zur Markierung von Objekten für die Spring Dependency Injection
     private UserRepository userRepository;
 
 
@@ -40,9 +40,10 @@ public class UserService implements UserDetailsService {
 
     /**
      * Saves a user-object and encodes its password.
+     * Persists a user in the database
      *
      * @param user the user to persist.
-     * @return the persisted user-object.
+     * @return the persisted user-object incl. ID.
      */
     public User persistUser(User user) {
         // encode password before saving
@@ -54,11 +55,16 @@ public class UserService implements UserDetailsService {
 
 
     /*
-    public Benutzer saveUser(Benutzer user) {
+    public User saveUser(User user) {
         return userRepository.save(user);
     }
     */
 
+    /**
+     * Returns all users persisted in the database.
+     *
+     * @return List of users.
+     */
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
