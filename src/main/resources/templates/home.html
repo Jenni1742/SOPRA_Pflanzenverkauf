@@ -23,9 +23,12 @@
             background-color: white;
             border-color: white;
         }
-        .btn-group{
-            background-color: white;
+        .btn:hover {
+            background-color: black;
             border-color: white;
+        }
+        .nav-link {
+            color: white;
         }
 
     </style>
@@ -34,6 +37,7 @@
 
 
 <body>
+
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <div class="container-fluid">
@@ -45,10 +49,9 @@
             </button>
         </div>
 
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Suche" aria-label="Suche">
-            </form>
+
+        <div class="input-group">
+            <input class="form-control" type="search" placeholder="Suche" aria-label="Suche">
             <button class="btn btn-outline-success" type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
@@ -56,38 +59,20 @@
             </button>
         </div>
 
-
-
-    </div>
-</nav>
-
-
-
-<!--
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                <img src="images/Weiß_rePlant.png" alt="Bootstrap" width="20%" height="20%">
-            </a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Suche" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Suche</button>
-            </form>
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Merkliste</a>
+                    <a class="nav-link" href="#">Merkliste</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Spiele</a>
+                    <a class="nav-link" href="#">Spiele</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="#">Wiki</a>
+                    <a class="nav-link" href="#">Wiki</a>
                 </li>
+
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Profil
                     </a>
                     <ul class="dropdown-menu">
@@ -96,15 +81,19 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="http://localhost:8080/login?logout">Logout</a></li>
                     </ul>
                 </li>
-            </ul>
 
+
+
+            </ul>
         </div>
     </div>
 </nav>
--->
+
+
+
 <!--
 <p th:text="'Willkommen bei rePlant!'"></p>
 <p th:text="${message}"></p>
