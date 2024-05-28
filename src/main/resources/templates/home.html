@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -18,20 +17,16 @@
     <div class="container-fluid">
         <div class="container">
             <a class="navbar-brand" href="http://localhost:8080/">
-                <img src="images/Weiß_rePlant.png" alt="rePlant" class="navbar-logo">
+                <img src="images/Weiß_rePlant.png" alt="rePlant" width="15%" height="15%">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
 
-        <form class="input-group" action="/" method="get">
+        <form class="input-group" action="/searchresults" method="get">
             <input class="form-control" type="search" name="query" placeholder="Suche" aria-label="Suche">
-            <button class="btn btn-outline-success" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                </svg>
-            </button>
+            <button class="btn btn-outline-success" type="submit">Suchen</button>
         </form>
 
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -59,20 +54,14 @@
                         <li><a class="dropdown-item" href="#">Käuferranking</a></li>
                         <li><a class="dropdown-item" href="#">Verkäuferranking</a></li>
                         <li><a class="dropdown-item" href="#">Meine Fortschritte</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
+                        <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="http://localhost:8080/login?logout">Logout</a></li>
                     </ul>
                 </li>
-
             </ul>
         </div>
     </div>
 </nav>
-
-
-
 
 <p th:text="'Willkommen bei rePlant!'"></p>
 <p th:text="${message}"></p>
@@ -84,10 +73,10 @@
         </div>
         <nav>
             <ul>
-                <li><a href="index.html" ; style="color: #017101;">Home</a></li>
-                <li><a href="about.html" ; style="color: #017101;">Über uns</a></li>
-                <li><a href="contact.html" ; style="color: #017101;">Kontakt</a></li>
-            </ul>
+                <li><a href="index.html" style="color: #017101;">Home</a></li>
+                <li><a href="about.html" style="color: #017101;">Über uns</a></li>
+                <li><a href="contact.html" style="color: #017101;">Kontakt</a></li>
+            </            </ul>
         </nav>
     </div>
 </header>
@@ -103,19 +92,14 @@
             <p>Beschreibung der Anzeige 2...</p>
         </div>
     </section>
-
-
-</div><div class="container">
-    <section class="results" th:if="${plants != null}">
-        <h2 style="color: #017101;">Ähnliche Ergebnisse, die zu deiner Suche passen könnten:</h2>
-        <div class="list-group">
-            <div th:each="plant : ${plants}" class="list-group-item">
-                <h3 th:text="${plant.name}"></h3>
-                <p th:text="${plant.description}"></p>
-            </div>
-        </div>
-    </section>
 </div>
+
+<footer class="bg-light text-center text-lg-start">
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2024 rePlant
+    </div>
+</footer>
 
 </body>
 </html>
+

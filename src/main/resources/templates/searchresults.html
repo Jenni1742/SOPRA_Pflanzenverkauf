@@ -83,6 +83,17 @@
     </div>
 </div>
 
+<body>
+<h1>Suchergebnisse</h1>
+<div th:unless="${#lists.isEmpty(results)}">
+    <ul>
+        <li th:each="result : ${results}" th:text="${result}">Resultat</li>
+    </ul>
+</div>
+<div th:if="${#lists.isEmpty(results)}">
+    <p>Keine Ergebnisse gefunden.</p>
+</div>
+
 <script src="js/scripts.js"></script>
 </body>
 </html>
