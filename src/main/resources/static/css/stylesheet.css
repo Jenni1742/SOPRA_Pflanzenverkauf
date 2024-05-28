@@ -95,3 +95,10 @@ p {
     max-width: 600px;
     height: auto;
 }
+.rounded-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 100% !important;
+    border: 2px solid black;
+}
+
