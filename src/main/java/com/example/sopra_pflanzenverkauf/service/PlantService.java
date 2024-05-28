@@ -1,0 +1,38 @@
+package com.example.sopra_pflanzenverkauf.service;
+
+import com.example.sopra_pflanzenverkauf.entity.Plant;
+import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class PlantService {
+
+    @Autowired //Annotation zur Markierung von Objekten für die Spring Dependency Injection
+    private PlantRepository plantRepository;
+
+    public PlantService(PlantRepository plantRepository){
+        this.plantRepository = plantRepository;
+    }
+
+    /**
+     * Returns all plants persisted in the database.
+     *
+     * @return List of plants.
+     */
+    public List<Plant> findAllPlants() {
+        return plantRepository.findAll();
+    }
+
+    /**
+     * Search for a plant by its name.
+     *
+     * @param name
+     * @return plant object
+     */
+    public Plant getUserByName(String name) {
+        return plantRepository.findByName(name);
+    }
+}
