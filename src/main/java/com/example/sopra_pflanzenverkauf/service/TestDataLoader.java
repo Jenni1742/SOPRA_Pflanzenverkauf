@@ -147,6 +147,34 @@ public class TestDataLoader implements CommandLineRunner {
         cactus2.setSold(true);
         plantService.persistPlant(cactus2);
 
+        // create lilies
+        Plant lily1 = new Plant(
+                "Lilie",
+                30,
+                15,
+                "Weiße Lilie",
+                "Regelmäßig gießen und im Halbschatten halten."
+        );
+        plantService.persistPlant(lily1);
+
+        Plant lily2 = new Plant(
+                "Lilie",
+                35,
+                20,
+                "Gelbe Lilie",
+                "Nicht zu viel gießen und viel Licht."
+        );
+        plantService.persistPlant(lily2);
+
+        Plant lily3 = new Plant(
+                "Lilie",
+                25,
+                18,
+                "Rote Lilie",
+                "Halbschatten und gleichmäßige Feuchtigkeit."
+        );
+        plantService.persistPlant(lily3);
+
     }
 
 }
