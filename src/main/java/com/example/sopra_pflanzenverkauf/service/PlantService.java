@@ -1,7 +1,6 @@
 package com.example.sopra_pflanzenverkauf.service;
 
 import com.example.sopra_pflanzenverkauf.entity.Plant;
-import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,37 +10,32 @@ import java.util.List;
 @Service
 public class PlantService {
 
-    @Autowired //Annotation zur Markierung von Objekten für die Spring Dependency Injection
-    private PlantRepository plantRepository;
+    private final PlantRepository plantRepository;
 
-    public PlantService(PlantRepository plantRepository){
+    @Autowired
+    public PlantService(PlantRepository plantRepository) {
         this.plantRepository = plantRepository;
     }
 
-    public List<Plant> searchPlantsByName(String name) {
-        return plantRepository.findByNameContainingIgnoreCase(name);
-    }
-    /**
-     * Returns all plants persisted in the database.
-     *
-     * @return List of plants.
-     */
-    public List<Plant> findAllPlants() {
+    public List<Plant> getAllPlants() {
         return plantRepository.findAll();
     }
 
-    /**
-     * Search for a plant by its name.
-     *
-     * @param name
-     * @return plant object
-     */
-    public Plant getUserByName(String name) {
-        return plantRepository.findByName(name);
+    public List<Plant> searchPlants(String query) {
+        // Implementiere die Logik zur Suche nach Pflanzen basierend auf dem Query
+        return plantRepository.findByNameContaining(query);
     }
 
-    public Plant persistPlant (Plant plant) {
-        return plantRepository.save(plant);
+    public List<Plant> filterAndSortPlants(String query, String category, String price) {
+        // Implementiere die Filter- und Sortierlogik hier
+        // Dies ist nur ein einfaches Beispiel, du musst die Logik an deine Anforderungen anpassen
+        if (category != null && !category.isEmpty()) {
+            return plantRepository.findByCategory(category);
+        } else if (price != null && !price.isEmpty()) {
+            return plantRepository.findByPrice(Double.parseDouble(price));
+        } else {
+            return getAllPlants();
+        }
     }
-
 }
+

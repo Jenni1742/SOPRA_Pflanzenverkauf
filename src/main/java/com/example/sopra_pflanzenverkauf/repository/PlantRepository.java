@@ -2,13 +2,16 @@ package com.example.sopra_pflanzenverkauf.repository;
 
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface PlantRepository extends JpaRepository<Plant, Integer> {
+@Repository
+public interface PlantRepository extends JpaRepository<Plant, Long> {
 
-        Plant findByName(String name); //"findBy" ist Schlüsselwort für SELECT * FROM Pflanze WHERE name = x
+        List<Plant> findByNameContaining(String query);
 
-        List<Plant> findByNameContainingIgnoreCase(String name);
+        List<Plant> findByCategory(String category);
 
+        List<Plant> findByPrice(Double price);
 }

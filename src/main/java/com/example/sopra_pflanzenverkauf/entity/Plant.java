@@ -27,7 +27,7 @@ public class Plant {
     @Column(name = "Beschreibung der Pflanze")
     private String plantDescription;
 
-    //TODO Bilder einfügen können
+    //TO-DO Bilder einfügen können
     //@Column(name = "Fotos")
     //private Integer pictures;
 
