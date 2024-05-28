@@ -72,7 +72,27 @@ h1 {
     top: 0;
     width: 100%;
     z-index: 1000;
+    padding: 0; /* Adjust padding if needed */
+    height: 80px;
 }
+.navbar-logo {
+    width: 100%;
+    height: auto; /* Ensures the image keeps its aspect ratio */
+    max-height: 100px;
+}
+
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+}
+
 
 .nav-link {
     color: white;
