@@ -89,6 +89,9 @@ public class TestDataLoader implements CommandLineRunner {
     @Autowired
     private RoleService roleService;
 
+    @Autowired
+    private PlantService plantService;
+
     /**
      * Executed during Spring boot startup.
      * @param args arguments.
@@ -136,7 +139,16 @@ public class TestDataLoader implements CommandLineRunner {
                 "Mein kleiner grüner Kaktus",
                 "Hin und wieder mal gießen."
         );
+        plantService.persistPlant(cactus);
 
+        Plant cactus2 = new Plant();
+        cactus2.setName("Kaktus");
+        cactus2.setPlantSize(50);
+        cactus2.setPrice(10.5);
+        cactus2.setPlantDescription("Mein kleiner grüner Kaktus");
+        cactus2.setCareTips("Hin und wieder mal gießen.");
+        cactus2.setSold(true);
+        plantService.persistPlant(cactus2);
 
     }
 }
