@@ -225,7 +225,7 @@ public class User {
      * Sets roles.
      *
      * @param roles the roles
-    */
+     */
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }

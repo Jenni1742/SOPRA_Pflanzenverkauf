@@ -13,11 +13,11 @@ public class RoleService {
     @Autowired
     private RoleRepository roleRepository;
 
-/*
-    public Role saveRole(Role role) {
-        return RoleRepository.save(role);
-    }
-*/
+    /*
+        public Role saveRole(Role role) {
+            return RoleRepository.save(role);
+        }
+    */
     public List<Role> findAllRole() {
         return roleRepository.findAll();
     }

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -9,13 +10,14 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="css\stylesheet.css">
 </head>
 <body>
+
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <div class="container">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand" href="http://localhost:8080/">
                 <img src="images/Weiß_rePlant.png" alt="rePlant" class="navbar-logo">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,12 +45,13 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Wiki</a>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Profil
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        <li><a class="dropdown-item" href="/myUserprofile">Mein Profil</a></li>
+                    <ul class="dropdown-menu dropdown-menu-end" >
+                        <li><a class="dropdown-item" href="http://localhost:8080/myUserprofile">Mein Profil</a></li>
                         <li><a class="dropdown-item" href="#">Nachrichten</a></li>
                         <li><a class="dropdown-item" href="#">Meine Verkaufsanzeigen</a></li>
                         <li><a class="dropdown-item" href="#">verkaufte Pflanzen</a></li>
@@ -56,71 +59,63 @@
                         <li><a class="dropdown-item" href="#">Käuferranking</a></li>
                         <li><a class="dropdown-item" href="#">Verkäuferranking</a></li>
                         <li><a class="dropdown-item" href="#">Meine Fortschritte</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="/login?logout">Logout</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="http://localhost:8080/login?logout">Logout</a></li>
                     </ul>
                 </li>
+
             </ul>
         </div>
     </div>
 </nav>
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-3 filter-block">
-            <h3>Filtern nach:</h3>
-            <form action="/filter" method="get">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="category" value="Kategorie" id="category">
-                    <label class="form-check-label" for="category">
-                        Kategorie
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="price" value="Preis" id="price">
-                    <label class="form-check-label" for="price">
-                        Preis
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="xyz" value="Xyz" id="xyz">
-                    <label class="form-check-label" for="xyz">
-                        Xyz
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="xyz2" value="Xyz2" id="xyz2">
-                    <label class="form-check-label" for="xyz2">
-                        Xyz2
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-primary">Filter anwenden</button>
-            </form>
+
+
+<p th:text="'Willkommen bei rePlant!'"></p>
+<p th:text="${message}"></p>
+
+<header>
+    <div class="container">
+        <div id="branding">
+            <h1 style="color: #017101;">Trending</h1>
         </div>
-        <div class="col-md-9">
-            <button class="btn btn-secondary" onclick="sortResults()">Sortieren nach</button>
-            <div class="list-group mt-3" th:if="${plants != null}">
-                <div th:each="plant : ${plants}" class="list-group-item">
-                    <h4 th:text="${plant.name}"></h4>
-                    <p>PLZ: <span th:text="${plant.zipCode}"></span></p>
-                    <p>Kategorie: <span th:text="${plant.category}"></span></p>
-                    <p>Preis: <span th:text="${plant.price}"></span> EUR</p>
-                    <p>Status: <span th:text="${plant.status}"></span></p>
-                    <p>Verkäufer: <span th:text="${plant.seller}"></span></p>
-                    <button class="btn btn-outline-success">Mehr erfahren</button>
-                </div>
+        <nav>
+            <ul>
+                <li><a href="index.html" ; style="color: #017101;">Home</a></li>
+                <li><a href="about.html" ; style="color: #017101;">Über uns</a></li>
+                <li><a href="contact.html" ; style="color: #017101;">Kontakt</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+    <section class="ads">
+        <div class="ad">
+            <h2><a href="ad1.html" style="color: #017101;">Anzeige 1</a></h2>
+            <p>Beschreibung der Anzeige 1...</p>
+        </div>
+        <div class="ad">
+            <h2><a href="ad2.html" style="color: #017101;">Anzeige 2</a></h2>
+            <p>Beschreibung der Anzeige 2...</p>
+        </div>
+    </section>
+
+
+</div><div class="container">
+    <section class="results" th:if="${plants != null}">
+        <h2 style="color: #017101;">Ähnliche Ergebnisse, die zu deiner Suche passen könnten:</h2>
+        <div class="list-group">
+            <div th:each="plant : ${plants}" class="list-group-item">
+                <h3 th:text="${plant.name}"></h3>
+                <p th:text="${plant.description}"></p>
             </div>
         </div>
-    </div>
+    </section>
 </div>
 
-
-
-<script>
-function sortResults() {
-    // TODO Implementiere die Sortierlogik hier
-}
-</script>
 </body>
 </html>
