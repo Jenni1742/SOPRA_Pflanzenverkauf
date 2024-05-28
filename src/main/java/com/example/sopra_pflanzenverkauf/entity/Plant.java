@@ -44,11 +44,12 @@ public class Plant {
         // empty constructor for Hibernate
     }
 
-    public Plant (String name, Integer plantSize, double price, String plantDescription) {
+    public Plant (String name, Integer plantSize, double price, String plantDescription, String careTips) {
         this.name = name;
         this.plantSize = plantSize;
         this.price = price;
         this.plantDescription = plantDescription;
+        this.careTips = careTips;
     }
 
     public Integer getPlantId() {

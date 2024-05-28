@@ -1,5 +1,6 @@
 package com.example.sopra_pflanzenverkauf.service;
 
+import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.entity.Role;
 import org.springframework.boot.CommandLineRunner;
@@ -127,7 +128,14 @@ public class TestDataLoader implements CommandLineRunner {
         userService.persistUser(jenniferK);
 
 
-
+        // create plant
+        Plant cactus = new Plant(
+                "Kaktus",
+                50,
+                10,
+                "Mein kleiner grüner Kaktus",
+                "Hin und wieder mal gießen."
+        );
 
 
     }
