@@ -18,6 +18,9 @@ public class PlantService {
         this.plantRepository = plantRepository;
     }
 
+    public List<Plant> searchPlantsByName(String name) {
+        return plantRepository.findByNameContainingIgnoreCase(name);
+    }
     /**
      * Returns all plants persisted in the database.
      *

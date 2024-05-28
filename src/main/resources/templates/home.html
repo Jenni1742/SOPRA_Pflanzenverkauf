@@ -12,9 +12,6 @@
 
     <link rel="stylesheet" href="css\stylesheet.css">
 </head>
-
-
-
 <body>
 
 <nav class="navbar navbar-expand-lg">
@@ -28,15 +25,14 @@
             </button>
         </div>
 
-
-        <div class="input-group">
-            <input class="form-control" type="search" placeholder="Suche" aria-label="Suche">
+        <form class="input-group" action="/" method="get">
+            <input class="form-control" type="search" name="query" placeholder="Suche" aria-label="Suche">
             <button class="btn btn-outline-success" type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                 </svg>
             </button>
-        </div>
+        </form>
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -106,21 +102,18 @@
             <h2><a href="ad2.html" style="color: #017101;">Anzeige 2</a></h2>
             <p>Beschreibung der Anzeige 2...</p>
         </div>
-
-        <!-- Weitere Anzeigen hier -->
     </section>
-</div>
-<div class="container">
-    <section class="searches">
-        <div class="search">
-            <h2><a href="pflanzenfreund.html" style="color: #017101;">Pflanzenfreund finden</a></h2>
-            <p>Suchfeld nutzen</p>
-        </div>
-        <div class="search">
-            <h2><a href="createAd.html" style="color: #017101;">Pflanzen zum Verkauf einstellen</a></h2>
-            <p>Weiterleiten zur Anzeigenerstellung</p>
-        </div>
 
+
+</div><div class="container">
+    <section class="results" th:if="${plants != null}">
+        <h2 style="color: #017101;">Ähnliche Ergebnisse, die zu deiner Suche passen könnten:</h2>
+        <div class="list-group">
+            <div th:each="plant : ${plants}" class="list-group-item">
+                <h3 th:text="${plant.name}"></h3>
+                <p th:text="${plant.description}"></p>
+            </div>
+        </div>
     </section>
 </div>
 

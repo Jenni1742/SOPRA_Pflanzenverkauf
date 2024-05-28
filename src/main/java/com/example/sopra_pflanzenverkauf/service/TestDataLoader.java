@@ -73,8 +73,6 @@ public class TestDataLoader implements ApplicationListener<ContextRefreshedEvent
 */
 
 
-
-
 ////////////////////////Aus Demo Projekt
 /**
  *
@@ -130,7 +128,6 @@ public class TestDataLoader implements CommandLineRunner {
         jenniferK.setRoles(userRoles);
         userService.persistUser(jenniferK);
 
-
         // create plant
         Plant cactus = new Plant(
                 "Kaktus",
@@ -151,5 +148,6 @@ public class TestDataLoader implements CommandLineRunner {
         plantService.persistPlant(cactus2);
 
     }
+
 }
 ////////////////////////Aus Demo Projekt
