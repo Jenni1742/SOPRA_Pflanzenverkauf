@@ -65,6 +65,7 @@ h1 {
 }
 .navbar {
     background-color: #017101;
+    position: fixed;
 }
 
 .nav-link {
