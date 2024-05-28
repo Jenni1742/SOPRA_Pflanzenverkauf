@@ -1,40 +1,5 @@
-
-
-
-.navbar {
-    background-color: #017101;
-}
-
-
-
-.nav-link {
-    color: white;
-}
-
-
-
-.responsive-image {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-}
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 20px;
-}
-h1 {
-    color: #017101;
-    font-size: 36px;
-}
-p {
-    color: black;
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-.container {
-    margin-top: 20px;
+.bg-dark {
+    background-color: black !important;
 }
 .btn{
     background-color: white;
@@ -74,6 +39,9 @@ p {
     border-color: #757575;
 <!-- SchattenFarbeBlauzuGrünwechseln -->
 }
+.container {
+    margin-top: 20px;
+}
 .card-rePlant{
     background-color: #F0F0F0;
     border-color: #017101;
@@ -89,4 +57,34 @@ p {
 .form-control{
     border-bottom-right-radius: 0px;
     border-top-right-radius: 0px;
+}
+
+h1 {
+    color: #017101;
+    font-size: 36px;
+}
+.navbar {
+    background-color: #017101;
+}
+
+.nav-link {
+    color: white;
+}
+.nav-item.dropdown .dropdown-item:active {
+    background-color: #017101 !important;
+}
+.dropdown-item:hover {
+    background-color: black;
+    color: white;
+}
+p {
+    color: black;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+.responsive-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
 }
