@@ -66,41 +66,29 @@
         </div>
     </div>
 </nav>
-
-<p th:text="'Willkommen bei rePlant!'"></p>
-<p th:text="${message}"></p>
-
-<header>
-    <div class="container">
-        <div id="branding">
-            <h1 style="color: #017101;">Trending</h1>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html" style="color: #017101;">Home</a></li>
-                <li><a href="about.html" style="color: #017101;">Über uns</a></li>
-                <li><a href="contact.html" style="color: #017101;">Kontakt</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
 <div class="container">
-    <section class="ads">
-        <div class="ad">
-            <h2><a href="ad1.html" style="color: #017101;">Anzeige 1</a></h2>
-            <p>Beschreibung der Anzeige 1...</p>
+    <header>
+        <div id="branding">
+            <h1 style="color: #017101;"> Anzeigen, die dir gefallen könnten: </h1>
         </div>
-        <div class="ad">
-            <h2><a href="ad2.html" style="color: #017101;">Anzeige 2</a></h2>
-            <p>Beschreibung der Anzeige 2...</p>
+    </header>
+
+    <section class="ads">
+        <div th:each="plant : ${plants}" class="ad" style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+            <h2 th:text="${plant.name}" style="color: #017101;"></h2>
+            <p th:text="${plant.plantDescription}">Beschreibung der Pflanze...</p>
+            <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
+            <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
+            <p><strong>Pflegetipps:</strong> <span th:text="${plant.careTips}">Pflegetipps...</span></p>
+            <!-- Bild hinzufügen, wenn das Attribut "picturePath" verfügbar ist -->
+            <!-- <img th:src="@{${plant.picturePath}}" alt="Bild der Pflanze" /> -->
         </div>
     </section>
 </div>
 
 <footer class="bg-light text-center text-lg-start">
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-        © 2024 rePlant
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 rePlant
     </div>
 </footer>
 

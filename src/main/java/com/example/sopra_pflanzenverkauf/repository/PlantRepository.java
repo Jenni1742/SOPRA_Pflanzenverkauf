@@ -3,6 +3,7 @@ package com.example.sopra_pflanzenverkauf.repository;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Collection;
 import java.util.List;
 
 public interface PlantRepository extends JpaRepository<Plant, Integer> {
@@ -11,4 +12,5 @@ public interface PlantRepository extends JpaRepository<Plant, Integer> {
 
         List<Plant> findByNameContainingIgnoreCase(String name);
 
+        List<Plant> findBySoldFalseOrderByPlantIdAsc();
 }
