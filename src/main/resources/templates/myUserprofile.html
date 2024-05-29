@@ -137,7 +137,70 @@
         </table>
     </div>
     <div class="card-footer text-center card-footer-rePlant">
-        <button type="button" class="btn btn-rePlantGreen">Passwort ändern</button>
+
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-rePlantGreen" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+            Passwort ändern
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Passwort ändern</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+
+
+
+
+                        <!--
+                        <div>
+                            <p><input id="oldpass" name="oldpassword" type="password" /></p>
+                            <p><input id="pass" name="password" type="password" /></p>
+                            <p><input id="passConfirm" type="password" /></p>
+
+                            <span id="error" style="display:none">Password mismatch</span>
+
+
+
+                            <button type="submit" onclick="savePass()">Change Password</button>
+                        </div>
+                        -->
+
+
+
+                        <!--
+                        <div class="col-md-6 mx-auto">
+                            <form method="post" th:object="${currentUser}">
+
+                                <label for="password">Password</label>
+                                <div class="input-group" id="show_hide_password">
+                                    <input type="password" class="form-control" id="password" autocomplete="off"
+                                           th:field="*{password}"/>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="fa fa-eye-slash" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div> -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-rePlantGreen" data-bs-dismiss="modal">neues Passwort bestätigen </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
         <button type="button" class="btn btn-rePlantGreen">Profildaten bearbeiten</button>
     </div>
 </div>

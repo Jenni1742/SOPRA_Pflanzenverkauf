@@ -38,6 +38,7 @@ public class UserService implements UserDetailsService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+
     /**
      * Saves a user-object and encodes its password.
      * Persists a user in the database
