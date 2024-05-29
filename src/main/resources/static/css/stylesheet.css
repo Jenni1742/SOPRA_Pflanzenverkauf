@@ -1,5 +1,6 @@
 body {
     padding-top: 100px; /* Passe diesen Wert an die Höhe deiner Navbar an */
+    font-family: Arial, sans-serif;
 }
 .bg-dark {
     background-color: black !important;
@@ -44,6 +45,10 @@ body {
 }
 .container {
     margin-top: 20px;
+}
+.card {
+    border-color: #017101;
+    width: 100%;
 }
 .card-rePlant{
     background-color: #F0F0F0;
@@ -127,4 +132,6 @@ p {
     padding: 20px; /* Inneren Abstand hinzufügen */
     border-radius: 5px; /* Ecken leicht abrunden */
 }
-
+.table-profil-oben {
+    width: max-content;
+}
