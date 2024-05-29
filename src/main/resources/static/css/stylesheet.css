@@ -135,4 +135,15 @@ p {
 .table-profil-oben {
     width: max-content;
 }
-
+.btn-Profilbild {
+    border-color: transparent;
+    background-color: transparent;
+}
+.btn-Profilbild:active {
+    border-color: transparent;
+    background-color: transparent;
+}
+.btn-Profilbild:hover {
+    border-color: transparent;
+    background-color: transparent;
+}

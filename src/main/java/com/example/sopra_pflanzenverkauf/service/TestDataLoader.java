@@ -117,7 +117,7 @@ public class TestDataLoader implements CommandLineRunner {
         jenniferKaisner.setPlz("72108");
         jenniferKaisner.setBuyingLevel("Meister des Gartens");
         jenniferKaisner.setSellingLevel("Sprössling");
-        jenniferKaisner.setPicturePath("images/person-fill.svg");
+        jenniferKaisner.setPicturePath("https://media.rimondo.net/1363699/conversions/4e431791-5f31-4f3e-9d2f-61eef8ffd846-400.webp?v=1637496632");
         //jenniferKaisner.setNonLocked(true);
         jenniferKaisner.setRoles(userRoles);
         userService.persistUser(jenniferKaisner);

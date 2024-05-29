@@ -12,7 +12,6 @@
 </head>
 <body>
 
-
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <div class="container-fluid">
@@ -80,7 +79,22 @@
     <table class="table table-borderless table-profil-oben">
         <tbody>
             <tr>
-                <th scope="row" rowspan="3"><img th:src="${currentUser.getPicturePath()}" alt="Profilbild" class="rounded-circle"></th>
+                <th scope="row" rowspan="3">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <img th:src="${currentUser.getPicturePath()}" alt="Profilbild" class="rounded-circle">
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <img th:src="${currentUser.getPicturePath()}" alt="Profilbild" style="width: max(465px)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th>
             </tr>
             <tr>
                 <th scope="row">Käuferlevel:</th>
