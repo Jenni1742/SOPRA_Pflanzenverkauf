@@ -18,7 +18,7 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-
+        /**
         http.authorizeHttpRequests()
             // alle Requests die ohne Login erreichbar sind
             .requestMatchers("/login", "/register", "/console/**").permitAll()
@@ -41,16 +41,44 @@ public class SecurityConfiguration {
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
             .logoutSuccessUrl("/login?logout");
 
+
         // Deaktiviert header security. Ermöglicht Nutzung der H2 Console.
 
         /*
         http.headers().frameOptions().sameOrigin().disable();
-        */
+
 
         ////////////////////////Aus Demo Projekt
         http.csrf().disable();
         http.headers().frameOptions().disable();
         ////////////////////////Aus Demo Projekt
+        */
+
+        http
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/login", "/register", "/resources/**", "/static/**", "/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .failureUrl("/login?error=true")
+                        .permitAll()
+                        .defaultSuccessUrl("/", true)
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                )
+                .logout(logout -> logout
+                        .permitAll()
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutSuccessUrl("/login?logout")
+                )
+                .csrf(csrf -> csrf
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                );
+
+        // Deaktiviert header security. Ermöglicht Nutzung der H2 Console.
+        http.headers().frameOptions().disable();
 
         return http.build();
     }
