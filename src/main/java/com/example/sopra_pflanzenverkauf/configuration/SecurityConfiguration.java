@@ -78,7 +78,7 @@ public class SecurityConfiguration {
                 );
 
         // Deaktiviert header security. Ermöglicht Nutzung der H2 Console.
-        http.headers().frameOptions().disable();
+        //http.headers().frameOptions().disable();
 
         return http.build();
     }
