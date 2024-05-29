@@ -80,7 +80,7 @@
     <table class="table table-borderless table-profil-oben">
         <tbody>
             <tr>
-                <th scope="row" rowspan="3"><img src="images/person-fill.svg" alt="Profilbild" class="rounded-circle"></th>
+                <th scope="row" rowspan="3"><img th:src="${currentUser.getPicturePath()}" alt="Profilbild" class="rounded-circle"></th>
             </tr>
             <tr>
                 <th scope="row">Käuferlevel:</th>
