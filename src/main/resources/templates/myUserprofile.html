@@ -76,6 +76,7 @@
 
 
 <div class="card">
+    <p></p>
     <table class="table table-borderless table-profil-oben">
         <tbody>
             <tr>
@@ -83,11 +84,11 @@
             </tr>
             <tr>
                 <th scope="row">Käuferlevel:</th>
-                <td>Meister des Gartens</td>
+                <td th:text="${currentUser.getBuyingLevel()}"/>
             </tr>
             <tr>
                 <th scope="row">Verkäuferlevel:</th>
-                <td>Sprössling</td>
+                <td th:text="${currentUser.getSellingLevel()}"/>
             </tr>
         </tbody>
     </table>
@@ -96,23 +97,23 @@
             <tbody>
             <tr>
                 <th scope="row">Benutzername:</th>
-                <td>Jacob</td>
+                <td th:text="${currentUser.getUsername()}"/>
             </tr>
             <tr>
                 <th scope="row">Vorname:</th>
-                <td colspan="2">Larry the Bird</td>
+                <td th:text="${currentUser.getFirstName()}"/>
             </tr>
             <tr>
                 <th scope="row">Nachname:</th>
-                <td colspan="2">Larry the Bird</td>
+                <td th:text="${currentUser.getLastName()}"/>
             </tr>
             <tr>
                 <th scope="row">E-Mail:</th>
-                <td colspan="2">Larry the Bird</td>
+                <td th:text="${currentUser.getEmail()}"/>
             </tr>
             <tr>
                 <th scope="row">Postleitzahl:</th>
-                <td colspan="2">Larry the Bird</td>
+                <td th:text="${currentUser.getPlz()}"/>
             </tr>
             <tr>
                 <th scope="row">Passwort:</th>
@@ -120,7 +121,6 @@
             </tr>
             </tbody>
         </table>
-
     </div>
     <div class="card-footer text-center card-footer-rePlant">
         <button type="button" class="btn btn-rePlantGreen">Passwort ändern</button>

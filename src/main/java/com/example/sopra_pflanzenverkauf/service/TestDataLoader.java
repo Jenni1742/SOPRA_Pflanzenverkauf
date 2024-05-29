@@ -112,6 +112,12 @@ public class TestDataLoader implements CommandLineRunner {
         jenniferKaisner.setUsername("JenniferK");
         jenniferKaisner.setPassword("1234");
         jenniferKaisner.setEnabled(true);
+        jenniferKaisner.setFirstName("Jennifer");
+        jenniferKaisner.setLastName("Kaisner");
+        jenniferKaisner.setPlz("72108");
+        jenniferKaisner.setBuyingLevel("Meister des Gartens");
+        jenniferKaisner.setSellingLevel("Sprössling");
+        jenniferKaisner.setPicturePath("C:\\Users\\Jennifer Kaisner\\IdeaProjects\\SOPRA_Pflanzenverkauf\\src\\main\\resources\\static\\images\\replant_logo.png");
         //jenniferKaisner.setNonLocked(true);
         jenniferKaisner.setRoles(userRoles);
         userService.persistUser(jenniferKaisner);

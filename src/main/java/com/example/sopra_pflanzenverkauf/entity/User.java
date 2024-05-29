@@ -40,6 +40,15 @@ public class User {
     @Column(name = "aktiviert")
     private boolean enabled = true;
 
+    @Column(name = "Käuferlevel")
+    private String buyingLevel;
+
+    @Column(name = "Verkäuferlevel")
+    private String sellingLevel;
+
+    @Column(name = "Profilbild")
+    private String picturePath;
+
 
     //TODO Wird wahrscheinlich nicht benötigt
 
@@ -208,6 +217,43 @@ public class User {
         this.enabled = enabled;
     }
 
+    /**
+     * Gets buying Level.
+     *
+     * @return the buying Level
+     */
+    public String getBuyingLevel() {
+        return buyingLevel;
+    }
+
+    /**
+     * Sets buying Level.
+     *
+     * @param buyingLevel the buying Level
+     */
+    public void setBuyingLevel(String buyingLevel) {
+        this.buyingLevel = buyingLevel;
+    }
+
+    /**
+     * Gets sellingLevel.
+     *
+     * @return the selling Level
+     */
+    public String getSellingLevel() {
+        return sellingLevel;
+    }
+
+    /**
+     * Sets sellingLevel.
+     *
+     * @param sellingLevel the selling Level
+     */
+    public void setSellingLevel(String sellingLevel) {
+        this.sellingLevel = sellingLevel;
+    }
+
+
     //TODO Wird wahrscheinlich nicht benötigt (Jetzt gerade aber schon wegen Userservice)
 
     /**
@@ -230,4 +276,21 @@ public class User {
         this.roles = roles;
     }
 
+    /**
+     * Gets picture path.
+     *
+     * @return the picture path
+     * */
+    public String getPicturePath() {
+        return picturePath;
+    }
+
+    /**
+     * Sets picture path.
+     *
+     * @param picturePath the picture path
+     */
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
+    }
 }
