@@ -44,4 +44,11 @@ public class PlantService {
         return plantRepository.save(plant);
     }
 
+    public List<Plant> findFirstThreeUnsoldPlants(){
+
+        return plantRepository.findBySoldFalseOrderByPlantIdAsc().stream()
+                .limit(3)
+                .toList();
+    }
+
 }

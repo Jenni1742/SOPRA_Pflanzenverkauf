@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-
 @Controller
 public class HomeController {
 
@@ -28,6 +27,10 @@ public class HomeController {
             model.addAttribute("plants", plants);
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
+
+        // Alle Pflanzenanzeigen für die Startseite laden
+        List<Plant> plants = plantService.findFirstThreeUnsoldPlants();
+        model.addAttribute("plants", plants);
 
         return "home";
     }

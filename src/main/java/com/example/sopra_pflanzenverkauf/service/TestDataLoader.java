@@ -117,7 +117,7 @@ public class TestDataLoader implements CommandLineRunner {
         jenniferKaisner.setPlz("72108");
         jenniferKaisner.setBuyingLevel("Meister des Gartens");
         jenniferKaisner.setSellingLevel("Sprössling");
-        jenniferKaisner.setPicturePath("C:\\Users\\Jennifer Kaisner\\IdeaProjects\\SOPRA_Pflanzenverkauf\\src\\main\\resources\\static\\images\\replant_logo.png");
+        jenniferKaisner.setPicturePath("images/person-fill.svg");
         //jenniferKaisner.setNonLocked(true);
         jenniferKaisner.setRoles(userRoles);
         userService.persistUser(jenniferKaisner);
@@ -182,5 +182,6 @@ public class TestDataLoader implements CommandLineRunner {
         plantService.persistPlant(lily3);
 
     }
+
 
 }
