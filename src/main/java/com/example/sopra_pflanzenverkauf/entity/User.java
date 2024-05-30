@@ -1,6 +1,8 @@
 package com.example.sopra_pflanzenverkauf.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.mapping.List;
+
 
 import java.util.Set;
 
@@ -48,6 +50,13 @@ public class User {
 
     @Column(name = "Profilbild")
     private String picturePath;
+
+    @Column(name = "Gekaufte Pflanzen")
+    private List purchasedPlants;
+
+    @Column(name = "Verkaufte Pflanzen")
+    private List soldPlants;
+
 
 
     //TODO Wird wahrscheinlich nicht benötigt
@@ -292,5 +301,41 @@ public class User {
      */
     public void setPicturePath(String picturePath) {
         this.picturePath = picturePath;
+    }
+
+    /**
+     * Gets list of purchased plants.
+     *
+     * @return the list of purchased plants
+     * */
+    public List getPurchasedPlants() {
+        return purchasedPlants;
+    }
+
+    /**
+     * Sets list of purchased plants.
+     *
+     * @param purchasedPlants the list of purchased plants
+     */
+    public void setPurchasedPlants(List purchasedPlants) {
+        this.purchasedPlants = purchasedPlants;
+    }
+
+    /**
+     * Gets list of sold plants.
+     *
+     * @return the list of dold plants
+     * */
+    public List getSoldPlants() {
+        return soldPlants;
+    }
+
+    /**
+     * Sets list of sold plants.
+     *
+     * @param soldPlants the list of sold plants
+     */
+    public void setSoldPlants(List soldPlants) {
+        this.soldPlants = soldPlants;
     }
 }
