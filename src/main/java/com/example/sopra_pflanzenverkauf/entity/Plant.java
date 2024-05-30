@@ -37,6 +37,12 @@ public class Plant {
     @Column(name = "Verkauft")
     private boolean sold = false;
 
+    @Column(name = "Postleitzahl")
+    private Integer plz;
+
+    @Column(name ="Verkäufer")
+    private String seller;
+
     /**
      * Instantiates a new Plant.
      */
