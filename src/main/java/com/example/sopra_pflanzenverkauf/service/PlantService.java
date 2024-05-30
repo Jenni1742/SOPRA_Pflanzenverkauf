@@ -1,7 +1,6 @@
 package com.example.sopra_pflanzenverkauf.service;
 
 import com.example.sopra_pflanzenverkauf.entity.Plant;
-import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,7 +35,7 @@ public class PlantService {
      * @param name
      * @return plant object
      */
-    public Plant getUserByName(String name) {
+    public Plant getPlantByName(String name) {
         return plantRepository.findByName(name);
     }
 
