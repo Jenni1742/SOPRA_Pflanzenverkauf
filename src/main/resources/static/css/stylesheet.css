@@ -135,10 +135,10 @@ p {
     border: 2px solid black;
 }
 .filter-block {
-    background-color: white; /* Hintergrund weiß setzen */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Leichter Schatten */
-    padding: 20px; /* Inneren Abstand hinzufügen */
-    border-radius: 5px; /* Ecken leicht abrunden */
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 5px;
 }
 .table-profil-oben {
     width: max-content;
