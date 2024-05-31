@@ -11,7 +11,6 @@ public class Plant {
 
     @Id
     @GeneratedValue
-
     @Column(name = "PflanzenID")
     private Integer plantId;
 
@@ -38,7 +37,23 @@ public class Plant {
     private boolean sold = false;
 
     @Column(name = "Postleitzahl")
-    private Integer plz;
+    private Integer zipCode;
+
+    public Integer getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(Integer zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public String getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String seller) {
+        this.seller = seller;
+    }
 
     @Column(name ="Verkäufer")
     private String seller;
