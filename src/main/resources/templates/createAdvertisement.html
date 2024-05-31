@@ -75,6 +75,7 @@
 </nav>
 
 
+
 <div class="container">
 
     <div class="card card-rePlant">
@@ -83,46 +84,56 @@
             <h2 class="card-title" th:text="'Anzeige erstellen'"></h2>
         </div>
 
-        <div class="card-body">
-            <div class="input-group mb-3">
-                <span class="input-group-text" >Name der Pflanze</span>
+        <div class="card-body" >
+            <div class="input-group mb-3" >
+                <span class="input-group-text">Name der Pflanze</span>
                 <input type="text" class="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-default">
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text" >Größe (in cm)</span>
+                <span class="input-group-text">Größe (in cm)</span>
                 <input type="text" class="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-default">
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text" >Preis (in €)</span>
+                <span class="input-group-text">Preis (in €)</span>
                 <input type="text" class="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-default">
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text" >Beschreibung</span>
-                <input type="text" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default">
+                <span class="input-group-text">Beschreibung</span>
+                <textarea class="form-control" aria-label="With textarea"></textarea>
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text" >Pflegetipps</span>
-                <input type="text" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default">
+                <span class="input-group-text">Pflegetipps</span>
+                <textarea class="form-control" aria-label="With textarea"></textarea>
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text" >Postleitzahl</span>
-                <input type="text" th:placeholder="'Postleitzahl des Ortes, an dem die Pflanze abgeholt werden kann'" class="form-control" aria-label="Sizing example input"
+                <span class="input-group-text">Postleitzahl</span>
+                <input type="text" th:placeholder="'Postleitzahl des Ortes, an dem sich die Pflanze befindet'"
+                       class="form-control" aria-label="Sizing example input"
                        aria-describedby="inputGroup-sizing-default">
             </div>
-            <h3>Bilder hochladen: </h3>
+            <h3>Bild hochladen: </h3>
             <div class="input-group mb-3">
                 <input type="file" class="form-control" id="inputGroupFile02">
                 <label class="input-group-text" for="inputGroupFile02">Hochladen</label>
             </div>
+
+            <!--
+            <form th:action="@{/createAdvertisement}" th:object="${plant}" method="post">
+                <input type="text" placeholder="Name der Pflanze" th:field="*{name}"/>
+                <input type="text" placeholder="Größe in cm" th:field="*{plantSize}"/>
+                <input type="text" placeholder="Preis in €" th:field="*{price}"/>
+                <button th:text="Anzeige hochladen" th:type="submit"/>
+            </form>
+            -->
+
         </div>
 
         <div class="card-footer text-center card-footer-rePlant">
-            <a href="#" class="btn btn-rePlantGreen" role="button" >Anzeige hochladen</a>
+            <a href="http://localhost:8080/myAdvertisements" class="btn btn-rePlantGreen" role="button">Anzeige
+                hochladen</a>
         </div>
 
     </div>
