@@ -140,7 +140,8 @@ public class TestDataLoader implements CommandLineRunner {
                 50,
                 10,
                 "Mein kleiner grüner Kaktus",
-                "Hin und wieder mal gießen."
+                "Hin und wieder mal gießen.",
+                "Zimmerpflanze"
         );
         plantService.persistPlant(cactus);
 
@@ -159,7 +160,8 @@ public class TestDataLoader implements CommandLineRunner {
                 30,
                 15,
                 "Weiße Lilie",
-                "Regelmäßig gießen und im Halbschatten halten."
+                "Regelmäßig gießen und im Halbschatten halten.",
+                "Outdoorpflanze"
         );
         plantService.persistPlant(lily1);
 
@@ -168,7 +170,8 @@ public class TestDataLoader implements CommandLineRunner {
                 35,
                 20,
                 "Gelbe Lilie",
-                "Nicht zu viel gießen und viel Licht."
+                "Nicht zu viel gießen und viel Licht.",
+                "Zimmerpflanze"
         );
         plantService.persistPlant(lily2);
 
@@ -177,7 +180,8 @@ public class TestDataLoader implements CommandLineRunner {
                 25,
                 18,
                 "Rote Lilie",
-                "Halbschatten und gleichmäßige Feuchtigkeit."
+                "Halbschatten und gleichmäßige Feuchtigkeit.",
+                "Zimmerpflanze"
         );
         plantService.persistPlant(lily3);
 

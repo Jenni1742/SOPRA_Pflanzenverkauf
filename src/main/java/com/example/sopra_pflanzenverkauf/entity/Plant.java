@@ -38,6 +38,8 @@ public class Plant {
 
     @Column(name = "Postleitzahl")
     private Integer zipCode;
+    @Column(name = "Kategorie")
+    private String category;
 
     public Integer getZipCode() {
         return zipCode;
@@ -65,12 +67,13 @@ public class Plant {
         // empty constructor for Hibernate
     }
 
-    public Plant (String name, Integer plantSize, double price, String plantDescription, String careTips) {
+    public Plant (String name, Integer plantSize, double price, String plantDescription, String careTips, String category) {
         this.name = name;
         this.plantSize = plantSize;
         this.price = price;
         this.plantDescription = plantDescription;
         this.careTips = careTips;
+        this.category = category;
     }
 
     public Integer getPlantId() {
@@ -121,5 +124,15 @@ public class Plant {
     public void setSold(boolean sold) {
         this.sold = sold;
     }
+
+
+    public void setCategory(){
+        this.category = category;
+    }
+    public String getCategory() {
+        return category;
+    }
+
+
 
 }

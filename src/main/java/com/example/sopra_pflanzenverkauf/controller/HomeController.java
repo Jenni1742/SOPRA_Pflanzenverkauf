@@ -19,7 +19,9 @@ public class HomeController {
     private PlantService plantService;
 
     @GetMapping("/")
-    public String showHome(Model model, @RequestParam(value = "query", required = false) String query) {
+    public String showHome(Model model, @RequestParam(value = "query", required = false) String query,
+                           @RequestParam(value = "category", required = false) String category,
+                           @RequestParam(value = "price", required = false) String price)  {
         model.addAttribute("currentUser", userService.getCurrentUser());
 
         if (query != null && !query.isEmpty()) {
@@ -28,8 +30,7 @@ public class HomeController {
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
 
-        // Alle Pflanzenanzeigen für die Startseite laden
-        List<Plant> plants = plantService.findFirstThreeUnsoldPlants();
+        List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price);
         model.addAttribute("plants", plants);
 
         return "home";
