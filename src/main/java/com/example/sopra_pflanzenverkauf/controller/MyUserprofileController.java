@@ -6,10 +6,12 @@ import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.security.Principal;
 import java.util.Locale;
 import java.util.Map;
 
@@ -18,6 +20,9 @@ public class MyUserprofileController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * Request Mapping after a successful login.
@@ -37,6 +42,23 @@ public class MyUserprofileController {
 
         model.put("currentUser", userService.getCurrentUser());
 
+        return "myUserprofile";
+    }
+    @PostMapping("/myUserprofile/changePassword")
+    public String changePassword(@RequestParam("oldPassword") String oldPassword,
+                                 @RequestParam("newPassword") String newPassword,
+                                 Map<String, Object> model) {
+        User currentUser = userService.getCurrentUser();
+
+        if (bCryptPasswordEncoder.matches(oldPassword, currentUser.getPassword())) {
+            currentUser.setPassword(bCryptPasswordEncoder.encode(newPassword));
+            userService.updateUserPassword(currentUser);
+            model.put("message", "Passwort erfolgreich geändert.");
+        } else {
+            model.put("error", "Altes Passwort ist inkorrekt.");
+        }
+
+        model.put("currentUser", currentUser);
         return "myUserprofile";
     }
 

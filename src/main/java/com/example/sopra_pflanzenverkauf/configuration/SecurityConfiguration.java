@@ -58,6 +58,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/login", "/register", "/resources/**", "/static/**", "/css/**", "/js/**", "/images/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
+                        // Erlaubt Zugriff auf die Passwortänderungs-URL
+                        .requestMatchers("/changePassword").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

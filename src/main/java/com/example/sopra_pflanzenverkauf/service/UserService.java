@@ -38,6 +38,10 @@ public class UserService implements UserDetailsService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    public void updateUserPassword(User user) {
+        userRepository.save(user);
+    }
+
 
     /**
      * Saves a user-object and encodes its password.
