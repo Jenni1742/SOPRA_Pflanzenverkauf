@@ -68,45 +68,41 @@
     </div>
 </nav>
 
-<div class="wrapper">
-    <div class="form-control">
-        <div class="col-4">
-            <div class="list-group" id="chat-list">
-                <!-- Beispiel Chat-Elemente -->
-                <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                    Verkäufer 1
-                </a>
-                <a href="#" class="list-group-item list-group-item-action">Verkäufer 2</a>
-                <a href="#" class="list-group-item list-group-item-action">Verkäufer 3</a>
-                <!-- Weitere Chat-Elemente -->
-            </div>
+<div class="chat-container">
+    <div class="chat-sidebar">
+        <div class="chat-header">
+            <h2>Chats</h2>
         </div>
-        <div class="col-8">
-            <div class="card">
-                <div class="card-header">
-                    Chat mit Verkäufer 1
-                </div>
-                <div class="card-body chat-body">
-                    <div class="chat-message">
-                        <p><strong>Verkäufer 1:</strong> Hallo, wie kann ich Ihnen helfen?</p>
-                    </div>
-                    <div class="chat-message">
-                        <p><strong>Sie:</strong> Ich interessiere mich für Ihre Pflanze.</p>
-                    </div>
-                    <!-- Weitere Nachrichten -->
-                </div>
-                <div class="card-footer">
-                    <form id="chat-form">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Nachricht eingeben...">
-                            <button class="btn btn-rePlantGreen" type="submit">Senden</button>
-                        </div>
-                    </form>
+        <div class="chat-search">
+            <input type="text" placeholder="Search here..">
+            <button> </button>
+        </div>
+
+        <div class="chat-users">
+            <div class="chat-user">
+                <img src="images/flyer.PNG" alt="User Avatar">
+                <div class="user-info">
+                    <h3>Marko Petric</h3>
+                    <p>Online</p>
                 </div>
             </div>
+            <div class="chat-user">
+                <img src="images/flyer.PNG" alt="User Avatar">
+                <div class="user-info">
+                    <h3>Petric Marko</h3>
+                    <p>Offline</p>
+                </div>
+            </div>
+            <!-- Add more chat users here -->
         </div>
     </div>
+    <div class="chat-main">
+        <!-- Main chat content will go here -->
+    </div>
 </div>
+
+</body>
+</html>
 
 <footer class="bg-light text-center text-lg-start mt-4">
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">

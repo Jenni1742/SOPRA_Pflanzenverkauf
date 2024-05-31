@@ -159,9 +159,106 @@ p {
 /*TEST
 */
 .wrapper{
-    background: #F0F0F0;
+    background: lightslategray;
     width: 100%;
     border-radius: 16px;
     box-shadow: 0 0 128px rgba(0,0,0,0.1),
                 0 32px 64px -48px rgba(0,0,0,0.5);
+}
+
+/** Verkäufer */
+
+.chat-container {
+    display: flex;
+    height: 100vh;
+}
+
+.chat-sidebar {
+    width: 250px;
+    background-color: white;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #017101; /* This adds the border around the left sidebar */
+}
+
+.chat-header {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.chat-search {
+    padding: 10px 20px;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.chat-search input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    outline: none;
+}
+
+.search-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: -30px;
+    color: #ccc;
+    font-size: 16px;
+}
+
+.chat-users {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.chat-user {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #017101;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.chat-user:hover {
+    background-color: lightgreen;
+    color: white;
+
+}
+
+.chat-user img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    border: 1px solid black; /* This adds a border around the profile picture */
+}
+
+.user-info h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.user-info p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    color: black;
+}
+
+.chat-main {
+    flex: 1;
+    background-color: #ecf0f1;
+    padding: 20px;
+    overflow-y: auto;
+    border: 1px solid #017101; /* This adds the border around the chat window */
 }
