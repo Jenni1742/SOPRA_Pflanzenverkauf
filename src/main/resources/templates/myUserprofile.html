@@ -14,7 +14,7 @@
 
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <div class="container-fluid">
+        <div class="container">
             <a class="navbar-brand" href="http://localhost:8080/">
                 <img src="images/Weiß_rePlant.png" alt="rePlant" width="15%" height="15%">
             </a>
@@ -23,15 +23,14 @@
             </button>
         </div>
 
-
-        <div class="input-group">
-            <input class="form-control" type="search" placeholder="Suche" aria-label="Suche">
+        <form class="input-group" action="/searchresults" method="get">
+            <input class="form-control" type="search" name="query" placeholder="Suche" aria-label="Suche">
             <button class="btn btn-outline-success" type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                 </svg>
             </button>
-        </div>
+        </form>
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -50,25 +49,23 @@
                         Profil
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" >
-                        <li><a class="dropdown-item active bg-dark" aria-current="page" href="http://localhost:8080/myUserprofile">Mein Profil</a></li>
-                        <li><a class="dropdown-item" href="#">Nachrichten</a></li>
-                        <li><a class="dropdown-item" href="http://localhost:8080/myAdvertisements">Meine Verkaufsanzeigen</a></li>
-                        <li><a class="dropdown-item" href="http://localhost:8080/mySoldPlants">verkaufte Pflanzen</a></li>
-                        <li><a class="dropdown-item" href="#">gekaufte Pflanzen</a></li>
-                        <li><a class="dropdown-item" href="#">Käuferranking</a></li>
-                        <li><a class="dropdown-item" href="#">Verkäuferranking</a></li>
-                        <li><a class="dropdown-item" href="#">Meine Fortschritte</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="http://localhost:8080/login?logout">Logout</a></li>
-                    </ul>
-                </li>
-
+                        <li></li><a class="dropdown-item active bg-dark" aria-current="page" href="http://localhost:8080/myUserprofile">Mein Profil</a></li>
+                <li><a class="dropdown-item" href="http://localhost:8080/chat">Nachrichten</a></li>
+                <li><a class="dropdown-item" href="http://localhost:8080/myAdvertisements">Meine Verkaufsanzeigen</a></li>
+                <li><a class="dropdown-item" href="http://localhost:8080/mySoldPlants">verkaufte Pflanzen</a></li>
+                <li><a class="dropdown-item" href="http://localhost:8080/myPurchasedPlants">gekaufte Pflanzen</a></li>
+                <li><a class="dropdown-item" href="#">Käuferranking</a></li>
+                <li><a class="dropdown-item" href="#">Verkäuferranking</a></li>
+                <li><a class="dropdown-item" href="#">Meine Fortschritte</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/logout">Logout</a></li>
+            </ul>
+            </li>
             </ul>
         </div>
     </div>
 </nav>
+
 
 
 <h1> Profil: </h1>

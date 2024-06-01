@@ -5,6 +5,7 @@ body {
 .bg-dark {
     background-color: black !important;
 }
+
 .btn{
     background-color: white;
     border-color: white;
@@ -117,6 +118,7 @@ h3 {
     background-color: black;
     color: white;
 }
+
 p {
     color: black;
     font-size: 18px;
