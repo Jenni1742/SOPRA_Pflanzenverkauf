@@ -42,6 +42,27 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public void updateUsername(User user) {
+        userRepository.save(user);
+    }
+
+    public void updateFirstName(User user) {
+        userRepository.save(user);
+    }
+
+    public void updateLastName(User user) {
+        userRepository.save(user);
+    }
+
+    public void updateEmail(User user) {
+        userRepository.save(user);
+    }
+
+    public void updatePLZ(User user) {
+        userRepository.save(user);
+    }
+
+
 
     /**
      * Saves a user-object and encodes its password.

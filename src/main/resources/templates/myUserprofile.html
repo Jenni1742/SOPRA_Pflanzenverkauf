@@ -126,10 +126,6 @@
                 <th scope="row">Postleitzahl:</th>
                 <td th:text="${currentUser.getPlz()}"/>
             </tr>
-            <tr>
-                <th scope="row">Passwort:</th>
-                <td colspan="2">********</td>
-            </tr>
             </tbody>
         </table>
     </div>
@@ -146,7 +142,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Passwort ändern</h5>
+                        <h5 class="modal-title" id="changePassword">Passwort ändern</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -166,13 +162,61 @@
                             </div>
                         </form>
 
-                </div>
+                     </div>
+                 </div>
             </div>
         </div>
 
 
-    </div>
-        <button type="button" class="btn btn-rePlantGreen">Profildaten bearbeiten</button>
+
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-rePlantGreen" data-bs-toggle="modal" data-bs-target="#/myUserprofile/changeProfile">
+            Profildaten bearbeiten
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="/myUserprofile/changeProfile" tabindex="-1" aria-labelledby="/myUserprofile/changeProfile" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changeProfile">Profildaten bearbeiten</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <form action=/myUserprofile method="post">
+                            <div class="mb-3">
+                                <label for= newUsername class="form-label">Neuer Benutzername:</label>
+                                <input type="text" class="form-control" id="newUsername" name="newUsername" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for= newFirstName class="form-label">Neuer Vorname:</label>
+                                <input type="text" class="form-control" id="newFirstName" name="newFirstName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for= newLastName class="form-label">Neuer Nachname:</label>
+                                <input type="text" class="form-control" id="newLastName" name="newLastName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for= newEmail class="form-label">Neue E-mail Adresse:</label>
+                                <input type="text" class="form-control" id="newEmail" name="newEmail" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for= newPLZ class="form-label">Neue Postleitzahl:</label>
+                                <input type="text" class="form-control" id="newPLZ" name="newPLZ" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Schließen</button>
+                                <button type="submit" class="btn btn-rePlantGreen">Profildaten ändern</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </div>
 </body>
 </html>

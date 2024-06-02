@@ -43,6 +43,8 @@ public class MyUserprofileController {
         model.put("currentUser", userService.getCurrentUser());
 
         return "myUserprofile";
+
+
     }
 
     @PostMapping(path = "/myUserprofile")
@@ -59,9 +61,36 @@ public class MyUserprofileController {
             model.put("error", "Altes Passwort ist inkorrekt.");
         }
 
+
         model.put("currentUser", currentUser);
         return "myUserprofile";
     }
 
+/*
+    @PostMapping(path = "/myUserprofile")
+    public String changeProfile(@RequestParam("newUsername") String newUsername,
+                                @RequestParam("newFirstName") String newFirstName,
+                                @RequestParam("newLastName") String newLastName,
+                                @RequestParam("newEmail") String newEmail,
+                                @RequestParam("newPLZ") String newPLZ,
+                                Map<String, Object> model) {
+        User currentUser = userService.getCurrentUser();
+
+        currentUser.setUsername(newUsername);
+        userService.updateUsername(currentUser);
+        currentUser.setFirstName(newFirstName);
+        userService.updateFirstName(currentUser);
+        currentUser.setLastName(newLastName);
+        userService.updateLastName(currentUser);
+        currentUser.setEmail(newEmail);
+        userService.updateEmail(currentUser);
+        currentUser.setPlz(newPLZ);
+        userService.updatePLZ(currentUser);
+
+
+        model.put("currentUser", currentUser);
+        return "myUserprofile";
+    }
+*/
 
 }
