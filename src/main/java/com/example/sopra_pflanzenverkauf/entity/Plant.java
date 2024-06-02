@@ -27,8 +27,8 @@ public class Plant {
     private String plantDescription;
 
     //TODO Bilder einfügen können
-    //@Column(name = "Fotos")
-    //private Integer pictures;
+    @Column(name = "Fotos")
+    private String imageUrl;
 
     @Column(name = "Pflegetipps")
     private String careTips;
@@ -40,13 +40,6 @@ public class Plant {
     private Integer zipCode;
     @Column(name = "Kategorie")
     private String category;
-
-   @Column(name = "Status")
-   private String status;
-
-   public String getStaus(){ return status;}
-
-    public void setStatus(){this.status = status;}
 
     public Integer getZipCode() {
         return zipCode;
@@ -74,14 +67,20 @@ public class Plant {
         // empty constructor for Hibernate
     }
 
-    public Plant (String name, Integer plantSize, double price, String plantDescription, String careTips, String category, String status) {
+    public Plant (String name, Integer plantSize, double price, String plantDescription, String careTips, String category) {
         this.name = name;
         this.plantSize = plantSize;
         this.price = price;
         this.plantDescription = plantDescription;
         this.careTips = careTips;
         this.category = category;
-        this.status = status;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+    public String getImageUrl(){
+        return imageUrl;
     }
 
     public Integer getPlantId() {

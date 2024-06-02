@@ -136,23 +136,24 @@ public class TestDataLoader implements CommandLineRunner {
 
         // create plant
         Plant cactus = new Plant(
-                "Kaktus1",
+                "Kaktus",
                 50,
                 10,
                 "Mein kleiner grüner Kaktus",
                 "Hin und wieder mal gießen.",
-                "Zimmerpflanze",
-                "offen"
+                "Zimmerpflanze"
         );
+        cactus.setImageUrl("https://i.pinimg.com/236x/b2/9e/4d/b29e4d6a53f3c2b86a5f3d965b1b49e3.jpg");
         plantService.persistPlant(cactus);
 
         Plant cactus2 = new Plant();
-        cactus2.setName("Kaktus2");
+        cactus2.setName("Kaktus");
         cactus2.setPlantSize(50);
         cactus2.setPrice(10.5);
         cactus2.setPlantDescription("Mein kleiner grüner Kaktus");
         cactus2.setCareTips("Hin und wieder mal gießen.");
         cactus2.setSold(true);
+        cactus2.setImageUrl("https://i.pinimg.com/236x/b2/9e/4d/b29e4d6a53f3c2b86a5f3d965b1b49e3.jpg");
         plantService.persistPlant(cactus2);
 
         // create lilies
@@ -162,20 +163,20 @@ public class TestDataLoader implements CommandLineRunner {
                 15,
                 "Weiße Lilie",
                 "Regelmäßig gießen und im Halbschatten halten.",
-                "Outdoorpflanze",
-                "im verkauf"
+                "Outdoorpflanze"
         );
+        lily1.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
         plantService.persistPlant(lily1);
 
         Plant lily2 = new Plant(
-                "Lilie2",
+                "Lilie",
                 35,
                 20,
                 "Gelbe Lilie",
                 "Nicht zu viel gießen und viel Licht.",
-                "Zimmerpflanze",
-                "offen"
+                "Zimmerpflanze"
         );
+        lily2.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
         plantService.persistPlant(lily2);
 
         Plant lily3 = new Plant(
@@ -184,9 +185,9 @@ public class TestDataLoader implements CommandLineRunner {
                 18,
                 "Rote Lilie",
                 "Halbschatten und gleichmäßige Feuchtigkeit.",
-                "Zimmerpflanze",
-                "verkauft"
+                "Zimmerpflanze"
         );
+        lily3.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
         plantService.persistPlant(lily3);
 
     }

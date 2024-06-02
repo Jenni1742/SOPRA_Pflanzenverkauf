@@ -22,7 +22,6 @@ public class MyAdvertisementsController {
      */
     @RequestMapping(value = "/myAdvertisements", method = RequestMethod.GET)
     public String showMyAdvertisementsPage(Model model) {
-
         return "myAdvertisements";
     }
 }

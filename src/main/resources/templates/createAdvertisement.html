@@ -85,46 +85,49 @@
         </div>
 
         <div class="card-body" >
-            <div class="input-group mb-3" >
-                <span class="input-group-text">Name der Pflanze</span>
-                <input type="text" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default">
+
+            <div class="mb-3">
+                <label for="nameInput" class="form-label">Name der Pflanze</label>
+                <input type="text" class="form-control" id="nameInput">
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">Größe (in cm)</span>
-                <input type="text" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default">
+
+            <div class="mb-3">
+                <label for="sizeInput" class="form-label">Größe (in cm)</label>
+                <input type="number" min="0" class="form-control" id="sizeInput">
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">Preis (in €)</span>
-                <input type="text" class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default">
+
+            <div class="mb-3">
+                <label for="priceInput" class="form-label">Preis (in €)</label>
+                <input type="number" min="0" class="form-control" id="priceInput">
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">Beschreibung</span>
-                <textarea class="form-control" aria-label="With textarea"></textarea>
+
+            <div class="mb-3">
+                <label for="descriptionInput" class="form-label">Beschreibung</label>
+                <textarea class="form-control" id="descriptionInput" ></textarea>
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">Pflegetipps</span>
-                <textarea class="form-control" aria-label="With textarea"></textarea>
+
+            <div class="mb-3">
+                <label for="careInput" class="form-label">Pflegetipps</label>
+                <textarea class="form-control" id="careInput" ></textarea>
             </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">Postleitzahl</span>
-                <input type="text" th:placeholder="'Postleitzahl des Ortes, an dem sich die Pflanze befindet'"
-                       class="form-control" aria-label="Sizing example input"
-                       aria-describedby="inputGroup-sizing-default">
+
+            <div class="mb-3">
+                <label for="zipCodeInput" class="form-label">Postleitzahl</label>
+                <input type="number" min="0" class="form-control" id="zipCodeInput">
             </div>
-            <h3>Bild hochladen: </h3>
+
+           Bild hochladen
             <div class="input-group mb-3">
-                <input type="file" class="form-control" id="inputGroupFile02">
-                <label class="input-group-text" for="inputGroupFile02">Hochladen</label>
+                <input type="file" class="form-control" id="inputGroupFile">
+                <label class="input-group-text" for="inputGroupFile">Hochladen</label>
             </div>
 
             <!--
+            funktioniert nicht, sobald dieser Teil auskommentiert wird, kommt die WhiteLabel page
             <form th:action="@{/createAdvertisement}" th:object="${plant}" method="post">
                 <input type="text" placeholder="Name der Pflanze" th:field="*{name}"/>
-                <input type="text" placeholder="Größe in cm" th:field="*{plantSize}"/>
-                <input type="text" placeholder="Preis in €" th:field="*{price}"/>
+                <input type="number" placeholder="Größe in cm" th:field="*{plantSize}"/>
+                <input type="number" placeholder="Preis in €" th:field="*{price}"/>
                 <button th:text="Anzeige hochladen" th:type="submit"/>
             </form>
             -->

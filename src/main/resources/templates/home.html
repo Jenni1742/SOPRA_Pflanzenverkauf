@@ -73,56 +73,61 @@
         </div>
     </header>
 
-    <div class="rounded-box">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="rounded-box">
-                    <h4>Sortieren</h4>
-                    <div class="mb-3">
-                        <label for="sortField" class="form-label">Sortieren nach:</label>
-                        <select id="sortField" class="form-select" name="sort">
-                            <option value="price">Preis</option>
-                            <option value="size">Größe</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-rePlantGreen">Sortieren bestätigen</button>
+<div class="rounded-box">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="rounded-box">
+                <h4>Sortieren</h4>
+                <div class="mb-3">
+                    <label for="sortField" class="form-label">Sortieren nach:</label>
+                    <select id="sortField" class="form-select" name="sort">
+                        <option value="price">Preis</option>
+                        <option value="size">Größe</option>
+                    </select>
                 </div>
-                <div style="width: 20px; display: inline-block;"></div>
-                <div style="width: 20px; display: inline-block;"></div>
-
-                <div class="rounded-box">
-                    <h4>Filtern</h4>
-                    <div class="mb-3">
-                        <label class="form-label">Kategorie:</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="category" id="indoor" value="indoor">
-                            <label class="form-check-label" for="indoor">
-                                Zimmerpflanze
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="category" id="outdoor" value="outdoor">
-                            <label class="form-check-label" for="outdoor">
-                                Outdoorpflanze
-                            </label>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-rePlantGreen">Filtern bestätigen</button>
-                </div>
+                <button type="submit" class="btn btn-rePlantGreen">Sortieren bestätigen</button>
             </div>
-            <div class="col-md-9">
-                <section class="ads">
-                    <div th:each="plant : ${plants}" class="ad" style="border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+            <div style="width: 20px; display: inline-block;"></div>
+            <div style="width: 20px; display: inline-block;"></div>
+
+            <div class="rounded-box">
+                <h4>Filtern</h4>
+                <div class="mb-3">
+                    <label class="form-label">Kategorie:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="category" id="indoor" value="indoor">
+                        <label class="form-check-label" for="indoor">
+                            Zimmerpflanze
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="category" id="outdoor" value="outdoor">
+                        <label class="form-check-label" for="outdoor">
+                            Outdoorpflanze
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-rePlantGreen">Filtern bestätigen</button>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <section class="ads">
+                <div th:each="plant : ${plants}" class="ad" style="border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+                    <div style="flex: 1; padding-right: 20px;">
                         <h2 th:text="${plant.name}" style="color: #017101;"></h2>
                         <p th:text="${plant.plantDescription}">Beschreibung der Pflanze...</p>
                         <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
                         <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
                         <p><strong>Kategorie:</strong> <span th:text="${plant.category}">0</span> </p>
                     </div>
-                </section>
-            </div>
+                <div style="flex: 0 0 auto; margin-left: 20px;">
+                    <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="width:100%; max-width:300px; height:auto;"/>
+                </div>
+                </div>
+            </section>
         </div>
     </div>
+</div>
 </div>
 
 <script src="js/scripts.js"></script>
