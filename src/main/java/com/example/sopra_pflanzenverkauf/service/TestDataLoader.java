@@ -3,6 +3,7 @@ package com.example.sopra_pflanzenverkauf.service;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.entity.Role;
+import org.hibernate.mapping.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,6 +98,7 @@ public class TestDataLoader implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws Exception {
+
 
         // create roles
         Role userRole = new Role();

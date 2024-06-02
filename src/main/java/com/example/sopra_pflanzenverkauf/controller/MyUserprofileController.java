@@ -44,7 +44,8 @@ public class MyUserprofileController {
 
         return "myUserprofile";
     }
-    @PostMapping("/myUserprofile/changePassword")
+
+    @PostMapping(path = "/myUserprofile/changePassword")
     public String changePassword(@RequestParam("oldPassword") String oldPassword,
                                  @RequestParam("newPassword") String newPassword,
                                  Map<String, Object> model) {
