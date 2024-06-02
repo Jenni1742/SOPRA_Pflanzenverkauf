@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.hibernate.mapping.List;
 
 
+import java.util.ArrayList;
 import java.util.Set;
 
 /**
@@ -57,7 +58,8 @@ public class User {
     @Column(name = "Verkaufte Pflanzen")
     private List soldPlants;
 
-
+    @Column(name = "Merkliste")
+    private List wishlist;
 
     //TODO Wird wahrscheinlich nicht benötigt
 
@@ -338,4 +340,24 @@ public class User {
     public void setSoldPlants(List soldPlants) {
         this.soldPlants = soldPlants;
     }
+
+    /**
+     * Gets wishlist.
+     *
+     * @return the wishlist
+     * */
+    public List getWishlist() {
+        return wishlist;
+    }
+
+    /**
+     * Sets the wishlist
+     *
+     * @param wishlist the wishlist
+     */
+    public void setWishlist(List wishlist) {
+        this.wishlist = wishlist;
+    }
+
+
 }
