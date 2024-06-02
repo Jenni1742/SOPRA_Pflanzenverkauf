@@ -41,6 +41,13 @@ public class Plant {
     @Column(name = "Kategorie")
     private String category;
 
+   @Column(name = "Status")
+   private String status;
+
+   public String getStaus(){ return status;}
+
+    public void setStatus(){this.status = status;}
+
     public Integer getZipCode() {
         return zipCode;
     }
@@ -67,13 +74,14 @@ public class Plant {
         // empty constructor for Hibernate
     }
 
-    public Plant (String name, Integer plantSize, double price, String plantDescription, String careTips, String category) {
+    public Plant (String name, Integer plantSize, double price, String plantDescription, String careTips, String category, String status) {
         this.name = name;
         this.plantSize = plantSize;
         this.price = price;
         this.plantDescription = plantDescription;
         this.careTips = careTips;
         this.category = category;
+        this.status = status;
     }
 
     public Integer getPlantId() {

@@ -136,17 +136,18 @@ public class TestDataLoader implements CommandLineRunner {
 
         // create plant
         Plant cactus = new Plant(
-                "Kaktus",
+                "Kaktus1",
                 50,
                 10,
                 "Mein kleiner grüner Kaktus",
                 "Hin und wieder mal gießen.",
-                "Zimmerpflanze"
+                "Zimmerpflanze",
+                "offen"
         );
         plantService.persistPlant(cactus);
 
         Plant cactus2 = new Plant();
-        cactus2.setName("Kaktus");
+        cactus2.setName("Kaktus2");
         cactus2.setPlantSize(50);
         cactus2.setPrice(10.5);
         cactus2.setPlantDescription("Mein kleiner grüner Kaktus");
@@ -161,17 +162,19 @@ public class TestDataLoader implements CommandLineRunner {
                 15,
                 "Weiße Lilie",
                 "Regelmäßig gießen und im Halbschatten halten.",
-                "Outdoorpflanze"
+                "Outdoorpflanze",
+                "im verkauf"
         );
         plantService.persistPlant(lily1);
 
         Plant lily2 = new Plant(
-                "Lilie",
+                "Lilie2",
                 35,
                 20,
                 "Gelbe Lilie",
                 "Nicht zu viel gießen und viel Licht.",
-                "Zimmerpflanze"
+                "Zimmerpflanze",
+                "offen"
         );
         plantService.persistPlant(lily2);
 
@@ -181,7 +184,8 @@ public class TestDataLoader implements CommandLineRunner {
                 18,
                 "Rote Lilie",
                 "Halbschatten und gleichmäßige Feuchtigkeit.",
-                "Zimmerpflanze"
+                "Zimmerpflanze",
+                "verkauft"
         );
         plantService.persistPlant(lily3);
 

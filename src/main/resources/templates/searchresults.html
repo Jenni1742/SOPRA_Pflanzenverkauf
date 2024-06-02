@@ -70,11 +70,10 @@
             <p>PLZ: <span th:text="${plant.zipCode}"></span></p>
             <p>Kategorie: <span th:text="${plant.category}"></span></p>
             <p>Preis: <span th:text="${plant.price}"></span> EUR</p>
-            <p>Status: <span th:text="${plant.status}"></span></p>
             <p>Verkäufer: <span th:text="${plant.seller}"></span></p>
             <button class="btn btn-outline-success">Mehr erfahren</button>
         </div>
-        <div th:if="${plants.isEmpty()}" class="alert alert-warning" role="alert">
+        <div th:if="${plants.size() == 0}" class="alert alert-warning" role="alert">
             Keine Pflanzen gefunden. Versuchen Sie es mit anderen Suchbegriffen.
         </div>
     </div>
