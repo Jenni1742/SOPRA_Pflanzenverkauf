@@ -142,7 +142,10 @@ public class TestDataLoader implements CommandLineRunner {
                 "Mein kleiner grüner Kaktus",
                 "Hin und wieder mal gießen.",
                 "Zimmerpflanze"
+
+
         );
+        cactus.setImageUrl("https://i.pinimg.com/236x/b2/9e/4d/b29e4d6a53f3c2b86a5f3d965b1b49e3.jpg");
         plantService.persistPlant(cactus);
 
         Plant cactus2 = new Plant();
@@ -152,6 +155,8 @@ public class TestDataLoader implements CommandLineRunner {
         cactus2.setPlantDescription("Mein kleiner grüner Kaktus");
         cactus2.setCareTips("Hin und wieder mal gießen.");
         cactus2.setSold(true);
+        cactus2.setImageUrl("https://i.pinimg.com/236x/28/4d/34/284d34a7b2971471ab65a92fbd6c8a61.jpg");
+
         plantService.persistPlant(cactus2);
 
         // create lilies
@@ -163,6 +168,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Regelmäßig gießen und im Halbschatten halten.",
                 "Outdoorpflanze"
         );
+        lily1.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
         plantService.persistPlant(lily1);
 
         Plant lily2 = new Plant(
@@ -173,6 +179,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Nicht zu viel gießen und viel Licht.",
                 "Zimmerpflanze"
         );
+        lily2.setImageUrl("https://i.pinimg.com/236x/b2/9e/4d/b29e4d6a53f3c2b86a5f3d965b1b49e3.jpg");
         plantService.persistPlant(lily2);
 
         Plant lily3 = new Plant(
@@ -183,6 +190,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Halbschatten und gleichmäßige Feuchtigkeit.",
                 "Zimmerpflanze"
         );
+        lily2.setImageUrl("https://i.pinimg.com/236x/b2/9e/4d/b29e4d6a53f3c2b86a5f3d965b1b49e3.jpg");
         plantService.persistPlant(lily3);
 
     }

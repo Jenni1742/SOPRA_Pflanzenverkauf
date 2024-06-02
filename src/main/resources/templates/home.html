@@ -113,11 +113,16 @@
         <div class="col-md-9">
             <section class="ads">
                 <div th:each="plant : ${plants}" class="ad" style="border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
-                    <h2 th:text="${plant.name}" style="color: #017101;"></h2>
-                    <p th:text="${plant.plantDescription}">Beschreibung der Pflanze...</p>
-                    <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
-                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
-                    <p><strong>Kategorie:</strong> <span th:text="${plant.category}">0</span> </p>
+                    <div style="flex: 1; padding-right: 20px;">
+                        <h2 th:text="${plant.name}" style="color: #017101;"></h2>
+                        <p th:text="${plant.plantDescription}">Beschreibung der Pflanze...</p>
+                        <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
+                        <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
+                        <p><strong>Kategorie:</strong> <span th:text="${plant.category}">0</span> </p>
+                    </div>
+                <div style="flex: 0 0 auto; margin-left: 20px;">
+                    <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="width:100%; max-width:300px; height:auto;"/>
+                </div>
                 </div>
             </section>
         </div>
