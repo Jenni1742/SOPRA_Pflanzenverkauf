@@ -151,49 +151,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <!--
-                        <form action="#" th:action="@{/changePassword}" th:object="${currentUser}" method="post">
-                            <table border="1">
-                                <tr>
-                                    <td><label th:text="#{}" /></td>
-                                    <td><input type="number" th:field="*{password}" /></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="submit" value="Submit" /></td>
-                                </tr>
-                            </table>
-                        </form> -->
-
-
-                        <!--
-                        <div>
-                            <p><input id="oldpass" name="oldpassword" type="password" /></p>
-                            <p><input id="pass" name="password" type="password" /></p>
-                            <p><input id="passConfirm" type="password" /></p>
-
-                            <span id="error" style="display:none">Password mismatch</span>
-
-
-
-                            <button type="submit" onclick="savePass()">Change Password</button>
-                        </div>
-                        -->
-
-
-                        <!--
-                        <form method="post" th:object="${currentUser}">
-                            <div class="input-group" id="show_hide_password">
-                                <input type="password" class="form-control" id="password" autocomplete="off"
-                                       th:field="*{password}"/>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-rePlantGreen" data-bs-dismiss="modal">neues Passwort bestätigen </button>
-                            </div>
-                        </form>
-                        -->
-                        <form action="/myUserprofile/changePassword" method="post">
+                        <form action="/myUserprofile" method="post">
                             <div class="mb-3">
                                 <label for= oldPassword class="form-label">Altes Passwort:</label>
                                 <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
