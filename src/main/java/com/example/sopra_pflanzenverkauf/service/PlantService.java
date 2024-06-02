@@ -21,6 +21,9 @@ public class PlantService {
     public List<Plant> searchPlantsByName(String name) {
         return plantRepository.findByNameContainingIgnoreCase(name);
     }
+    public List<Plant> searchPlants(String query) {
+        return plantRepository.findByNameContainingIgnoreCase(query);
+    }
 
     public List<Plant> findAllPlants() {
         return plantRepository.findAll();
