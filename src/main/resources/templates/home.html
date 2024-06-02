@@ -69,28 +69,13 @@
 <div class="container">
     <header>
         <div id="branding">
-            <h1 style="color:#017101;"> Anzeigen, die dir gefallen könnten: </h1>
+            <h1 style="color:#017101;">Anzeigen, die dir gefallen könnten:</h1>
         </div>
     </header>
 
-<div class="rounded-box">
     <div class="row">
         <div class="col-md-3">
-            <div class="rounded-box">
-                <h4>Sortieren</h4>
-                <div class="mb-3">
-                    <label for="sortField" class="form-label">Sortieren nach:</label>
-                    <select id="sortField" class="form-select" name="sort">
-                        <option value="price">Preis</option>
-                        <option value="size">Größe</option>
-                    </select>
-                </div>
-                <button type="submit" class="btn btn-rePlantGreen">Sortieren bestätigen</button>
-            </div>
-            <div style="width: 20px; display: inline-block;"></div>
-            <div style="width: 20px; display: inline-block;"></div>
-
-            <div class="rounded-box">
+            <div class="rounded-box mb-3 margin-top-20">
                 <h4>Filtern</h4>
                 <div class="mb-3">
                     <label class="form-label">Kategorie:</label>
@@ -107,22 +92,56 @@
                         </label>
                     </div>
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Status:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" id="offen" value="offen">
+                        <label class="form-check-label" for="offen">
+                            offen
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" id="verkauft" value="verkauft">
+                        <label class="form-check-label" for="verkauft">
+                            verkauft
+                        </label>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-rePlantGreen">Filtern bestätigen</button>
             </div>
         </div>
         <div class="col-md-9">
-            <section class="ads">
-                <div th:each="plant : ${plants}" class="ad" style="border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
-                    <div style="flex: 1; padding-right: 20px;">
-                        <h2 th:text="${plant.name}" style="color: #017101;"></h2>
-                        <p th:text="${plant.plantDescription}">Beschreibung der Pflanze...</p>
-                        <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
-                        <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
-                        <p><strong>Kategorie:</strong> <span th:text="${plant.category}">0</span> </p>
-                    </div>
-                <div style="flex: 0 0 auto; margin-left: 20px;">
-                    <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="width:100%; max-width:300px; height:auto;"/>
+            <div class="d-flex justify-content-end mb-3">
+                <div class="rounded-box d-flex align-items-center">
+                    <label for="sortField" class="form-label me-2 mb-0">Sortieren:</label>
+                    <select id="sortField" class="form-select" name="sort">
+                        <option value="price_asc">Preis aufsteigend</option>
+                        <option value="price_desc">Preis absteigend</option>
+                        <option value="size_asc">Größe aufsteigend</option>
+                        <option value="size_desc">Größe absteigend</option>
+                    </select>
                 </div>
+            </div>
+            <section class="ads">
+                <div th:each="plant : ${plants}" class="ad" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+                    <div style="flex: 0 0 auto; margin-right: 20px;">
+                        <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="width:100%; max-width:300px; height:auto;"/>
+                    </div>
+                    <div style="flex: 1; padding-left: 20px;">
+                        <h2 th:text="${plant.name}" style="color: #017101;"></h2>
+                        <p><strong>Kategorie:</strong> <span th:text="${plant.category}">Kategorie der Pflanze</span></p>
+                        <p><strong>Status:</strong> <span th:text="${plant.status}">Status der Pflanze</span></p>
+                        <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
+                        <p><strong>Verkäufer:</strong> <span th:text="${plant.seller}">Name des Verkäufers</span></p>
+                        <div>
+                            <button style="background: none; border: none; cursor: pointer; color: #017101;">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                            <button onclick="window.location.href='plant-details.html?id=[[${plant.id}]]'" style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                                Mehr erfahren
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

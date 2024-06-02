@@ -41,6 +41,12 @@ public class Plant {
     @Column(name = "Kategorie")
     private String category;
 
+
+    @Column(name = "Status")
+    private String status;
+
+
+
     public Integer getZipCode() {
         return zipCode;
     }
@@ -67,13 +73,16 @@ public class Plant {
         // empty constructor for Hibernate
     }
 
-    public Plant (String name, Integer plantSize, double price, String plantDescription, String careTips, String category) {
+    public Plant (String name, Integer plantSize, double price, String plantDescription, String careTips, String category, String seller, Integer zipCode, String status) {
         this.name = name;
         this.plantSize = plantSize;
         this.price = price;
         this.plantDescription = plantDescription;
         this.careTips = careTips;
         this.category = category;
+        this.seller = seller;
+        this.zipCode = zipCode;
+        this.status = status;
     }
 
     public void setImageUrl(String imageUrl) {
@@ -140,6 +149,12 @@ public class Plant {
         return category;
     }
 
+    public void setStaus(){
+        this.status = status;
+    }
 
+    public String getStatus(){
+        return status;
+    }
 
 }
