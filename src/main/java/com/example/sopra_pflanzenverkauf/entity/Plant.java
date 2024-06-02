@@ -27,8 +27,8 @@ public class Plant {
     private String plantDescription;
 
     //TODO Bilder einfügen können
-    //@Column(name = "Fotos")
-    //private Integer pictures;
+    @Column(name = "Fotos")
+    private String imageUrl;
 
     @Column(name = "Pflegetipps")
     private String careTips;
@@ -74,6 +74,13 @@ public class Plant {
         this.plantDescription = plantDescription;
         this.careTips = careTips;
         this.category = category;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+    public String getImageUrl(){
+        return imageUrl;
     }
 
     public Integer getPlantId() {
