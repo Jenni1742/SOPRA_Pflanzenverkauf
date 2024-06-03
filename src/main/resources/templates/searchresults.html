@@ -115,30 +115,31 @@
                     </select>
                 </div>
             </div>
-            <div class="list-group mt-3" th:if="${plants != null}">
-                <section class="ads">
-                    <div th:each="plant : ${plants}" class="ad" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
-                        <div style="flex: 0 0 auto; margin-right: 20px;">
-                            <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="width:100%; max-width:300px; height:auto;"/>
-                        </div>
-                        <div style="flex: 1; padding-left: 20px;">
-                            <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
-                            <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ der Pflanze</span></p>
-                            <p><strong>Kategorie:</strong> <span th:text="${plant.category}">Kategorie der Pflanze</span></p>
-                            <p><strong>Status:</strong> <span th:text="${plant.status}">Status der Pflanze</span></p>
-                            <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
-                            <p><strong>Verkäufer:</strong> <span th:text="${plant.seller}">Name des Verkäufers</span></p>
-                            <div>
-                                <button style="background: none; border: none; cursor: pointer; color: #017101;">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                <button onclick="window.location.href='plant-details.html?id=[[${plant.id}]]'" style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
-                                    Mehr erfahren
-                                </button>
-                            </div>
+            <section class="ads">
+                <div th:each="plant : ${plants}" class="ad" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+                    <div style="flex: 0 0 auto; margin-right: 20px; width: 300px;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
+                            <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                         </div>
                     </div>
-                </section>
+                    <div style="flex: 1; padding-left: 20px;">
+                        <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
+                        <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
+                        <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
+                        <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span></p>
+
+                        <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                            Mehr erfahren
+                        </button>
+
+                        <div class="ad" style="position: relative;">
+                            <button class="like-btn" onclick="toggleWishlist(this, ${plant.id})" style="background: none; border: none; cursor: pointer; position: absolute; top: 20 px; right: 0px;">
+                                <img src="images/WeissRePlant.png" alt="Herz" class="heart-icon" data-id="${plant.id}">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
                 <div th:if="${plants.size() == 0}" class="alert alert-warning" role="alert">
                     Keine Pflanzen gefunden. Versuchen Sie es mit anderen Suchbegriffen.
                 </div>

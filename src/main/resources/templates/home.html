@@ -10,6 +10,7 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="css/stylesheet.css">
+
 </head>
 <body>
 
@@ -27,8 +28,8 @@
         <form class="input-group" action="/searchresults" method="get">
             <input class="form-control" type="search" name="query" placeholder="Suche" aria-label="Suche">
             <button class="btn btn-outline-success" type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                 </svg>
             </button>
         </form>
@@ -36,7 +37,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Merkliste</a>
+                    <a class="nav-link" href="http://localhost:8080/wishlist">Merkliste</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Spiele</a>
@@ -123,29 +124,32 @@
                 </div>
             </div>
             <section class="ads">
-                <div th:each="plant : ${plants}" class="ad" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
-                    <div style="flex: 0 0 auto; margin-right: 20px;">
-                        <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="width:100%; max-width:300px; height:auto;"/>
+                <div th:each="plant : ${plants}" class="ad" style="display: flex; align-items: flex-start; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+                    <div style="flex: 0 0 auto; margin-right: 20px; width: 300px;">
+                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
+                            <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        </div>
                     </div>
                     <div style="flex: 1; padding-left: 20px;">
                         <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
-                        <!-- To Do: plant.category.categoryname Problem: Nicht mehr alle angezeigt -->
-                        <p><strong>Kategorie:</strong> <span th:text="${plant.category}">Kategorie der Pflanze</span></p>
-                        <!--<p><strong>Status:</strong> <span th:text="${plant.status}">Status der Pflanze</span></p>-->
+                        <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
                         <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
-                        <!-- To Do: plant.seller.getUsername() Problem: Nicht mehr alle angezeigt -->
-                        <p><strong>Verkäufer:</strong> <span th:text="${plant.seller}">Name des Verkäufers</span></p>
-                        <div>
-                            <button style="background: none; border: none; cursor: pointer; color: #017101;">
-                                <i class="fas fa-heart"></i>
-                            </button>
-                            <button onclick="window.location.href='plant-details.html?id=[[${plant.id}]]'" style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
-                                Mehr erfahren
+                        <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span></p>
+
+                        <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                            Mehr erfahren
+                        </button>
+
+                        <div class="ad" style="position: relative;">
+                            <button class="like-btn" onclick="toggleWishlist(this, ${plant.id})" style="background: none; border: none; cursor: pointer; position: absolute; top: - 50 px; right: 0px;">
+                                <img src="images/WeissRePlant.png" alt="Herz" class="heart-icon" data-id="${plant.id}">
                             </button>
                         </div>
+
                     </div>
                 </div>
             </section>
+        </div>
         </div>
     </div>
 </div>
