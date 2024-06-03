@@ -75,7 +75,6 @@
 </nav>
 
 
-
 <div class="container">
 
     <div class="card card-rePlant">
@@ -83,62 +82,60 @@
         <div class="card-header text-center">
             <h2 class="card-title" th:text="'Anzeige erstellen'"></h2>
         </div>
+        <form th:action="@{/createAdvertisement}" th:object="${plant}" method="post">
+            <div class="card-body">
 
-        <div class="card-body" >
+                <div class="mb-3">
+                    <label for="plantname" class="form-label">Name der Pflanze</label>
+                    <input type="text" class="form-control" id="plantname" name="plantname" th:field="*{plantname}"
+                           required>
+                </div>
 
-            <div class="mb-3">
-                <label for="nameInput" class="form-label">Name der Pflanze</label>
-                <input type="text" class="form-control" id="nameInput">
+                <div class="mb-3">
+                    <label for="plantSize" class="form-label">Größe (in cm)</label>
+                    <input type="number" min="0" class="form-control" id="plantSize" name="plantSize"
+                           th:field="*{plantSize}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label">Preis (in €)</label>
+                    <input type="number" min="0" class="form-control" id="price" name="price" th:field="*{price}"
+                           required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="plantDescription" class="form-label">Beschreibung</label>
+                    <textarea class="form-control" id="plantDescription" name="plantDescription"
+                              th:field="*{plantDescription}" required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="careTips" class="form-label">Pflegetipps</label>
+                    <textarea class="form-control" id="careTips" name="careTips" th:field="*{careTips}"
+                              required></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="zipCode" class="form-label">Postleitzahl</label>
+                    <input type="number" min="0" class="form-control" id="zipCode" name="zipCode" th:field="*{zipCode}"
+                           required>
+                </div>
+
+
+                Bild hochladen
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" id="inputGroupFile">
+                    <label class="input-group-text" for="inputGroupFile">Hochladen</label>
+                </div>
+
+
             </div>
 
-            <div class="mb-3">
-                <label for="sizeInput" class="form-label">Größe (in cm)</label>
-                <input type="number" min="0" class="form-control" id="sizeInput">
+            <div class="card-footer text-center card-footer-rePlant">
+                <button type="submit" class="btn btn-rePlantGreen">Submit</button>
             </div>
 
-            <div class="mb-3">
-                <label for="priceInput" class="form-label">Preis (in €)</label>
-                <input type="number" min="0" class="form-control" id="priceInput">
-            </div>
-
-            <div class="mb-3">
-                <label for="descriptionInput" class="form-label">Beschreibung</label>
-                <textarea class="form-control" id="descriptionInput" ></textarea>
-            </div>
-
-            <div class="mb-3">
-                <label for="careInput" class="form-label">Pflegetipps</label>
-                <textarea class="form-control" id="careInput" ></textarea>
-            </div>
-
-            <div class="mb-3">
-                <label for="zipCodeInput" class="form-label">Postleitzahl</label>
-                <input type="number" min="0" class="form-control" id="zipCodeInput">
-            </div>
-
-           Bild hochladen
-            <div class="input-group mb-3">
-                <input type="file" class="form-control" id="inputGroupFile">
-                <label class="input-group-text" for="inputGroupFile">Hochladen</label>
-            </div>
-
-            <!--
-            funktioniert nicht, sobald dieser Teil auskommentiert wird, kommt die WhiteLabel page
-            <form th:action="@{/createAdvertisement}" th:object="${plant}" method="post">
-                <input type="text" placeholder="Name der Pflanze" th:field="*{name}"/>
-                <input type="number" placeholder="Größe in cm" th:field="*{plantSize}"/>
-                <input type="number" placeholder="Preis in €" th:field="*{price}"/>
-                <button th:text="Anzeige hochladen" th:type="submit"/>
-            </form>
-            -->
-
-        </div>
-
-        <div class="card-footer text-center card-footer-rePlant">
-            <a href="http://localhost:8080/myAdvertisements" class="btn btn-rePlantGreen" role="button">Anzeige
-                hochladen</a>
-        </div>
-
+        </form>
     </div>
 
 </div>
