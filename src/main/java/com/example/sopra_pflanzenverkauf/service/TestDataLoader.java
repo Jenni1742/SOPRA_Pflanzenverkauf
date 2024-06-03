@@ -1,9 +1,6 @@
 package com.example.sopra_pflanzenverkauf.service;
 
-import com.example.sopra_pflanzenverkauf.entity.Category;
-import com.example.sopra_pflanzenverkauf.entity.Plant;
-import com.example.sopra_pflanzenverkauf.entity.User;
-import com.example.sopra_pflanzenverkauf.entity.Role;
+import com.example.sopra_pflanzenverkauf.entity.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +89,8 @@ public class TestDataLoader implements CommandLineRunner {
     private PlantService plantService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private LevelService levelService;
 
     /**
      * Executed during Spring boot startup.
@@ -110,6 +109,15 @@ public class TestDataLoader implements CommandLineRunner {
         zimmerpflanze.setCategoryname("Outdoorpflanze");
         categoryService.persistCategory(outdoorpflanze);
 
+        //create Level
+        Level level1 = new Level();
+        level1.setLevelname("Sprössling");
+        levelService.persistLevel(level1);
+
+        Level level2 = new Level();
+        level2.setLevelname("Meister des Gartens");
+        levelService.persistLevel(level2);
+
         // create roles
         Role userRole = new Role();
         userRole.setRolename("ROLE_USER");
@@ -127,8 +135,8 @@ public class TestDataLoader implements CommandLineRunner {
         jenniferKaisner.setFirstName("Jennifer");
         jenniferKaisner.setLastName("Kaisner");
         jenniferKaisner.setPlz("72108");
-        jenniferKaisner.setBuyingLevel("Meister des Gartens");
-        jenniferKaisner.setSellingLevel("Sprössling");
+        jenniferKaisner.setSellingLevel(level1);
+        jenniferKaisner.setBuyingLevel(level2);
         jenniferKaisner.setPicturePath("https://media.rimondo.net/1363699/conversions/4e431791-5f31-4f3e-9d2f-61eef8ffd846-400.webp?v=1637496632");
         //jenniferKaisner.setNonLocked(true);
         jenniferKaisner.setRoles(userRoles);

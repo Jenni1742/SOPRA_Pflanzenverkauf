@@ -16,10 +16,10 @@ public class Level {
     @Column(name = "Levelname")
     private String levelname;
 
-    @OneToMany (mappedBy = "buyinglevel")
+    @OneToMany (mappedBy = "buyingLevel")
     private java.util.List<User> buyerHavingThisLevel = new ArrayList<>();
 
-    @OneToMany (mappedBy = "sellinglevel")
+    @OneToMany (mappedBy = "sellingLevel")
     private java.util.List<User> sellerHavingThisLevel = new ArrayList<>();
 
     /**

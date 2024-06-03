@@ -95,11 +95,11 @@
             </tr>
             <tr>
                 <th scope="row">Käuferlevel:</th>
-                <td th:text="${currentUser.getBuyingLevel()}"/>
+                <td th:text="${currentUser.getBuyingLevel().getLevelname()}"/>
             </tr>
             <tr>
                 <th scope="row">Verkäuferlevel:</th>
-                <td th:text="${currentUser.getSellingLevel()}"/>
+                <td th:text="${currentUser.getSellingLevel().getLevelname()}"/>
             </tr>
         </tbody>
     </table>

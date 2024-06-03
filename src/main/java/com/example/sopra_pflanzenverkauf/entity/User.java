@@ -43,11 +43,13 @@ public class User {
     @Column(name = "aktiviert")
     private boolean enabled = true;
 
-    @Column(name = "Käuferlevel")
-    private String buyingLevel;
+    @ManyToOne
+    @JoinColumn(name = "Käuferlevel")
+    private Level buyingLevel;
 
-    @Column(name = "Verkäuferlevel")
-    private String sellingLevel;
+    @ManyToOne
+    @JoinColumn(name = "Verkäuferlevel")
+    private Level sellingLevel;
 
     @Column(name = "Profilbild")
     private String picturePath;
@@ -72,6 +74,8 @@ public class User {
 
     @OneToMany (mappedBy = "buyer")
     private java.util.List<Plant> boughtPlants = new ArrayList<>();
+
+
 
 
     /**
@@ -233,41 +237,7 @@ public class User {
         this.enabled = enabled;
     }
 
-    /**
-     * Gets buying Level.
-     *
-     * @return the buying Level
-     */
-    public String getBuyingLevel() {
-        return buyingLevel;
-    }
 
-    /**
-     * Sets buying Level.
-     *
-     * @param buyingLevel the buying Level
-     */
-    public void setBuyingLevel(String buyingLevel) {
-        this.buyingLevel = buyingLevel;
-    }
-
-    /**
-     * Gets sellingLevel.
-     *
-     * @return the selling Level
-     */
-    public String getSellingLevel() {
-        return sellingLevel;
-    }
-
-    /**
-     * Sets sellingLevel.
-     *
-     * @param sellingLevel the selling Level
-     */
-    public void setSellingLevel(String sellingLevel) {
-        this.sellingLevel = sellingLevel;
-    }
 
 
     //TODO Wird wahrscheinlich nicht benötigt (Jetzt gerade aber schon wegen Userservice)
@@ -380,4 +350,41 @@ public class User {
     public void setBoughtPlants(java.util.List<Plant> boughtPlants) {
         this.boughtPlants = boughtPlants;
     }
+
+    /**
+     * Gets buying Level.
+     *
+     * @return the buying Level
+     */
+    public Level getBuyingLevel() {
+        return buyingLevel;
+    }
+
+    /**
+     * Sets buying Level.
+     *
+     * @param buyingLevel the buying Level
+     */
+    public void setBuyingLevel(Level buyingLevel) {
+        this.buyingLevel = buyingLevel;
+    }
+
+    /**
+     * Gets sellingLevel.
+     *
+     * @return the selling Level
+     */
+    public Level getSellingLevel() {
+        return sellingLevel;
+    }
+
+    /**
+     * Sets sellingLevel.
+     *
+     * @param sellingLevel the selling Level
+     */
+    public void setSellingLevel(Level sellingLevel) {
+        this.sellingLevel = sellingLevel;
+    }
+
 }
