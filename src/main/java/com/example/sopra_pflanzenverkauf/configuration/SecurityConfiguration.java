@@ -20,45 +20,9 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        /**
-        http.authorizeHttpRequests()
-            // alle Requests die ohne Login erreichbar sind
-            .requestMatchers("/login", "/register", "/console/**").permitAll()
-            // definiere alle URLs die nur für eine bestimmte Rolle zugänglich sind
-            // Achtung: Spring Security fügt automatisch das Prefix "ROLE_" für die Überprüfung ein. Daher verwenden wir
-            // hier nicht "ROLE_ADMIN", wie bspw. im TestDataLoader angegeben.
-            .requestMatchers("/admin/**").hasRole("ADMIN")
-            // alle weiteren Requests erfordern Authentifizierung
-            .anyRequest().authenticated()
-            // füge CSRF token ein, welches evtl. für AJAX-requests benötigt wird
-            .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                //.ignoringAntMatchers("/console/**")
-            // Request zum Aufruf der Login-Seite
-            .and().formLogin().loginPage("/login").failureUrl("/login?error=true").permitAll()
-            .defaultSuccessUrl("/", true)
-            .usernameParameter("username")
-            .passwordParameter("password")
-            // jeder kann sich ausloggen über den simplen /logout request ausloggen
-            .and().logout().permitAll()
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            .logoutSuccessUrl("/login?logout");
-
-
-        // Deaktiviert header security. Ermöglicht Nutzung der H2 Console.
-
-        /*
-        http.headers().frameOptions().sameOrigin().disable();
-
-
-        ////////////////////////Aus Demo Projekt
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
-        ////////////////////////Aus Demo Projekt
-        */
-
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/login", "/register", "/resources/**", "/static/**", "/css/**", "/js/**", "/images/**").permitAll()
+                        .requestMatchers("/login", "/register", "/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/console/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         // Erlaubt Zugriff auf die Passwortänderungs-URL
                         .requestMatchers("/changePassword").permitAll()
@@ -81,11 +45,15 @@ public class SecurityConfiguration {
                         .permitAll()
                 )
                 .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/console/**")//Deaktiviert CSRF-Schutz für die H2-Konsole
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                )
+                .headers(headers -> headers.frameOptions().sameOrigin() // Ermöglicht das Einbetten der H2-Konsole in Frames
                 );
 
         // Deaktiviert header security. Ermöglicht Nutzung der H2 Console.
         //http.headers().frameOptions().disable();
+
 
         return http.build();
     }
