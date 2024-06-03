@@ -40,13 +40,15 @@ public class Plant {
     private Integer zipCode;
     @Column(name = "Kategorie")
     private String category;
-
-
+    
     @Column(name = "Status")
     private String status;
 
+    @Column(name ="Verkäufer")
+    private User seller;
 
-
+    
+    
     public Integer getZipCode() {
         return zipCode;
     }
@@ -55,17 +57,14 @@ public class Plant {
         this.zipCode = zipCode;
     }
 
-    public String getSeller() {
+    public User getSeller() {
         return seller;
     }
 
-    public void setSeller(String seller) {
+    public void setSeller(User seller) {
         this.seller = seller;
     }
-
-    @Column(name ="Verkäufer")
-    private String seller;
-
+    
     /**
      * Instantiates a new Plant.
      */
@@ -73,7 +72,7 @@ public class Plant {
         // empty constructor for Hibernate
     }
 
-    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, String category, String seller, Integer zipCode, String status) {
+    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, String category, User seller, Integer zipCode, String status) {
         this.plantname = plantname;
         this.plantSize = plantSize;
         this.price = price;
