@@ -67,6 +67,8 @@ public class User {
     @JoinTable(name = "benutzer_rolle", joinColumns = @JoinColumn(name = "benutzer_id"), inverseJoinColumns = @JoinColumn(name = "rolle_id"))
     private Set<Role> roles;
 
+    @OneToMany (mappedBy = "seller")
+    private java.util.List<Plant> plantsToSell = new ArrayList<>();
 
 
     /**

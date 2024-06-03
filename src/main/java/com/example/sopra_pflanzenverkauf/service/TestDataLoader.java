@@ -143,9 +143,8 @@ public class TestDataLoader implements CommandLineRunner {
                 "Mein kleiner grüner Kaktus",
                 "Hin und wieder mal gießen.",
                 "Zimmerpflanze",
-                "Marianne",
-                12345,
-                "offen"
+                jenniferKaisner,
+                12345
         );
         cactus.setImageUrl("https://i.pinimg.com/236x/b2/9e/4d/b29e4d6a53f3c2b86a5f3d965b1b49e3.jpg");
         plantService.persistPlant(cactus);
@@ -168,9 +167,8 @@ public class TestDataLoader implements CommandLineRunner {
                 "Weiße Lilie",
                 "Regelmäßig gießen und im Halbschatten halten.",
                 "Outdoorpflanze",
-                "Ursula",
-                70321,
-                "verkauft"
+                jenniferKaisner,
+                70321
         );
         lily1.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
         plantService.persistPlant(lily1);
@@ -182,9 +180,8 @@ public class TestDataLoader implements CommandLineRunner {
                 "Gelbe Lilie",
                 "Nicht zu viel gießen und viel Licht.",
                 "Zimmerpflanze",
-                "Jürgen",
-                70321,
-                "offen"
+                jenniferKaisner,
+                70321
         );
         lily2.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
         plantService.persistPlant(lily2);
@@ -196,9 +193,8 @@ public class TestDataLoader implements CommandLineRunner {
                 "Rote Lilie",
                 "Halbschatten und gleichmäßige Feuchtigkeit.",
                 "Zimmerpflanze",
-                "Hans Peter",
-                70323,
-                "in verhandlung"
+                jenniferKaisner,
+                70323
 
         );
         lily3.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
