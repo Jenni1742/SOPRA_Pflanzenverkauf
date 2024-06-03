@@ -70,6 +70,9 @@ public class User {
     @OneToMany (mappedBy = "seller")
     private java.util.List<Plant> plantsToSell = new ArrayList<>();
 
+    @OneToMany (mappedBy = "buyer")
+    private java.util.List<Plant> boughtPlants = new ArrayList<>();
+
 
     /**
      * Instantiates a new User.
@@ -362,4 +365,19 @@ public class User {
     }
 
 
+    public java.util.List<Plant> getPlantsToSell() {
+        return plantsToSell;
+    }
+
+    public void setPlantsToSell(java.util.List<Plant> plantsToSell) {
+        this.plantsToSell = plantsToSell;
+    }
+
+    public java.util.List<Plant> getBoughtPlants() {
+        return boughtPlants;
+    }
+
+    public void setBoughtPlants(java.util.List<Plant> boughtPlants) {
+        this.boughtPlants = boughtPlants;
+    }
 }

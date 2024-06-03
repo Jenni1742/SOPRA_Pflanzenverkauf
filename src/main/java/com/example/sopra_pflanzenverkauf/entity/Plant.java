@@ -46,6 +46,10 @@ public class Plant {
     @JoinColumn(name = "Verkäufer")
     private User seller;
 
+    @ManyToOne
+    @JoinColumn(name = "Käufer")
+    private User buyer;
+
     
     
     public Integer getZipCode() {
@@ -71,7 +75,7 @@ public class Plant {
         // empty constructor for Hibernate
     }
 
-    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, String category, User seller, Integer zipCode) {
+    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, String category, User seller, Integer zipCode, User buyer) {
         this.plantname = plantname;
         this.plantSize = plantSize;
         this.price = price;
@@ -80,6 +84,7 @@ public class Plant {
         this.category = category;
         this.seller = seller;
         this.zipCode = zipCode;
+        this.buyer = buyer;
     }
 
     public void setImageUrl(String imageUrl) {
@@ -146,4 +151,11 @@ public class Plant {
         return category;
     }
 
+    public User getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
+    }
 }
