@@ -1,5 +1,6 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
+import com.example.sopra_pflanzenverkauf.entity.Category;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
@@ -20,7 +21,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String showHome(Model model, @RequestParam(value = "query", required = false) String query,
-                           @RequestParam(value = "category", required = false) String category,
+                           @RequestParam(value = "category", required = false) Category category,
                            @RequestParam(value = "price", required = false) String price)  {
         model.addAttribute("currentUser", userService.getCurrentUser());
 
