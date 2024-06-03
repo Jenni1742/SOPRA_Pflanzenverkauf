@@ -33,7 +33,7 @@ public class CreateAdvertisementController {
         model.addAttribute("plant", new Plant());
         return "createAdvertisement";
     }
-    
+
     @RequestMapping (value="/createAdvertisement", method = RequestMethod.POST)
     public String createPlant(@ModelAttribute("plant") Plant newPlant){
 
