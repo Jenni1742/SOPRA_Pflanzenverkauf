@@ -147,7 +147,8 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action="/myUserprofile" method="post">
+                        <form th:action="@{/myUserprofile}" method="post">
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                             <div class="mb-3">
                                 <label for= oldPassword class="form-label">Altes Passwort:</label>
                                 <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
@@ -161,7 +162,8 @@
                                 <button type="submit" class="btn btn-rePlantGreen">Passwort ändern</button>
                             </div>
                         </form>
-
+                        <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+                        <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
                      </div>
                  </div>
             </div>
