@@ -144,7 +144,8 @@ public class TestDataLoader implements CommandLineRunner {
                 "Hin und wieder mal gießen.",
                 "Zimmerpflanze",
                 jenniferKaisner,
-                12345
+                12345,
+                jenniferK
         );
         cactus.setImageUrl("https://i.pinimg.com/236x/b2/9e/4d/b29e4d6a53f3c2b86a5f3d965b1b49e3.jpg");
         plantService.persistPlant(cactus);
@@ -168,7 +169,8 @@ public class TestDataLoader implements CommandLineRunner {
                 "Regelmäßig gießen und im Halbschatten halten.",
                 "Outdoorpflanze",
                 jenniferKaisner,
-                70321
+                70321,
+                jenniferK
         );
         lily1.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
         plantService.persistPlant(lily1);
@@ -181,7 +183,8 @@ public class TestDataLoader implements CommandLineRunner {
                 "Nicht zu viel gießen und viel Licht.",
                 "Zimmerpflanze",
                 jenniferKaisner,
-                70321
+                70321,
+                jenniferK
         );
         lily2.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
         plantService.persistPlant(lily2);
@@ -194,7 +197,8 @@ public class TestDataLoader implements CommandLineRunner {
                 "Halbschatten und gleichmäßige Feuchtigkeit.",
                 "Zimmerpflanze",
                 jenniferKaisner,
-                70323
+                70323,
+                jenniferK
 
         );
         lily3.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
