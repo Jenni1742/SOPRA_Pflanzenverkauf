@@ -18,19 +18,19 @@ public class PlantService {
         this.plantRepository = plantRepository;
     }
 
-    public List<Plant> searchPlantsByName(String name) {
-        return plantRepository.findByNameContainingIgnoreCase(name);
+    public List<Plant> searchPlantsByName(String plantname) {
+        return plantRepository.findByPlantnameContainingIgnoreCase(plantname);
     }
     public List<Plant> searchPlants(String query) {
-        return plantRepository.findByNameContainingIgnoreCase(query);
+        return plantRepository.findByPlantnameContainingIgnoreCase(query);
     }
 
     public List<Plant> findAllPlants() {
         return plantRepository.findAll();
     }
 
-    public Plant getPlantByName(String name) {
-        return plantRepository.findByName(name);
+    public Plant getPlantByName(String plantname) {
+        return plantRepository.findByPlantname(plantname);
     }
 
     public Plant persistPlant(Plant plant) {

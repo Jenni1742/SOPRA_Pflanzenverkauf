@@ -15,7 +15,7 @@ public class Plant {
     private Integer plantId;
 
     @Column(name = "Name")
-    private String name;
+    private String plantname;
 
     @Column(name = "Größe in cm")
     private Integer plantSize;
@@ -73,8 +73,8 @@ public class Plant {
         // empty constructor for Hibernate
     }
 
-    public Plant (String name, Integer plantSize, double price, String plantDescription, String careTips, String category, String seller, Integer zipCode, String status) {
-        this.name = name;
+    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, String category, String seller, Integer zipCode, String status) {
+        this.plantname = plantname;
         this.plantSize = plantSize;
         this.price = price;
         this.plantDescription = plantDescription;
@@ -99,11 +99,11 @@ public class Plant {
         this.plantId = plantId;
     }
 
-    public String getName() {
-        return name;
+    public String getPlantname() {
+        return plantname;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setPlantname(String name) {
+        this.plantname = name;
     }
 
     public Integer getPlantSize() {

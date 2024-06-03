@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface PlantRepository extends JpaRepository<Plant, Integer> {
 
-        Plant findByName(String name); //"findBy" ist Schlüsselwort für SELECT * FROM Pflanze WHERE name = x
+        Plant findByPlantname(String plantname); //"findBy" ist Schlüsselwort für SELECT * FROM Pflanze WHERE name = x
 
-        List<Plant> findByNameContainingIgnoreCase(String name);
+        List<Plant> findByPlantnameContainingIgnoreCase(String plantname);
 
         List<Plant> findBySoldFalseOrderByPlantIdAsc();
 }
