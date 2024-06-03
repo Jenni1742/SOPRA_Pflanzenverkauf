@@ -228,7 +228,8 @@ public class TestDataLoader implements CommandLineRunner {
         wishlistPlants.add(cactus);
 
         jenniferKaisner.setWishlistPlants(wishlistPlants);
-        userService.persistUser(jenniferKaisner);
+        userService.updateWishlist(jenniferKaisner);
+
 
     }
 
