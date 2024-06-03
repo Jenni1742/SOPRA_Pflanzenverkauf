@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 public class HomeController {
 
@@ -35,5 +37,14 @@ public class HomeController {
         model.addAttribute("plants", plants);
 
         return "home";
+    }
+    @GetMapping("/plants")
+    public String getPlants(Model model) {
+        // Filtern der Pflanzen nach sold = false
+        List<Plant> plants = plantService.getAllPlants().stream()
+                .filter(plant -> !plant.getSold())
+                .collect(Collectors.toList());
+        model.addAttribute("plants", plants);
+        return "home"; // Name der HTML-Datei, die die Pflanzenliste anzeigt
     }
 }
