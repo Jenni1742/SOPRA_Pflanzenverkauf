@@ -1,5 +1,6 @@
 package com.example.sopra_pflanzenverkauf.service;
 
+import com.example.sopra_pflanzenverkauf.entity.Category;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,12 +44,12 @@ public class PlantService {
                 .collect(Collectors.toList());
     }
 
-    public List<Plant> findFilteredAndSortedPlants(String category, String price) {
+    public List<Plant> findFilteredAndSortedPlants(Category category, String price) {
         List<Plant> plants = plantRepository.findAll();
 
-        if (category != null && !category.isEmpty()) {
+        if (category != null) {
             plants = plants.stream()
-                    .filter(plant -> plant.getCategory().equalsIgnoreCase(category))
+                    .filter(plant -> plant.getCategory().equals(category))
                     .collect(Collectors.toList());
         }
 
