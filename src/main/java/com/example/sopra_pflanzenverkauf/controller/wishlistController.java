@@ -33,11 +33,16 @@ public class wishlistController {
     }
 
     @PostMapping(path = "/wishlist")
-    public String removePlant(@RequestParam("plant") String plant,
+    public String removePlant(@RequestParam("plant") Integer plant,
                                  Map<String, Object> model) {
         User currentUser = userService.getCurrentUser();
 
-        currentUser.getWishlistPlants().remove(plantService.getPlantByName(plant));
+
+        //currentUser.getWishlistPlants().remove(plantService.getPlantByName(plant));
+        boolean s = currentUser.getWishlistPlants().contains(plantService.getPlantByPlantId(plant));
+        System.out.println(s); //true
+        currentUser.getWishlistPlants().remove(plantService.getPlantByPlantId(plant));
+        //currentUser.getWishlistPlants().removeAll(currentUser.getWishlistPlants()); //Funktioniert
         userService.updateWishlist(currentUser);
         model.put("message", "Pflanze erfolgreich von Merkliste entfernt.");
 

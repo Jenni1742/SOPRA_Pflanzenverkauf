@@ -38,6 +38,10 @@ public class PlantService {
         return plantRepository.findByPlantname(plantname);
     }
 
+    public Plant getPlantByPlantId(Integer plantID) {
+        return plantRepository.findByPlantId(plantID);
+    }
+
     public Plant persistPlant(Plant plant) {
         return plantRepository.save(plant);
     }
