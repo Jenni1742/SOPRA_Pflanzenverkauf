@@ -1,8 +1,10 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
 import com.example.sopra_pflanzenverkauf.entity.Plant;
+import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
+import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,9 @@ public class CreateAdvertisementController {
     @Autowired
     private PlantService plantService;
 
+    @Autowired
+    private UserService userService;
+
     /**
      * Handles GET requests targeted at the createAdvertisement page.
      *
@@ -29,43 +34,13 @@ public class CreateAdvertisementController {
         return "createAdvertisement";
     }
 
-
-    /**
-    @RequestMapping (value="/createAdvertisement", method = RequestMethod.POST)
-    public String createPlant(@RequestParam("plantname") String plantname,
-                              @RequestParam("plantSize") int plantSize,
-                              @RequestParam("price") double price,
-                              @RequestParam("plantDescription") String plantDescription,
-                              @RequestParam("careTips") String caretips,
-                              @RequestParam("zipCode") int zipCode){
-
-        Plant plant = new Plant();
-        plant.setPlantname(plantname);
-        plant.setPlantSize(plantSize);
-        plant.setPrice(price);
-        plant.setPlantDescription(plantDescription);
-        plant.setCareTips(caretips);
-        plant.setZipCode(zipCode);
-
-        plantService.persistPlant(plant);
-
-        return "myAdvertisements";
-    }
-    */
-
-    /**
-    @RequestMapping (value="/createAdvertisement", method = RequestMethod.POST)
-    public String createPlant(@RequestBody Plant plant){
-
-        plantService.persistPlant(plant);
-
-        return "myAdvertisements";
-    }
-     */
-
     @RequestMapping (value="/createAdvertisement", method = RequestMethod.POST)
     public String createPlant(@ModelAttribute("plant") Plant newPlant){
 
+        User currentUser = userService.getCurrentUser();
+        newPlant.setSeller(currentUser);
+
+        //Verkauft ist standardmäßig false
         plantService.persistPlant(newPlant);
 
         return "redirect:/myAdvertisements";
