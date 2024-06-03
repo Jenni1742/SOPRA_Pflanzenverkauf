@@ -1,5 +1,6 @@
 package com.example.sopra_pflanzenverkauf.service;
 
+import com.example.sopra_pflanzenverkauf.entity.Category;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.entity.Role;
@@ -89,6 +90,8 @@ public class TestDataLoader implements CommandLineRunner {
 
     @Autowired
     private PlantService plantService;
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      * Executed during Spring boot startup.
@@ -98,6 +101,14 @@ public class TestDataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        //create Category
+        Category zimmerpflanze = new Category();
+        zimmerpflanze.setCategoryname("Zimmerpflanze");
+        categoryService.persistCategory(zimmerpflanze);
+
+        Category outdoorpflanze = new Category();
+        zimmerpflanze.setCategoryname("Outdoorpflanze");
+        categoryService.persistCategory(outdoorpflanze);
 
         // create roles
         Role userRole = new Role();
@@ -142,7 +153,7 @@ public class TestDataLoader implements CommandLineRunner {
                 10,
                 "Mein kleiner grüner Kaktus",
                 "Hin und wieder mal gießen.",
-                "Zimmerpflanze",
+                zimmerpflanze,
                 jenniferKaisner,
                 12345,
                 jenniferK
@@ -167,7 +178,7 @@ public class TestDataLoader implements CommandLineRunner {
                 15,
                 "Weiße Lilie",
                 "Regelmäßig gießen und im Halbschatten halten.",
-                "Outdoorpflanze",
+                outdoorpflanze,
                 jenniferKaisner,
                 70321,
                 jenniferK
@@ -181,7 +192,7 @@ public class TestDataLoader implements CommandLineRunner {
                 20,
                 "Gelbe Lilie",
                 "Nicht zu viel gießen und viel Licht.",
-                "Zimmerpflanze",
+                zimmerpflanze,
                 jenniferKaisner,
                 70321,
                 jenniferK
@@ -195,7 +206,7 @@ public class TestDataLoader implements CommandLineRunner {
                 18,
                 "Rote Lilie",
                 "Halbschatten und gleichmäßige Feuchtigkeit.",
-                "Zimmerpflanze",
+                zimmerpflanze,
                 jenniferKaisner,
                 70323,
                 jenniferK

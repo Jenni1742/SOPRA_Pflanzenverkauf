@@ -40,7 +40,7 @@ public class Plant {
     private Integer zipCode;
 
     @ManyToOne
-    @Column(name = "Kategorie")
+    @JoinColumn(name = "Kategorie")
     private Category category;
 
     @ManyToOne
