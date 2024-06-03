@@ -272,9 +272,14 @@ public class TestDataLoader implements CommandLineRunner {
         //create Merkliste
         Set<Plant> wishlistPlants = new HashSet<>();
         wishlistPlants.add(cactus);
+        wishlistPlants.add(lily1);
+        wishlistPlants.add(lily2);
 
         jenniferKaisner.setWishlistPlants(wishlistPlants);
         userService.updateWishlist(jenniferKaisner);
+
+
+
 
 
     }
