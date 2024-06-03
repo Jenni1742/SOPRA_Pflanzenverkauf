@@ -154,7 +154,65 @@ public class TestDataLoader implements CommandLineRunner {
         jenniferK.setRoles(userRoles);
         userService.persistUser(jenniferK);
 
-        // create plant
+        //new users
+        User aylinaAshkenov = new User();
+        aylinaAshkenov.setEmail("aylinaaa.akv@mail.com");
+        aylinaAshkenov.setUsername("AylinaA");
+        aylinaAshkenov.setPassword("5678");
+        aylinaAshkenov.setEnabled(true);
+        aylinaAshkenov.setFirstName("Aylina");
+        aylinaAshkenov.setLastName("Ashkenov");
+        aylinaAshkenov.setPlz("70199");
+        aylinaAshkenov.setSellingLevel(level1);
+        aylinaAshkenov.setBuyingLevel(level2);
+        aylinaAshkenov.setPicturePath("https://i.pinimg.com/236x/35/b1/61/35b1618bc1108909ac81f289f0814699.jpg");
+        aylinaAshkenov.setRoles(userRoles);
+        userService.persistUser(aylinaAshkenov);
+
+        User alessiaSedelnikov = new User();
+        alessiaSedelnikov.setEmail("alessia.sedelnikov@mail.com");
+        alessiaSedelnikov.setUsername("AlessiaS");
+        alessiaSedelnikov.setPassword("2345");
+        alessiaSedelnikov.setEnabled(true);
+        alessiaSedelnikov.setFirstName("Alessia");
+        alessiaSedelnikov.setLastName("Sedelnikov");
+        alessiaSedelnikov.setPlz("71283");
+        alessiaSedelnikov.setSellingLevel(level1);
+        alessiaSedelnikov.setBuyingLevel(level2);
+        alessiaSedelnikov.setPicturePath("https://i.pinimg.com/236x/94/fe/45/94fe45409a5fb7909b655e0987798216.jpg");
+        alessiaSedelnikov.setRoles(userRoles);
+        userService.persistUser(alessiaSedelnikov);
+
+        User markoPetric = new User();
+        markoPetric.setEmail("marko.petric@mail.com");
+        markoPetric.setUsername("MarkoP");
+        markoPetric.setPassword("3456");
+        markoPetric.setEnabled(true);
+        markoPetric.setFirstName("Marko");
+        markoPetric.setLastName("Petric");
+        markoPetric.setPlz("70128");
+        markoPetric.setSellingLevel(level1);
+        markoPetric.setBuyingLevel(level2);
+        markoPetric.setPicturePath("https://i.pinimg.com/474x/81/47/f6/8147f66671e37ef12238c49e42346953.jpg");
+        markoPetric.setRoles(userRoles);
+        userService.persistUser(markoPetric);
+
+        User franziskaHornung = new User();
+        franziskaHornung.setEmail("franziskaHornung@mail.com");
+        franziskaHornung.setUsername("FranziH");
+        franziskaHornung.setPassword("4567");
+        franziskaHornung.setEnabled(true);
+        franziskaHornung.setFirstName("Franziska");
+        franziskaHornung.setLastName("Hornung");
+        franziskaHornung.setPlz("78292");
+        franziskaHornung.setSellingLevel(level1);
+        franziskaHornung.setBuyingLevel(level2);
+        franziskaHornung.setPicturePath("https://i.pinimg.com/236x/0a/ea/c8/0aeac8c1c7a0cebb97a01a26794498ac.jpg");
+        franziskaHornung.setRoles(userRoles);
+        userService.persistUser(franziskaHornung);
+
+        // create plants-----------------------------------------------------------------------------------------------
+        //create cactus
         Plant cactus = new Plant(
                 "Kaktus",
                 50,
