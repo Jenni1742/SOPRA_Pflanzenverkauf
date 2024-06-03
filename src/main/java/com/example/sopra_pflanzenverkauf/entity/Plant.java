@@ -2,6 +2,8 @@ package com.example.sopra_pflanzenverkauf.entity;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 /**
  * The Entity "Pflanze".
  */
@@ -51,7 +53,6 @@ public class Plant {
     @JoinColumn(name = "Käufer")
     private User buyer;
 
-    
     
     public Integer getZipCode() {
         return zipCode;

@@ -60,14 +60,15 @@ public class User {
     @Column(name = "Verkaufte Pflanzen")
     private List soldPlants;
 
-    @Column(name = "Merkliste")
-    private List wishlist;
-
     //TODO Wird wahrscheinlich nicht benötigt
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "benutzer_rolle", joinColumns = @JoinColumn(name = "benutzer_id"), inverseJoinColumns = @JoinColumn(name = "rolle_id"))
+    @JoinTable(name = "benutzer_rolle", joinColumns = @JoinColumn(name = "BenutzerID"), inverseJoinColumns = @JoinColumn(name = "RollenID"))
     private Set<Role> roles;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "Merkliste", joinColumns = @JoinColumn(name = "BenutzerID"), inverseJoinColumns = @JoinColumn(name = "PflanzenID"))
+    private Set<Plant> wishlistPlants;
 
     @OneToMany (mappedBy = "seller")
     private java.util.List<Plant> plantsToSell = new ArrayList<>();
@@ -316,25 +317,6 @@ public class User {
         this.soldPlants = soldPlants;
     }
 
-    /**
-     * Gets wishlist.
-     *
-     * @return the wishlist
-     * */
-    public List getWishlist() {
-        return wishlist;
-    }
-
-    /**
-     * Sets the wishlist
-     *
-     * @param wishlist the wishlist
-     */
-    public void setWishlist(List wishlist) {
-        this.wishlist = wishlist;
-    }
-
-
     public java.util.List<Plant> getPlantsToSell() {
         return plantsToSell;
     }
@@ -387,4 +369,11 @@ public class User {
         this.sellingLevel = sellingLevel;
     }
 
+    public Set<Plant> getWishlistPlants() {
+        return wishlistPlants;
+    }
+
+    public void setWishlistPlants(Set<Plant> wishlistPlants) {
+        this.wishlistPlants = wishlistPlants;
+    }
 }

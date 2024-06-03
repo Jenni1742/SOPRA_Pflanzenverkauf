@@ -223,6 +223,13 @@ public class TestDataLoader implements CommandLineRunner {
         lily3.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
         plantService.persistPlant(lily3);
 
+        //create Merkliste
+        Set<Plant> wishlistPlants = new HashSet<>();
+        wishlistPlants.add(cactus);
+
+        jenniferKaisner.setWishlistPlants(wishlistPlants);
+        userService.persistUser(jenniferKaisner);
+
     }
 
 
