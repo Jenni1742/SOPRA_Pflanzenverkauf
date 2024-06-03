@@ -143,18 +143,6 @@ public class TestDataLoader implements CommandLineRunner {
         userService.persistUser(jenniferKaisner);
 
 
-
-        // create users
-        User jenniferK = new User();
-        jenniferK.setEmail("Jennifer.K@mail.com");
-        jenniferK.setUsername("JenniferKa");
-        jenniferK.setPassword("12345");
-        jenniferK.setEnabled(true);
-        //jenniferK.setNonLocked(true);
-        jenniferK.setRoles(userRoles);
-        userService.persistUser(jenniferK);
-
-        //new users
         User aylinaAshkenov = new User();
         aylinaAshkenov.setEmail("aylinaaa.akv@mail.com");
         aylinaAshkenov.setUsername("AylinaA");
@@ -222,7 +210,7 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 jenniferKaisner,
                 12345,
-                jenniferK
+                aylinaAshkenov
         );
         cactus.setImageUrl("https://i.pinimg.com/236x/b2/9e/4d/b29e4d6a53f3c2b86a5f3d965b1b49e3.jpg");
         plantService.persistPlant(cactus);
@@ -247,7 +235,7 @@ public class TestDataLoader implements CommandLineRunner {
                 outdoorpflanze,
                 jenniferKaisner,
                 70321,
-                jenniferK
+                alessiaSedelnikov
         );
         lily1.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
         plantService.persistPlant(lily1);
@@ -261,7 +249,7 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 jenniferKaisner,
                 70321,
-                jenniferK
+                markoPetric
         );
         lily2.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
         plantService.persistPlant(lily2);
@@ -275,7 +263,7 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 jenniferKaisner,
                 70323,
-                jenniferK
+                franziskaHornung
 
         );
         lily3.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
