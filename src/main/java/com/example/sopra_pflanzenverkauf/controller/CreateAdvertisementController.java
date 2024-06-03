@@ -8,10 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -33,12 +30,45 @@ public class CreateAdvertisementController {
     }
 
 
+    /**
     @RequestMapping (value="/createAdvertisement", method = RequestMethod.POST)
-    public String savePlant(@ModelAttribute("plant") Plant plant){
+    public String createPlant(@RequestParam("plantname") String plantname,
+                              @RequestParam("plantSize") int plantSize,
+                              @RequestParam("price") double price,
+                              @RequestParam("plantDescription") String plantDescription,
+                              @RequestParam("careTips") String caretips,
+                              @RequestParam("zipCode") int zipCode){
+
+        Plant plant = new Plant();
+        plant.setPlantname(plantname);
+        plant.setPlantSize(plantSize);
+        plant.setPrice(price);
+        plant.setPlantDescription(plantDescription);
+        plant.setCareTips(caretips);
+        plant.setZipCode(zipCode);
+
         plantService.persistPlant(plant);
+
         return "myAdvertisements";
     }
+    */
 
+    /**
+    @RequestMapping (value="/createAdvertisement", method = RequestMethod.POST)
+    public String createPlant(@RequestBody Plant plant){
 
+        plantService.persistPlant(plant);
+
+        return "myAdvertisements";
+    }
+     */
+
+    @RequestMapping (value="/createAdvertisement", method = RequestMethod.POST)
+    public String createPlant(@ModelAttribute("plant") Plant newPlant){
+
+        plantService.persistPlant(newPlant);
+
+        return "redirect:/myAdvertisements";
+    }
 
 }
