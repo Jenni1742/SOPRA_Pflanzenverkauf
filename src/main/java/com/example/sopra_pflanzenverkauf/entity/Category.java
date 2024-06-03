@@ -2,6 +2,8 @@ package com.example.sopra_pflanzenverkauf.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+
 @Entity
 @Table(name = "Kategorie")
 public class Category {
@@ -13,6 +15,9 @@ public class Category {
 
     @Column(name = "Kategoriename")
     private String categoryname;
+
+    @OneToMany (mappedBy = "category")
+    private java.util.List<Plant> categorizedPlants = new ArrayList<>();
 
 
 
