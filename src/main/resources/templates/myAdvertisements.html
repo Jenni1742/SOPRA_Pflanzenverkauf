@@ -81,11 +81,20 @@
     <a href="http://localhost:8080/createAdvertisement" class="btn btn-rePlantGreen" role="button">Anzeige erstellen</a>
 </div>
 -->
-<div class="card text-center ">
+
+<div class="card text-center" >
+    <div class="ad" th:each="plant : ${plants}">
+            <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
+            <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
+    </div>
+</div>
+
+<div class="card text-center" >
     <p></p>
     <h1> Noch keine Anzeige vorhanden? </h1>
     <p></p>
 </div>
+
 <p></p>
 <div class="card-footer text-center card-footer-rePlant ">
     <a href="http://localhost:8080/createAdvertisement" class="btn btn-rePlantGreen" role="button">Anzeige erstellen</a>
