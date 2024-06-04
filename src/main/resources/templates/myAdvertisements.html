@@ -96,7 +96,17 @@
                 <p><strong>Kategorie:</strong> <span th:text="${plant.category}">Kategorie der Pflanze</span></p>
                 <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
             </div>
+            <a href="#" class="btn btn-rePlantGreen" role="button">Anzeige bearbeiten</a>
+            <a href="#" class="btn btn-rePlantGreen" role="button">Anzeige löschen</a>
+            <!--
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                </svg>
+            </p>
+            -->
         </div>
+
         <div style="flex: 0 0 auto; margin-right: 20px;">
             <p th:if="${plantList.size()} == 0">
                 Noch keine Verkaufsanzeigen vorhanden? Leg direkt los und stelle deine erste Pflanze zum Verkauf ein !
