@@ -84,6 +84,9 @@ h3 {
     color: black;
     font-size: 20px;
 }
+input:invalid {
+    border-color: red;
+}
 .navbar {
     background-color: #017101;
     position: fixed;
