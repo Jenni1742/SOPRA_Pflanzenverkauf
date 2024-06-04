@@ -9,6 +9,11 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css\stylesheet.css">
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
 </head>
 
 
@@ -75,22 +80,37 @@
     </div>
 </nav>
 
-<h1> Meine Verkaufsanzeigen: </h1>
-<!--
-<div class="card-title text-center">
-    <a href="http://localhost:8080/createAdvertisement" class="btn btn-rePlantGreen" role="button">Anzeige erstellen</a>
-</div>
--->
-<div class="card text-center ">
+<div class="card card-rePlant">
     <p></p>
-    <h1> Noch keine Anzeige vorhanden? </h1>
-    <p></p>
-</div>
-<p></p>
-<div class="card-footer text-center card-footer-rePlant ">
-    <a href="http://localhost:8080/createAdvertisement" class="btn btn-rePlantGreen" role="button">Anzeige erstellen</a>
-</div>
+    <p>Hier findest du deine Verkaufsanzeigen.</p>
+    <div class="card-body">
+        <div class="ad" th:each="plant : ${plantList}"
+             style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+            <div style="flex: 0 0 auto; margin-right: 20px;">
+                <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]"
+                     style="width:100%; max-width:300px; height:auto;"/>
+            </div>
+            <div style="flex: 1; padding-left: 20px; text-align: left">
+                <h2 th:text="${plant.plantname}" style="color: #017101; "></h2>
+                <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
+                <p><strong>Kategorie:</strong> <span th:text="${plant.category}">Kategorie der Pflanze</span></p>
+                <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
+            </div>
+        </div>
+        <div style="flex: 0 0 auto; margin-right: 20px;">
+            <p th:if="${plantList.size()} == 0">
+                Noch keine Verkaufsanzeigen vorhanden? Leg direkt los und stelle deine erste Pflanze zum Verkauf ein !
+            </p>
+        </div>
+    </div>
 
+
+    <p></p>
+    <div class="card-footer text-center card-footer-rePlant ">
+        <a href="http://localhost:8080/createAdvertisement" class="btn btn-rePlantGreen" role="button">Verkaufe deine
+            Pflanzen</a>
+    </div>
+</div>
 
 </body>
 </html>

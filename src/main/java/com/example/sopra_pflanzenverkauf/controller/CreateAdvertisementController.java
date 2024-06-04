@@ -1,8 +1,10 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
+import com.example.sopra_pflanzenverkauf.entity.Category;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
+import com.example.sopra_pflanzenverkauf.service.CategoryService;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -23,6 +26,9 @@ public class CreateAdvertisementController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CategoryService categoryService;
+
     /**
      * Handles GET requests targeted at the createAdvertisement page.
      *
@@ -31,6 +37,10 @@ public class CreateAdvertisementController {
     @RequestMapping(value = "/createAdvertisement", method = RequestMethod.GET)
     public String showCreateAdvertisementsPage(Model model) {
         model.addAttribute("plant", new Plant());
+
+        List<Category> categories = categoryService.findAllCategories();
+        model.addAttribute("categories", categories);
+
         return "createAdvertisement";
     }
 
@@ -42,6 +52,8 @@ public class CreateAdvertisementController {
 
         //Verkauft ist standardmäßig false
         plantService.persistPlant(newPlant);
+
+        userService.getCurrentUser().getPlantsToSell().add(newPlant);
 
         return "redirect:/myAdvertisements";
     }
