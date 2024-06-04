@@ -53,6 +53,8 @@ public class CreateAdvertisementController {
         //Verkauft ist standardmäßig false
         plantService.persistPlant(newPlant);
 
+        userService.getCurrentUser().getPlantsToSell().add(newPlant);
+
         return "redirect:/myAdvertisements";
     }
 
