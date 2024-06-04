@@ -37,10 +37,13 @@ public class WishlistController {
 
 
         //currentUser.getWishlistPlants().remove(plantService.getPlantByName(plant));
-        boolean s = currentUser.getWishlistPlants().contains(plantService.getPlantByPlantId(plant));
-        System.out.println(s); //true
+        //boolean s = currentUser.getWishlistPlants().contains(plantService.getPlantByPlantId(plant));
+        //System.out.println(s); //true
+
         currentUser.getWishlistPlants().remove(plantService.getPlantByPlantId(plant));
+
         //currentUser.getWishlistPlants().removeAll(currentUser.getWishlistPlants()); //Funktioniert
+
         userService.updateWishlist(currentUser);
         model.put("message", "Pflanze erfolgreich von Merkliste entfernt.");
 

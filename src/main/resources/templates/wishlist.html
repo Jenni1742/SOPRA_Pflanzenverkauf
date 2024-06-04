@@ -103,7 +103,35 @@
                 </div>
             </div>
 
-             Problem nix tut sich
+
+
+
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                </svg>
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form th:action="@{/wishlist (plant = ${plant.plantId})}" id="plant" name="plant" method="post">
+                            <div class="modal-body">
+                                <p align="left">Bist Du sicher, dass du diese Pflanze aus deiner Merkliste entfernen möchtest?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Nein, Pflanze in der Merkliste lassen</button>
+                                <button type="submit" class="btn btn-rePlantGreen">Ja, Pflanze aus Merkliste entfernen</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--
             <form th:action="@{/wishlist (plant = ${plant.plantId})}" id="plant" name="plant" method="post">
                 <button class="btn-rePlantHeart">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
