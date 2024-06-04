@@ -82,20 +82,28 @@ public class MyUserprofileController {
         User currentUser = userService.getCurrentUser();
 
 
-        currentUser.setPicturePath(newPicturePath);
-        userService.updatePicturePath(currentUser);
+        if (!newPicturePath.isEmpty()) {
+            currentUser.setPicturePath(newPicturePath);
+            userService.updatePicturePath(currentUser);
+        }
         //currentUser.setUsername(newUsername);
         //userService.updateUsername(currentUser);
-        System.out.println(userService.getCurrentUser().getUsername());
-        currentUser.setFirstName(newFirstName);
-        userService.updateFirstName(currentUser);
-        System.out.println(userService.getCurrentUser().getUsername());
-        currentUser.setLastName(newLastName);
-        userService.updateLastName(currentUser);
-        currentUser.setEmail(newEmail);
-        userService.updateEmail(currentUser);
-        currentUser.setPlz(newPLZ);
-        userService.updatePLZ(currentUser);
+        if (!newFirstName.isEmpty()) {
+            currentUser.setFirstName(newFirstName);
+            userService.updateFirstName(currentUser);
+        }
+        if (!newLastName.isEmpty()) {
+            currentUser.setLastName(newLastName);
+            userService.updateLastName(currentUser);
+        }
+        if (!newEmail.isEmpty()) {
+            currentUser.setEmail(newEmail);
+            userService.updateEmail(currentUser);
+        }
+        if (!newPLZ.isEmpty()) {
+            currentUser.setPlz(newPLZ);
+            userService.updatePLZ(currentUser);
+        }
 
         model.put("currentUser", currentUser);
 
