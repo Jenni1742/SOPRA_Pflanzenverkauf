@@ -9,6 +9,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 import java.security.Principal;
@@ -69,7 +74,6 @@ public class MyUserprofileController {
 
     @PostMapping(path = "/myUserprofile")
     public String changeProfile(@RequestParam("newPicturePath") String newPicturePath,
-                                @RequestParam("newUsername") String newUsername,
                                 @RequestParam("newFirstName") String newFirstName,
                                 @RequestParam("newLastName") String newLastName,
                                 @RequestParam("newEmail") String newEmail,
@@ -77,21 +81,32 @@ public class MyUserprofileController {
                                 Map<String, Object> model) {
         User currentUser = userService.getCurrentUser();
 
-        currentUser.setPicturePath(newPicturePath);
-        userService.updatePicturePath(currentUser);
-        currentUser.setUsername(newUsername);
-        userService.updateUsername(currentUser);
-        currentUser.setFirstName(newFirstName);
-        userService.updateFirstName(currentUser);
-        currentUser.setLastName(newLastName);
-        userService.updateLastName(currentUser);
-        currentUser.setEmail(newEmail);
-        userService.updateEmail(currentUser);
-        currentUser.setPlz(newPLZ);
-        userService.updatePLZ(currentUser);
 
+        if (!newPicturePath.isEmpty()) {
+            currentUser.setPicturePath(newPicturePath);
+            userService.updatePicturePath(currentUser);
+        }
+        //currentUser.setUsername(newUsername);
+        //userService.updateUsername(currentUser);
+        if (!newFirstName.isEmpty()) {
+            currentUser.setFirstName(newFirstName);
+            userService.updateFirstName(currentUser);
+        }
+        if (!newLastName.isEmpty()) {
+            currentUser.setLastName(newLastName);
+            userService.updateLastName(currentUser);
+        }
+        if (!newEmail.isEmpty()) {
+            currentUser.setEmail(newEmail);
+            userService.updateEmail(currentUser);
+        }
+        if (!newPLZ.isEmpty()) {
+            currentUser.setPlz(newPLZ);
+            userService.updatePLZ(currentUser);
+        }
 
         model.put("currentUser", currentUser);
+
         return "myUserprofile";
     }
 

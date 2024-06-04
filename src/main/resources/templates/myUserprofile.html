@@ -191,27 +191,28 @@
                         <form th:action="@{/myUserprofile}" method="post">
                             <div class="mb-3">
                                 <label for= newPicturePath class="form-label">Neues Profilbild (Bildlink):</label>
-                                <input type="text" class="form-control" id="newPicturePath" name="newPicturePath" required>
+                                <input type="text" class="form-control" id="newPicturePath" name="newPicturePath">
                             </div>
-                            <div class="mb-3">
+                            <!-- Kann nicht geändert werden da sonst currentUser NullPointerException-->
+                            <!--<div class="mb-3">
                                 <label for= newUsername class="form-label">Neuer Benutzername:</label>
                                 <input type="text" class="form-control" id="newUsername" name="newUsername" required>
-                            </div>
+                            </div>-->
                             <div class="mb-3">
                                 <label for= newFirstName class="form-label">Neuer Vorname:</label>
-                                <input type="text" class="form-control" id="newFirstName" name="newFirstName" required>
+                                <input type="text" class="form-control" id="newFirstName" name="newFirstName">
                             </div>
                             <div class="mb-3">
                                 <label for= newLastName class="form-label">Neuer Nachname:</label>
-                                <input type="text" class="form-control" id="newLastName" name="newLastName" required>
+                                <input type="text" class="form-control" id="newLastName" name="newLastName">
                             </div>
                             <div class="mb-3">
                                 <label for= newEmail class="form-label">Neue E-mail Adresse:</label>
-                                <input type="text" class="form-control" id="newEmail" name="newEmail" required>
+                                <input type="text" class="form-control" id="newEmail" name="newEmail">
                             </div>
                             <div class="mb-3">
                                 <label for= newPLZ class="form-label">Neue Postleitzahl:</label>
-                                <input type="text" class="form-control" id="newPLZ" name="newPLZ" required>
+                                <input type="text" class="form-control" id="newPLZ" name="newPLZ">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Schließen</button>
