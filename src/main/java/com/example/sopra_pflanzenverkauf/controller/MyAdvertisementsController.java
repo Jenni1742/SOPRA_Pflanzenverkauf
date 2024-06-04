@@ -31,8 +31,8 @@ public class MyAdvertisementsController {
     @RequestMapping(value = "/myAdvertisements", method = RequestMethod.GET)
     public String showMyAdvertisementsPage(Model model) {
 
-        List<Plant> plants = plantService.findAllPlants();
-        model.addAttribute("plants", plants);
+        List<Plant> plantList = userService.getCurrentUser().getPlantsToSell();
+        model.addAttribute("plantList", plantList);
 
         return "myAdvertisements";
     }
