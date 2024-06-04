@@ -38,6 +38,10 @@ public class UserService implements UserDetailsService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    public void updatePicturePath(User user) {
+        userRepository.save(user);
+    }
+
     public void updateUserPassword(User user) {
         userRepository.save(user);
     }

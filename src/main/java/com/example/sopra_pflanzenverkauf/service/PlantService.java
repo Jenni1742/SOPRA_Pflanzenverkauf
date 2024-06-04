@@ -2,6 +2,7 @@ package com.example.sopra_pflanzenverkauf.service;
 
 import com.example.sopra_pflanzenverkauf.entity.Category;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
+import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,9 @@ public class PlantService {
 
     public PlantService(PlantRepository plantRepository) {
         this.plantRepository = plantRepository;
+    }
+    public List<Plant> getAllPlants() {
+        return plantRepository.findAll();
     }
 
     public List<Plant> searchPlantsByName(String plantname) {
@@ -34,6 +38,10 @@ public class PlantService {
         return plantRepository.findByPlantname(plantname);
     }
 
+    public Plant getPlantByPlantId(Integer plantID) {
+        return plantRepository.findByPlantId(plantID);
+    }
+
     public Plant persistPlant(Plant plant) {
         return plantRepository.save(plant);
     }
@@ -43,6 +51,9 @@ public class PlantService {
                 .limit(3)
                 .collect(Collectors.toList());
     }
+
+
+
 
     public List<Plant> findFilteredAndSortedPlants(Category category, String price) {
         List<Plant> plants = plantRepository.findAll();

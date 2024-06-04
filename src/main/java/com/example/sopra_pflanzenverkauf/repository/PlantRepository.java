@@ -13,4 +13,6 @@ public interface PlantRepository extends JpaRepository<Plant, Integer> {
         List<Plant> findByPlantnameContainingIgnoreCase(String plantname);
 
         List<Plant> findBySoldFalseOrderByPlantIdAsc();
+
+        Plant findByPlantId(Integer plantID);
 }

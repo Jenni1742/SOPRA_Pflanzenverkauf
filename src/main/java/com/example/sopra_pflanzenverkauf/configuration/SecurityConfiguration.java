@@ -1,6 +1,7 @@
 package com.example.sopra_pflanzenverkauf.configuration;
 
 
+import com.example.sopra_pflanzenverkauf.entity.Plant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

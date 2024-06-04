@@ -148,7 +148,8 @@
                     <div class="modal-body">
 
                         <form th:action="@{/myUserprofile}" method="post">
-                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                            <!-- Problem: Doppelte Nachfrage bei Änderung mit zwischendurch Fehlermeldung-->
+                            <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
                             <div class="mb-3">
                                 <label for= oldPassword class="form-label">Altes Passwort:</label>
                                 <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
@@ -187,7 +188,11 @@
                     </div>
                     <div class="modal-body">
 
-                        <form action=/myUserprofile method="post">
+                        <form th:action="@{/myUserprofile}" method="post">
+                            <div class="mb-3">
+                                <label for= newPicturePath class="form-label">Neues Profilbild (Bildlink):</label>
+                                <input type="text" class="form-control" id="newPicturePath" name="newPicturePath" required>
+                            </div>
                             <div class="mb-3">
                                 <label for= newUsername class="form-label">Neuer Benutzername:</label>
                                 <input type="text" class="form-control" id="newUsername" name="newUsername" required>

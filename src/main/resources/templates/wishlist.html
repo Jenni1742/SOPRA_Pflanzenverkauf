@@ -80,6 +80,60 @@
     <p>Hier findest du deine markierten Pflanzen.</p>
     <div class="card-body">
 
+
+        <div th:each="plant : ${currentUser.getWishlistPlants()}" class="ad" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+            <div style="flex: 0 0 auto; margin-right: 20px;">
+                <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="width:100%; max-width:300px; height:auto;"/>
+            </div>
+            <div style="flex: 1; padding-left: 20px; text-align: left">
+                <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
+                <!-- To Do: plant.category.categoryname Problem: Nicht mehr alle angezeigt -->
+                <p><strong>Kategorie:</strong> <span th:text="${plant.category}">Kategorie der Pflanze</span></p>
+                <!--<p><strong>Status:</strong> <span th:text="${plant.status}">Status der Pflanze</span></p>-->
+                <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
+                <!-- To Do: plant.seller.getUsername() Problem: Nicht mehr alle angezeigt -->
+                <p><strong>Verkäufer:</strong> <span th:text="${plant.seller}">Name des Verkäufers</span></p>
+                <div>
+                    <button style="background: none; border: none; cursor: pointer; color: #017101;">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                    <button onclick="window.location.href='plant-details.html?id=[[${plant.id}]]'" style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                        Mehr erfahren
+                    </button>
+                </div>
+            </div>
+
+             Problem nix tut sich
+            <form th:action="@{/wishlist (plant = ${plant.plantId})}" id="plant" name="plant" method="post">
+                <button class="btn-rePlantHeart">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                    </svg>
+                </button>
+            </form>-->
+
+             <!--Problem 3 Results returned
+            <form th:action="@{/wishlist (plant = ${plant.plantname})}" id="plant" name="plant" method="post">
+                <button class="btn-rePlantHeart">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                    </svg>
+                </button>
+            </form>-->
+
+
+            <!-- Wie bei profildaten ändern Problem: Forbidden
+            <form action=/wishlist method="post">
+                <label for= plant class="form-label">Plantname:</label>
+                <input type="text" class="form-control" id="plant" name="plant" required>
+                <button type="submit" class="btn btn-rePlantGreen">Merkliste ändern</button>
+            </form>-->
+        </div>
+
+
+
+
+
         <div style="flex: 0 0 auto; margin-right: 20px;">
             <p th:if="${currentUser.wishlistPlants.size()} == 0">
                 Aktuell ist die Liste noch leer, aber das muss nicht so bleiben!

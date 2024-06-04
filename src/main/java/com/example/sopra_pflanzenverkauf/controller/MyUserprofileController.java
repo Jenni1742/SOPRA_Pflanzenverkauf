@@ -46,7 +46,7 @@ public class MyUserprofileController {
 
 
     }
-
+/*
     @PostMapping(path = "/myUserprofile")
     public String changePassword(@RequestParam("oldPassword") String oldPassword,
                                  @RequestParam("newPassword") String newPassword,
@@ -65,10 +65,11 @@ public class MyUserprofileController {
         model.put("currentUser", currentUser);
         return "myUserprofile";
     }
+*/
 
-/*
     @PostMapping(path = "/myUserprofile")
-    public String changeProfile(@RequestParam("newUsername") String newUsername,
+    public String changeProfile(@RequestParam("newPicturePath") String newPicturePath,
+                                @RequestParam("newUsername") String newUsername,
                                 @RequestParam("newFirstName") String newFirstName,
                                 @RequestParam("newLastName") String newLastName,
                                 @RequestParam("newEmail") String newEmail,
@@ -76,6 +77,8 @@ public class MyUserprofileController {
                                 Map<String, Object> model) {
         User currentUser = userService.getCurrentUser();
 
+        currentUser.setPicturePath(newPicturePath);
+        userService.updatePicturePath(currentUser);
         currentUser.setUsername(newUsername);
         userService.updateUsername(currentUser);
         currentUser.setFirstName(newFirstName);
@@ -91,6 +94,6 @@ public class MyUserprofileController {
         model.put("currentUser", currentUser);
         return "myUserprofile";
     }
-*/
+
 
 }
