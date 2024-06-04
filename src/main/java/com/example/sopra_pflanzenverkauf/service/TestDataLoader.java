@@ -200,92 +200,122 @@ public class TestDataLoader implements CommandLineRunner {
         userService.persistUser(franziskaHornung);
 
         // create plants-----------------------------------------------------------------------------------------------
-        //create cactus
-        Plant cactus = new Plant(
-                "Kaktus",
+
+        Plant kaffeestrauch = new Plant(
+                "Kaffeestrauch",
                 50,
                 10,
-                "Mein kleiner grüner Kaktus",
-                "Hin und wieder mal gießen.",
+                "Der Kaffeestrauch ist besonders, weil er mir jeden Morgen beim Kaffee trinken Gesellschaft geleistet hat. Da ich jetzt eine Partnerin gefunden habe, bin ich bereit meine Pflanze einem anderem Single zu überlassen",
+                "Hin und wieder mal gießen. Etwas Kaffe mit ins Wasser geben",
                 zimmerpflanze,
-                jenniferKaisner,
+                markoPetric,
                 12345,
-                aylinaAshkenov,
                 false
         );
-        cactus.setImageUrl("https://i.pinimg.com/236x/b2/9e/4d/b29e4d6a53f3c2b86a5f3d965b1b49e3.jpg");
-        plantService.persistPlant(cactus);
+        kaffeestrauch.setImageUrl("https://www.blumen-brueder.de/Content/files/1886/Coffea-arabica-600x800-proportionalsmallest.webp");
+        plantService.persistPlant(kaffeestrauch);
 
-        Plant cactus2 = new Plant();
-        cactus2.setPlantname("Kaktus");
-        cactus2.setPlantSize(50);
-        cactus2.setPrice(10.5);
-        cactus2.setPlantDescription("Mein kleiner grüner Kaktus");
-        cactus2.setCareTips("Hin und wieder mal gießen.");
-        cactus2.setSold(true);
-        cactus2.setImageUrl("https://i.pinimg.com/236x/b2/9e/4d/b29e4d6a53f3c2b86a5f3d965b1b49e3.jpg");
-        plantService.persistPlant(cactus2);
 
-        // create lilies
-        Plant lily1 = new Plant(
-                "Lilie",
+        Plant allium = new Plant(
+                "Allium",
                 30,
                 15,
-                "Weiße Lilie",
+                "Allium - auch als Zwibelpflanze bekannt. ",
                 "Regelmäßig gießen und im Halbschatten halten.",
+                outdoorpflanze,
+                alessiaSedelnikov,
+                70321,
+                false
+        );
+        allium.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg");
+        plantService.persistPlant(allium);
+
+        Plant kniphofia = new Plant(
+                "Kniphofia",
+                35,
+                20,
+                "Was eine wunderschöne Pflanze! Die liebe Kniphofia sucht ein neues Zuhause",
+                "Nicht zu viel gießen und viel Licht.",
                 outdoorpflanze,
                 jenniferKaisner,
                 70321,
-                alessiaSedelnikov,
                 false
         );
-        lily1.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
-        plantService.persistPlant(lily1);
+        kniphofia.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier3kniphofia_03_0734dfd3c0.jpg");
+        plantService.persistPlant(kniphofia);
 
-        Plant lily2 = new Plant(
-                "Lilie",
-                35,
-                20,
-                "Gelbe Lilie",
-                "Nicht zu viel gießen und viel Licht.",
-                zimmerpflanze,
-                jenniferKaisner,
-                70321,
-                markoPetric,
-                false
-        );
-        lily2.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
-        plantService.persistPlant(lily2);
-
-        Plant lily3 = new Plant(
-                "Lilie",
+        Plant melanostachy = new Plant(
+                "Salix melanostachys",
                 25,
-                18,
-                "Rote Lilie",
+                180,
+                "melanostachy ist eine Pflanze, die im Juni blüht.",
                 "Halbschatten und gleichmäßige Feuchtigkeit.",
+                zimmerpflanze,
+                franziskaHornung,
+                70323,
+                false
+
+        );
+        melanostachy.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Salix_melanostachys_ed7602445f.jpg");
+        plantService.persistPlant(melanostachy);
+
+
+        Plant prunus = new Plant(
+                "Prunus subhirtella autumnalis",
+                25,
+                180,
+                "Die Pflanze namens Prunus subhirtella autumnalis kann man nicht beschreiben, die muss man einfach sehen! Blüht hübsch in pink und weiß. Perfekt für Instagram-Bilder ",
+                "Einfach nur in die Sonne stellen.",
+                zimmerpflanze,
+                aylinaAshkenov,
+                70323,
+                false
+
+        );
+        prunus.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg");
+        plantService.persistPlant(prunus);
+
+
+        Plant occidentalis = new Plant(
+                "Cephalanthus occidentalis",
+                25,
+                180,
+                "Sieht ein bisschen so aus wie eine Kastanie oder Corona ",
+                "Sonne und hohe Luftfeuchtigkeit sind notwendig!",
                 zimmerpflanze,
                 jenniferKaisner,
                 70323,
-                franziskaHornung,
                 false
 
         );
-        lily3.setImageUrl("https://i.pinimg.com/236x/ca/3f/3b/ca3f3b68120160f5400b562f29f27bc8.jpg");
-        plantService.persistPlant(lily3);
+        occidentalis.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg");
+        plantService.persistPlant(occidentalis);
 
-        //create Merkliste
+        Plant hahn = new Plant(
+                "Hahnenfussgewächs",
+                25,
+                180,
+                "Sieht ein bisschen so aus wie eine Kastanie oder Corona ",
+                "Sonne und hohe Luftfeuchtigkeit sind notwendig!",
+                zimmerpflanze,
+                alessiaSedelnikov,
+                70323,
+                jenniferKaisner,
+                true
+
+        );
+        hahn.setImageUrl("https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg");
+        plantService.persistPlant(hahn);
+
+        // create wishlist-----------------------------------------------------------------------------------------------
+
         Set<Plant> wishlistPlants = new HashSet<>();
-        wishlistPlants.add(cactus);
-        wishlistPlants.add(lily1);
-        wishlistPlants.add(lily2);
+        wishlistPlants.add(prunus);
+        wishlistPlants.add(melanostachy);
+        wishlistPlants.add(allium);
 
         jenniferKaisner.setWishlistPlants(wishlistPlants);
         userService.updateWishlist(jenniferKaisner);
-
-
-
-
-
     }
 
 

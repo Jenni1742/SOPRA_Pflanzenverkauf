@@ -90,6 +90,18 @@ public class Plant {
         this.sold = sold;
     }
 
+    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, Boolean sold) {
+        this.plantname = plantname;
+        this.plantSize = plantSize;
+        this.price = price;
+        this.plantDescription = plantDescription;
+        this.careTips = careTips;
+        this.category = category;
+        this.seller = seller;
+        this.zipCode = zipCode;
+        this.sold = sold;
+    }
+
     public void setSold(){
         this.sold = sold;
     }
