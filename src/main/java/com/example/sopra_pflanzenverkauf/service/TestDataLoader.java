@@ -106,7 +106,7 @@ public class TestDataLoader implements CommandLineRunner {
         categoryService.persistCategory(zimmerpflanze);
 
         Category outdoorpflanze = new Category();
-        zimmerpflanze.setCategoryname("Outdoorpflanze");
+        outdoorpflanze.setCategoryname("Outdoorpflanze");
         categoryService.persistCategory(outdoorpflanze);
 
         //create Level
