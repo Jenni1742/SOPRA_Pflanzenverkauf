@@ -92,6 +92,11 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="latinName" class="form-label">Lateinischer Name (optional)</label>
+                        <input type="text" class="form-control" id="latinName" name="latinName" th:field="*{latinName}">
+                    </div>
+
+                    <div class="mb-3">
                         <label for="plantSize" class="form-label">Größe (in cm)</label>
                         <input type="number" min="0" class="form-control" id="plantSize" name="plantSize"
                                th:field="*{plantSize}" required>
@@ -123,7 +128,7 @@
                                required>
                     </div>
 
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" >
                         <label class="input-group-text" for="selectCategory">Kategorie</label>
                         <select class="form-select" id="selectCategory" required>
                             <option selected>Auswählen...</option>
