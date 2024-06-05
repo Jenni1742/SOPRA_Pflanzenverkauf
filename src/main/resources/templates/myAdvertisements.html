@@ -80,47 +80,53 @@
     </div>
 </nav>
 
-<div class="card card-rePlant">
-    <p></p>
-    <p>Hier findest du deine Verkaufsanzeigen.</p>
-    <div class="card-body">
-        <div class="ad" th:each="plant : ${plantList}"
-             style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+<div class="container">
+    <header>
+        <div id="branding">
+            <h1 style="color:#017101;">Hier findest du deine Verkaufsanzeigen.</h1>
+        </div>
+    </header>
+    <div class="row">
+        <div class="card-body">
+            <div class="ad" th:each="plant : ${plantList}"
+                 style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+                <div style="flex: 0 0 auto; margin-right: 20px;">
+                    <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]"
+                         style="width:100%; max-width:300px; height:auto;"/>
+                </div>
+                <div style="flex: 1; padding-left: 20px; text-align: left">
+                    <h2 th:text="${plant.plantname}" style="color: #017101; "></h2>
+                    <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
+                    <p><strong>Kategorie:</strong> <span th:text="${plant.category}">Kategorie der Pflanze</span></p>
+                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
+                </div>
+                <a href="#" class="btn btn-rePlantGreen" role="button">Anzeige bearbeiten</a>
+                <a href="#" class="btn btn-rePlantGreen" role="button">Anzeige löschen</a>
+                <!--
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                    </svg>
+                </p>
+                -->
+            </div>
+
             <div style="flex: 0 0 auto; margin-right: 20px;">
-                <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]"
-                     style="width:100%; max-width:300px; height:auto;"/>
+                <h1 th:if="${plantList.size()} == 0">
+                    Noch keine Verkaufsanzeigen vorhanden? Leg direkt los und stelle deine erste Pflanze zum Verkauf ein
+                    !
+                </h1>
             </div>
-            <div style="flex: 1; padding-left: 20px; text-align: left">
-                <h2 th:text="${plant.plantname}" style="color: #017101; "></h2>
-                <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
-                <p><strong>Kategorie:</strong> <span th:text="${plant.category}">Kategorie der Pflanze</span></p>
-                <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
-            </div>
-            <a href="#" class="btn btn-rePlantGreen" role="button">Anzeige bearbeiten</a>
-            <a href="#" class="btn btn-rePlantGreen" role="button">Anzeige löschen</a>
-            <!--
-            <p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                </svg>
-            </p>
-            -->
         </div>
-
-        <div style="flex: 0 0 auto; margin-right: 20px;">
-            <p th:if="${plantList.size()} == 0">
-                Noch keine Verkaufsanzeigen vorhanden? Leg direkt los und stelle deine erste Pflanze zum Verkauf ein !
-            </p>
-        </div>
-    </div>
-
-
-    <p></p>
-    <div class="card-footer text-center card-footer-rePlant ">
-        <a href="http://localhost:8080/createAdvertisement" class="btn btn-rePlantGreen" role="button">Verkaufe deine
-            Pflanzen</a>
     </div>
 </div>
+
+<p></p>
+<div class="card-footer text-center ">
+    <a href="http://localhost:8080/createAdvertisement" class="btn btn-rePlantGreen" role="button">Verkaufe deine
+        Pflanzen</a>
+</div>
+
 
 </body>
 </html>
