@@ -84,6 +84,9 @@ h3 {
     color: black;
     font-size: 20px;
 }
+input:invalid {
+    border-color: red;
+}
 .navbar {
     background-color: #017101;
     position: fixed;
@@ -284,5 +287,5 @@ p {
     transform: scale(1.2);
     width: 58px;
     height: 50px;
-    content: url('images/ColorRePlant.png'); /* Ändern des Bildes */
+    content: url('images/gruenRePlant.png'); /* Ändern des Bildes */
 }

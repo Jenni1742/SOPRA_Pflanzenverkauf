@@ -7,4 +7,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     User findByUsername(String username); //"findBy" ist Schlüsselwort für SELECT * FROM Benutzer WHERE username = x
 
+    User findByEmail(String email);
 }

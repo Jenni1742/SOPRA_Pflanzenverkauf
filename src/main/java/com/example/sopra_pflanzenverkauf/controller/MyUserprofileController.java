@@ -2,6 +2,7 @@ package com.example.sopra_pflanzenverkauf.controller;
 
 import ch.qos.logback.core.model.Model;
 import com.example.sopra_pflanzenverkauf.entity.User;
+import com.example.sopra_pflanzenverkauf.repository.UserRepository;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -51,7 +52,7 @@ public class MyUserprofileController {
 
 
     }
-/*
+
     @PostMapping(path = "/myUserprofile")
     public String changePassword(@RequestParam("oldPassword") String oldPassword,
                                  @RequestParam("newPassword") String newPassword,
@@ -70,9 +71,9 @@ public class MyUserprofileController {
         model.put("currentUser", currentUser);
         return "myUserprofile";
     }
-*/
 
-    @PostMapping(path = "/myUserprofile")
+
+    @PostMapping(path = "/myUserprofile/changeProfile")
     public String changeProfile(@RequestParam("newPicturePath") String newPicturePath,
                                 @RequestParam("newFirstName") String newFirstName,
                                 @RequestParam("newLastName") String newLastName,
@@ -86,8 +87,6 @@ public class MyUserprofileController {
             currentUser.setPicturePath(newPicturePath);
             userService.updatePicturePath(currentUser);
         }
-        //currentUser.setUsername(newUsername);
-        //userService.updateUsername(currentUser);
         if (!newFirstName.isEmpty()) {
             currentUser.setFirstName(newFirstName);
             userService.updateFirstName(currentUser);
@@ -97,17 +96,31 @@ public class MyUserprofileController {
             userService.updateLastName(currentUser);
         }
         if (!newEmail.isEmpty()) {
-            currentUser.setEmail(newEmail);
-            userService.updateEmail(currentUser);
+            if (userService.getUserByEmail(newEmail) == null || userService.getUserByEmail(newEmail) == currentUser) {
+                currentUser.setEmail(newEmail);
+                userService.updateEmail(currentUser);
+            } else {
+                model.put("error", "Ein Userprofil mit dieser E-mail Adresse existiert bereits.");
+            }
+
         }
         if (!newPLZ.isEmpty()) {
             currentUser.setPlz(newPLZ);
             userService.updatePLZ(currentUser);
         }
 
+        /*
+        if (!newUsername.isEmpty()) {
+            currentUser.setUsername(newUsername);
+            userService.updateUsername(currentUser);
+            currentUser =userService.getUserByUsername(newUsername);
+        }
+        */
+
+
         model.put("currentUser", currentUser);
 
-        return "myUserprofile";
+        return "redirect:/myUserprofile";
     }
 
 
