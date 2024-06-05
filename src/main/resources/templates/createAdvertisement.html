@@ -82,73 +82,69 @@
         <div class="card-header text-center">
             <h2 class="card-title" th:text="'Anzeige erstellen'"></h2>
         </div>
-        <form th:action="@{/createAdvertisement}" th:object="${plant}" method="post">
-            <div class="card-body">
+        <div class="row">
+            <form th:action="@{/createAdvertisement}" th:object="${plant}" method="post">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="plantname" class="form-label">Name der Pflanze</label>
+                        <input type="text" class="form-control" id="plantname" name="plantname" th:field="*{plantname}"
+                               required>
+                    </div>
 
-                <div class="mb-3">
-                    <label for="plantname" class="form-label">Name der Pflanze</label>
-                    <input type="text" class="form-control" id="plantname" name="plantname" th:field="*{plantname}"
-                           required>
+                    <div class="mb-3">
+                        <label for="plantSize" class="form-label">Größe (in cm)</label>
+                        <input type="number" min="0" class="form-control" id="plantSize" name="plantSize"
+                               th:field="*{plantSize}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Preis (in €)</label>
+                        <input type="number" min="0" step="0.01" size="3" class="form-control" id="price" name="price"
+                               th:field="*{price}"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="plantDescription" class="form-label">Beschreibung</label>
+                        <textarea class="form-control" id="plantDescription" name="plantDescription"
+                                  th:field="*{plantDescription}" required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="careTips" class="form-label">Pflegetipps</label>
+                        <textarea class="form-control" id="careTips" name="careTips" th:field="*{careTips}"
+                                  required></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="zipCode" class="form-label">Postleitzahl</label>
+                        <input type="text" title="Postleitzahl mit 5 Stellen" pattern="^[0-9]{5}$" class="form-control"
+                               id="zipCode" name="zipCode" th:field="*{zipCode}"
+                               required>
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <label class="input-group-text" for="selectCategory">Kategorie</label>
+                        <select class="form-select" id="selectCategory" required>
+                            <option selected>Auswählen...</option>
+                            <div th:each="category : ${categories}">
+                                <option><span th:text="${category.getCategoryname()}"></span></option>
+                            </div>
+                        </select>
+                    </div>
+
+                    Bildlink hinzufügen
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="imageUrl" th:field="*{imageUrl}" required>
+                    </div>
+
                 </div>
-
-                <div class="mb-3">
-                    <label for="plantSize" class="form-label">Größe (in cm)</label>
-                    <input type="number" min="0" class="form-control" id="plantSize" name="plantSize"
-                           th:field="*{plantSize}" required>
+                <div class="card-footer text-center card-footer-rePlant">
+                    <button type="submit" class="btn btn-rePlantGreen">Anzeige hochladen</button>
                 </div>
-
-                <div class="mb-3">
-                    <label for="price" class="form-label">Preis (in €)</label>
-                    <input type="number" min="0" step="0.01" size="3" class="form-control" id="price" name="price"
-                           th:field="*{price}"
-                           required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="plantDescription" class="form-label">Beschreibung</label>
-                    <textarea class="form-control" id="plantDescription" name="plantDescription"
-                              th:field="*{plantDescription}" required></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="careTips" class="form-label">Pflegetipps</label>
-                    <textarea class="form-control" id="careTips" name="careTips" th:field="*{careTips}"
-                              required></textarea>
-                </div>
-
-                <div class="mb-3">
-                    <label for="zipCode" class="form-label">Postleitzahl</label>
-                    <input type="text" title="Postleitzahl mit 5 Stellen" pattern="^[0-9]{5}$" class="form-control"
-                           id="zipCode" name="zipCode" th:field="*{zipCode}"
-                           required>
-                </div>
-
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="selectCategory">Kategorie</label>
-                    <select class="form-select" id="selectCategory" required >
-                        <option selected >Auswählen...</option>
-                        <div th:each="category : ${categories}">
-                            <option><span th:text="${category.getCategoryname()}"></span></option>
-                        </div>
-                        <option value="1">One</option>
-                    </select>
-                </div>
-
-                Bildlink hinzufügen
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" id="imageUrl" th:field="*{imageUrl}" required>
-                    <label class="input-group-text" for="imageUrl">Hochladen</label>
-                </div>
-
-            </div>
-
-            <div class="card-footer text-center card-footer-rePlant">
-                <button type="submit" class="btn btn-rePlantGreen">Submit</button>
-            </div>
-
-        </form>
+            </form>
+        </div>
     </div>
-
 </div>
 
 
