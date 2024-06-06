@@ -21,8 +21,6 @@ public class ShowAdvertisementController {
     @RequestMapping(value = "/showAdvertisement", method = RequestMethod.GET)
     public String showAdvertisementPage(Model model) {
 
-        Plant currentPlant = plantService.getPlantByPlantId(1);
-
         return "showAdvertisement";
     }
 }

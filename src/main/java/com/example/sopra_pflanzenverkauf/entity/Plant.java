@@ -19,6 +19,9 @@ public class Plant {
     @Column(name = "Name")
     private String plantname;
 
+    @Column(name="Lateinischer Name")
+    private String latinName;
+
     @Column(name = "Größe in cm")
     private Integer plantSize;
 
@@ -53,22 +56,6 @@ public class Plant {
     @JoinColumn(name = "Käufer")
     private User buyer;
 
-    
-    public Integer getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(Integer zipCode) {
-        this.zipCode = zipCode;
-    }
-
-    public User getSeller() {
-        return seller;
-    }
-
-    public void setSeller(User seller) {
-        this.seller = seller;
-    }
     
     /**
      * Instantiates a new Plant.
@@ -129,6 +116,14 @@ public class Plant {
         this.plantname = name;
     }
 
+    public String getLatinName() {
+        return latinName;
+    }
+
+    public void setLatinName(String latinName) {
+        this.latinName = latinName;
+    }
+
     public Integer getPlantSize() {
         return plantSize;
     }
@@ -157,13 +152,28 @@ public class Plant {
         this.careTips = careTips;
     }
 
+    public Integer getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(Integer zipCode) {
+        this.zipCode = zipCode;
+    }
+
+    public User getSeller() {
+        return seller;
+    }
+
+    public void setSeller(User seller) {
+        this.seller = seller;
+    }
+
     public boolean isSold() {
         return sold;
     }
     public void setSold(boolean sold) {
         this.sold = sold;
     }
-
 
     public User getBuyer() {
         return buyer;
