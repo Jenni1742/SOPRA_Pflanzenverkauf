@@ -118,13 +118,22 @@ input:invalid {
 .nav-link {
     color: white;
 }
-.nav-item.dropdown .dropdown-item:active {
+
+.nav-item.dropdown {
     background-color: #017101 !important;
 }
 .dropdown-item:hover {
     background-color: black;
     color: white;
 }
+.dropdown-item:active {
+    background-color: #017101 !important;
+}
+
+.dropdown-item:link{
+    
+}
+
 
 p {
     color: black;

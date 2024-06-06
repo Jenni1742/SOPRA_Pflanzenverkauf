@@ -12,13 +12,13 @@
     <title>Sopra Demo Project</title>
 </th:block>
 
-<!--
-<div th:fragment="navbar(activeTab='activeTab')" class="navbar navbar-expand-lg">
+<!-- navbar (activeTab='activeTab') -->
+<div th:fragment="navbar" class="navbar navbar-expand-lg">
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <div class="container">
                 <a class="navbar-brand" href="http://localhost:8080/">
-                    <img src="images/Weiß_rePlant.png" alt="rePlant" width="15%" height="15%">
+                    <img src="images/Weiß_rePlant.png" alt="rePlant" class="navbar-logo">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,7 +37,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Merkliste</a>
+                        <a class="nav-link" href="http://localhost:8080/wishlist">Merkliste</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Spiele</a>
@@ -51,27 +51,22 @@
                             Profil
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" >
-                            <li class="dropdown-item">
-
-                                    <a th:class=" ${activeTab == 'myProfile'}? active : null" href="http://localhost:8080/myUserprofile">Mein Profil</a>
-
-                            </li>
-
-                            <li><a class="dropdown-item" href="http://localhost:8080/chat">Nachrichten</a></li>
-                            <li><a class="dropdown-item" href="http://localhost:8080/myAdvertisements">Meine Verkaufsanzeigen</a></li>
-                            <li><a class="dropdown-item" href="http://localhost:8080/mySoldPlants">verkaufte Pflanzen</a></li>
-                            <li><a class="dropdown-item" href="http://localhost:8080/myPurchasedPlants">gekaufte Pflanzen</a></li>
-                            <li><a class="dropdown-item" href="#">Käuferranking</a></li>
-                            <li><a class="dropdown-item" href="#">Verkäuferranking</a></li>
-                            <li><a class="dropdown-item" href="#">Meine Fortschritte</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
-                        </ul>
-                    </li>
+                            <li></li><a class="dropdown-item" href="http://localhost:8080/myUserprofile">Mein Profil</a></li>
+                    <li><a class="dropdown-item" href="http://localhost:8080/chat">Nachrichten</a></li>
+                    <li><a class="dropdown-item" href="http://localhost:8080/myAdvertisements">Meine Verkaufsanzeigen</a></li>
+                    <li><a class="dropdown-item" href="http://localhost:8080/mySoldPlants">verkaufte Pflanzen</a></li>
+                    <li><a class="dropdown-item" href="http://localhost:8080/myPurchasedPlants">gekaufte Pflanzen</a></li>
+                    <li><a class="dropdown-item" href="#">Käuferranking</a></li>
+                    <li><a class="dropdown-item" href="#">Verkäuferranking</a></li>
+                    <li><a class="dropdown-item" href="#">Meine Fortschritte</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                </ul>
+                </li>
                 </ul>
             </div>
         </div>
     </nav>
 </div>
--->
+
 </html>
