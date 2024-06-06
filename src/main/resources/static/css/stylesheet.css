@@ -84,6 +84,10 @@ h3 {
     color: black;
     font-size: 20px;
 }
+.form-control {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
 input:invalid {
     border-color: red;
 }
