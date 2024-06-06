@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Meine Verkaufsanzeigen</title>
@@ -39,13 +39,16 @@
                 <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span> €</p>
                 <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span>
                 </p>
-                <div style="text-align: right; margin-top: -50px;">
-                    <a href="http://localhost:8080/showAdvertisement" style="text-decoration: none;">
-                        <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
-                            Komplette Anzeige anzeigen
-                        </button>
-                    </a>
-                </div>
+                <form th:action="@{/myAdvertisements (plantIdToShow = ${plant.plantId})}" id="plantIdToShow"
+                      name="plantIdToShow" method="post">
+                    <div style="text-align: right; margin-top: -50px;">
+                        <a href="http://localhost:8080/showAdvertisement" style="text-decoration: none;">
+                            <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                                Anzeige bearbeiten
+                            </button>
+                        </a>
+                    </div>
+                </form>
 
                 <!-- Button trigger modal -->
                 <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal"
@@ -63,8 +66,8 @@
                      aria-labelledby="/myAdvertisements/deleteAdvertisement" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
-                            <form th:action="@{/myAdvertisements (plantId = ${plant.plantId})}" id="plantId" name="plantId"
-                                  method="post">
+                            <form th:action="@{/myAdvertisements (plantId = ${plant.plantId})}" id="plantIdToDelete"
+                                  name="plantId" method="post">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="deleteAdvertisement">Sicher, dass du die Anzeige löschen
                                         möchtest?</h5>
@@ -94,7 +97,7 @@
                 </h1>
             </div>
         </div>
-</div>
+    </section>
 </div>
 
 <p></p>
