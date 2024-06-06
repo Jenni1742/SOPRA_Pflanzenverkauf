@@ -12,7 +12,66 @@
 </head>
 <body>
 
-<div th:insert="~{fragments/htmlHead :: navbar}"></div>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="http://localhost:8080/">
+                <img src="images/Weiß_rePlant.png" alt="rePlant" width="15%" height="15%">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <div class="input-group">
+            <input class="form-control" type="search" placeholder="Suche" aria-label="Suche">
+            <button class="btn btn-outline-success" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+                     viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Merkliste</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Spiele</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Wiki</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                        Profil
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="http://localhost:8080/myUserprofile">Mein Profil</a></li>
+                        <li><a class="dropdown-item active bg-dark" aria-current="page" href="#">Nachrichten</a></li>
+                        <li><a class="dropdown-item" href="http://localhost:8080/myAdvertisements">Meine
+                            Verkaufsanzeigen</a></li>
+                        <li><a class="dropdown-item" href="#">verkaufte Pflanzen</a></li>
+                        <li><a class="dropdown-item" href="#">gekaufte Pflanzen</a></li>
+                        <li><a class="dropdown-item" href="#">Käuferranking</a></li>
+                        <li><a class="dropdown-item" href="#">Verkäuferranking</a></li>
+                        <li><a class="dropdown-item" href="#">Meine Fortschritte</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="http://localhost:8080/login?logout">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="chat-container">
     <div class="chat-sidebar">
@@ -21,7 +80,11 @@
         </div>
         <div class="chat-search">
             <input type="text" placeholder="Search here..">
-            <button> </button>
+            <button class="search-button">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M10 2a8 8 0 0 1 8 8c0 1.85-.63 3.55-1.69 4.91l5.39 5.39-1.42 1.42-5.39-5.39A7.944 7.944 0 0 1 10 18a8 8 0 1 1 0-16zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/>
+                </svg>
+            </button>
         </div>
 
         <div class="chat-users">
@@ -42,8 +105,79 @@
             <!-- Add more chat users here -->
         </div>
     </div>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
     <div class="chat-main">
-        <!-- Main chat content will go here -->
+        <div class="chat-box">
+            <div class="chat outgoing">
+                <div class="details">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                        voluptua.</p>
+                </div>
+            </div>
+            <div class="chat incoming">
+                <!-- <img src="#" alt="">*/ falls man dem Verkäufer ein Bild zuordnen mag -->
+                <div class="details">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                        voluptua.</p>
+                </div>
+            </div>
+            <div class="chat outgoing">
+                <div class="details">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                        voluptua.</p>
+                </div>
+            </div>
+            <div class="chat incoming">
+                <!-- <img src="#" alt="">*/ falls man dem Verkäufer ein Bild zuordnen mag -->
+                <div class="details">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                        voluptua.</p>
+                </div>
+            </div>
+            <div class="chat outgoing">
+                <div class="details">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                        voluptua.</p>
+                </div>
+            </div>
+            <div class="chat incoming">
+                <!-- <img src="#" alt="">*/ falls man dem Verkäufer ein Bild zuordnen mag -->
+                <div class="details">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                        voluptua.</p>
+                </div>
+            </div>
+            <div class="chat outgoing">
+                <div class="details">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                        voluptua.</p>
+                </div>
+            </div>
+            <div class="chat incoming">
+                <!-- <img src="#" alt="">*/ falls man dem Verkäufer ein Bild zuordnen mag -->
+                <div class="details">
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+                        voluptua.</p>
+                </div>
+            </div>
+        </div>
+
+        <form action="#" class="typing-area">
+            <input type="text" placeholder="Gib eine Nachricht ein.">
+            <button><i class="fa fa-paper-plane"></i></button>
+            </button>
+        </form>
+
     </div>
 </div>
 
