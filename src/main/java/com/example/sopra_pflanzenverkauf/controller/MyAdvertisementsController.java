@@ -40,6 +40,7 @@ public class MyAdvertisementsController {
     }
 
     @RequestMapping(value = "/myAdvertisements", method = RequestMethod.POST)
+
     public String removePlant(@RequestParam("plantId") Integer plantId,
                               Model model) {
         User currentUser = userService.getCurrentUser();
@@ -47,8 +48,23 @@ public class MyAdvertisementsController {
         List<Plant> plantsToSell = currentUser.getPlantsToSell();
         plantsToSell.remove(plantService.getPlantByPlantId(plantId));
 
+        //plantService.deletePlant(plantService.getPlantByPlantId(plantId));
+
         //model.addAttribute("message", "Pflanze erfolgreich gelöscht.");
 
         return "myAdvertisements";
     }
+
+    /**
+    @RequestMapping(value = "/myAdvertisements", method = RequestMethod.POST)
+    public String showPlant(@RequestParam("plantIdToShow") Integer plantId,
+                              Model model) {
+        User currentUser = userService.getCurrentUser();
+
+        currentUser.setPlantToShow(plantId);
+
+        return "showAdvertisement";
+    }
+    */
+
 }
