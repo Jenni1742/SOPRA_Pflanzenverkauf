@@ -62,9 +62,9 @@ public class MyUserprofileController {
         if (bCryptPasswordEncoder.matches(oldPassword, currentUser.getPassword())) {
             currentUser.setPassword(bCryptPasswordEncoder.encode(newPassword));
             userService.updateUserPassword(currentUser);
-            model.put("message", "Passwort erfolgreich geändert.");
+            model.put("passwortErfolgreichGeändert", "Passwort erfolgreich geändert.");
         } else {
-            model.put("error", "Altes Passwort ist inkorrekt.");
+            model.put("altesPasswortIstNichtKorrekt", "Altes Passwort ist inkorrekt.");
         }
 
 
@@ -100,7 +100,7 @@ public class MyUserprofileController {
                 currentUser.setEmail(newEmail);
                 userService.updateEmail(currentUser);
             } else {
-                model.put("error", "Ein Userprofil mit dieser E-mail Adresse existiert bereits.");
+                model.put("emailExistiertBereits","Diese Email Adresse existiert bereits");
             }
 
         }

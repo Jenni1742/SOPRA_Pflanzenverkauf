@@ -18,8 +18,8 @@
 
 <body>
 <!-- Problem beim Ändern beim ersten Mal Fehler Mögliche Lösung: Thymeleaf neuere version-->
-<div th:insert="~{fragments/htmlHead :: navbar}"></div>
-<!--
+<!--<div th:insert="~{fragments/htmlHead :: navbar}"></div>-->
+
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <div class="container">
@@ -73,9 +73,9 @@
         </div>
     </div>
 </nav>
--->
 
-<div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+<!-- Problem: erkennt nicht-->
+<div th:if="${emailExistiertBereits}" class="alert alert-success" th:text="${emailExistiertBereits}"></div>
 <div th:if="${passwortErfolgreichGeändert}" class="alert alert-success" th:text="${passwortErfolgreichGeändert}"></div>
 <div th:if="${altesPasswortIstNichtKorrekt}" class="alert alert-danger" th:text="${altesPasswortIstNichtKorrekt}"></div>
 
