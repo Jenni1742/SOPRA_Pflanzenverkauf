@@ -22,22 +22,27 @@
             <h1 style="color:#017101;">Hier findest du deine Verkaufsanzeigen:</h1>
         </div>
     </header>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="ad" th:each="plant : ${plantList}"
-                 style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
-                <div style="flex: 0 0 auto; margin-right: 20px;">
-                    <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]"
-                         style="width:100%; max-width:300px; height:auto;"/>
+    <section class="ads">
+        <div th:each="plant : ${plantList}" class="ad" style="display: flex; align-items: flex-start; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+            <div style="flex: 0 0 auto; margin-right: 20px; width: 300px;">
+                <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
+                    <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                 </div>
-                <div style="flex: 1; padding-left: 20px; text-align: left">
-                    <h2 th:text="${plant.plantname}" style="color: #017101; "></h2>
-                    <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
-                    <p><strong>Kategorie:</strong> <span th:text="${plant.category}">Kategorie der Pflanze</span></p>
-                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
+            </div>
+            <div style="flex: 1; padding-left: 20px;">
+                <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
+                <p th:text="${plant.category.categoryname}" style="font-style: italic;"></p>
+                <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span></p>
+                <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
+                <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span> €</p>
+                <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span></p>
+                <div style="text-align: right; margin-top: -50px;">
+                    <a href="http://localhost:8080/showAdvertisement" style="text-decoration: none;">
+                        <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                            Komplette Anzeige anzeigen
+                        </button>
+                    </a>
                 </div>
-
-                <a type="button" href="http://localhost:8080/showAdvertisement" class="btn btn-rePlantGreen">Komplette Anzeige anzeigen</a>
 
                 <!-- Button trigger modal -->
                 <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal"
