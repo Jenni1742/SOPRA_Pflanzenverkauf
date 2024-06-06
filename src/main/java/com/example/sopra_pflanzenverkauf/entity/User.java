@@ -86,6 +86,15 @@ public class User {
         // empty constructor for Hibernate
     }
 
+    public User(String username,  String firstName, String lastName, String email, String plz, String picturePath, String password) {
+        this.username = username;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.plz = plz;
+        this.picturePath = picturePath;
+        this.password = password;
+    }
 
 
 

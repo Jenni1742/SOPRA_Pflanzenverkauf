@@ -11,7 +11,63 @@
     <link rel="stylesheet" href="css\stylesheet.css">
 </head>
 <body>
-<div th:insert="~{fragments/htmlHead :: navbar}"></div>
+
+<div class="container">
+
+    <div class="card card-rePlant">
+
+        <div class="card-header text-center">
+            <h2 class="card-title" th:text="'Userprofil erstellen'"></h2>
+        </div>
+        <div class="row">
+            <form th:action="@{/register}" th:object="${user}" method="post">
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" th:field="*{username}"
+                               required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">Vorname</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" th:field="*{firstName}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Nachname</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" th:field="*{lastName}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="email" class="form-label">E-Mail Adresse</label>
+                        <input type="text" class="form-control" id="email" name="email" th:field="*{email}" required pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                               title="Eine E-Mail Adresse der Form 'characters@characters.domain'. Die Buchstaben müssen klein geschrieben sein. Die Domain muss mindestens aus zwei Buchstaben von a bis z bestehen.">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="plz" class="form-label">Postleitzahl</label>
+                        <input type="text" class="form-control" id="plz" name="plz" th:field="*{plz}" required title="Postleitzahl mit 5 Stellen" pattern="^[0-9]{5}$">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="picturePath" class="form-label">Profilbild Link</label>
+                        <input type="text" class="form-control" id="picturePath" name="picturePath" th:field="*{picturePath}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Passwort</label>
+                        <input type="password" class="form-control" id="password" name="password" th:field="*{password}"
+                               required>
+                    </div>
+                </div>
+
+                <div class="card-footer text-center card-footer-rePlant">
+                    <button type="submit" class="btn btn-rePlantGreen">Profil erstellen</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
 </body>
