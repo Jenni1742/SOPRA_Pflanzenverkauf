@@ -84,10 +84,6 @@ h3 {
     color: black;
     font-size: 20px;
 }
-.form-control {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
 .navbar {
     background-color: #017101;
     position: fixed;
@@ -119,22 +115,13 @@ h3 {
 .nav-link {
     color: white;
 }
-
-.nav-item.dropdown {
+.nav-item.dropdown .dropdown-item:active {
     background-color: #017101 !important;
 }
 .dropdown-item:hover {
     background-color: black;
     color: white;
 }
-.dropdown-item:active {
-    background-color: #017101 !important;
-}
-
-.dropdown-item:link{
-    
-}
-
 
 p {
     color: black;
@@ -182,14 +169,14 @@ p {
     width: 100%;
     border-radius: 16px;
     box-shadow: 0 0 128px rgba(0,0,0,0.1),
-                0 32px 64px -48px rgba(0,0,0,0.5);
+    0 32px 64px -48px rgba(0,0,0,0.5);
 }
 
-/** Verkäufer */
+/** Verkäufer-Chat */
 
 .chat-container {
     display: flex;
-    height: 100vh;
+    height: 80vh;
 }
 
 .chat-sidebar {
@@ -198,7 +185,7 @@ p {
     color: white;
     display: flex;
     flex-direction: column;
-    border: 1px solid #017101; /* This adds the border around the left sidebar */
+    border: 1px solid #017101;
 }
 
 .chat-header {
@@ -219,20 +206,28 @@ p {
 }
 
 .chat-search input {
+    height: 70%;
     width: 100%;
     padding: 10px;
     border: 1px solid #e0e0e0;
-    border-radius: 5px;
+    border-radius: 2px;
     outline: none;
 }
 
 .search-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    margin-left: -30px;
-    color: #ccc;
-    font-size: 16px;
+    background-color: #4CAF50;
+    border: 1px solid #4CAF50;
+    border-radius: 0 5px 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+}
+
+.search-icon {
+    fill: white; /* Farbe des Icons */
+    width: 100%; /* Breite des Icons */
+    height: 100%; /* Höhe des Icons */
 }
 
 .chat-users {
@@ -260,7 +255,7 @@ p {
     height: 40px;
     border-radius: 50%;
     margin-right: 15px;
-    border: 1px solid black; /* This adds a border around the profile picture */
+    border: 1px solid black;
 }
 
 .user-info h3 {
@@ -274,12 +269,121 @@ p {
     color: black;
 }
 
+/**  Haupt-Chatfenster*/
 .chat-main {
     flex: 1;
-    background-color: #ecf0f1;
-    padding: 20px;
     overflow-y: auto;
-    border: 1px solid #017101; /* This adds the border around the chat window */
+    background-color: #ecf0f1;
+    border: 1px solid #017101;
+}
+
+/* Grundstil für die Chat-Boxen */
+.chat-box {
+    margin-top: auto;
+    margin-bottom: 0;
+    word-wrap: break-word;
+}
+
+/* Stil für ausgehende Nachrichten */
+.outgoing {
+    margin-right: 0;
+    margin-left: auto;
+    max-width: 75%;
+}
+
+/* Stil für eingehende Nachrichten */
+.incoming {
+    margin-left: 0;
+    margin-right: auto;
+    max-width: 75%;
+}
+
+/* Stil für die Details der Nachrichten (Text) */
+.chat-box .details {
+    margin-left: 10px;
+    max-width: 100%;
+}
+
+/* Stil für das Profilbild bei eingehenden Nachrichten */
+.chat-box .incoming img {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+/* Stil für den Nachrichtentext */
+.chat-box .details p {
+    margin: 0;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+/* Anpassung der Sprechblasenform */
+.chat-box .outgoing .details p {
+    align-self: flex-start;
+    background-color: darkseagreen;
+    color: black;
+    border-top-right-radius: 0;
+}
+
+.chat-box .outgoing .details{
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+.chat-box .incoming .details p {
+    background-color: whitesmoke;
+    color: black;
+    border-top-left-radius: 0;
+}
+
+.chat-box .incoming .details{
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+.typing-area{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid black;
+    position: sticky;
+    bottom: 0;
+    background-color: #ffffff;
+}
+
+.typing-area input{
+    height: 50px;
+    width: 70%;
+    font-size: 17px;
+    border: 1px solid #cccccc;
+    padding: 0 13px;
+    border-radius: 5px;
+    outline: none;
+    margin-right: 10px;
+}
+.typing-area button{
+    padding: 0 10px;
+    height: 50px;
+    width: 55px;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: darkseagreen;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.typing-area button i {
+    font-size: 20px;
+    color: white;
+}
+
+.typing-area button:hover i {
+    color: black;
 }
 
 
@@ -297,5 +401,5 @@ p {
     transform: scale(1.2);
     width: 58px;
     height: 50px;
-    content: url('images/gruenRePlant.png');
+    content: url('images/ColorRePlant.png'); /* Ändern des Bildes */
 }

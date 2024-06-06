@@ -1,4 +1,3 @@
-<script>
 function toggleWishlist(button, plantId) {
     const heartIcon = button.querySelector('.heart-icon');
 
@@ -36,5 +35,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-
-<script>
