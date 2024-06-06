@@ -5,6 +5,7 @@ import org.hibernate.mapping.List;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -94,6 +95,8 @@ public class User {
         this.plz = plz;
         this.picturePath = picturePath;
         this.password = password;
+        this.roles = new HashSet<>();
+        this.boughtPlants = new ArrayList<>();
     }
 
 

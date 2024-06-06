@@ -75,7 +75,7 @@
 </nav>
 
 <!-- Problem: erkennt nicht-->
-<div th:if="${emailExistiertBereits}" class="alert alert-success" th:text="${emailExistiertBereits}"></div>
+<div th:if="${emailExistiertBereits}" class="alert alert-danger" th:text="${emailExistiertBereits}"></div>
 <div th:if="${passwortErfolgreichGeändert}" class="alert alert-success" th:text="${passwortErfolgreichGeändert}"></div>
 <div th:if="${altesPasswortIstNichtKorrekt}" class="alert alert-danger" th:text="${altesPasswortIstNichtKorrekt}"></div>
 

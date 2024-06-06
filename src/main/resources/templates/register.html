@@ -9,33 +9,50 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css\stylesheet.css">
+    <style>
+        body {
+            padding-top: 0px;
+        }
+        .form-label {
+            font-size: small;
+        }
+        .form-control {
+            font-size: small;
+        }
+    </style>
 </head>
 <body>
+<!--
+<div th:if="${#fields.hasErrors('mailExistiertBereits')}" class="alert alert-danger" th:errors="*{email}"></div>
+<div class="alert alert-danger" th:text="Hallo"></div>
+-->
+
 
 <div class="container">
-
     <div class="card card-rePlant">
-
         <div class="card-header text-center">
-            <h2 class="card-title" th:text="'Userprofil erstellen'"></h2>
+            <h3 class="card-title" th:text="'Userprofil erstellen'"></h3>
         </div>
         <div class="row">
             <form th:action="@{/register}" th:object="${user}" method="post">
                 <div class="card-body">
+                    <div th:if="${emailExistiertBereits}" class="alert alert-danger" th:text="${emailExistiertBereits}"></div>
+
                     <div class="mb-3">
                         <label for="username" class="form-label">Username</label>
                         <input type="text" class="form-control" id="username" name="username" th:field="*{username}"
-                               required>
+                               pattern="[A-Za-z0-9]{1,20}"
+                               title="Bitte trage hier Deinen Username ein. Erlaubt sind Buchstaben und Zahlen bis maximal 20 Zeichen." required>
                     </div>
 
                     <div class="mb-3">
                         <label for="firstName" class="form-label">Vorname</label>
-                        <input type="text" class="form-control" id="firstName" name="firstName" th:field="*{firstName}" required>
+                        <input type="text" class="form-control" id="firstName" name="firstName" th:field="*{firstName}" required pattern="[A-Za-z\-\s]{1,100}" title="Bitte trage hier Deinen Vorname ein. Doppelnamen können mit Leerzeichen oder Bindestrich geschrieben werden.">
                     </div>
 
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Nachname</label>
-                        <input type="text" class="form-control" id="lastName" name="lastName" th:field="*{lastName}" required>
+                        <input type="text" class="form-control" id="lastName" name="lastName" th:field="*{lastName}" required pattern="[A-Za-z\-\s]{1,100}" title="Bitte trage hier Deinen Nachname ein. Doppelnamen können mit Leerzeichen oder Bindestrich geschrieben werden.">
                     </div>
 
                     <div class="mb-3">
@@ -54,9 +71,24 @@
                         <input type="text" class="form-control" id="picturePath" name="picturePath" th:field="*{picturePath}" required>
                     </div>
 
+
+                    <!--
+                    <form th:action="@{/register/picture}" th:object="${user}" method="post">
+                    <div class="mb-3">
+                        <label for="picturePath" class="form-label">Profilbild Link</label>
+                        <input type="text" class="form-control" id="picturePath" name="picturePath" th:field="*{picturePath}" required>
+                    </div>
+                        <img th:src="${user.picturePath}" alt="Profilbild" onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'" class="rounded-circle">
+                        <button type="submit" class="btn btn-rePlantGreen">Profilbild Vorschau</button>
+                    </form>
+                    -->
+
+
+
                     <div class="mb-3">
                         <label for="password" class="form-label">Passwort</label>
                         <input type="password" class="form-control" id="password" name="password" th:field="*{password}"
+                               pattern=".{8,}" title="Das Passwort muss 8 oder mehr Zeichen haben"
                                required>
                     </div>
                 </div>
@@ -64,6 +96,7 @@
                 <div class="card-footer text-center card-footer-rePlant">
                     <button type="submit" class="btn btn-rePlantGreen">Profil erstellen</button>
                 </div>
+
             </form>
         </div>
     </div>

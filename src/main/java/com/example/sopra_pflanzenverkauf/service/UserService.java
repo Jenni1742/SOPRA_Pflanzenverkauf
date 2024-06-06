@@ -70,6 +70,10 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public void updateBuyingLevel(User user) {userRepository.save(user);}
+
+    public void updateSellingLevel(User user) {userRepository.save(user);}
+
 
 
     /**
