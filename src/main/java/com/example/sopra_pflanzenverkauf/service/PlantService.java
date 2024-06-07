@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -86,9 +87,14 @@ public class PlantService {
     public void deletePlant(Plant plant){
         plantRepository.delete(plant);
     }
-    public Plant findById(Integer id) {
+
+  /**  public Plant findById(Integer id) {
         return plantRepository.findById(id).orElse(null);
     }
-
+   public Plant findById(Integer id) {
+   Optional<Plant> plant = plantRepository.findById(id);
+   return plant.orElse(null);
+   }
+*/
 
 }
