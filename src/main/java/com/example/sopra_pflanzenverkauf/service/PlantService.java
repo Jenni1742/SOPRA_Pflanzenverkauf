@@ -91,10 +91,11 @@ public class PlantService {
   /**  public Plant findById(Integer id) {
         return plantRepository.findById(id).orElse(null);
     }
+   */
    public Plant findById(Integer id) {
    Optional<Plant> plant = plantRepository.findById(id);
    return plant.orElse(null);
    }
-*/
+
 
 }
