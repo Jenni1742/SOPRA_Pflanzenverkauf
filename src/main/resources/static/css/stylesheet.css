@@ -18,6 +18,10 @@ body {
     background-color: transparent;
     border-color: transparent;
 }
+.btn-rePlantHeartEmpty {
+    background-color: transparent;
+    border-color: transparent;
+}
 .btn-rePlantGreen {
     background-color: #017101;
     color: white;
