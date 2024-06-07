@@ -87,13 +87,13 @@
 
                         <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
                         <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span>
-                        <div style="text-align: right; margin-top: -50px;">
-                        <a th:href="@{/plant-detail/{id}(id=${plant.plantId})}" style="text-decoration: none;">
-                            <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
-                                Mehr erfahren
-                            </button>
-                        </a>
-                        </div>
+                            <div style="text-align: right; margin-top: -50px;">
+                            <a th:href="@{/plant-detail/{id}(id=${plant.plantId})}" style="text-decoration: none;">
+                                <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                                    Mehr erfahren
+                                </button>
+                            </a>
+                            </div>
                         <div>
 
 
@@ -122,7 +122,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    </div>
+                                </div>
 
 
                                     <form th:action="@{/ (plant = ${plant.plantId})}" id="plant2" name="plant" method="post">
