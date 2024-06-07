@@ -47,12 +47,12 @@
 
                     <div class="mb-3">
                         <label for="firstName" class="form-label">Vorname</label>
-                        <input type="text" class="form-control" id="firstName" name="firstName" th:field="*{firstName}" required pattern="[A-Za-z\-\s]{1,100}" title="Bitte trage hier Deinen Vorname ein. Doppelnamen können mit Leerzeichen oder Bindestrich geschrieben werden.">
+                        <input type="text" class="form-control" id="firstName" name="firstName" th:field="*{firstName}" required pattern="[A-Za-z\-\s\´\`\^]{1,100}" title="Bitte trage hier Deinen Vorname ein. Doppelnamen können mit Leerzeichen oder Bindestrich geschrieben werden. Das Apostroph bzw. Akzentzeichen sind möglich.">
                     </div>
 
                     <div class="mb-3">
                         <label for="lastName" class="form-label">Nachname</label>
-                        <input type="text" class="form-control" id="lastName" name="lastName" th:field="*{lastName}" required pattern="[A-Za-z\-\s]{1,100}" title="Bitte trage hier Deinen Nachname ein. Doppelnamen können mit Leerzeichen oder Bindestrich geschrieben werden.">
+                        <input type="text" class="form-control" id="lastName" name="lastName" th:field="*{lastName}" required pattern="[A-Za-z\-\s\´\`\^]{1,100}" title="Bitte trage hier Deinen Nachname ein. Doppelnamen können mit Leerzeichen oder Bindestrich geschrieben werden. Das Apostroph bzw. Akzentzeichen sind möglich.">
                     </div>
 
                     <div class="mb-3">
