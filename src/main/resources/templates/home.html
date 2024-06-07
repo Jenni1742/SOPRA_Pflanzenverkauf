@@ -88,12 +88,13 @@
                         <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
                         <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span>
                         <div style="text-align: right; margin-top: -50px;">
-                            <a href="http://localhost:8080/plant-details" style="text-decoration: none;">
-                                <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
-                                    Mehr erfahren
-                                </button>
-                            </a>
-                        </div>
+                        <a th:href="@{/plant-details/{id}(id=${plant.plantId})}" style="text-decoration: none;">
+                            <button style="backgroun4d-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                                Mehr erfahren
+                            </button>
+                        </a>
+
+                    </div>
 
                         <div class="ad" style="position: relative;">
                             <button class="like-btn" onclick="toggleWishlist(this, ${plant.id})" style="background: none; border: none; cursor: pointer; position: absolute; top: -280px; right: 0px;">

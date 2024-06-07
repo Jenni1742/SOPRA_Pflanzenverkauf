@@ -86,5 +86,9 @@ public class PlantService {
     public void deletePlant(Plant plant){
         plantRepository.delete(plant);
     }
+    public Plant findById(Integer id) {
+        return plantRepository.findById(id).orElse(null);
+    }
+
 
 }
