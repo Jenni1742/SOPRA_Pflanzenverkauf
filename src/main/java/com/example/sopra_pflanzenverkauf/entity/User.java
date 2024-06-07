@@ -1,6 +1,7 @@
 package com.example.sopra_pflanzenverkauf.entity;
 
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.mapping.List;
 
 
