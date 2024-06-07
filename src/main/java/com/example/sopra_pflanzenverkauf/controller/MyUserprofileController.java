@@ -1,6 +1,5 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
-import ch.qos.logback.core.model.Model;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.repository.UserRepository;
 import com.example.sopra_pflanzenverkauf.service.UserService;
@@ -9,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,7 +52,7 @@ public class MyUserprofileController {
 
 
     }
-
+/*
     @PostMapping(path = "/myUserprofile")
     public String changePassword(@RequestParam("oldPassword") String oldPassword,
                                  @RequestParam("newPassword") String newPassword,
@@ -70,16 +70,16 @@ public class MyUserprofileController {
 
         model.put("currentUser", currentUser);
         return "myUserprofile";
-    }
+    }*/
 
 
-    @PostMapping(path = "/myUserprofile/changeProfile")
+    @PostMapping(path = "/myUserprofile")
     public String changeProfile(@RequestParam("newPicturePath") String newPicturePath,
                                 @RequestParam("newFirstName") String newFirstName,
                                 @RequestParam("newLastName") String newLastName,
                                 @RequestParam("newEmail") String newEmail,
                                 @RequestParam("newPLZ") String newPLZ,
-                                Map<String, Object> model) {
+                                Model model) {
         User currentUser = userService.getCurrentUser();
 
 
@@ -100,7 +100,7 @@ public class MyUserprofileController {
                 currentUser.setEmail(newEmail);
                 userService.updateEmail(currentUser);
             } else {
-                model.put("emailExistiertBereits","Diese Email Adresse existiert bereits");
+                model.addAttribute("emailExistiertBereits","Diese Email Adresse existiert bereits");
             }
 
         }
@@ -109,18 +109,9 @@ public class MyUserprofileController {
             userService.updatePLZ(currentUser);
         }
 
-        /*
-        if (!newUsername.isEmpty()) {
-            currentUser.setUsername(newUsername);
-            userService.updateUsername(currentUser);
-            currentUser =userService.getUserByUsername(newUsername);
-        }
-        */
+        model.addAttribute("currentUser", currentUser);
 
-
-        model.put("currentUser", currentUser);
-
-        return "redirect:/myUserprofile";
+        return "myUserprofile";
     }
 
 
