@@ -17,14 +17,11 @@
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
 <div class="container">
-    <header>
-        <div id="branding">
-            <h1 style="color:#017101;">Hier findest du deine Verkaufsanzeigen:</h1>
-        </div>
-    </header>
-    <section class="ads">
+    <h1>Hier findest du deine Verkaufsanzeigen:</h1>
+
+    <div class="card">
         <div th:each="plant : ${plantList}" class="ad"
-             style="display: flex; align-items: flex-start; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+             style="display: flex; align-items: flex-start; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 5px;">
             <div style="flex: 0 0 auto; margin-right: 20px; width: 300px;">
                 <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
                     <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]"
