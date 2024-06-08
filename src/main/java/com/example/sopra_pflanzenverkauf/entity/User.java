@@ -309,24 +309,6 @@ public class User {
         this.purchasedPlants = purchasedPlants;
     }
 
-    /**
-     * Gets list of sold plants.
-     *
-     * @return the list of dold plants
-     * */
-    public List getSoldPlants() {
-        return soldPlants;
-    }
-
-    /**
-     * Sets list of sold plants.
-     *
-     * @param soldPlants the list of sold plants
-     */
-    public void setSoldPlants(List soldPlants) {
-        this.soldPlants = soldPlants;
-    }
-
     public java.util.List<Plant> getPlantsToSell() {
         return plantsToSell;
     }
@@ -395,6 +377,21 @@ public class User {
         this.plantToShow = plantToShow;
     }
 
-
+    /**
+     * Gets list of sold plants.
+     *
+     * @return the list of dold plants
+     * */
+    public List getSoldPlants() {
+        return soldPlants;
+    }
+    /**
+     * Sets list of sold plants.
+     *
+     * @param soldPlants the list of sold plants
+     */
+    public void setSoldPlants(List soldPlants) {
+        this.soldPlants = soldPlants;
+    }
 
 }
