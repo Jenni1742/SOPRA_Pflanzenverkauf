@@ -74,6 +74,9 @@ public class UserService implements UserDetailsService {
 
     public void updateSellingLevel(User user) {userRepository.save(user);}
 
+    public void updatePlantsToSell(User user) {userRepository.save(user);}
+
+    public void updateBoughtPlants(User user) {userRepository.save(user);}
 
 
     /**
@@ -87,6 +90,14 @@ public class UserService implements UserDetailsService {
         // encode password before saving
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    public void deleteUser(User user) {
+        userRepository.delete(user);
+    }
+
+    public void deleteUserById(Integer userId) {
+        userRepository.deleteById(userId);
     }
     ////////////////////////Aus Demo Projekt
 

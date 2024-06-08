@@ -243,6 +243,8 @@ public class TestDataLoader implements CommandLineRunner {
         );
         kniphofia.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier3kniphofia_03_0734dfd3c0.jpg");
         plantService.persistPlant(kniphofia);
+        jenniferKaisner.getPlantsToSell().add(kniphofia);
+        userService.updatePlantsToSell(jenniferKaisner);
 
         Plant melanostachy = new Plant(
                 "Salix melanostachys",
@@ -290,6 +292,9 @@ public class TestDataLoader implements CommandLineRunner {
         );
         occidentalis.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg");
         plantService.persistPlant(occidentalis);
+        jenniferKaisner.getPlantsToSell().add(occidentalis);
+        userService.updatePlantsToSell(jenniferKaisner);
+
 
         Plant hahn = new Plant(
                 "Hahnenfussgewächs",
@@ -306,6 +311,8 @@ public class TestDataLoader implements CommandLineRunner {
         );
         hahn.setImageUrl("https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg");
         plantService.persistPlant(hahn);
+        jenniferKaisner.getPurchasedPlants().add(hahn);
+        userService.updateBoughtPlants(jenniferKaisner);
 
         // create wishlist-----------------------------------------------------------------------------------------------
 

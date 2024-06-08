@@ -49,11 +49,12 @@ public class CreateAdvertisementController {
 
         User currentUser = userService.getCurrentUser();
         newPlant.setSeller(currentUser);
+        currentUser.getPlantsToSell().add(newPlant);
+        userService.updatePlantsToSell(currentUser);
 
         //Verkauft ist standardmäßig false
         plantService.persistPlant(newPlant);
 
-        userService.getCurrentUser().getPlantsToSell().add(newPlant);
 
         return "redirect:/myAdvertisements";
     }
