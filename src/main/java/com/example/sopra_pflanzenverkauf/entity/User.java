@@ -2,7 +2,6 @@ package com.example.sopra_pflanzenverkauf.entity;
 
 import jakarta.persistence.*;
 import org.hibernate.mapping.List;
-import org.springframework.lang.NonNull;
 
 
 import java.util.ArrayList;
@@ -24,11 +23,9 @@ public class User {
     @Column(name = "BenutzerID")
     private Integer userId;
 
-    @NonNull
     @Column(name = "Benutzername")
     private String username;
 
-    @NonNull
     @Column(name = "Passwort")
     private String password;
 
