@@ -16,28 +16,30 @@
     }
 </style>
 <body>
-
+<div th:insert="~{fragments/htmlHead :: navbar}"></div>
 <div th:if="${PasswortIstNichtKorrekt}" class="alert alert-danger" th:text="${PasswortIstNichtKorrekt}"></div>
 
 <div class="container">
     <form th:action="@{/deleteProfile}" method="post" class="form-horizontal">
+        <h1> Benutzerprofil löschen: </h1>
         <div class="card card-rePlant">
-            <div th:if="${param.error}" class="alert alert-danger">
-                <span th:text="'Löschen fehlgeschlagen. Das Passwort ist ungültig'"></span>
-            </div>
             <div class="card-head">
-                <p align="center" style="color: red">Bist du dir sicher, dass du dein Userprofil löschen möchtest? Dieser Vorgang kann nicht rückgängig gemacht werden!</p>
+                <p align="center" style="color: red">Bist du dir sicher, dass du dein Benutzerprofil löschen möchtest? Dieser Vorgang kann nicht rückgängig gemacht werden!</p>
             </div>
             <div class="card-body">
                 <div class="row form-group">
-                    <div class="col-md-6 mx-auto">
-                        <label for= password >Bestätige die Löschung durch Eingabe deines Passwortes</label>
+                    <div class="col-md-7 mx-auto">
+                        <label for= password >Bestätige die Löschung deines Benutzerprofils durch Eingabe deines Passwortes.</label>
                         <input type="password" th:placeholder="'Passwort'" id="password" name="password" class="form-control" titel="Gebe dein aktuelles Passwort ein." required/><br/>
                     </div>
                 </div>
                 <div class="card-footer text-center card-footer-rePlant">
+
+                    <a href="/myUserprofile" class="btn-linkButton">
+                        <button type="button" class="btn btn-rePlantGrey">Zurück zum Profil</button>
+                    </a>
                     <a>
-                        <button type="submit" class="btn btn-rePlantGreen">Löschen</button>
+                        <button type="submit" class="btn btn-rePlantGreen">Benutzerprofil Löschen</button>
                     </a>
                 </div>
             </div>
