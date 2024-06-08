@@ -28,4 +28,3 @@ public class BuyerRankingController {
         return "buyerRanking";
     }
 }
-}
