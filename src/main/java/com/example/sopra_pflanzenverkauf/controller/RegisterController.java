@@ -48,19 +48,12 @@ public class RegisterController {
                                 @RequestParam("password2") String password2,
                                 Model model) {
 
-
-        System.out.println("0");
         if (userService.getUserByUsername(newUsername) == null) {
-            System.out.println("1");
             if (userService.getUserByEmail(newEmail) != null) {
-                System.out.println("2");
                 model.addAttribute("mailExistiertBereits","Diese Email Adresse existiert bereits.");
                 return "register";
             } else {
-                System.out.println("3");
                 if (password1.equals(password2)) {
-
-                    System.out.println("Hallo");
 
                     newUser.setUsername(newUsername);
                     userService.updateUsername(newUser);
@@ -93,13 +86,11 @@ public class RegisterController {
 
                     return "login";
                 } else {
-                    System.out.println("4");
                     model.addAttribute("passwortGleich", "Die Passwörter stimmen nicht überein!");
                     return "register";
                 }
             }
         } else {
-            System.out.println("5");
             model.addAttribute("usernameExistiertBereits","Dieser Benutzername existiert bereits.");
             return "register";
         }

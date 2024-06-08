@@ -75,7 +75,6 @@
 </nav>
 
 <!-- Problem: erkennt nicht-->
-<div th:if="${emailExistiertBereits}" class="alert alert-danger" th:text="${emailExistiertBereits}"></div>
 <div th:if="${passwortErfolgreichGeändert}" class="alert alert-success" th:text="${passwortErfolgreichGeändert}"></div>
 <div th:if="${altesPasswortIstNichtKorrekt}" class="alert alert-danger" th:text="${altesPasswortIstNichtKorrekt}"></div>
 
@@ -158,7 +157,7 @@
                         </div>
                         <div class="modal-body">
 
-                            <form th:action="@{/myUserprofile}" method="get">
+                            <form th:action="@{/myUserprofile}" method="post">
                                 <!-- Problem: Doppelte Nachfrage bei Änderung mit zwischendurch Fehlermeldung-->
                                 <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
                                 <div class="mb-3">
@@ -179,15 +178,21 @@
                 </div>
             </div>
 
+            <a href="changeProfile">
+                <button type="button" class="btn btn-rePlantGreen" data-bs-toggle="modal" data-bs-target="#/myUserprofile/changeProfile">
+                    Profildaten bearbeiten
+                </button>
+            </a>
 
 
 
-            <!-- Button trigger modal -->
+
+            <!-- Button trigger modal --><!--
             <button type="button" class="btn btn-rePlantGreen" data-bs-toggle="modal" data-bs-target="#/myUserprofile/changeProfile">
                 Profildaten bearbeiten
-            </button>
+            </button>-->
 
-            <!-- Modal -->
+            <!-- Modal --><!--
             <div class="modal fade" id="/myUserprofile/changeProfile" tabindex="-1" aria-labelledby="/myUserprofile/changeProfile" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -197,16 +202,16 @@
                         </div>
                         <div class="modal-body">
 
-                            <form th:action="@{/myUserprofile}" method="post">
+                            <form th:action="@{/myUserprofile/}" method="post">
                                 <div class="mb-3">
                                     <label for= newPicturePath class="form-label">Neues Profilbild (Bildlink):</label>
                                     <input type="text" class="form-control" id="newPicturePath" name="newPicturePath">
-                                </div>
+                                </div>-->
                                 <!-- Kann nicht geändert werden da sonst currentUser NullPointerException-->
                                 <!--<div class="mb-3">
                                     <label for= newUsername class="form-label">Neuer Benutzername:</label>
                                     <input type="text" class="form-control" id="newUsername" name="newUsername" required>
-                                </div>-->
+                                </div>--><!--
                                 <div class="mb-3">
                                     <label for= newFirstName class="form-label">Neuer Vorname:</label>
                                     <input type="text" class="form-control" id="newFirstName" name="newFirstName" pattern="[A-Za-z\-\s]{1,100}" title="Bitte trage hier Deinen Vorname ein. Doppelnamen können mit Leerzeichen oder Bindestrich geschrieben werden.">
@@ -233,7 +238,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
     </div>
 </div>
 </body>
