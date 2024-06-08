@@ -5,7 +5,6 @@ import org.hibernate.mapping.List;
 
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -55,9 +54,6 @@ public class User {
     @Column(name = "Profilbild")
     private String picturePath;
 
-    @Column(name = "Gekaufte Pflanzen")
-    private List purchasedPlants;
-
     @Column(name = "Verkaufte Pflanzen")
     private List soldPlants;
 
@@ -75,7 +71,7 @@ public class User {
     private java.util.List<Plant> plantsToSell = new ArrayList<>();
 
     @OneToMany (mappedBy = "buyer")
-    private java.util.List<Plant> boughtPlants = new ArrayList<>();
+    private java.util.List<Plant> purchasedPlants = new ArrayList<>();
 
     //wird bei showAdvertisement verwendet
     private Integer plantToShow;
@@ -291,24 +287,6 @@ public class User {
         this.picturePath = picturePath;
     }
 
-    /**
-     * Gets list of purchased plants.
-     *
-     * @return the list of purchased plants
-     * */
-    public List getPurchasedPlants() {
-        return purchasedPlants;
-    }
-
-    /**
-     * Sets list of purchased plants.
-     *
-     * @param purchasedPlants the list of purchased plants
-     */
-    public void setPurchasedPlants(List purchasedPlants) {
-        this.purchasedPlants = purchasedPlants;
-    }
-
     public java.util.List<Plant> getPlantsToSell() {
         return plantsToSell;
     }
@@ -317,12 +295,12 @@ public class User {
         this.plantsToSell = plantsToSell;
     }
 
-    public java.util.List<Plant> getBoughtPlants() {
-        return boughtPlants;
+    public java.util.List<Plant> getPurchasedPlants() {
+        return purchasedPlants;
     }
 
-    public void setBoughtPlants(java.util.List<Plant> boughtPlants) {
-        this.boughtPlants = boughtPlants;
+    public void setPurchasedPlants(java.util.List<Plant> boughtPlants) {
+        this.purchasedPlants = boughtPlants;
     }
 
     /**

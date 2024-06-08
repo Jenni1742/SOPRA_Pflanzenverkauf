@@ -47,10 +47,10 @@ public class DeleteProfileController {
                 userService.updateWishlist(currentUser);
             }
 
-            while (!currentUser.getBoughtPlants().isEmpty()) {
-                currentUser.getBoughtPlants().getFirst().setBuyer(null);
-                plantService.updateBuyer(currentUser.getBoughtPlants().getFirst());
-                currentUser.getBoughtPlants().removeFirst();
+            while (!currentUser.getPurchasedPlants().isEmpty()) {
+                currentUser.getPurchasedPlants().getFirst().setBuyer(null);
+                plantService.updateBuyer(currentUser.getPurchasedPlants().getFirst());
+                currentUser.getPurchasedPlants().removeFirst();
             }
 
             //userService.persistUser(currentUser);

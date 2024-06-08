@@ -311,7 +311,7 @@ public class TestDataLoader implements CommandLineRunner {
         );
         hahn.setImageUrl("https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg");
         plantService.persistPlant(hahn);
-        jenniferKaisner.getBoughtPlants().add(hahn);
+        jenniferKaisner.getPurchasedPlants().add(hahn);
         userService.updateBoughtPlants(jenniferKaisner);
 
         // create wishlist-----------------------------------------------------------------------------------------------
