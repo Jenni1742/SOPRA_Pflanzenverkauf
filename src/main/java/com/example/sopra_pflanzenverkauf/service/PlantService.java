@@ -39,6 +39,15 @@ public class PlantService {
         return plantRepository.findByPlantname(plantname);
     }
 
+    public void updateSeller (Plant plant) {
+        plantRepository.save(plant);
+    }
+
+    public void updateBuyer (Plant plant) {
+        plantRepository.save(plant);
+    }
+
+
     public Plant getPlantByPlantId(Integer plantID) {
         return plantRepository.findByPlantId(plantID);
     }
@@ -46,6 +55,8 @@ public class PlantService {
     public Plant persistPlant(Plant plant) {
         return plantRepository.save(plant);
     }
+
+
 
     public List<Plant> findFirstThreeUnsoldPlants() {
         return plantRepository.findBySoldFalseOrderByPlantIdAsc().stream()
@@ -86,6 +97,10 @@ public class PlantService {
 
     public void deletePlant(Plant plant){
         plantRepository.delete(plant);
+    }
+
+    public void deletePlantByPlantId(Integer plantID) {
+        plantRepository.deleteById(plantID);
     }
 
   /**  public Plant findById(Integer id) {
