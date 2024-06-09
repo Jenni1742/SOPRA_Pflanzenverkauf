@@ -78,6 +78,10 @@ public class UserService implements UserDetailsService {
 
     public void updateBoughtPlants(User user) {userRepository.save(user);}
 
+    public void updateUserYouChatWith(User user) {
+        userRepository.save(user);
+    }
+
 
     /**
      * Saves a user-object and encodes its password.

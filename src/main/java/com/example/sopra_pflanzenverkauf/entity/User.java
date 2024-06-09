@@ -73,6 +73,10 @@ public class User {
     @OneToMany (mappedBy = "buyer")
     private java.util.List<Plant> purchasedPlants = new ArrayList<>();
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "userYouChatWith", joinColumns = @JoinColumn(name = "BenutzerID"), inverseJoinColumns = @JoinColumn(name = "BenutzeriD"))
+    private Set<User> userYouChatWith;
+
     //wird bei showAdvertisement verwendet
     private Integer plantToShow;
 
@@ -372,4 +376,11 @@ public class User {
         this.soldPlants = soldPlants;
     }
 
+    public Set<User> getUserYouChatWith() {
+        return userYouChatWith;
+    }
+
+    public void setUserYouChatWith(Set<User> userYouChatWith) {
+        this.userYouChatWith = userYouChatWith;
+    }
 }
