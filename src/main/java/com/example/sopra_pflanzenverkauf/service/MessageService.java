@@ -21,6 +21,14 @@ public class MessageService {
         Message message = generateMessage(messageDto, "1");
         return messageRepository.save(message);
     }
+
+    public List<Message> getAllMessages() {
+        return messageRepository.findAll();
+    }
+
+    public Message getMessageById(Long id) {
+        return messageRepository.findById(id).orElseThrow(() -> new RuntimeException("Message not found"));
+    }
     private Message generateMessage(MessageDto messageDto, String senderId) {
         Message message = new Message();
         message.setContent(messageDto.getContent());

@@ -307,6 +307,7 @@ p {
 
 /**  Haupt-Chatfenster*/
 .chat-main {
+    position: relative;
     flex: 1;
     overflow-y: auto;
     background-color: #ecf0f1;
@@ -384,8 +385,9 @@ p {
     align-items: center;
     padding: 10px;
     border-top: 1px solid black;
-    position: sticky;
+    position: absolute;
     bottom: 0;
+    width: 100%;
     background-color: #ffffff;
 }
 

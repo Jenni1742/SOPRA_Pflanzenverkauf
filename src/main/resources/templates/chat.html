@@ -5,9 +5,7 @@
     <title>Meine Nachrichten</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 <body>
@@ -29,101 +27,28 @@
         </div>
 
         <div class="chat-users">
-            <div class="chat-user">
-                <img src="images/flyer.PNG" alt="User Avatar">
-                <div class="user-info">
-                    <h3>Marko Petric</h3>
-                    <p>Online</p>
-                </div>
-            </div>
-            <div class="chat-user">
-                <img src="images/flyer.PNG" alt="User Avatar">
-                <div class="user-info">
-                    <h3>Petric Marko</h3>
-                    <p>Offline</p>
-                </div>
-            </div>
-            <!-- Add more chat users here -->
+            <!-- Hier können Benutzer angezeigt werden -->
         </div>
     </div>
-    <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    </head>
+
     <div class="chat-main">
         <div class="chat-box">
-            <div class="chat outgoing">
+            <div th:each="message : ${messages}" th:class="${message.sender == '1'} ? 'chat outgoing' : 'chat incoming'">
                 <div class="details">
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                        voluptua.</p>
-                </div>
-            </div>
-            <div class="chat incoming">
-                <!-- <img src="#" alt="">*/ falls man dem Verkäufer ein Bild zuordnen mag -->
-                <div class="details">
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                        voluptua.</p>
-                </div>
-            </div>
-            <div class="chat outgoing">
-                <div class="details">
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                        voluptua.</p>
-                </div>
-            </div>
-            <div class="chat incoming">
-                <!-- <img src="#" alt="">*/ falls man dem Verkäufer ein Bild zuordnen mag -->
-                <div class="details">
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                        voluptua.</p>
-                </div>
-            </div>
-            <div class="chat outgoing">
-                <div class="details">
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                        voluptua.</p>
-                </div>
-            </div>
-            <div class="chat incoming">
-                <!-- <img src="#" alt="">*/ falls man dem Verkäufer ein Bild zuordnen mag -->
-                <div class="details">
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                        voluptua.</p>
-                </div>
-            </div>
-            <div class="chat outgoing">
-                <div class="details">
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                        voluptua.</p>
-                </div>
-            </div>
-            <div class="chat incoming">
-                <!-- <img src="#" alt="">*/ falls man dem Verkäufer ein Bild zuordnen mag -->
-                <div class="details">
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                        sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-                        voluptua.</p>
+                    <p th:text="${message.content}"></p>
                 </div>
             </div>
         </div>
 
-        <form action="#" class="typing-area">
-            <input type="text" placeholder="Gib eine Nachricht ein.">
-            <button><i class="fa fa-paper-plane"></i></button>
-            </button>
+        <form action="/chat" method="post" class="typing-area">
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+            <input type="hidden" name="recipientId" value="1"> <!-- Beispielwert, Empfänger-ID setzen -->
+            <input type="text" name="content" placeholder="Gib eine Nachricht ein.">
+            <button type="submit"><i class="fa fa-paper-plane"></i></button>
         </form>
 
     </div>
 </div>
-
-</body>
-</html>
 
 <footer class="bg-light text-center text-lg-start mt-4">
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
