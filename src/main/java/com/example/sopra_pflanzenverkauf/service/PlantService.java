@@ -95,10 +95,6 @@ public class PlantService {
         return plants;
     }
 
-    public void deletePlant(Plant plant){
-        plantRepository.delete(plant);
-    }
-
     public void deletePlantByPlantId(Integer plantID) {
         plantRepository.deleteById(plantID);
     }

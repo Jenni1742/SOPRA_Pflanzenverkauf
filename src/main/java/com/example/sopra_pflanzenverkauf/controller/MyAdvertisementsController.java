@@ -45,15 +45,21 @@ public class MyAdvertisementsController {
                               Model model) {
         User currentUser = userService.getCurrentUser();
 
-        List<Plant> plantsToSell = currentUser.getPlantsToSell();
-        plantsToSell.remove(plantService.getPlantByPlantId(plantId));
+        for (User user:userService.findAllUsers()) {
+            if(user.getWishlistPlants().contains(plantService.getPlantByPlantId(plantId))){
+                user.getWishlistPlants().remove(plantService.getPlantByPlantId(plantId));
+            }
+        }
 
-        //plantService.deletePlant(plantService.getPlantByPlantId(plantId));
-
+        plantService.deletePlantByPlantId(plantId);
         //model.addAttribute("message", "Pflanze erfolgreich gelöscht.");
+
+        List<Plant> plantList = currentUser.getPlantsToSell();
+        model.addAttribute("plantList", plantList);
 
         return "myAdvertisements";
     }
+
 
     /**
     @RequestMapping(value = "/myAdvertisements", method = RequestMethod.POST)
