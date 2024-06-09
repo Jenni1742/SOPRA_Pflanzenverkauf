@@ -43,7 +43,7 @@
                 <p th:text="${plant.category.categoryname}" style="font-style: italic;"></p>
                 <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span></p>
                 <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
-                <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span> €</p>
+                <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
                 <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span>
                 </p>
                 <form th:action="@{/myAdvertisements (plantIdToShow = ${plant.plantId})}" id="plantIdToShow"
@@ -56,6 +56,12 @@
                         </a>
                     </div>
                 </form>
+
+                <a th:href="@{/showAdvertisement/{id}(id=${plant.plantId})}" style="text-decoration: none;">
+                    <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                        Mehr erfahren
+                    </button>
+                </a>
 
                 <!-- Button trigger modal -->
                 <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal"
