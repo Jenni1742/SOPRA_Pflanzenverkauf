@@ -85,6 +85,7 @@ public class User {
     //wird bei showAdvertisement verwendet
     private Integer plantToShow;
 
+    //Hallo
     /**
      * Instantiates a new User.
      */
