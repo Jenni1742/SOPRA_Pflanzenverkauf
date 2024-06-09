@@ -23,28 +23,21 @@ public class ChatController {
     }
 
     @GetMapping
-    public String showChat(Model model) {
+    public String showChat(Model model, CsrfToken csrfToken) {
         List<Message> messages = messageService.getAllMessages();
         model.addAttribute("messages", messages);
-
-        // Add CSRF token
-        CsrfToken csrfToken = (CsrfToken) model.asMap().get("_csrf");
         model.addAttribute("_csrf", csrfToken);
-
         return "chat";
     }
 
-
     @PostMapping
     public String postMessage(@RequestParam("recipientId") String recipientId,
-                              @RequestParam("content") String content,
-                              Model model) {
+                              @RequestParam("content") String content) {
         MessageDto messageDto = new MessageDto();
         messageDto.setContent(content);
         messageDto.setRecipientId(recipientId);
 
-        Message message = messageService.saveMessage(messageDto);
-        model.addAttribute("message", message);
+        messageService.saveMessage(messageDto);
         return "redirect:/chat";
     }
 }

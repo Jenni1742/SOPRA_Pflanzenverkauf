@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const sender = 'user1';  // Beispielhafter Sendername, später dynamisch ersetzen
+    const senderId = 'user1';  // Beispielhafter Sendername, später dynamisch ersetzen
     const recipient = 'user2';  // Beispielhafter Empfängername, später dynamisch ersetzen
 
     function fetchMessages() {
-        fetch(`/api/messages?sender=${sender}&recipient=${recipient}`)
+        fetch(`/api/messages?sender=${senderId}&recipient=${recipient}`)
             .then(response => response.json())
             .then(messages => {
                 console.log(messages);  // Hier könntest du die Nachrichten in das UI einfügen
@@ -32,3 +32,29 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchMessages();
     // sendMessage('Hallo Welt!');
 });
+document.querySelector('.typing-area').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const content = document.querySelector('input[name="content"]').value;
+    const recipientId = document.querySelector('input[name="recipientId"]').value;
+
+    fetch('/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'X-CSRF-TOKEN': document.querySelector('input[name="_csrf"]').value
+        },
+        body: `content=${content}&recipientId=${recipientId}`
+    }).then(response => {
+        if (response.ok) {
+            return response.text();
+        } else {
+            throw new Error('Network response was not ok.');
+        }
+    }).then(data => {
+        document.querySelector('.chat-box').innerHTML = data;
+        document.querySelector('input[name="content"]').value = '';
+    }).catch(error => {
+        console.error('There has been a problem with your fetch operation:', error);
+    });
+});
+
