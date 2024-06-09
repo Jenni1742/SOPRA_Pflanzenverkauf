@@ -210,11 +210,19 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 markoPetric,
                 12345,
-                false
+                alessiaSedelnikov,
+                true
         );
         kaffeestrauch.setImageUrl("https://www.blumen-brueder.de/Content/files/1886/Coffea-arabica-600x800-proportionalsmallest.webp");
         plantService.persistPlant(kaffeestrauch);
 
+        alessiaSedelnikov.getPurchasedPlants().add(kaffeestrauch);
+        userService.updatePurchasedPlants(alessiaSedelnikov);
+        userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
+
+        markoPetric.getSoldPlantsList().add(kaffeestrauch);
+        userService.updateSoldPlantsList(markoPetric);
+        userService.updateNumberOfSoldPlants(markoPetric);
 
         Plant allium = new Plant(
                 "Allium",
@@ -239,12 +247,21 @@ public class TestDataLoader implements CommandLineRunner {
                 outdoorpflanze,
                 jenniferKaisner,
                 70321,
-                false
+                alessiaSedelnikov,
+                true
         );
         kniphofia.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier3kniphofia_03_0734dfd3c0.jpg");
         plantService.persistPlant(kniphofia);
         jenniferKaisner.getPlantsToSell().add(kniphofia);
         userService.updatePlantsToSell(jenniferKaisner);
+
+        alessiaSedelnikov.getPurchasedPlants().add(kniphofia);
+        userService.updatePurchasedPlants(alessiaSedelnikov);
+        userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
+
+        jenniferKaisner.getSoldPlantsList().add(kniphofia);
+        userService.updateSoldPlantsList(jenniferKaisner);
+        userService.updateNumberOfSoldPlants(jenniferKaisner);
 
         Plant melanostachy = new Plant(
                 "Salix melanostachys",
@@ -312,7 +329,12 @@ public class TestDataLoader implements CommandLineRunner {
         hahn.setImageUrl("https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg");
         plantService.persistPlant(hahn);
         jenniferKaisner.getPurchasedPlants().add(hahn);
-        userService.updateBoughtPlants(jenniferKaisner);
+        userService.updatePurchasedPlants(jenniferKaisner);
+        userService.updateNumberOfPurchasedPlants(jenniferKaisner);
+
+        alessiaSedelnikov.getSoldPlantsList().add(hahn);
+        userService.updateSoldPlantsList(alessiaSedelnikov);
+        userService.updateNumberOfSoldPlants(alessiaSedelnikov);
 
         // create wishlist-----------------------------------------------------------------------------------------------
 

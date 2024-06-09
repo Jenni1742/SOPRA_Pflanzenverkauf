@@ -76,7 +76,23 @@ public class UserService implements UserDetailsService {
 
     public void updatePlantsToSell(User user) {userRepository.save(user);}
 
-    public void updateBoughtPlants(User user) {userRepository.save(user);}
+    public void updatePurchasedPlants(User user) {
+        user.setNumberOfPurchasedPlants(user.getPurchasedPlants().size());
+        userRepository.save(user);
+    }
+
+    public void updateNumberOfPurchasedPlants(User user) {
+        userRepository.save(user);
+    }
+
+    public void updateSoldPlantsList(User user) {
+        user.setNumberOfSoldPlants(user.getSoldPlantsList().size());
+        userRepository.save(user);
+    }
+
+    public void updateNumberOfSoldPlants(User user) {
+        userRepository.save(user);
+    }
 
 
 
@@ -117,6 +133,14 @@ public class UserService implements UserDetailsService {
      */
     public List<User> findAllUsers() {
         return userRepository.findAll();
+    }
+
+    public List<User> findAllByOrderByNumberOfPurchasedPlantsDesc() {
+        return userRepository.findAllByOrderByNumberOfPurchasedPlantsDesc();
+    }
+
+    public List<User> findAllByOrderByNumberOfSoldPlantsDesc() {
+        return userRepository.findAllByOrderByNumberOfSoldPlantsDesc();
     }
 
 

@@ -28,6 +28,55 @@
             </svg>
         </p>
         <p>Hier findest du das Verkäuferranking.</p>
+
+        <div class="card-body">
+
+            <!--<ol class="list-group list-group-numbered">-->
+
+            <div th:each="user : ${users}" class="ad list-group-item" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+                <div style="flex: 0 0 auto; margin-right: 20px;">
+                    <p style="font-size: xxx-large; color: #017101"></p>
+                </div>
+
+                <div style="flex: 0 0 auto; margin-right: 20px;">
+                    <img th:src="${user.picturePath}" alt="Profilbild" onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'" class="rounded-circle">
+                </div>
+                <div style="flex: 1; padding-left: 20px; text-align: left">
+                    <h2 th:text="${user.username}" style="color: #017101;"></h2>
+
+                    <p><strong>Anzahl verkauften Pflanzen:</strong> <span th:text="${user.getSoldPlantsList().size()}">Anzahl verkauften Pflanzen</span></p>
+
+                    <p><strong>Verkäuferlevel:</strong> <span th:text="${user.sellingLevel.levelname}">Verkäuferlevel</span></p>
+                    <div>
+                        <a href="myUserprofile" class="btn-linkButton">
+                            <button type="button" class="btn btn-rePlantGreen">
+                                Profil ansehen
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
+                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--</ol>-->
+
+            <div style="flex: 0 0 auto; margin-right: 20px;">
+                <p th:if="${users.size()} == 0">
+                    Aktuell sind noch keine Benutzer in der Verkäuferrangliste enthalten.
+                </p>
+            </div>
+
+        </div>
+        <div class="card-footer text-center card-footer-rePlant">
+            <a href="createAdvertisement">
+                <button type="button" class="btn btn-rePlantGreen">
+                    Verkaufe mehr Secondhand-Pflanzen
+                </button>
+            </a>
+
+        </div>
     </div>
 </div>
 </body>

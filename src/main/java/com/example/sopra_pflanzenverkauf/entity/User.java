@@ -57,6 +57,12 @@ public class User {
     @Column(name = "Verkaufte Pflanzen")
     private List soldPlants;
 
+    @Column(name = "Anzahl gekaufter Pflanzen")
+    private Integer numberOfPurchasedPlants = 0;
+
+    @Column(name = "Anzahl verkaufter Pflanzen")
+    private Integer numberOfSoldPlants = 0;
+
     //TODO Wird wahrscheinlich nicht benötigt
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -69,6 +75,9 @@ public class User {
 
     @OneToMany (mappedBy = "seller")
     private java.util.List<Plant> plantsToSell = new ArrayList<>();
+
+    @OneToMany (mappedBy = "seller")
+    private java.util.List<Plant> soldPlantsList = new ArrayList<>();
 
     @OneToMany (mappedBy = "buyer")
     private java.util.List<Plant> purchasedPlants = new ArrayList<>();
@@ -370,5 +379,29 @@ public class User {
      */
     public void setSoldPlants(List soldPlants) {
         this.soldPlants = soldPlants;
+    }
+
+    public Integer getNumberOfPurchasedPlants() {
+        return numberOfPurchasedPlants;
+    }
+
+    public void setNumberOfPurchasedPlants(Integer numberOfPurchasedPlants) {
+        this.numberOfPurchasedPlants = numberOfPurchasedPlants;
+    }
+
+    public Integer getNumberOfSoldPlants() {
+        return numberOfSoldPlants;
+    }
+
+    public void setNumberOfSoldPlants(Integer numberOfSoldPlants) {
+        this.numberOfSoldPlants = numberOfSoldPlants;
+    }
+
+    public java.util.List<Plant> getSoldPlantsList() {
+        return soldPlantsList;
+    }
+
+    public void setSoldPlantsList(java.util.List<Plant> soldPlantsList) {
+        this.soldPlantsList = soldPlantsList;
     }
 }
