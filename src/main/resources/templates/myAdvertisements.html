@@ -20,6 +20,16 @@
     <h1>Hier findest du deine Verkaufsanzeigen:</h1>
 
     <div class="card">
+
+        <div class="text-center" style="flex: 0 0 auto; margin-right: 20px;">
+            <h3 th:if="${plantList.size()} == 0">
+                <p></p>
+                Noch keine Verkaufsanzeigen vorhanden? Leg direkt los und stelle deine erste Pflanze zum Verkauf ein
+                !
+                <p></p>
+            </h3>
+        </div>
+
         <div th:each="plant : ${plantList}" class="ad"
              style="display: flex; align-items: flex-start; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 5px;">
             <div style="flex: 0 0 auto; margin-right: 20px; width: 300px;">
@@ -85,13 +95,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div style="flex: 0 0 auto; margin-right: 20px;">
-                <h1 th:if="${plantList.size()} == 0">
-                    Noch keine Verkaufsanzeigen vorhanden? Leg direkt los und stelle deine erste Pflanze zum Verkauf ein
-                    !
-                </h1>
             </div>
         </div>
     </section>
