@@ -26,6 +26,8 @@ Matrikelnummer: 3661488
 
 Vergewissern sie sich, dass Sie vor Benutzung, Java SE 17 installiert haben.
 
+Bei Problemen mit List-Befehlen (z.B. getFirst()) ist eine neuere Java-Version nötig!
+
 **Ausführung:**
 1. Navigiere zu "gradlew.bat"
 2. Führe unter application -> bootRun aus 
