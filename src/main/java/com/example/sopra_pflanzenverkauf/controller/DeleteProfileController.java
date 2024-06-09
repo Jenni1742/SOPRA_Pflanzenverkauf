@@ -1,5 +1,4 @@
 package com.example.sopra_pflanzenverkauf.controller;
-
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
