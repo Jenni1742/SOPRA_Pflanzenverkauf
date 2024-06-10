@@ -58,8 +58,9 @@ public class EditAdvertisementController {
                             @RequestParam("newprice") Double newprice,
                             @RequestParam("newplantDescription") String newplantDescription,
                             @RequestParam("newcareTips") String newcareTips,
-                            @RequestParam("newzipCode") Integer newzipCode,
-                            @RequestParam("newimageUrl") String newimageUrl ){
+                            @RequestParam("newzipCode") String newzipCode,
+                            @RequestParam("newimageUrl") String newimageUrl,
+                            Model model){
 
         Plant currentPlant = plantService.getPlantByPlantId(plantId);
 
@@ -71,11 +72,11 @@ public class EditAdvertisementController {
             currentPlant.setLatinName(newlatinName);
         }
 
-        if(newplantSize.describeConstable().isPresent()){
+        if(!(newplantSize == null)){
             currentPlant.setPlantSize(newplantSize);
         }
 
-        if(newprice.describeConstable().isPresent()){
+        if(!(newprice == null)) {
             currentPlant.setPrice(newprice);
         }
 

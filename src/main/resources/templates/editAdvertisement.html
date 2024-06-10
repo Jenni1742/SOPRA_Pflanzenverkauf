@@ -25,41 +25,42 @@
         <form th:action="@{/editAdvertisement/{id}(id=${plant.plantId})}" method="post">
             <div class="mb-3">
                 <label for="newplantname" class="form-label">Name der Pflanze</label>
-                <input type="text" class="form-control" id="newplantname" name="newplantname" th:field="${plant.plantname}">
+                <input type="text" class="form-control" id="newplantname" name="newplantname" th:placeholder="${plant.plantname}">
             </div>
 
             <div class="mb-3">
                 <label for="newlatinName" class="form-label">Lateinischer Name (optional)</label>
-                <input type="text" class="form-control" id="newlatinName" name="newlatinName" th:field="${plant.latinName}">
+                <input type="text" class="form-control" id="newlatinName" name="newlatinName" th:placeholder="${plant.latinName}">
             </div>
 
             <div class="mb-3">
-                <label for="plantSize" class="form-label">Größe (in cm)</label>
-                <input type="number" min="0" class="form-control" id="plantSize" name="plantSize"
-                       th:field="${plant.plantSize}">
+                <label for="newplantSize" class="form-label">Größe (in cm)</label>
+                <input type="number" min="0" class="form-control" id="newplantSize" name="newplantSize"
+                       th:placeholder="${plant.plantSize}">
             </div>
 
             <div class="mb-3">
                 <label for="newprice" class="form-label">Preis (in €)</label>
                 <input type="number" min="0" step="0.01" size="3" class="form-control" id="newprice" name="newprice"
-                       th:field="${plant.price}">
+                       th:placeholder="${plant.price}">
             </div>
+
 
             <div class="mb-3">
                 <label for="newplantDescription" class="form-label">Beschreibung</label>
                 <textarea class="form-control" id="newplantDescription" name="newplantDescription"
-                          th:field="${plant.plantDescription}"></textarea>
+                          th:placeholder="${plant.plantDescription}"></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="newcareTips" class="form-label">Pflegetipps</label>
-                <textarea class="form-control" id="newcareTips" name="newcareTips" th:field="${plant.careTips}"></textarea>
+                <textarea class="form-control" id="newcareTips" name="newcareTips" th:placeholder="${plant.careTips}"></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="newzipCode" class="form-label">Postleitzahl</label>
                 <input type="text" title="Postleitzahl mit 5 Stellen" pattern="^[0-9]{5}$" class="form-control"
-                       id="newzipCode" name="newzipCode" th:field="${plant.zipCode}">
+                       id="newzipCode" name="newzipCode" th:placeholder="${plant.zipCode}">
             </div>
 
             <div class="input-group mb-3">
@@ -74,7 +75,7 @@
 
             Bildlink hinzufügen
             <div class="input-group mb-3">
-                <input type="text" class="form-control" id="newimageUrl" th:field="${plant.imageUrl}" required>
+                <input type="text" class="form-control" id="newimageUrl" name="newimageUrl" th:placeholder="${plant.imageUrl}" >
             </div>
 
             <div class="card-footer text-center card-footer-rePlant">
