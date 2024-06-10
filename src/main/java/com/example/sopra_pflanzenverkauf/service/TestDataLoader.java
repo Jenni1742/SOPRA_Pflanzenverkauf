@@ -110,6 +110,10 @@ public class TestDataLoader implements CommandLineRunner {
         categoryService.persistCategory(outdoorpflanze);
 
         //create Level
+        Level level0 = new Level();
+        level0.setLevelname("Korn");
+        levelService.persistLevel(level0);
+
         Level level1 = new Level();
         level1.setLevelname("Sprössling");
         levelService.persistLevel(level1);
