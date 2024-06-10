@@ -33,7 +33,7 @@
 
     <div class="chat-main">
         <div class="chat-box">
-            <div th:each="message : ${messages}" th:class="${message.sender == '1'} ? 'chat outgoing' : 'chat incoming'">
+            <div th:each="message : ${messages}" th:class="${message.sender == '1'} ? 'outgoing' : 'incoming'">
                 <div class="details">
                     <p th:text="${message.content}"></p>
                 </div>
