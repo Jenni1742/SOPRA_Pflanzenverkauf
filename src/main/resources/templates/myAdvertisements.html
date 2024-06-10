@@ -44,20 +44,10 @@
                     <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
                     <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
                     <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span></p>
-                    <form th:action="@{/myAdvertisements (plantIdToShow = ${plant.plantId})}" id="plantIdToShow"
-                          name="plantIdToShow" method="post">
-                        <div style="text-align: right; margin-top: -50px;">
-                            <a href="http://localhost:8080/showAdvertisement" style="text-decoration: none;">
-                                <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
-                                    Anzeige bearbeiten
-                                </button>
-                            </a>
-                        </div>
-                    </form>
 
                     <a th:href="@{/showAdvertisement/{id}(id=${plant.plantId})}" style="text-decoration: none;">
                         <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
-                            Mehr erfahren
+                            Ganze Anzeige ansehen
                         </button>
                     </a>
 
