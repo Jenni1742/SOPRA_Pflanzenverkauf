@@ -56,6 +56,10 @@ public class PlantService {
         return plantRepository.save(plant);
     }
 
+    public Plant updatePlant(Plant plant) {
+        return plantRepository.save(plant);
+    }
+
 
 
     public List<Plant> findFirstThreeUnsoldPlants() {
@@ -93,10 +97,6 @@ public class PlantService {
         }
 
         return plants;
-    }
-
-    public void deletePlant(Plant plant){
-        plantRepository.delete(plant);
     }
 
     public void deletePlantByPlantId(Integer plantID) {

@@ -80,9 +80,9 @@ public class RegisterController {
                     newUser.setPassword(password1);
                     userService.updateUserPassword(newUser);
 
-                    newUser.setBuyingLevel(levelService.getLevelByLevelname("Sprössling"));
+                    newUser.setBuyingLevel(levelService.getLevelByLevelname("Korn"));
                     userService.updateBuyingLevel(newUser);
-                    newUser.setSellingLevel(levelService.getLevelByLevelname("Sprössling"));
+                    newUser.setSellingLevel(levelService.getLevelByLevelname("Korn"));
                     userService.updateSellingLevel(newUser);
 
 
