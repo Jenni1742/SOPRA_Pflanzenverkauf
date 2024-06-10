@@ -49,11 +49,51 @@ public class EditAdvertisementController {
         return "editAdvertisement";
     }
 
-    @RequestMapping(value="/editAdvertisement", method = RequestMethod.POST)
-    public String editPlant(@ModelAttribute("plant") Plant updatePlant){
 
-        User currentUser = userService.getCurrentUser();
+    @RequestMapping(value="/editAdvertisement/{id}", method = RequestMethod.POST)
+    public String editPlant(@PathVariable("id") Integer plantId,
+                            @RequestParam("newplantname") String newplantname,
+                            @RequestParam("newlatinName") String newlatinName,
+                            @RequestParam("newplantSize") Integer newplantSize,
+                            @RequestParam("newprice") Double newprice,
+                            @RequestParam("newplantDescription") String newplantDescription,
+                            @RequestParam("newcareTips") String newcareTips,
+                            @RequestParam("newzipCode") Integer newzipCode,
+                            @RequestParam("newimageUrl") String newimageUrl ){
+
+        Plant currentPlant = plantService.getPlantByPlantId(plantId);
+
+        if(!newplantname.isEmpty()){
+            currentPlant.setPlantname(newplantname);
+        }
+
+        if(!newlatinName.isEmpty()){
+            currentPlant.setLatinName(newlatinName);
+        }
+
+        if(newplantSize.describeConstable().isPresent()){
+            currentPlant.setPlantSize(newplantSize);
+        }
+
+        if(newprice.describeConstable().isPresent()){
+            currentPlant.setPrice(newprice);
+        }
+
+        if(!newplantDescription.isEmpty()){
+            currentPlant.setPlantDescription(newplantDescription);
+        }
+
+        if(!newcareTips.isEmpty()){
+            currentPlant.setCareTips(newcareTips);
+        }
+
+        if(!newimageUrl.isEmpty()){
+            currentPlant.setImageUrl(newimageUrl);
+        }
+
+        plantService.updatePlant(currentPlant);
 
         return "redirect:/myAdvertisements";
     }
+
 }
