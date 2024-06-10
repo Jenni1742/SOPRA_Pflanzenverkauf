@@ -340,6 +340,7 @@ public class TestDataLoader implements CommandLineRunner {
         userService.updateSoldPlantsList(alessiaSedelnikov);
         userService.updateNumberOfSoldPlants(alessiaSedelnikov);
 
+
         // create wishlist-----------------------------------------------------------------------------------------------
 
         Set<Plant> wishlistPlants = new HashSet<>();
