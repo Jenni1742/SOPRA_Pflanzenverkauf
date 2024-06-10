@@ -23,18 +23,21 @@
             <table class="table table-borderless" style="text-align: center">
                 <tbody>
                 <tr>
+                    <!-- Level1 -->
                     <td scope="row">
                         <div th:if="${currentUser.getSoldPlantsList().size()<1}">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                <img src="https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5" alt="Nicht Level 1" onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'" class="rounded-circle">
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                <img src="/images/1.Sprossling Kopie.png"
+                                     alt="Level 1 (Sprössling) noch nicht erreicht"
+                                     class="rounded-circle">
                             </button>
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-body">
-                                            <p>Level 1: Verkaufe 1 Pflanze um das Level ab zu schließen</p>
+                                            <p>Level 1 (Sprössling): Verkaufe 1 Pflanze um das Level zu erreichen</p>
                                         </div>
                                     </div>
                                 </div>
@@ -42,49 +45,96 @@
                         </div>
                         <div th:if="${currentUser.getSoldPlantsList().size()>=1}">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                                <img src="https://th.bing.com/th/id/OIP.I5nKOo7_8ezcMZe2xRj4HwHaHa?w=173&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Level1" onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'" class="rounded-circle">
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                <img src="/images/1.Sprossling.png"
+                                     alt="Level 1 (Sprössling) erreicht"
+                                     class="rounded-circle">
                             </button>
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-body">
-                                            <p>Level 1 abgeschlossen: Verkaufe 1 Pflanze</p>
+                                            <p>Level 1 (Sprössling) abgeschlossen: Verkaufe 1 Pflanze</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </div>
                     </td>
+                    <!-- Level 2 -->
                     <td scope="row">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img th:src="${currentUser.getPicturePath()}" alt="Profilbild" onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'" class="rounded-circle">
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <img th:src="${currentUser.getPicturePath()}" alt="Profilbild" style="width: max(465px)">
+                        <div th:if="${currentUser.getSoldPlantsList().size()<5}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                                <img src="/images/2.Grüner-Daumen Kopie.png"
+                                     alt="Level 2 (Grüner-Daumen) noch nicht erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 2 (Grüner-Daumen): Verkaufe 5 Pflanze um das Level zu erreichen</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${currentUser.getSoldPlantsList().size()>=5}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal4">
+                                <img src="/images/2.Grüner-Daumen.png"
+                                     alt="Level 2 (Grüner-Daumen) erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 2 (Grüner-Daumen) abgeschlossen: Verkaufe 5 Pflanzen</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </td>
+                    <!-- Level 3 -->
                     <td scope="row">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img th:src="${currentUser.getPicturePath()}" alt="Profilbild" onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'" class="rounded-circle">
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <img th:src="${currentUser.getPicturePath()}" alt="Profilbild" style="width: max(465px)">
+                        <div th:if="${currentUser.getSoldPlantsList().size()<10}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal5">
+                                <img src="/images/3.Pflanzenfreund Kopie.png"
+                                     alt="Level 3 (Pflanzenfreund) noch nicht erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 3 (Pflanzenfreund): Verkaufe 10 Pflanze um das Level zu erreichen</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${currentUser.getSoldPlantsList().size()>=10}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal6">
+                                <img src="/images/3.Pflanzenfreund.png"
+                                     alt="Level 3 (Pflanzenfreund) erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 3 (Pflanzenfreund) abgeschlossen: Verkaufe 10 Pflanzen</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -92,49 +142,237 @@
                     </td>
                 </tr>
                 <tr>
+                    <!-- Level 4 -->
                     <td scope="row">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img th:src="${currentUser.getPicturePath()}" alt="Profilbild" onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'" class="rounded-circle">
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <img th:src="${currentUser.getPicturePath()}" alt="Profilbild" style="width: max(465px)">
+                        <div th:if="${currentUser.getSoldPlantsList().size()<15}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal7">
+                                <img src="/images/4.Gärtner-Novize Kopie.png"
+                                     alt="Level 4 (Gärtner-Novize) noch nicht erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 4 (Gärtner-Novize): Verkaufe 15 Pflanze um das Level zu erreichen</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${currentUser.getSoldPlantsList().size()>=15}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal8">
+                                <img src="/images/4.Gärtner-Novize.png"
+                                     alt="Level 4 (Gärtner-Novize) erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal8" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 4 (Gärtner-Novize) abgeschlossen: Verkaufe 15 Pflanze</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </td>
+                    <!-- Level 5 -->
                     <td scope="row">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img th:src="${currentUser.getPicturePath()}" alt="Profilbild" onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'" class="rounded-circle">
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <img th:src="${currentUser.getPicturePath()}" alt="Profilbild" style="width: max(465px)">
+                        <div th:if="${currentUser.getSoldPlantsList().size()<25}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal9">
+                                <img src="/images/5.Blattmeister Kopie.png"
+                                     alt="Level 5 (Blattmeister) noch nicht erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal9" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 5 (Blattmeister): Verkaufe 25 Pflanze um das Level zu erreichen</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${currentUser.getSoldPlantsList().size()>=25}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal10">
+                                <img src="/images/5.Blattmeister.png"
+                                     alt="Level 5 (Blattmeister) erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal10" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 5 (Blattmeister) abgeschlossen: Verkaufe 25 Pflanzen</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </td>
+                    <!-- Level 6 -->
                     <td scope="row">
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img th:src="${currentUser.getPicturePath()}" alt="Profilbild" onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'" class="rounded-circle">
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <img th:src="${currentUser.getPicturePath()}" alt="Profilbild" style="width: max(465px)">
+                        <div th:if="${currentUser.getSoldPlantsList().size()<35}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal11">
+                                <img src="/images/6.Wurzelprofi Kopie.png"
+                                     alt="Level 6 (Wurzelprofi) noch nicht erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal11" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 6 (Wurzelprofi): Verkaufe 35 Pflanze um das Level zu erreichen</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${currentUser.getSoldPlantsList().size()>=35}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal12">
+                                <img src="/images/6.Wurzelprofi.png"
+                                     alt="Level 6 (Wurzelprofi) erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal12" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 6 (Wurzelprofi) abgeschlossen: Verkaufe 35 Pflanzen</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <!-- Level 7 -->
+                    <td scope="row">
+                        <div th:if="${currentUser.getSoldPlantsList().size()<50}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal13">
+                                <img src="/images/7.Pflanzenliebhaber Kopie.png"
+                                     alt="Level 7 (Pflanzenliebhaber) noch nicht erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal13" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 7 (Pflanzenliebhaber): Verkaufe 50 Pflanze um das Level zu erreichen</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${currentUser.getSoldPlantsList().size()>=15}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal14">
+                                <img src="/images/7.Pflanzenliebhaber.png"
+                                     alt="Level 7 (Pflanzenliebhaber) erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal14" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 7 (Pflanzenliebhaber) abgeschlossen: Verkaufe 50 Pflanze</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- Level 8 -->
+                    <td scope="row">
+                        <div th:if="${currentUser.getSoldPlantsList().size()<75}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal15">
+                                <img src="/images/8.Botanik-Experte Kopie.png"
+                                     alt="Level 8 (Botanik-Experte) noch nicht erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal15" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 8 (Botanik-Experte): Verkaufe 75 Pflanze um das Level zu erreichen</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${currentUser.getSoldPlantsList().size()>=75}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal16">
+                                <img src="/images/8.Botanik-Experte.png"
+                                     alt="Level 8 (Botanik-Experte) erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal16" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 8 (Botanik-Experte) abgeschlossen: Verkaufe 75 Pflanzen</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <!-- Level 9 -->
+                    <td scope="row">
+                        <div th:if="${currentUser.getSoldPlantsList().size()<100}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal17">
+                                <img src="/images/9.Meister des Gartens Kopie.png"
+                                     alt="Level 9 (Meister des Gartens) noch nicht erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal17" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 9 (Meister des Gartens): Verkaufe 100 Pflanze um das Level zu erreichen</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${currentUser.getSoldPlantsList().size()>=100}">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal18">
+                                <img src="/images/9.Meister des Gartens.png"
+                                     alt="Level 9 (Meister des Gartens) erreicht"
+                                     class="rounded-circle">
+                            </button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal18" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <p>Level 9 (Meister des Gartens) abgeschlossen: Verkaufe 100 Pflanzen</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
