@@ -50,45 +50,49 @@ public class EditAdvertisementController {
     }
 
 
-    @RequestMapping(value="/editAdvertisement/{id}", method = RequestMethod.POST)
+    @RequestMapping(value="/editAdvertisement/{id}",  method = RequestMethod.POST)
     public String editPlant(@PathVariable("id") Integer plantId,
-                            @RequestParam("newplantname") String newplantname,
-                            @RequestParam("newlatinName") String newlatinName,
-                            @RequestParam("newplantSize") Integer newplantSize,
-                            @RequestParam("newprice") Double newprice,
-                            @RequestParam("newplantDescription") String newplantDescription,
-                            @RequestParam("newcareTips") String newcareTips,
-                            @RequestParam("newzipCode") String newzipCode,
-                            @RequestParam("newimageUrl") String newimageUrl,
+                            @RequestParam(value = "newplantname", required = false) String newplantname,
+                            @RequestParam(value= "newlatinName", required = false) String newlatinName,
+                            @RequestParam(value="newplantSize", required = false) Integer newplantSize,
+                            @RequestParam(value="newprice", required = false) Double newprice,
+                            @RequestParam(value="newplantDescription", required = false) String newplantDescription,
+                            @RequestParam(value="newcareTips", required = false) String newcareTips,
+                            @RequestParam(value="newzipCode", required = false) String newzipCode,
+                            @RequestParam(value="newimageUrl", required = false) String newimageUrl,
                             Model model){
 
         Plant currentPlant = plantService.getPlantByPlantId(plantId);
 
-        if(!newplantname.isEmpty()){
+        if(newplantname != null && !newplantname.isEmpty()){
             currentPlant.setPlantname(newplantname);
         }
 
-        if(!newlatinName.isEmpty()){
+        if(newlatinName != null && !newlatinName.isEmpty()){
             currentPlant.setLatinName(newlatinName);
         }
 
-        if(!(newplantSize == null)){
+        if(newplantSize != null){
             currentPlant.setPlantSize(newplantSize);
         }
 
-        if(!(newprice == null)) {
+        if(newprice != null) {
             currentPlant.setPrice(newprice);
         }
 
-        if(!newplantDescription.isEmpty()){
+        if(newplantDescription != null && !newplantDescription.isEmpty()){
             currentPlant.setPlantDescription(newplantDescription);
         }
 
-        if(!newcareTips.isEmpty()){
+        if(newcareTips != null && !newcareTips.isEmpty()){
             currentPlant.setCareTips(newcareTips);
         }
 
-        if(!newimageUrl.isEmpty()){
+        //if(newzipCode != null && !newzipCode.isEmpty()){
+        //    currentPlant.setZipCode(newzipCode);
+        //}
+
+        if(newimageUrl != null && !newimageUrl.isEmpty()){
             currentPlant.setImageUrl(newimageUrl);
         }
 
