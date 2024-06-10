@@ -60,17 +60,4 @@ public class MyAdvertisementsController {
         return "myAdvertisements";
     }
 
-
-    /**
-    @RequestMapping(value = "/myAdvertisements", method = RequestMethod.POST)
-    public String showPlant(@RequestParam("plantIdToShow") Integer plantId,
-                              Model model) {
-        User currentUser = userService.getCurrentUser();
-
-        currentUser.setPlantToShow(plantId);
-
-        return "showAdvertisement";
-    }
-    */
-
 }
