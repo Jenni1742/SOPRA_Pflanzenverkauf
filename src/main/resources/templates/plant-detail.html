@@ -33,7 +33,7 @@
             <p><strong>Status:</strong> <span th:text="${plant.sold ? 'Verkauft' : 'Offen'}">Status</span></p>
         </div>
         <div style="text-align: right; margin-top: -50px;">
-            <a th:href="@{/plant-detail/{id}(id=${plant.plantId})}" style="text-decoration: none;">
+            <a th:href="@{/chat/{sellerName}/{plantId}(sellerName=${plant.seller.username}, plantId=${plant.plantId})}" style="text-decoration: none;">
                 <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
                     Nachricht schreiben
                 </button>
