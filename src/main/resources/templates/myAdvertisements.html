@@ -25,67 +25,80 @@
     <div class="card">
         <p></p>
         <p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill="currentColor" class="bi bi-shop"
+                 viewBox="0 0 16 16">
                 <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z"/>
             </svg>
         </p>
         <p>Hier findest du deine Verkaufsanzeigen.</p>
         <div class="card-body">
 
-            <div th:each="plant : ${plantList}" class="ad" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+            <div th:each="plant : ${plantList}" class="ad"
+                 style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
                 <div style="flex: 0 0 auto; margin-right: 20px;">
                     <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]"
                          style="width:100%; max-width:300px; height:auto;">
                 </div>
                 <div style="flex: 1; padding-left: 20px; text-align: left">
                     <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
+
                     <p th:text="${plant.category.categoryname}" style="font-style: italic;"></p>
                     <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span></p>
                     <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
                     <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
-                    <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span></p>
+                    <p><strong>Verkäufer*in:</strong> <span
+                            th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span>
+                    </p>
 
-                    <a th:href="@{/showAdvertisement/{id}(id=${plant.plantId})}" style="text-decoration: none;">
+                    <a th:href="@{/showAdvertisement/{id}(id=${plant.plantId})}"
+                       style="text-decoration: none; background: none; border: none; cursor: pointer; color: #017101;">
                         <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
                             Ganze Anzeige ansehen
                         </button>
                     </a>
 
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal"
-                            data-bs-target="#/myAdvertisements/deleteAdvertisement">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#017101"
-                             class="bi bi-trash"
-                             viewBox="0 0 16 16">
-                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-                            <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-                        </svg>
-                    </button>
+                    <div style="text-align: right;">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal"
+                                data-bs-target="#/myAdvertisements/deleteAdvertisement">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#017101"
+                                 class="bi bi-trash"
+                                 viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                            </svg>
+                        </button>
 
-                    <!-- Modal -->
-                    <div class="modal" id="/myAdvertisements/deleteAdvertisement" tabindex="-1"
-                         aria-labelledby="/myAdvertisements/deleteAdvertisement" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <form th:action="@{/myAdvertisements (plantId = ${plant.plantId})}" id="plantIdToDelete"
-                                      name="plantId" method="post">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteAdvertisement">Sicher, dass du die Anzeige löschen
-                                            möchtest?</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Bedenke, dass das Löschen nicht rückgängig gemacht werden kann !</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="submit" class="btn btn-rePlantGreen">Ja, Anzeige löschen.</button>
-                                        <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">
-                                            Nein, Anzeige behalten.
-                                        </button>
-                                    </div>
-                                </form>
+                        <!-- Modal -->
+                        <div class="modal" id="/myAdvertisements/deleteAdvertisement" tabindex="-1"
+                             aria-labelledby="/myAdvertisements/deleteAdvertisement" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form th:action="@{/myAdvertisements (plantId = ${plant.plantId})}"
+                                          id="plantIdToDelete"
+                                          name="plantId" method="post">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteAdvertisement">Sicher, dass du die
+                                                Anzeige
+                                                löschen
+                                                möchtest?</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Bedenke, dass das Löschen nicht rückgängig gemacht werden kann !</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-rePlantGreen">Ja, Anzeige löschen.
+                                            </button>
+                                            <button type="button" class="btn btn-rePlantGrey"
+                                                    data-bs-dismiss="modal">
+                                                Nein, Anzeige behalten.
+                                            </button>
+                                        </div>
+                                    </form>
 
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -98,13 +111,11 @@
             </div>
         </div>
         <div class="card-footer text-center ">
-            <a href="http://localhost:8080/createAdvertisement" class="btn btn-rePlantGreen" role="button">Verkaufe deine
-                Pflanzen</a>
+            <a href="http://localhost:8080/createAdvertisement" class="btn btn-rePlantGreen" role="button">
+                Verkaufe deine Pflanzen</a>
         </div>
+    </div>
 </div>
-</div>
-
-
 
 
 </body>
