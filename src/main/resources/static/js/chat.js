@@ -13,14 +13,20 @@ $(document).ready(function() {
 
     function fetchMessages() {
         $.get('/chat/messages', function(messages) {
+            const scrollHeight = chatBox[0].scrollHeight;
+            const shouldScrollToBottom = chatBox.scrollTop() + chatBox.innerHeight() + 20 >= scrollHeight;
             chatBox.empty();
             messages.forEach(function(message) {
                 const messageElement = $('<div>').addClass(message.sender === '1' ? 'outgoing' : 'incoming');
                 messageElement.html('<div class="details"><p>' + message.content + '</p></div>');
                 chatBox.append(messageElement);
             });
+            if (shouldScrollToBottom) {
+                chatBox.scrollTop(scrollHeight);
+            }
         });
     }
+
 
     function sendMessage(content) {
         const messageData = {
