@@ -41,31 +41,33 @@
 
 
             <div th:each="plant : ${currentUser.getWishlistPlants()}" class="ad" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
-                <div style="flex: 0 0 auto; margin-right: 20px;">
-                    <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="width:100%; max-width:300px; height:auto;"/>
+                <div style="flex: 0 0 auto; margin-right: 20px; width: 300px;">
+                    <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
+                        <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
                 </div>
                 <div style="flex: 1; padding-left: 20px; text-align: left">
                     <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
-                    <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}">Kategorie der Pflanze</span></p>
-                    <!--<p><strong>Status:</strong> <span th:text="${plant.status}">Status der Pflanze</span></p>-->
-                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
-                    <p><strong>Verkäufer:</strong> <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span>
-                    <div>
-                        <button style="background: none; border: none; cursor: pointer; color: #017101;">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                        <button onclick="window.location.href='plant-details.html?id=[[${plant.id}]]'" style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
-                            Mehr erfahren
-                        </button>
+                    <p th:text="${plant.category.categoryname}" style="font-style: italic;"></p>
+                    <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
+                    <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
+                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
+                    <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span></p>
+                    <div style="text-align: right; margin-top: -50px;">
+                        <a th:href="@{/plant-detail/{id}(id=${plant.plantId})}" style="text-decoration: none;">
+                            <button type="button" class="btn btn-rePlantGreen">
+                                Mehr erfahren
+                            </button>
+                        </a>
                     </div>
                 </div>
 
 
 
-
+                <div class="ad" style="position: relative;">
 
                 <!-- Button trigger modal -->
-                <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal" style="top: -150px; right: 0px;  position: absolute;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
                     </svg>
@@ -86,7 +88,7 @@
                         </div>
                     </div>
                 </div>
-
+                </div>
 
                 <!--
                 <form th:action="@{/wishlist (plant = ${plant.plantId})}" id="plant" name="plant" method="post">
