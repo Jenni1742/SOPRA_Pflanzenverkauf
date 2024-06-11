@@ -32,7 +32,7 @@
         </p>
         <p>Hier findest du deine Verkaufsanzeigen.</p>
         <div style="flex: 0 0 auto; margin-right: 20px;">
-            <p th:if="${plantList.size()} == 0">
+            <p th:if="${currentUser.getPlantsToSell().size()} == 0">
                 Aktuell hast du noch keine Verkaufsanzeigen, aber das muss nicht so bleiben!
             </p>
         </div>
@@ -50,7 +50,7 @@
 
         <div class="card-body">
 
-            <div th:each="plant : ${plantList}" class="ad"
+            <div th:each="plant : ${currentUser.getPlantsToSell()}" class="ad"
                  style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
                 <div style="flex: 0 0 auto; margin-right: 20px;">
                     <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]"
@@ -95,8 +95,8 @@
                              aria-labelledby="/myAdvertisements/deleteAdvertisement" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form th:action="@{/myAdvertisements (plantId = ${plant.plantId})}"
-                                          id="plantIdToDelete"
+                                    <form th:action="@{/myAdvertisements/{plantId} (plantId = ${plant.plantId})}"
+                                          id="plantId"
                                           name="plantId" method="post">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="deleteAdvertisement">Sicher, dass du die
