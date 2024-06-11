@@ -15,33 +15,39 @@
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
 <div class="container mt-4">
-    <div class="row">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
 
-        <div class="col-md-4">
-            <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.plantname}]]" class="img-fluid" style="border-radius: 10px; max-width: 100%; height: auto;">
-        </div>
+                <div class="col-md-4">
+                    <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.plantname}]]" class="img-fluid" style="border-radius: 10px; max-width: 100%; height: auto;">
+                </div>
 
-        <div class="col-md-8">
-            <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
-            <p><strong>Lateinischer Name:</strong> <span th:text="${plant.latinName}">Lateinischer Name</span></p>
-            <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
-            <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span> €</p>
-            <p><strong>Beschreibung:</strong> <span th:text="${plant.plantDescription}">Beschreibung</span></p>
-            <p><strong>Postleitzahl:</strong> <span th:text="${plant.zipCode}">00000</span></p>
-            <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}">Kategorie</span></p>
-            <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller.username}">Verkäufer</span></p>
-            <p><strong>Status:</strong> <span th:text="${plant.sold ? 'Verkauft' : 'Offen'}">Status</span></p>
-        </div>
-        <div style="text-align: right; margin-top: -50px;">
-            <a th:href="@{/chat/{sellerName}/{plantId}(sellerName=${plant.seller.username}, plantId=${plant.plantId})}" style="text-decoration: none;">
-                <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
-                    Nachricht schreiben
-                </button>
-            </a>
-        </div>
+                <div class="col-md-8">
+                    <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
+                    <p><strong>Lateinischer Name:</strong> <span th:text="${plant.latinName}">Lateinischer Name</span></p>
+                    <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
+                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span> €</p>
+                    <p><strong>Beschreibung:</strong> <span th:text="${plant.plantDescription}">Beschreibung</span></p>
+                    <p><strong>Postleitzahl:</strong> <span th:text="${plant.zipCode}">00000</span></p>
+                    <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}">Kategorie</span></p>
+                    <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller.username}">Verkäufer</span></p>
+                    <p><strong>Status:</strong> <span th:text="${plant.sold ? 'Verkauft' : 'Offen'}">Status</span></p>
+                </div>
+                <div style="text-align: right; margin-top: -50px;">
+                    <a th:href="@{/chat/{sellerName}/{plantId}(sellerName=${plant.seller.username}, plantId=${plant.plantId})}" style="text-decoration: none;">
+                        <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                            Nachricht schreiben
+                        </button>
+                    </a>
+                </div>
 
+            </div>
+        </div>
+        <div class="card-footer text-center card-footer-rePlant">
+            <p></p>
+        </div>
     </div>
-
 </div>
 
 </body>
