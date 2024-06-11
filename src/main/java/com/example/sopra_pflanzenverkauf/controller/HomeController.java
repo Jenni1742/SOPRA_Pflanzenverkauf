@@ -59,9 +59,11 @@ public class HomeController {
                               Map<String, Object> model) {
         User currentUser = userService.getCurrentUser();
 
-        currentUser.getWishlistPlants().add(plantService.getPlantByPlantId(plant));
+        if (currentUser != null && plant != null) {
+            currentUser.getWishlistPlants().add(plantService.getPlantByPlantId(plant));
 
-        userService.updateWishlist(currentUser);
+            userService.updateWishlist(currentUser);
+        }
 
         model.put("currentUser", currentUser);
         return "redirect:/";
