@@ -1,6 +1,7 @@
 package com.example.sopra_pflanzenverkauf.service;
 
 import com.example.sopra_pflanzenverkauf.entity.Category;
+import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.Role;
 import com.example.sopra_pflanzenverkauf.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,10 @@ public class CategoryService {
      */
     public List<Category> findAllCategories() {
         return categoryRepository.findAll();
+    }
+
+    public Category getCategoryByName(String categoryname) {
+        return categoryRepository.findByCategoryname(categoryname);
     }
 
 

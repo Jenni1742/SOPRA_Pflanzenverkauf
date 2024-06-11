@@ -68,10 +68,11 @@
                                required>
                     </div>
 
-                    <div class="input-group mb-3" >
-                        <label class="input-group-text" for="selectCategory">Kategorie</label>
-                        <select class="form-select" id="selectCategory" required>
+                    <div class="mb-3" >
+                        <label>Kategorie</label>
+                        <select class="form-select" id="categoryname" name="categoryname" required>
                             <option selected>Auswählen...</option>
+
                             <div th:each="category : ${categories}">
                                 <option><span th:text="${category.getCategoryname()}"></span></option>
                             </div>

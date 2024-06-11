@@ -45,12 +45,16 @@ public class CreateAdvertisementController {
     }
 
     @RequestMapping (value="/createAdvertisement", method = RequestMethod.POST)
-    public String createPlant(@ModelAttribute("plant") Plant newPlant){
+    public String createPlant(@ModelAttribute("plant") Plant newPlant,
+                              @RequestParam("categoryname") String categoryname){
 
         User currentUser = userService.getCurrentUser();
         newPlant.setSeller(currentUser);
         currentUser.getPlantsToSell().add(newPlant);
         userService.updatePlantsToSell(currentUser);
+
+        newPlant.setCategory(categoryService.getCategoryByName(categoryname));
+
 
         //Verkauft ist standardmäßig false
         plantService.persistPlant(newPlant);
