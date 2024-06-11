@@ -37,6 +37,9 @@
             </div>
         </div>
         <div class="card-footer text-center card-footer-rePlant">
+            <button onclick="history.back()" type="button" class="btn btn-rePlantGrey">
+                Schließen
+            </button>
             <a th:href="@{/editAdvertisement/{id}(id=${plant.plantId})}" style="text-decoration: none;">
                 <button type="button" class="btn btn-rePlantGreen">
                     Angaben ändern
