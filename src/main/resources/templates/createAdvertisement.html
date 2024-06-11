@@ -28,7 +28,7 @@
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="plantname" class="form-label">Name der Pflanze</label>
-                        <input type="text" class="form-control" id="plantname" name="plantname" th:field="*{plantname}"
+                        <input type="text" class="form-control" pattern="[A-Za-z]{1,22}" id="plantname" name="plantname" th:field="*{plantname}"
                                required>
                     </div>
 
@@ -46,8 +46,7 @@
                     <div class="mb-3">
                         <label for="price" class="form-label">Preis (in €)</label>
                         <input type="number" min="0" step="0.01" size="3" class="form-control" id="price" name="price"
-                               th:field="*{price}"
-                               required>
+                               th:field="*{price}" required>
                     </div>
 
                     <div class="mb-3">
@@ -86,6 +85,9 @@
 
                 </div>
                 <div class="card-footer text-center card-footer-rePlant">
+                    <button onclick="history.back()" type="button" class="btn btn-rePlantGrey">
+                        Schließen
+                    </button>
                     <button type="submit" class="btn btn-rePlantGreen">Anzeige hochladen
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud-arrow-up" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M7.646 5.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 6.707V10.5a.5.5 0 0 1-1 0V6.707L6.354 7.854a.5.5 0 1 1-.708-.708z"/>

@@ -27,6 +27,16 @@
             </svg>
         </p>
         <p>Hier findest du deine markierten Pflanzen.</p>
+        <div style="flex: 0 0 auto; margin-right: 20px;">
+            <p th:if="${currentUser.wishlistPlants.size()} == 0">
+                Aktuell ist die Liste noch leer, aber das muss nicht so bleiben!
+            </p>
+        </div>
+        <a href="http://localhost:8080/">
+            <button type="button" class="btn btn-rePlantGreen">
+                Entdecke mehr Secondhand-Pflanzen
+            </button>
+        </a>
         <div class="card-body">
 
 
@@ -36,12 +46,10 @@
                 </div>
                 <div style="flex: 1; padding-left: 20px; text-align: left">
                     <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
-                    <!-- To Do: plant.category.categoryname Problem: Nicht mehr alle angezeigt -->
-                    <p><strong>Kategorie:</strong> <span th:text="${plant.category}">Kategorie der Pflanze</span></p>
+                    <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}">Kategorie der Pflanze</span></p>
                     <!--<p><strong>Status:</strong> <span th:text="${plant.status}">Status der Pflanze</span></p>-->
                     <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
-                    <!-- To Do: plant.seller.getUsername() Problem: Nicht mehr alle angezeigt -->
-                    <p><strong>Verkäufer:</strong> <span th:text="${plant.seller}">Name des Verkäufers</span></p>
+                    <p><strong>Verkäufer:</strong> <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span>
                     <div>
                         <button style="background: none; border: none; cursor: pointer; color: #017101;">
                             <i class="fas fa-heart"></i>
@@ -109,23 +117,9 @@
 
 
 
-
-
-            <div style="flex: 0 0 auto; margin-right: 20px;">
-                <p th:if="${currentUser.wishlistPlants.size()} == 0">
-                    Aktuell ist die Liste noch leer, aber das muss nicht so bleiben!
-                </p>
-            </div>
-
-
         </div>
         <div class="card-footer text-center card-footer-rePlant">
-            <a href="http://localhost:8080/">
-                <button type="button" class="btn btn-rePlantGreen">
-                    Entdecke mehr Secondhand-Pflanzen
-                </button>
-            </a>
-
+            <p></p>
         </div>
     </div>
 </div>
