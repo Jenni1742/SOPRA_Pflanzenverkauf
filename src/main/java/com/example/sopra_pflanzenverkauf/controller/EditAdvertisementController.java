@@ -2,7 +2,6 @@ package com.example.sopra_pflanzenverkauf.controller;
 
 import com.example.sopra_pflanzenverkauf.entity.Category;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
-import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
 import com.example.sopra_pflanzenverkauf.service.CategoryService;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
@@ -23,9 +22,6 @@ public class EditAdvertisementController {
 
     @Autowired
     private PlantService plantService;
-
-    @Autowired
-    private UserService userService;
 
     @Autowired
     private CategoryService categoryService;
