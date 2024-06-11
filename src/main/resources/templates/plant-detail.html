@@ -37,9 +37,9 @@
             </div>
         </div>
         <div class="card-footer text-center card-footer-rePlant">
-            <a href="/" class="btn-linkButton">
-                <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Schließen</button>
-            </a>
+            <button onclick="history.back()" type="button" class="btn btn-rePlantGrey">
+                Schließen
+            </button>
             <a th:href="@{/chat/{sellerName}/{plantId}(sellerName=${plant.seller.username}, plantId=${plant.plantId})}" style="text-decoration: none;">
                 <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
                     Nachricht schreiben
