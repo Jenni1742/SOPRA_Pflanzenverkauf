@@ -32,9 +32,9 @@ public class MyAdvertisementsController {
 
         User currentUser = userService.getCurrentUser();
 
-        /*
+
         List<Plant> plantList = userService.getCurrentUser().getPlantsToSell();
-        model.addAttribute("plantList", plantList);*/
+        model.addAttribute("plantList", plantList);
 
         model.addAttribute("currentUser", currentUser);
 
