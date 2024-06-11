@@ -57,14 +57,6 @@
                     <!-- To Do: plant.seller.getUsername() Problem: Nicht mehr alle angezeigt -->
                     <p><strong>Verkäufer:</strong> <span th:text="${plant.seller}">Name des Verkäufers</span></p>
                     <p><strong>Pflegetipps:</strong> <span th:text="${plant.careTips}">Pflegetipps</span></p>
-                    <div>
-                        <button style="background: none; border: none; cursor: pointer; color: #017101;">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                        <button onclick="window.location.href='plant-details.html?id=[[${plant.id}]]'" style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
-                            Mehr erfahren
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
