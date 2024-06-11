@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Käufer Ranking</title>
@@ -48,7 +48,7 @@
 
                         <p><strong>Käufelevel:</strong> <span th:text="${user.buyingLevel.levelname}">Käuferlevel</span></p>
                         <div>
-                            <a href="showOtherProfile" class="btn-linkButton">
+                            <a th:href="@{/showOtherProfileBuyer/{userid}(userid=${user.userId})}" class="btn-linkButton">
                                 <button type="button" class="btn btn-rePlantGreen">
                                     Profil ansehen
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
