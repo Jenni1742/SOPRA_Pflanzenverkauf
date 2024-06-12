@@ -183,7 +183,7 @@ public class TestDataLoader implements CommandLineRunner {
 
         User aylinaAshkenov = new User();
         aylinaAshkenov.setUsername("AylinaA");
-        aylinaAshkenov.setPassword("5678");
+        aylinaAshkenov.setPassword("1234");
         aylinaAshkenov.setFirstName("Aylina");
         aylinaAshkenov.setLastName("Ashkenov");
         aylinaAshkenov.setEmail("aylinaaa.akv@mail.com");
@@ -196,7 +196,7 @@ public class TestDataLoader implements CommandLineRunner {
 
         User alessiaSedelnikov = new User();
         alessiaSedelnikov.setUsername("AlessiaS");
-        alessiaSedelnikov.setPassword("2345");
+        alessiaSedelnikov.setPassword("1234");
         alessiaSedelnikov.setFirstName("Alessia");
         alessiaSedelnikov.setLastName("Sedelnikov");
         alessiaSedelnikov.setEmail("alessia.sedelnikov@mail.com");
@@ -209,7 +209,7 @@ public class TestDataLoader implements CommandLineRunner {
 
         User markoPetric = new User();
         markoPetric.setUsername("MarkoP");
-        markoPetric.setPassword("3456");
+        markoPetric.setPassword("1234");
         markoPetric.setFirstName("Marko");
         markoPetric.setLastName("Petric");
         markoPetric.setEmail("marko.petric@mail.com");
@@ -222,7 +222,7 @@ public class TestDataLoader implements CommandLineRunner {
 
         User franziskaHornung = new User();
         franziskaHornung.setUsername("FranziH");
-        franziskaHornung.setPassword("4567");
+        franziskaHornung.setPassword("1234");
         franziskaHornung.setFirstName("Franziska");
         franziskaHornung.setLastName("Hornung");
         franziskaHornung.setEmail("franziskaHornung@mail.com");
