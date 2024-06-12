@@ -89,12 +89,8 @@ public class Plant {
         this.sold = sold;
     }
 
-    public void setSold(){
-        this.sold = sold;
-    }
-    public Boolean getSold(){
-        return sold;
-    }
+
+
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
@@ -168,7 +164,7 @@ public class Plant {
         this.seller = seller;
     }
 
-    public boolean isSold() {
+    public Boolean getSold(){
         return sold;
     }
     public void setSold(boolean sold) {
