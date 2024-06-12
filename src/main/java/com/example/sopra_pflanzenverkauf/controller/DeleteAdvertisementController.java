@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -31,8 +32,16 @@ public class DeleteAdvertisementController {
 
 
     @GetMapping("/deleteAdvertisement/{id}")
-    public String deletePlant(@PathVariable("id") Integer plantId, Model model) {
+    public String openDeletePlant(@PathVariable("id") Integer plantId, Model model) {
 
+        //model.addAttribute("plantId", plantId);
+
+        return "deleteAdvertisement";
+    }
+
+
+    @PostMapping("/deleteAdvertisement/{id}")
+    public String deletePlant(@PathVariable("id") Integer plantId, Model model) {
 
         User currentUser = userService.getCurrentUser();
 
@@ -43,8 +52,7 @@ public class DeleteAdvertisementController {
         }
 
         plantService.deletePlantByPlantId(plantId);
-        //model.addAttribute("message", "Pflanze erfolgreich gelöscht.");
 
-        return "deleteAdvertisement";
+        return "myAdvertisements";
     }
 }
