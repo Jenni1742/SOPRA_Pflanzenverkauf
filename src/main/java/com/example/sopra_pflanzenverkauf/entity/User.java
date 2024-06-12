@@ -70,6 +70,14 @@ public class User {
     @JoinTable(name = "Merkliste", joinColumns = @JoinColumn(name = "BenutzerID"), inverseJoinColumns = @JoinColumn(name = "PflanzenID"))
     private Set<Plant> wishlistPlants;
 
+    /*
+    @OneToMany (mappedBy = "seller")
+    private java.util.List<Plant> plantsToSell = new ArrayList<>();
+
+    @OneToMany (mappedBy = "seller")
+    private java.util.List<Plant> soldPlantsList = new ArrayList<>()
+    */
+
     @OneToMany (mappedBy = "seller")
     private java.util.List<Plant> plantsToSell = new ArrayList<>();
 

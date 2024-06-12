@@ -261,8 +261,8 @@ public class TestDataLoader implements CommandLineRunner {
         plantService.persistPlant(kaffeestrauch);
 
         //Marko hat Anzeige erstellt
-        markoPetric.getPlantsToSell().add(kaffeestrauch);
-        userService.updatePlantsToSell(markoPetric);
+        //markoPetric.getPlantsToSell().add(kaffeestrauch);
+        //userService.updatePlantsToSell(markoPetric);
 
         //Alessia kauft die Pflanze von Marko
         alessiaSedelnikov.getPurchasedPlants().add(kaffeestrauch);
@@ -324,8 +324,8 @@ public class TestDataLoader implements CommandLineRunner {
         plantService.persistPlant(kniphofia);
 
         //Jennifer hat Anzeige erstellt
-        jenniferKaisner.getPlantsToSell().add(kniphofia);
-        userService.updatePlantsToSell(jenniferKaisner);
+        //jenniferKaisner.getPlantsToSell().add(kniphofia);
+        //userService.updatePlantsToSell(jenniferKaisner);
 
         //Alessia kauft die Pflanze von Jennifer
         alessiaSedelnikov.getPurchasedPlants().add(kniphofia);
@@ -419,8 +419,8 @@ public class TestDataLoader implements CommandLineRunner {
         plantService.persistPlant(hahn);
 
         //Alessia hat Anzeige erstellt
-        alessiaSedelnikov.getPlantsToSell().add(hahn);
-        userService.updatePlantsToSell(alessiaSedelnikov);
+        //alessiaSedelnikov.getPlantsToSell().add(hahn);
+        //userService.updatePlantsToSell(alessiaSedelnikov);
 
         //Jennifer kauft die Pflanze von Alessia
         jenniferKaisner.getPurchasedPlants().add(hahn);
