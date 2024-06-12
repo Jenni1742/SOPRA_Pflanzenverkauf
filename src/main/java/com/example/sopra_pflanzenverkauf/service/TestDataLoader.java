@@ -236,11 +236,11 @@ public class TestDataLoader implements CommandLineRunner {
         // create plants-----------------------------------------------------------------------------------------------
 
         /*
-        A3-V löscht sein Profil aber hat schon P verkauft
+        A3-V löscht sein Profil aber hat schon P verkauft --Funktioniert
         → Bei K muss Verkäufer auf null gesetzt werden
         → Verkaufte P V auf null (SoldPlants)
 
-        A4-K löscht sein Profil aber hat schon P gekauft
+        A4-K löscht sein Profil aber hat schon P gekauft --Funktioniert
         → Bei V muss Käufer auf null gesetzt werden
         → Gekaufte P K auf null (purchasedPlants)
         */
@@ -291,11 +291,11 @@ public class TestDataLoader implements CommandLineRunner {
         plantService.persistPlant(allium);
 
         /*
-        A1- K hat P in Merkliste und der V löscht sein Profil
+        A1- K hat P in Merkliste und der V löscht sein Profil --Funktioniert
         → P muss aus Merkliste entfernt werden
         → Aktive P müssen gelöscht werden (PlantsToSell)
 
-        A2-V löscht sein Profil aber hat P eingestellt
+        A2-V löscht sein Profil aber hat P eingestellt  --Funktioniert
         --> P muss aus Home, Searchresults und Merklisten entfernt werden
         --> Aktive P müssen gelöscht werden (PlantsToSell)
         */
@@ -456,19 +456,19 @@ Fehlerquellen:
 
 A) Mögliche Fehlerquellen beim Profil löschen: ----------------------------------------------------------------------------
 
-A1- K hat P in Merkliste und der V löscht sein Profil
+A1- K hat P in Merkliste und der V löscht sein Profil --Funktioniert
 --> P muss aus Merkliste entfernt werden
 --> Aktive P müssen gelöscht werden (PlantsToSell)
 
-A2-V löscht sein Profil aber hat P eingestellt
+A2-V löscht sein Profil aber hat P eingestellt --Funktioniert
 --> P muss aus Home, Searchresults und Merklisten entfernt werden
 --> Aktive P müssen gelöscht werden (PlantsToSell)
 
-A3-V löscht sein Profil aber hat schon P verkauft
+A3-V löscht sein Profil aber hat schon P verkauft --Funktioniert
 --> Bei K muss Verkäufer auf null gesetzt werden
 --> Verkaufte P V auf null (SoldPlants)
 
-A4-K löscht sein Profil aber hat schon P gekauft
+A4-K löscht sein Profil aber hat schon P gekauft --Funktioniert
 --> Bei V muss Käufer auf null gesetzt werden
 --> Gekaufte P K auf null (purchasedPlants)
 
