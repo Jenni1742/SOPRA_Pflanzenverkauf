@@ -79,10 +79,6 @@ public class User {
     @OneToMany (mappedBy = "buyer")
     private java.util.List<Plant> purchasedPlants = new ArrayList<>();
 
-    //wird bei showAdvertisement verwendet
-    private Integer plantToShow;
-
-    //Hallo
     /**
      * Instantiates a new User.
      */
@@ -352,14 +348,6 @@ public class User {
 
     public void setWishlistPlants(Set<Plant> wishlistPlants) {
         this.wishlistPlants = wishlistPlants;
-    }
-
-    public Integer getPlantToShow() {
-        return plantToShow;
-    }
-
-    public void setPlantToShow(Integer plantToShow) {
-        this.plantToShow = plantToShow;
     }
 
 
