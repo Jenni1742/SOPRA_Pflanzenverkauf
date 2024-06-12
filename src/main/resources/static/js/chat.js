@@ -1,60 +1,60 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const senderId = 'user1';  // Beispielhafter Sendername, später dynamisch ersetzen
-    const recipient = 'user2';  // Beispielhafter Empfängername, später dynamisch ersetzen
+$(document).ready(function() {
+    const chatBox = $('.chat-box');
+    const typingArea = $('.typing-area');
+    const recipientId = $('input[name="recipientId"]').val();
+    const csrfToken = $('meta[name="_csrf"]').attr('content');
+    const csrfHeader = $('meta[name="_csrf_header"]').attr('content');
+
+    $.ajaxSetup({
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader(csrfHeader, csrfToken);
+        }
+    });
 
     function fetchMessages() {
-        fetch(`/api/messages?sender=${senderId}&recipient=${recipient}`)
-            .then(response => response.json())
-            .then(messages => {
-                console.log(messages);  // Hier könntest du die Nachrichten in das UI einfügen
+        $.get('/chat/messages', function(messages) {
+            const scrollHeight = chatBox[0].scrollHeight;
+            const shouldScrollToBottom = chatBox.scrollTop() + chatBox.innerHeight() + 20 >= scrollHeight;
+            chatBox.empty();
+            messages.forEach(function(message) {
+                const messageElement = $('<div>').addClass(message.sender === '1' ? 'outgoing' : 'incoming');
+                messageElement.html('<div class="details"><p>' + message.content + '</p></div>');
+                chatBox.append(messageElement);
             });
+            if (shouldScrollToBottom) {
+                chatBox.scrollTop(scrollHeight);
+            }
+        });
     }
+
 
     function sendMessage(content) {
-        const message = {
+        const messageData = {
             content: content,
-            recipient: { username: recipient }  // Erstelle eine passende Empfängerstruktur
+            recipientId: recipientId
         };
 
-        fetch('/api/messages', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(message)
-        }).then(response => response.json())
-            .then(message => {
-                console.log(message);  // Hier könntest du die gesendete Nachricht im UI anzeigen
-            });
+        $.ajax({
+            type: "POST",
+            url: "/chat/messages",
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify(messageData),
+            success: function() {
+                fetchMessages();
+                typingArea.find('input[name="content"]').val('');
+            }
+        });
     }
 
-    // Beispielhafte Nutzung
-    fetchMessages();
-    // sendMessage('Hallo Welt!');
-});
-document.querySelector('.typing-area').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const content = document.querySelector('input[name="content"]').value;
-    const recipientId = document.querySelector('input[name="recipientId"]').value;
-
-    fetch('/chat', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'X-CSRF-TOKEN': document.querySelector('input[name="_csrf"]').value
-        },
-        body: `content=${content}&recipientId=${recipientId}`
-    }).then(response => {
-        if (response.ok) {
-            return response.text();
-        } else {
-            throw new Error('Network response was not ok.');
+    typingArea.on('submit', function(event) {
+        event.preventDefault();
+        const content = $('input[name="content"]').val().trim();
+        if (content) {
+            sendMessage(content);
         }
-    }).then(data => {
-        document.querySelector('.chat-box').innerHTML = data;
-        document.querySelector('input[name="content"]').value = '';
-    }).catch(error => {
-        console.error('There has been a problem with your fetch operation:', error);
     });
-});
 
+    fetchMessages();
+    setInterval(fetchMessages, 5000);
+});

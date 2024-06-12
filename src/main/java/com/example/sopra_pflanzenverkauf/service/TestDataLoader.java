@@ -284,7 +284,7 @@ public class TestDataLoader implements CommandLineRunner {
 
 
         Plant prunus = new Plant(
-                "Prunus subhirtella autumnalis",
+                "Prunus subhirtella",
                 25,
                 180,
                 "Die Pflanze namens Prunus subhirtella autumnalis kann man nicht beschreiben, die muss man einfach sehen! Blüht hübsch in pink und weiß. Perfekt für Instagram-Bilder ",
@@ -300,7 +300,7 @@ public class TestDataLoader implements CommandLineRunner {
 
 
         Plant occidentalis = new Plant(
-                "Cephalanthus occidentalis",
+                "Cephalanthus",
                 25,
                 180,
                 "Sieht ein bisschen so aus wie eine Kastanie oder Corona ",

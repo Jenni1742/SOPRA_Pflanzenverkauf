@@ -26,13 +26,17 @@
                 <div class="col-md-8">
                     <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
                     <p><strong>Lateinischer Name:</strong> <span th:text="${plant.latinName}">Lateinischer Name</span></p>
+                    <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}" style="font-style: italic;">Kategorie</span></p>
+                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
                     <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
-                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span> €</p>
                     <p><strong>Beschreibung:</strong> <span th:text="${plant.plantDescription}">Beschreibung</span></p>
+                    <p><strong>Verkäufer*in:</strong>
+                        <a th:href="@{/showOtherProfileSeller/{userid}(userid=${plant.seller.userId})}" class="btn-linkVerkäufer">
+                             <span th:text="${plant.seller.username}">Verkäufer</span>
+                        </a>
+                    </p>
                     <p><strong>Postleitzahl:</strong> <span th:text="${plant.zipCode}">00000</span></p>
-                    <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}">Kategorie</span></p>
-                    <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller.username}">Verkäufer</span></p>
-                    <p><strong>Status:</strong> <span th:text="${plant.sold ? 'Verkauft' : 'Offen'}">Status</span></p>
+                    <!--<p><strong>Status:</strong> <span th:text="${plant.sold ? 'Verkauft' : 'Offen'}">Status</span></p>-->
                 </div>
             </div>
         </div>
@@ -41,7 +45,7 @@
                 Schließen
             </button>
             <a th:href="@{/chat}" style="text-decoration: none;">
-                <button style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
+                <button type="button" class="btn btn-rePlantGreen">
                     Nachricht schreiben
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">
                         <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
