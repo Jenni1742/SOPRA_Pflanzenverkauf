@@ -44,10 +44,13 @@
                 </div>
             </div>
             <form action="/chat" method="post" class="typing-area">
-                <input type="hidden" name="recipientId" value="1">
+                <input type="hidden" name="recipientId" id="recipientId" th:value="${recipientId}">
+                <input type="hidden" name="senderId" id="senderId" th:value="${currentUser.userId}">
                 <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
                 <input type="text" name="content" placeholder="Gib eine Nachricht ein." required>
-                <button type="submit" style="background-color: #017101"><i class="fa fa-paper-plane"></i></button>
+                <button type="submit" th:disabled="${recipientId == null}">
+                    <i class="fa fa-paper-plane"></i>
+                </button>
             </form>
 
         </div>
