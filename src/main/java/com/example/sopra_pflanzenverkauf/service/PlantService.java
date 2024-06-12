@@ -75,35 +75,6 @@ public class PlantService {
 
 
 
-
-    public List<Plant> findFilteredAndSortedPlants(Category category, String price) {
-        List<Plant> plants = plantRepository.findAll();
-
-        if (category != null) {
-            plants = plants.stream()
-                    .filter(plant -> plant.getCategory().equals(category))
-                    .collect(Collectors.toList());
-        }
-
-        if (price != null && !price.isEmpty()) {
-            // Assuming price is in format "min-max"
-            String[] priceRange = price.split("-");
-            if (priceRange.length == 2) {
-                try {
-                    double minPrice = Double.parseDouble(priceRange[0]);
-                    double maxPrice = Double.parseDouble(priceRange[1]);
-                    plants = plants.stream()
-                            .filter(plant -> plant.getPrice() >= minPrice && plant.getPrice() <= maxPrice)
-                            .collect(Collectors.toList());
-                } catch (NumberFormatException e) {
-                    // Handle exception
-                }
-            }
-        }
-
-        return plants;
-    }
-
     public void deletePlantByPlantId(Integer plantID) {
         plantRepository.deleteById(plantID);
     }
@@ -117,49 +88,37 @@ public class PlantService {
    return plant.orElse(null);
    }
 
-
-
     public List<Plant> getAllPlants(String sort) {
         List<Plant> plants = plantRepository.findAll();
+
         if (sort != null) {
             switch (sort) {
                 case "price_asc":
-                    plants.sort(Comparator.comparingDouble(Plant::getPrice));
+                    plants = plants.stream()
+                            .sorted(Comparator.comparing(Plant::getPrice))
+                            .collect(Collectors.toList());
                     break;
                 case "price_desc":
-                    plants.sort(Comparator.comparingDouble(Plant::getPrice).reversed());
+                    plants = plants.stream()
+                            .sorted(Comparator.comparing(Plant::getPrice).reversed())
+                            .collect(Collectors.toList());
                     break;
                 case "size_asc":
-                    plants.sort(Comparator.comparingDouble(Plant::getPlantSize));
+                    plants = plants.stream()
+                            .sorted(Comparator.comparing(Plant::getPlantSize))
+                            .collect(Collectors.toList());
                     break;
                 case "size_desc":
-                    plants.sort(Comparator.comparingDouble(Plant::getPlantSize).reversed());
-                    break;
-            }
-        }
-        return plants;
-    }
-
-
-    public List<Plant> sortPlants(List<Plant> plants, String sort) {
-        if (sort != null) {
-            switch (sort) {
-                case "price_asc":
-                    plants.sort(Comparator.comparingDouble(Plant::getPrice));
-                    break;
-                case "price_desc":
-                    plants.sort(Comparator.comparingDouble(Plant::getPrice).reversed());
-                    break;
-                case "size_asc":
-                    plants.sort(Comparator.comparingDouble(Plant::getPlantSize));
-                    break;
-                case "size_desc":
-                    plants.sort(Comparator.comparingDouble(Plant::getPlantSize).reversed());
+                    plants = plants.stream()
+                            .sorted(Comparator.comparing(Plant::getPlantSize).reversed())
+                            .collect(Collectors.toList());
                     break;
                 default:
+                    // If no sort parameter or unknown sort parameter, return the default order
                     break;
             }
         }
+
         return plants;
     }
 }

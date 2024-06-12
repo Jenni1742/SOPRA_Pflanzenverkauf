@@ -34,23 +34,15 @@ public class HomeController {
         User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", currentUser);
 
+        List<Plant> plants;
+
         if (query != null && !query.isEmpty()) {
-            List<Plant> plants = plantService.searchPlantsByName(query);
+            plants = plantService.searchPlantsByName(query);
             model.addAttribute("plants", plants);
-            return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
+            return "searchresults";
         }
 
-        List<Plant> plants = plantService.getAllPlants(sort);
-        model.addAttribute("plants", plants);
-        return "home";
-    }
-
-
-    @GetMapping("/")
-    public String getPlants(Model model) {
-        List<Plant> plants = plantService.getAllPlants().stream()
-                .filter(plant -> !plant.getSold())
-                .collect(Collectors.toList());
+        plants = plantService.getAllPlants(sort);
         model.addAttribute("plants", plants);
         return "home";
     }
