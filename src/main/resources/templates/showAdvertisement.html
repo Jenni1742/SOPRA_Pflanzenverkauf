@@ -26,12 +26,12 @@
                 <div class="col-md-8">
                     <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
                     <p><strong>Lateinischer Name:</strong> <span th:text="${plant.latinName}">Lateinischer Name</span></p>
+                    <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}" style="font-style: italic;">Kategorie</span></p>
+                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
                     <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
-                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span> €</p>
                     <p><strong>Beschreibung:</strong> <span th:text="${plant.plantDescription}">Beschreibung</span></p>
-                    <p><strong>Postleitzahl:</strong> <span th:text="${plant.zipCode}">00000</span></p>
-                    <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}">Kategorie</span></p>
                     <p><strong>Pflegetipps:</strong> <span th:text="${plant.careTips}">Pflegetipps</span></p>
+                    <p><strong>Postleitzahl:</strong> <span th:text="${plant.zipCode}">00000</span></p>
                 </div>
 
             </div>
