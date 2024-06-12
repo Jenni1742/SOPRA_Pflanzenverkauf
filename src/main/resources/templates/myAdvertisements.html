@@ -62,7 +62,11 @@
                     <p th:text="${plant.category.categoryname}" style="font-style: italic;"></p>
                     <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
                     <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
-                    <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller.username}">Verkäufer</span></p>
+                    <p><strong>Verkäufer*in:</strong>
+                        <a th:href="@{/showOtherProfileSeller/{userid}(userid=${plant.seller.userId})}" class="btn-linkVerkäufer">
+                            <span th:text="${plant.seller.username}">Verkäufer</span>
+                        </a>
+                    </p>
                     <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
 
                     <!--<p><strong>Verkäufer*in:</strong> <span
