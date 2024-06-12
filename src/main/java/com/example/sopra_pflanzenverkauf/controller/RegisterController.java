@@ -1,8 +1,10 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
 import com.example.sopra_pflanzenverkauf.entity.Plant;
+import com.example.sopra_pflanzenverkauf.entity.Role;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.service.LevelService;
+import com.example.sopra_pflanzenverkauf.service.RoleService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class RegisterController {
@@ -23,6 +27,9 @@ public class RegisterController {
 
     @Autowired
     private MyUserValidator userValidator;
+    @Autowired
+    private RoleService roleService;
+
     @InitBinder("newUser")
     public void initBinder(WebDataBinder binder) {
         binder.setValidator(userValidator);
@@ -85,6 +92,11 @@ public class RegisterController {
                     newUser.setSellingLevel(levelService.getLevelByLevelname("Korn"));
                     userService.updateSellingLevel(newUser);
 
+                    Role userRole = roleService.findRoleByName("ROLE_USER");
+                    Set<Role> userRoles = new HashSet<>();
+                    userRoles.add(userRole);
+                    newUser.setRoles(userRoles);
+                    userService.updateRoles(newUser);
 
                     userService.persistUser(newUser);
 

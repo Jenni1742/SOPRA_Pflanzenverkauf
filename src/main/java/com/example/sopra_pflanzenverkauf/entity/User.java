@@ -54,9 +54,6 @@ public class User {
     @Column(name = "Profilbild")
     private String picturePath;
 
-    @Column(name = "Verkaufte Pflanzen")
-    private List soldPlants;
-
     @Column(name = "Anzahl gekaufter Pflanzen")
     private Integer numberOfPurchasedPlants = 0;
 
@@ -82,10 +79,6 @@ public class User {
     @OneToMany (mappedBy = "buyer")
     private java.util.List<Plant> purchasedPlants = new ArrayList<>();
 
-    //wird bei showAdvertisement verwendet
-    private Integer plantToShow;
-
-    //Hallo
     /**
      * Instantiates a new User.
      */
@@ -357,30 +350,6 @@ public class User {
         this.wishlistPlants = wishlistPlants;
     }
 
-    public Integer getPlantToShow() {
-        return plantToShow;
-    }
-
-    public void setPlantToShow(Integer plantToShow) {
-        this.plantToShow = plantToShow;
-    }
-
-    /**
-     * Gets list of sold plants.
-     *
-     * @return the list of dold plants
-     * */
-    public List getSoldPlants() {
-        return soldPlants;
-    }
-    /**
-     * Sets list of sold plants.
-     *
-     * @param soldPlants the list of sold plants
-     */
-    public void setSoldPlants(List soldPlants) {
-        this.soldPlants = soldPlants;
-    }
 
     public Integer getNumberOfPurchasedPlants() {
         return numberOfPurchasedPlants;

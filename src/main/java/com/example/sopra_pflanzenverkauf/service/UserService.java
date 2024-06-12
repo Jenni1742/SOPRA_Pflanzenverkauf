@@ -76,6 +76,8 @@ public class UserService implements UserDetailsService {
 
     public void updatePlantsToSell(User user) {userRepository.save(user);}
 
+    public void updateRoles(User user) {userRepository.save(user);}
+
     public void updatePurchasedPlants(User user) {
         user.setNumberOfPurchasedPlants(user.getPurchasedPlants().size());
         userRepository.save(user);

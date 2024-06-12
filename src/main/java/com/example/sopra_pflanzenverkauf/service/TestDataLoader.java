@@ -87,10 +87,15 @@ public class TestDataLoader implements CommandLineRunner {
 
     @Autowired
     private PlantService plantService;
+
     @Autowired
     private CategoryService categoryService;
+
     @Autowired
     private LevelService levelService;
+
+    @Autowired
+    private MessageService messageService;
 
     /**
      * Executed during Spring boot startup.
@@ -100,7 +105,7 @@ public class TestDataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        //create Category
+        // create Category----------------------------------------------------------------------------------------------
         Category zimmerpflanze = new Category();
         zimmerpflanze.setCategoryname("Zimmerpflanze");
         categoryService.persistCategory(zimmerpflanze);
@@ -109,7 +114,11 @@ public class TestDataLoader implements CommandLineRunner {
         outdoorpflanze.setCategoryname("Outdoorpflanze");
         categoryService.persistCategory(outdoorpflanze);
 
-        //create Level
+        Category samen = new Category();
+        samen.setCategoryname("Samen");
+        categoryService.persistCategory(samen);
+
+        // create level-------------------------------------------------------------------------------------------------
         Level level0 = new Level();
         level0.setLevelname("Korn");
         levelService.persistLevel(level0);
@@ -119,86 +128,107 @@ public class TestDataLoader implements CommandLineRunner {
         levelService.persistLevel(level1);
 
         Level level2 = new Level();
-        level2.setLevelname("Meister des Gartens");
+        level1.setLevelname("Grüner-Daumen");
         levelService.persistLevel(level2);
 
-        // create roles
+        Level level3 = new Level();
+        level1.setLevelname("Pflanzenfreund");
+        levelService.persistLevel(level3);
+
+        Level level4 = new Level();
+        level1.setLevelname("Gärtner-Novize");
+        levelService.persistLevel(level4);
+
+        Level level5 = new Level();
+        level1.setLevelname("Blattmeister");
+        levelService.persistLevel(level5);
+
+        Level level6 = new Level();
+        level1.setLevelname("Wurzelprofi");
+        levelService.persistLevel(level6);
+
+        Level level7 = new Level();
+        level2.setLevelname("Pflanzenliebhaber");
+        levelService.persistLevel(level7);
+
+        Level level8 = new Level();
+        level2.setLevelname("Botanik-Experte");
+        levelService.persistLevel(level8);
+
+        Level level9 = new Level();
+        level2.setLevelname("Meister des Gartens");
+        levelService.persistLevel(level7);
+
+        // create roles-------------------------------------------------------------------------------------------------
         Role userRole = new Role();
         userRole.setRolename("ROLE_USER");
         roleService.persistRole(userRole);
-
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(userRole);
 
-        // create users
+        // create users-------------------------------------------------------------------------------------------------
         User jenniferKaisner = new User();
-        jenniferKaisner.setEmail("Jennifer.Kaisner@mail.com");
         jenniferKaisner.setUsername("JenniferK");
         jenniferKaisner.setPassword("1234");
-        jenniferKaisner.setEnabled(true);
         jenniferKaisner.setFirstName("Jennifer");
         jenniferKaisner.setLastName("Kaisner");
+        jenniferKaisner.setEmail("Jennifer.Kaisner@mail.com");
         jenniferKaisner.setPlz("72108");
-        jenniferKaisner.setSellingLevel(level1);
-        jenniferKaisner.setBuyingLevel(level2);
+        jenniferKaisner.setBuyingLevel(level0);
+        jenniferKaisner.setSellingLevel(level0);
         jenniferKaisner.setPicturePath("https://media.rimondo.net/1363699/conversions/4e431791-5f31-4f3e-9d2f-61eef8ffd846-400.webp?v=1637496632");
-        //jenniferKaisner.setNonLocked(true);
         jenniferKaisner.setRoles(userRoles);
         userService.persistUser(jenniferKaisner);
 
 
         User aylinaAshkenov = new User();
-        aylinaAshkenov.setEmail("aylinaaa.akv@mail.com");
         aylinaAshkenov.setUsername("AylinaA");
         aylinaAshkenov.setPassword("5678");
-        aylinaAshkenov.setEnabled(true);
         aylinaAshkenov.setFirstName("Aylina");
         aylinaAshkenov.setLastName("Ashkenov");
+        aylinaAshkenov.setEmail("aylinaaa.akv@mail.com");
         aylinaAshkenov.setPlz("70199");
-        aylinaAshkenov.setSellingLevel(level1);
-        aylinaAshkenov.setBuyingLevel(level2);
+        aylinaAshkenov.setBuyingLevel(level0);
+        aylinaAshkenov.setSellingLevel(level0);
         aylinaAshkenov.setPicturePath("https://i.pinimg.com/236x/35/b1/61/35b1618bc1108909ac81f289f0814699.jpg");
         aylinaAshkenov.setRoles(userRoles);
         userService.persistUser(aylinaAshkenov);
 
         User alessiaSedelnikov = new User();
-        alessiaSedelnikov.setEmail("alessia.sedelnikov@mail.com");
         alessiaSedelnikov.setUsername("AlessiaS");
         alessiaSedelnikov.setPassword("2345");
-        alessiaSedelnikov.setEnabled(true);
         alessiaSedelnikov.setFirstName("Alessia");
         alessiaSedelnikov.setLastName("Sedelnikov");
+        alessiaSedelnikov.setEmail("alessia.sedelnikov@mail.com");
         alessiaSedelnikov.setPlz("71283");
-        alessiaSedelnikov.setSellingLevel(level1);
-        alessiaSedelnikov.setBuyingLevel(level2);
+        alessiaSedelnikov.setBuyingLevel(level0);
+        alessiaSedelnikov.setSellingLevel(level0);
         alessiaSedelnikov.setPicturePath("https://i.pinimg.com/236x/94/fe/45/94fe45409a5fb7909b655e0987798216.jpg");
         alessiaSedelnikov.setRoles(userRoles);
         userService.persistUser(alessiaSedelnikov);
 
         User markoPetric = new User();
-        markoPetric.setEmail("marko.petric@mail.com");
         markoPetric.setUsername("MarkoP");
         markoPetric.setPassword("3456");
-        markoPetric.setEnabled(true);
         markoPetric.setFirstName("Marko");
         markoPetric.setLastName("Petric");
+        markoPetric.setEmail("marko.petric@mail.com");
         markoPetric.setPlz("70128");
-        markoPetric.setSellingLevel(level1);
-        markoPetric.setBuyingLevel(level2);
+        markoPetric.setBuyingLevel(level0);
+        markoPetric.setSellingLevel(level0);
         markoPetric.setPicturePath("https://i.pinimg.com/474x/81/47/f6/8147f66671e37ef12238c49e42346953.jpg");
         markoPetric.setRoles(userRoles);
         userService.persistUser(markoPetric);
 
         User franziskaHornung = new User();
-        franziskaHornung.setEmail("franziskaHornung@mail.com");
         franziskaHornung.setUsername("FranziH");
         franziskaHornung.setPassword("4567");
-        franziskaHornung.setEnabled(true);
         franziskaHornung.setFirstName("Franziska");
         franziskaHornung.setLastName("Hornung");
+        franziskaHornung.setEmail("franziskaHornung@mail.com");
         franziskaHornung.setPlz("78292");
-        franziskaHornung.setSellingLevel(level1);
-        franziskaHornung.setBuyingLevel(level2);
+        franziskaHornung.setBuyingLevel(level0);
+        franziskaHornung.setSellingLevel(level0);
         franziskaHornung.setPicturePath("https://i.pinimg.com/236x/0a/ea/c8/0aeac8c1c7a0cebb97a01a26794498ac.jpg");
         franziskaHornung.setRoles(userRoles);
         userService.persistUser(franziskaHornung);
@@ -215,10 +245,9 @@ public class TestDataLoader implements CommandLineRunner {
                 markoPetric,
                 12345,
                 alessiaSedelnikov,
-                true
+                true,
+                "https://www.blumen-brueder.de/Content/files/1886/Coffea-arabica-600x800-proportionalsmallest.webp"
         );
-        kaffeestrauch.setImageUrl("https://www.blumen-brueder.de/Content/files/1886/Coffea-arabica-600x800-proportionalsmallest.webp");
-        plantService.persistPlant(kaffeestrauch);
 
         alessiaSedelnikov.getPurchasedPlants().add(kaffeestrauch);
         userService.updatePurchasedPlants(alessiaSedelnikov);
@@ -227,6 +256,9 @@ public class TestDataLoader implements CommandLineRunner {
         markoPetric.getSoldPlantsList().add(kaffeestrauch);
         userService.updateSoldPlantsList(markoPetric);
         userService.updateNumberOfSoldPlants(markoPetric);
+
+        //alessiaSedelnikov.getPlantsToSell().remove(kaffeestrauch);
+        //userService.updatePlantsToSell(alessiaSedelnikov);
 
         Plant allium = new Plant(
                 "Allium",
@@ -237,10 +269,9 @@ public class TestDataLoader implements CommandLineRunner {
                 outdoorpflanze,
                 alessiaSedelnikov,
                 70321,
-                false
+                false,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg"
         );
-        allium.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg");
-        plantService.persistPlant(allium);
 
         Plant kniphofia = new Plant(
                 "Kniphofia",
@@ -252,10 +283,10 @@ public class TestDataLoader implements CommandLineRunner {
                 jenniferKaisner,
                 70321,
                 alessiaSedelnikov,
-                true
+                true,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier3kniphofia_03_0734dfd3c0.jpg"
         );
-        kniphofia.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier3kniphofia_03_0734dfd3c0.jpg");
-        plantService.persistPlant(kniphofia);
+
         jenniferKaisner.getPlantsToSell().add(kniphofia);
         userService.updatePlantsToSell(jenniferKaisner);
 
@@ -276,12 +307,10 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 franziskaHornung,
                 70323,
-                false
+                false,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Salix_melanostachys_ed7602445f.jpg"
 
         );
-        melanostachy.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Salix_melanostachys_ed7602445f.jpg");
-        plantService.persistPlant(melanostachy);
-
 
         Plant prunus = new Plant(
                 "Prunus subhirtella",
@@ -292,12 +321,10 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 aylinaAshkenov,
                 70323,
-                false
+                false,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg"
 
         );
-        prunus.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg");
-        plantService.persistPlant(prunus);
-
 
         Plant occidentalis = new Plant(
                 "Cephalanthus",
@@ -308,11 +335,11 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 jenniferKaisner,
                 70323,
-                false
+                false,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg"
 
         );
-        occidentalis.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg");
-        plantService.persistPlant(occidentalis);
+
         jenniferKaisner.getPlantsToSell().add(occidentalis);
         userService.updatePlantsToSell(jenniferKaisner);
 
@@ -327,11 +354,11 @@ public class TestDataLoader implements CommandLineRunner {
                 alessiaSedelnikov,
                 70323,
                 jenniferKaisner,
-                true
+                true,
+                "https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg"
 
         );
-        hahn.setImageUrl("https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg");
-        plantService.persistPlant(hahn);
+
         jenniferKaisner.getPurchasedPlants().add(hahn);
         userService.updatePurchasedPlants(jenniferKaisner);
         userService.updateNumberOfPurchasedPlants(jenniferKaisner);
