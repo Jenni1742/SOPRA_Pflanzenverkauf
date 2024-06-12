@@ -35,6 +35,14 @@ public class HomeController {
 
         if (query != null && !query.isEmpty()) {
             List<Plant> plants = plantService.searchPlantsByName(query);
+
+            /*
+            List<Plant> plants = new ArrayList<>();
+            for (User user:userService.findAllUsers()) {
+                List<Plant> userPlants = user.getPlantsToSell();
+                plants.addAll(userPlants);
+            }
+             */
             /*
             for (Plant plant : plants) {
                 if (plant.getSold() == true) {
