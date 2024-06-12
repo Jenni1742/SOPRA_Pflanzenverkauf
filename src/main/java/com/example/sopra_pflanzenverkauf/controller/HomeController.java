@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -34,34 +35,32 @@ public class HomeController {
         model.addAttribute("currentUser", userService.getCurrentUser());
 
         if (query != null && !query.isEmpty()) {
-            List<Plant> plants = plantService.searchPlantsByName(query);
+            //List<Plant> plants = plantService.searchPlantsByName(query);
 
-            /*
             List<Plant> plants = new ArrayList<>();
             for (User user:userService.findAllUsers()) {
-                List<Plant> userPlants = user.getPlantsToSell();
-                plants.addAll(userPlants);
-            }
-             */
-            /*
-            for (Plant plant : plants) {
-                if (plant.getSold() == true) {
-                    plants.remove(plant);
+                if (user != currentUser) {
+                    System.out.println(user.getPlantsToSell().size());
+                    plants.addAll(user.getPlantsToSell());
                 }
             }
-            */
+
             model.addAttribute("plants", plants);
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
 
         List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price);
+
         /*
-            for (Plant plant : plants) {
-                if (plant.getSold() == true) {
-                    plants.remove(plant);
-                }
+        List<Plant> plants = new ArrayList<>();
+        for (User user:userService.findAllUsers()) {
+            if (user != currentUser) {
+                System.out.println(user.getPlantsToSell().size());
+                plants.addAll(user.getPlantsToSell());
             }
-            */
+        }
+        */
+
         model.addAttribute("plants", plants);
 
         return "home";
