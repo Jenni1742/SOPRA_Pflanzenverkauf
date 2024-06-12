@@ -235,6 +235,16 @@ public class TestDataLoader implements CommandLineRunner {
 
         // create plants-----------------------------------------------------------------------------------------------
 
+        /*
+        A3-V löscht sein Profil aber hat schon P verkauft
+        → Bei K muss Verkäufer auf null gesetzt werden
+        → Verkaufte P V auf null (SoldPlants)
+
+        A4-K löscht sein Profil aber hat schon P gekauft
+        → Bei V muss Käufer auf null gesetzt werden
+        → Gekaufte P K auf null (purchasedPlants)
+        */
+
         Plant kaffeestrauch = new Plant(
                 "Kaffeestrauch",
                 50,
@@ -248,7 +258,13 @@ public class TestDataLoader implements CommandLineRunner {
                 true,
                 "https://www.blumen-brueder.de/Content/files/1886/Coffea-arabica-600x800-proportionalsmallest.webp"
         );
+        plantService.persistPlant(kaffeestrauch);
 
+        //Marko hat Anzeige erstellt
+        markoPetric.getPlantsToSell().add(kaffeestrauch);
+        userService.updatePlantsToSell(markoPetric);
+
+        //Alessia kauft die Pflanze von Marko
         alessiaSedelnikov.getPurchasedPlants().add(kaffeestrauch);
         userService.updatePurchasedPlants(alessiaSedelnikov);
         userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
@@ -257,8 +273,8 @@ public class TestDataLoader implements CommandLineRunner {
         userService.updateSoldPlantsList(markoPetric);
         userService.updateNumberOfSoldPlants(markoPetric);
 
-        //alessiaSedelnikov.getPlantsToSell().remove(kaffeestrauch);
-        //userService.updatePlantsToSell(alessiaSedelnikov);
+        markoPetric.getPlantsToSell().remove(kaffeestrauch);
+        userService.updatePlantsToSell(markoPetric);
 
         Plant allium = new Plant(
                 "Allium",
@@ -272,6 +288,25 @@ public class TestDataLoader implements CommandLineRunner {
                 false,
                 "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg"
         );
+        plantService.persistPlant(allium);
+
+        /*
+        A1- K hat P in Merkliste und der V löscht sein Profil
+        → P muss aus Merkliste entfernt werden
+        → Aktive P müssen gelöscht werden (PlantsToSell)
+
+        A2-V löscht sein Profil aber hat P eingestellt
+        --> P muss aus Home, Searchresults und Merklisten entfernt werden
+        --> Aktive P müssen gelöscht werden (PlantsToSell)
+        */
+
+        //Alessia hat Anzeige erstellt
+        alessiaSedelnikov.getPlantsToSell().add(allium);
+        userService.updatePlantsToSell(alessiaSedelnikov);
+
+        //Jennifer fügt Pflanze ihrer Merkliste hinzu                 create Wishlist-------------------------------------------------
+        //--> Siehe unten
+
 
         Plant kniphofia = new Plant(
                 "Kniphofia",
@@ -286,10 +321,13 @@ public class TestDataLoader implements CommandLineRunner {
                 true,
                 "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier3kniphofia_03_0734dfd3c0.jpg"
         );
+        plantService.persistPlant(kniphofia);
 
+        //Jennifer hat Anzeige erstellt
         jenniferKaisner.getPlantsToSell().add(kniphofia);
         userService.updatePlantsToSell(jenniferKaisner);
 
+        //Alessia kauft die Pflanze von Jennifer
         alessiaSedelnikov.getPurchasedPlants().add(kniphofia);
         userService.updatePurchasedPlants(alessiaSedelnikov);
         userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
@@ -297,6 +335,9 @@ public class TestDataLoader implements CommandLineRunner {
         jenniferKaisner.getSoldPlantsList().add(kniphofia);
         userService.updateSoldPlantsList(jenniferKaisner);
         userService.updateNumberOfSoldPlants(jenniferKaisner);
+
+        jenniferKaisner.getPlantsToSell().remove(kniphofia);
+        userService.updatePlantsToSell(jenniferKaisner);
 
         Plant melanostachy = new Plant(
                 "Salix melanostachys",
@@ -311,6 +352,14 @@ public class TestDataLoader implements CommandLineRunner {
                 "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Salix_melanostachys_ed7602445f.jpg"
 
         );
+        plantService.persistPlant(melanostachy);
+
+        //Franzi hat Anzeige erstellt
+        franziskaHornung.getPlantsToSell().add(melanostachy);
+        userService.updatePlantsToSell(franziskaHornung);
+
+        //Jennifer fügt Pflanze ihrer Merkliste hinzu
+        //--> Siehe unten
 
         Plant prunus = new Plant(
                 "Prunus subhirtella",
@@ -325,6 +374,14 @@ public class TestDataLoader implements CommandLineRunner {
                 "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg"
 
         );
+        plantService.persistPlant(prunus);
+
+        //Aylina hat Anzeige erstellt
+        alessiaSedelnikov.getPlantsToSell().add(prunus);
+        userService.updatePlantsToSell(aylinaAshkenov);
+
+        //Jennifer fügt Pflanze ihrer Merkliste hinzu
+        //--> Siehe unten
 
         Plant occidentalis = new Plant(
                 "Cephalanthus",
@@ -339,10 +396,11 @@ public class TestDataLoader implements CommandLineRunner {
                 "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg"
 
         );
+        plantService.persistPlant(occidentalis);
 
+        //Jennifer hat Anzeige erstellt
         jenniferKaisner.getPlantsToSell().add(occidentalis);
         userService.updatePlantsToSell(jenniferKaisner);
-
 
         Plant hahn = new Plant(
                 "Hahnenfussgewächs",
@@ -358,7 +416,13 @@ public class TestDataLoader implements CommandLineRunner {
                 "https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg"
 
         );
+        plantService.persistPlant(hahn);
 
+        //Alessia hat Anzeige erstellt
+        alessiaSedelnikov.getPlantsToSell().add(hahn);
+        userService.updatePlantsToSell(alessiaSedelnikov);
+
+        //Jennifer kauft die Pflanze von Alessia
         jenniferKaisner.getPurchasedPlants().add(hahn);
         userService.updatePurchasedPlants(jenniferKaisner);
         userService.updateNumberOfPurchasedPlants(jenniferKaisner);
@@ -367,8 +431,11 @@ public class TestDataLoader implements CommandLineRunner {
         userService.updateSoldPlantsList(alessiaSedelnikov);
         userService.updateNumberOfSoldPlants(alessiaSedelnikov);
 
+        alessiaSedelnikov.getPlantsToSell().remove(hahn);
+        userService.updatePlantsToSell(alessiaSedelnikov);
 
-        // create wishlist-----------------------------------------------------------------------------------------------
+
+        //create Wishlist ------------------------------------------------------------------------------------------------
 
         Set<Plant> wishlistPlants = new HashSet<>();
         wishlistPlants.add(prunus);
@@ -381,3 +448,46 @@ public class TestDataLoader implements CommandLineRunner {
 
 
 }
+
+
+/*
+Fehlerquellen:
+
+
+A) Mögliche Fehlerquellen beim Profil löschen: ----------------------------------------------------------------------------
+
+A1- K hat P in Merkliste und der V löscht sein Profil
+--> P muss aus Merkliste entfernt werden
+--> Aktive P müssen gelöscht werden (PlantsToSell)
+
+A2-V löscht sein Profil aber hat P eingestellt
+--> P muss aus Home, Searchresults und Merklisten entfernt werden
+--> Aktive P müssen gelöscht werden (PlantsToSell)
+
+A3-V löscht sein Profil aber hat schon P verkauft
+--> Bei K muss Verkäufer auf null gesetzt werden
+--> Verkaufte P V auf null (SoldPlants)
+
+A4-K löscht sein Profil aber hat schon P gekauft
+--> Bei V muss Käufer auf null gesetzt werden
+--> Gekaufte P K auf null (purchasedPlants)
+
+A5-V löscht sein Profil
+--> Nachrichtenaustausch muss gestoppt werden
+
+
+B) Mögliche Fehlerquellen beim Anzeige löschen: ----------------------------------------------------------------------------
+
+B1- P wurde in Merklisten von mehreren K hinzugefügt
+-->P muss aus allen Merklisten entfernt werden
+--> Chat muss gestoppt werden
+--> P muss aus Home und searchresults verschwinden
+
+C) Mögliche Fehlerquellen beim Kauf -------------------------------------------------------------------------------------
+
+C1- K kauft P von V
+--> P muss von Home und Searchresults verschwinden
+--> P muss aus PlantsToSell raus
+--> P muss beiK in gek. P
+--> P muss bei V in verk. P
+ */
