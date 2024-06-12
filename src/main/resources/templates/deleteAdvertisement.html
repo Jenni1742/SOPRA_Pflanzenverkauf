@@ -14,17 +14,15 @@
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
-<form th:action="@{/deleteAdvertisement/{id}}" method="post">
-    <div class="card-body">
-        <a href="http://localhost:8080/myAdvertisements">
+<form th:action="@{/deleteAdvertisement/{id}(id=${plantId})}" method="post">
+
+    <a href="http://localhost:8080/myAdvertisements">
             <button type="button" class="btn btn-rePlantGrey">
                 Nein, Anzeige behalten.
             </button>
         </a>
-
         <button type="submit" class="btn btn-rePlantGreen">Anzeige löschen</button>
 
-    </div>
 </form>
 </body>
 </html>

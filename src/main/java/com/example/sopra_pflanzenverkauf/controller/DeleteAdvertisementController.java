@@ -28,13 +28,19 @@ public class DeleteAdvertisementController {
     private PlantService plantService;
 
     @Autowired
-    private CategoryService categoryService;
+    private PlantRepository plantRepository;
 
 
     @GetMapping("/deleteAdvertisement/{id}")
     public String openDeletePlant(@PathVariable("id") Integer plantId, Model model) {
 
-        //model.addAttribute("plantId", plantId);
+        model.addAttribute("plantId", plantId);
+
+        Plant plant = plantRepository.findById(plantId)
+                .orElseThrow(() -> {
+                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "Plant not found");
+                });
+        model.addAttribute("plant", plant);
 
         return "deleteAdvertisement";
     }
@@ -53,6 +59,9 @@ public class DeleteAdvertisementController {
 
         plantService.deletePlantByPlantId(plantId);
 
-        return "myAdvertisements";
+        List<Plant> plantList = userService.getCurrentUser().getPlantsToSell();
+        model.addAttribute("plantList", plantList);
+
+        return "redirect:/myAdvertisements";
     }
 }
