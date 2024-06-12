@@ -174,8 +174,8 @@ public class TestDataLoader implements CommandLineRunner {
         jenniferKaisner.setLastName("Kaisner");
         jenniferKaisner.setEmail("Jennifer.Kaisner@mail.com");
         jenniferKaisner.setPlz("72108");
-        jenniferKaisner.setBuyingLevel(level0);
-        jenniferKaisner.setSellingLevel(level0);
+        jenniferKaisner.setBuyingLevel(level1);
+        jenniferKaisner.setSellingLevel(level1);
         jenniferKaisner.setPicturePath("https://media.rimondo.net/1363699/conversions/4e431791-5f31-4f3e-9d2f-61eef8ffd846-400.webp?v=1637496632");
         jenniferKaisner.setRoles(userRoles);
         userService.persistUser(jenniferKaisner);
@@ -189,7 +189,7 @@ public class TestDataLoader implements CommandLineRunner {
         aylinaAshkenov.setEmail("aylinaaa.akv@mail.com");
         aylinaAshkenov.setPlz("70199");
         aylinaAshkenov.setBuyingLevel(level0);
-        aylinaAshkenov.setSellingLevel(level0);
+        aylinaAshkenov.setSellingLevel(level1);
         aylinaAshkenov.setPicturePath("https://i.pinimg.com/236x/35/b1/61/35b1618bc1108909ac81f289f0814699.jpg");
         aylinaAshkenov.setRoles(userRoles);
         userService.persistUser(aylinaAshkenov);
@@ -201,8 +201,8 @@ public class TestDataLoader implements CommandLineRunner {
         alessiaSedelnikov.setLastName("Sedelnikov");
         alessiaSedelnikov.setEmail("alessia.sedelnikov@mail.com");
         alessiaSedelnikov.setPlz("71283");
-        alessiaSedelnikov.setBuyingLevel(level0);
-        alessiaSedelnikov.setSellingLevel(level0);
+        alessiaSedelnikov.setBuyingLevel(level1);
+        alessiaSedelnikov.setSellingLevel(level1);
         alessiaSedelnikov.setPicturePath("https://i.pinimg.com/236x/94/fe/45/94fe45409a5fb7909b655e0987798216.jpg");
         alessiaSedelnikov.setRoles(userRoles);
         userService.persistUser(alessiaSedelnikov);
@@ -215,7 +215,7 @@ public class TestDataLoader implements CommandLineRunner {
         markoPetric.setEmail("marko.petric@mail.com");
         markoPetric.setPlz("70128");
         markoPetric.setBuyingLevel(level0);
-        markoPetric.setSellingLevel(level0);
+        markoPetric.setSellingLevel(level1);
         markoPetric.setPicturePath("https://i.pinimg.com/474x/81/47/f6/8147f66671e37ef12238c49e42346953.jpg");
         markoPetric.setRoles(userRoles);
         userService.persistUser(markoPetric);
@@ -228,7 +228,7 @@ public class TestDataLoader implements CommandLineRunner {
         franziskaHornung.setEmail("franziskaHornung@mail.com");
         franziskaHornung.setPlz("78292");
         franziskaHornung.setBuyingLevel(level0);
-        franziskaHornung.setSellingLevel(level0);
+        franziskaHornung.setSellingLevel(level1);
         franziskaHornung.setPicturePath("https://i.pinimg.com/236x/0a/ea/c8/0aeac8c1c7a0cebb97a01a26794498ac.jpg");
         franziskaHornung.setRoles(userRoles);
         userService.persistUser(franziskaHornung);
