@@ -10,6 +10,9 @@ body {
     background-color: white;
     border-color: white;
 }
+.btn-linkVerkäufer {
+    color: #017101;
+}
 .btn:hover {
     background-color: black;
     border-color: white;
