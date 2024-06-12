@@ -35,11 +35,25 @@ public class HomeController {
 
         if (query != null && !query.isEmpty()) {
             List<Plant> plants = plantService.searchPlantsByName(query);
+            /*
+            for (Plant plant : plants) {
+                if (plant.getSold() == true) {
+                    plants.remove(plant);
+                }
+            }
+            */
             model.addAttribute("plants", plants);
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
 
         List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price);
+        /*
+            for (Plant plant : plants) {
+                if (plant.getSold() == true) {
+                    plants.remove(plant);
+                }
+            }
+            */
         model.addAttribute("plants", plants);
 
         return "home";
