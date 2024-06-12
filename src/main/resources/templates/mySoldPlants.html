@@ -63,14 +63,14 @@
                     <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
 
                     <div th:if="${plant.buyer != null}">
-                        <p><strong>Käufer:</strong>
+                        <p><strong>Käufer*in:</strong>
                         <a th:href="@{/showOtherProfileBuyer/{userid}(userid=${plant.buyer.userId})}" class="btn-linkVerkäufer">
                             <span th:text="${plant.buyer?.username} ?: 'Unbekannter Käufer'">Käufer</span>
                         </a>
                         </p>
                     </div>
                     <div th:if="${plant.buyer == null}">
-                        <p><strong>Käufer:</strong>
+                        <p><strong>Käufer*in:</strong>
                             <span th:text="${plant.buyer?.username} ?: 'Unbekannter Käufer'">Käufer</span>
                         </p>
                     </div>
