@@ -34,6 +34,14 @@ public class MyAdvertisementsController {
 
 
         List<Plant> plantList = userService.getCurrentUser().getPlantsToSell();
+
+        //Entfernt Pflanzen die verkauft sind
+        for (Plant plant : plantList) {
+            if (plant.getSold() == true) {
+                plantList.remove(plant);
+            }
+        }
+
         model.addAttribute("plantList", plantList);
 
         model.addAttribute("currentUser", currentUser);
