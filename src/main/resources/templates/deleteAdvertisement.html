@@ -15,15 +15,13 @@
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
 <div class="container">
-    <div class="card-rePlant">
+    <div class="card card-rePlant">
         <div class="card-header text-center">
-            <h3>Sicher, dass du die
+            <h3 style="color: red">Sicher, dass du die
                 Anzeige löschen möchtest?</h3>
-            <p></p>
         </div>
         <div class="card-body text-center">
-            <h3>Bedenke, dass das Löschen nicht rückgängig gemacht werden kann!</h3>
-            <p></p>
+            <h3 style="color: red">Bedenke, dass das Löschen nicht rückgängig gemacht werden kann!</h3>
         </div>
         <div class="card-footer-rePlant text-center">
             <form th:action="@{/deleteAdvertisement/{id}(id=${plantId})}" method="post">
