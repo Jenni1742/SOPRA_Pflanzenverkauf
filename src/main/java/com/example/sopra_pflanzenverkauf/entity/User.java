@@ -54,9 +54,6 @@ public class User {
     @Column(name = "Profilbild")
     private String picturePath;
 
-    @Column(name = "Verkaufte Pflanzen")
-    private List soldPlants;
-
     @Column(name = "Anzahl gekaufter Pflanzen")
     private Integer numberOfPurchasedPlants = 0;
 
@@ -365,22 +362,6 @@ public class User {
         this.plantToShow = plantToShow;
     }
 
-    /**
-     * Gets list of sold plants.
-     *
-     * @return the list of dold plants
-     * */
-    public List getSoldPlants() {
-        return soldPlants;
-    }
-    /**
-     * Sets list of sold plants.
-     *
-     * @param soldPlants the list of sold plants
-     */
-    public void setSoldPlants(List soldPlants) {
-        this.soldPlants = soldPlants;
-    }
 
     public Integer getNumberOfPurchasedPlants() {
         return numberOfPurchasedPlants;
