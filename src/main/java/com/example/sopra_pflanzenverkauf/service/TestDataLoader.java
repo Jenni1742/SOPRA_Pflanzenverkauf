@@ -245,10 +245,9 @@ public class TestDataLoader implements CommandLineRunner {
                 markoPetric,
                 12345,
                 alessiaSedelnikov,
-                true
+                true,
+                "https://www.blumen-brueder.de/Content/files/1886/Coffea-arabica-600x800-proportionalsmallest.webp"
         );
-        kaffeestrauch.setImageUrl("https://www.blumen-brueder.de/Content/files/1886/Coffea-arabica-600x800-proportionalsmallest.webp");
-        plantService.persistPlant(kaffeestrauch);
 
         alessiaSedelnikov.getPurchasedPlants().add(kaffeestrauch);
         userService.updatePurchasedPlants(alessiaSedelnikov);
@@ -270,10 +269,9 @@ public class TestDataLoader implements CommandLineRunner {
                 outdoorpflanze,
                 alessiaSedelnikov,
                 70321,
-                false
+                false,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg"
         );
-        allium.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg");
-        plantService.persistPlant(allium);
 
         Plant kniphofia = new Plant(
                 "Kniphofia",
@@ -285,10 +283,10 @@ public class TestDataLoader implements CommandLineRunner {
                 jenniferKaisner,
                 70321,
                 alessiaSedelnikov,
-                true
+                true,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier3kniphofia_03_0734dfd3c0.jpg"
         );
-        kniphofia.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier3kniphofia_03_0734dfd3c0.jpg");
-        plantService.persistPlant(kniphofia);
+
         jenniferKaisner.getPlantsToSell().add(kniphofia);
         userService.updatePlantsToSell(jenniferKaisner);
 
@@ -309,12 +307,10 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 franziskaHornung,
                 70323,
-                false
+                false,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Salix_melanostachys_ed7602445f.jpg"
 
         );
-        melanostachy.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Salix_melanostachys_ed7602445f.jpg");
-        plantService.persistPlant(melanostachy);
-
 
         Plant prunus = new Plant(
                 "Prunus subhirtella",
@@ -325,12 +321,10 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 aylinaAshkenov,
                 70323,
-                false
+                false,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg"
 
         );
-        prunus.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg");
-        plantService.persistPlant(prunus);
-
 
         Plant occidentalis = new Plant(
                 "Cephalanthus",
@@ -341,11 +335,11 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 jenniferKaisner,
                 70323,
-                false
+                false,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg"
 
         );
-        occidentalis.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg");
-        plantService.persistPlant(occidentalis);
+
         jenniferKaisner.getPlantsToSell().add(occidentalis);
         userService.updatePlantsToSell(jenniferKaisner);
 
@@ -360,11 +354,11 @@ public class TestDataLoader implements CommandLineRunner {
                 alessiaSedelnikov,
                 70323,
                 jenniferKaisner,
-                true
+                true,
+                "https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg"
 
         );
-        hahn.setImageUrl("https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg");
-        plantService.persistPlant(hahn);
+
         jenniferKaisner.getPurchasedPlants().add(hahn);
         userService.updatePurchasedPlants(jenniferKaisner);
         userService.updateNumberOfPurchasedPlants(jenniferKaisner);
