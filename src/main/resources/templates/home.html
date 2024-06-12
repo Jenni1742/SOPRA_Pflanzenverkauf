@@ -61,16 +61,20 @@
         </div>
         <div class="col-md-9">
             <div class="d-flex justify-content-end mb-3">
-                <div class="rounded-box d-flex align-items-center">
-                    <label for="sortField" class="form-label me-2 mb-0">Sortieren:</label>
-                    <select id="sortField" class="form-select" name="sort">
-                        <option value="">default</option>
-                        <option value="price_asc">Preis aufsteigend</option>
-                        <option value="price_desc">Preis absteigend</option>
-                        <option value="size_asc">Größe aufsteigend</option>
-                        <option value="size_desc">Größe absteigend</option>
-                    </select>
-                </div>
+                <form method="get" action="/" id="sortForm">
+                    <div class="d-flex justify-content-end mb-3">
+                        <div class="rounded-box d-flex align-items-center">
+                            <label for="sortField" class="form-label me-2 mb-0">Sortieren:</label>
+                            <select id="sortField" class="form-select" name="sort" onchange="document.getElementById('sortForm').submit();">
+                                <option value="">default</option>
+                                <option value="price_asc">Preis aufsteigend</option>
+                                <option value="price_desc">Preis absteigend</option>
+                                <option value="size_asc">Größe aufsteigend</option>
+                                <option value="size_desc">Größe absteigend</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
             </div>
             <section class="ads">
                 <div th:each="plant : ${plants}" class="ad" style="display: flex; align-items: flex-start; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
@@ -108,7 +112,7 @@
                         <!-- Button trigger modal -->
                         <div th:if="${currentUser.getWishlistPlants().contains(plant) == true}">
                         <button  type="button" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal" style="top: -280px; right: 0px;  position: absolute;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
                             </svg>
                         </button>
@@ -134,9 +138,10 @@
                         <form th:action="@{/ (plant = ${plant.plantId})}" id="plant2" name="plant" method="post">
                         <div th:if="${currentUser.getWishlistPlants().contains(plant) == false}">
                             <button  type="submit" class="btn-rePlantHeartEmpty" style="top: -280px; right: 0px;  position: absolute;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill="red" class="bi bi-heart" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="red" class="bi bi-heart" viewBox="0 0 16 16">
                                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
                                 </svg>
+
                             </button>
                         </div>
                         </form>

@@ -7,6 +7,7 @@ import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -117,4 +118,48 @@ public class PlantService {
    }
 
 
+
+    public List<Plant> getAllPlants(String sort) {
+        List<Plant> plants = plantRepository.findAll();
+        if (sort != null) {
+            switch (sort) {
+                case "price_asc":
+                    plants.sort(Comparator.comparingDouble(Plant::getPrice));
+                    break;
+                case "price_desc":
+                    plants.sort(Comparator.comparingDouble(Plant::getPrice).reversed());
+                    break;
+                case "size_asc":
+                    plants.sort(Comparator.comparingDouble(Plant::getPlantSize));
+                    break;
+                case "size_desc":
+                    plants.sort(Comparator.comparingDouble(Plant::getPlantSize).reversed());
+                    break;
+            }
+        }
+        return plants;
+    }
+
+
+    public List<Plant> sortPlants(List<Plant> plants, String sort) {
+        if (sort != null) {
+            switch (sort) {
+                case "price_asc":
+                    plants.sort(Comparator.comparingDouble(Plant::getPrice));
+                    break;
+                case "price_desc":
+                    plants.sort(Comparator.comparingDouble(Plant::getPrice).reversed());
+                    break;
+                case "size_asc":
+                    plants.sort(Comparator.comparingDouble(Plant::getPlantSize));
+                    break;
+                case "size_desc":
+                    plants.sort(Comparator.comparingDouble(Plant::getPlantSize).reversed());
+                    break;
+                default:
+                    break;
+            }
+        }
+        return plants;
+    }
 }

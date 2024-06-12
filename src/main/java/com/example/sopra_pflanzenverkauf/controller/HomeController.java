@@ -28,10 +28,11 @@ public class HomeController {
     public String showHome(Model model,
                            @RequestParam(value = "query", required = false) String query,
                            @RequestParam(value = "category", required = false) Category category,
-                           @RequestParam(value = "price", required = false) String price)  {
+                           @RequestParam(value = "price", required = false) String price,
+                           @RequestParam(value = "sort", required = false) String sort) {
 
         User currentUser = userService.getCurrentUser();
-        model.addAttribute("currentUser", userService.getCurrentUser());
+        model.addAttribute("currentUser", currentUser);
 
         if (query != null && !query.isEmpty()) {
             List<Plant> plants = plantService.searchPlantsByName(query);
@@ -39,24 +40,24 @@ public class HomeController {
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
 
-        List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price);
+        List<Plant> plants = plantService.getAllPlants(sort);
         model.addAttribute("plants", plants);
-
         return "home";
     }
-    @GetMapping("/plants")
+
+
+    @GetMapping("/")
     public String getPlants(Model model) {
-        // Filtern der Pflanzen nach sold = false
         List<Plant> plants = plantService.getAllPlants().stream()
                 .filter(plant -> !plant.getSold())
                 .collect(Collectors.toList());
         model.addAttribute("plants", plants);
-        return "home"; // Name der HTML-Datei, die die Pflanzenliste anzeigt
+        return "home";
     }
 
     @PostMapping(path = "/")
     public String addToWishlist(@RequestParam("plant") Integer plant,
-                              Map<String, Object> model) {
+                                Map<String, Object> model) {
         User currentUser = userService.getCurrentUser();
 
         currentUser.getWishlistPlants().add(plantService.getPlantByPlantId(plant));
@@ -69,15 +70,15 @@ public class HomeController {
 
     @PostMapping(path = "/delete")
     public String removePlantFromWishlist(@RequestParam("plant") Integer plant,
-                              Map<String, Object> model) {
+                                          Map<String, Object> model) {
         User currentUser = userService.getCurrentUser();
 
         currentUser.getWishlistPlants().remove(plantService.getPlantByPlantId(plant));
 
         userService.updateWishlist(currentUser);
 
-
         model.put("currentUser", currentUser);
         return "redirect:/";
     }
+
 }
