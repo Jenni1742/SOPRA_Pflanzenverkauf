@@ -1,4 +1,5 @@
 package com.example.sopra_pflanzenverkauf.controller;
+import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
@@ -38,6 +39,24 @@ public class DeleteProfileController {
         User currentUser = userService.getCurrentUser();
 
         if (bCryptPasswordEncoder.matches(password, currentUser.getPassword())) {
+
+            for (User user:userService.findAllUsers()) {
+                for (Plant plant: currentUser.getPlantsToSell()) {
+                    if (user.getPurchasedPlants().contains(plant)) {
+                        Integer index = user.getPurchasedPlants().indexOf(plant);
+                        user.getPurchasedPlants().get(index).setSeller(null);
+                        userService.updatePurchasedPlants(user);
+                    }
+                }
+            }
+
+            for (User user:userService.findAllUsers()) {
+                while (user.getWishlistPlants().contains(plantService.getPlantBySeller(currentUser))) {
+                    user.getWishlistPlants().remove(plantService.getPlantBySeller(currentUser));
+                    userService.updateWishlist(user);
+                }
+            }
+
             while (!currentUser.getPlantsToSell().isEmpty()) {
                 plantService.deletePlantByPlantId(currentUser.getPlantsToSell().removeFirst().getPlantId());
             }
