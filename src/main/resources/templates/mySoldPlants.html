@@ -61,6 +61,20 @@
                     <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}" style="font-style: italic;">Kategorie</span></p>
                     <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
                     <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
+
+                    <div th:if="${plant.buyer != null}">
+                        <p><strong>Käufer:</strong>
+                        <a th:href="@{/showOtherProfileBuyer/{userid}(userid=${plant.buyer.userId})}" class="btn-linkVerkäufer">
+                            <span th:text="${plant.buyer?.username} ?: 'Unbekannter Käufer'">Käufer</span>
+                        </a>
+                        </p>
+                    </div>
+                    <div th:if="${plant.buyer == null}">
+                        <p><strong>Käufer:</strong>
+                            <span th:text="${plant.buyer?.username} ?: 'Unbekannter Käufer'">Käufer</span>
+                        </p>
+                    </div>
+
                     <p><strong>Beschreibung:</strong> <span th:text="${plant.plantDescription}">Beschreibung</span></p>
                     <p><strong>Pflegetipps:</strong> <span th:text="${plant.careTips}">Pflegetipps</span></p>
                 </div>
