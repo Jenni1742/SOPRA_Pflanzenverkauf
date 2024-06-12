@@ -87,10 +87,15 @@ public class TestDataLoader implements CommandLineRunner {
 
     @Autowired
     private PlantService plantService;
+
     @Autowired
     private CategoryService categoryService;
+
     @Autowired
     private LevelService levelService;
+
+    @Autowired
+    private MessageService messageService;
 
     /**
      * Executed during Spring boot startup.
@@ -100,7 +105,7 @@ public class TestDataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        //create Category
+        // create Category----------------------------------------------------------------------------------------------
         Category zimmerpflanze = new Category();
         zimmerpflanze.setCategoryname("Zimmerpflanze");
         categoryService.persistCategory(zimmerpflanze);
@@ -109,7 +114,7 @@ public class TestDataLoader implements CommandLineRunner {
         outdoorpflanze.setCategoryname("Outdoorpflanze");
         categoryService.persistCategory(outdoorpflanze);
 
-        //create Level
+        // create level-------------------------------------------------------------------------------------------------
         Level level0 = new Level();
         level0.setLevelname("Korn");
         levelService.persistLevel(level0);
@@ -119,18 +124,45 @@ public class TestDataLoader implements CommandLineRunner {
         levelService.persistLevel(level1);
 
         Level level2 = new Level();
-        level2.setLevelname("Meister des Gartens");
+        level1.setLevelname("Grüner-Daumen");
         levelService.persistLevel(level2);
 
-        // create roles
+        Level level3 = new Level();
+        level1.setLevelname("Pflanzenfreund");
+        levelService.persistLevel(level3);
+
+        Level level4 = new Level();
+        level1.setLevelname("Gärtner-Novize");
+        levelService.persistLevel(level4);
+
+        Level level5 = new Level();
+        level1.setLevelname("Blattmeister");
+        levelService.persistLevel(level5);
+
+        Level level6 = new Level();
+        level1.setLevelname("Wurzelprofi");
+        levelService.persistLevel(level6);
+
+        Level level7 = new Level();
+        level2.setLevelname("Pflanzenliebhaber");
+        levelService.persistLevel(level7);
+
+        Level level8 = new Level();
+        level2.setLevelname("Botanik-Experte");
+        levelService.persistLevel(level8);
+
+        Level level9 = new Level();
+        level2.setLevelname("Meister des Gartens");
+        levelService.persistLevel(level7);
+
+        // create roles-------------------------------------------------------------------------------------------------
         Role userRole = new Role();
         userRole.setRolename("ROLE_USER");
         roleService.persistRole(userRole);
-
         Set<Role> userRoles = new HashSet<>();
         userRoles.add(userRole);
 
-        // create users
+        // create users-------------------------------------------------------------------------------------------------
         User jenniferKaisner = new User();
         jenniferKaisner.setEmail("Jennifer.Kaisner@mail.com");
         jenniferKaisner.setUsername("JenniferK");
