@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <form action="/chat" method="post" class="typing-area">
+            <form action="/chat/messages" method="post" class="typing-area">
                 <input type="hidden" name="recipientId" id="recipientId" th:value="${recipientId}">
                 <input type="hidden" name="senderId" id="senderId" th:value="${currentUser.userId}">
                 <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
