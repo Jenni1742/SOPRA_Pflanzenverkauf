@@ -19,10 +19,17 @@
         <h1> Verkaufsanzeige löschen: </h1>
         <div class="card card-rePlant">
             <div class="card-head">
-                <p align="center" style="color: red">Bist du dir sicher, dass du diese Verkaufsanzeige löschen möchtest? Dieser Vorgang kann nicht rückgängig gemacht werden!</p>
+                <p align="center" style="color: red">Bist du dir sicher, dass du diese Verkaufsanzeige löschen möchtest?
+                    Dieser Vorgang kann nicht rückgängig gemacht werden!</p>
             </div>
             <div class="card-body">
                 <div class="card-footer text-center card-footer-rePlant">
+
+                    <p>Folgende Pflanze soll gelöscht werden: <span th:text="${plant.plantname}"></span></p>
+
+                </div>
+
+                <div class="card-footer-rePlant">
 
                     <a href="http://localhost:8080/myAdvertisements" class="btn-linkButton">
                         <button type="button" class="btn btn-rePlantGrey">Verkaufsanzeige behalten</button>
