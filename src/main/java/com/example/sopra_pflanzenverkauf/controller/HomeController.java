@@ -48,7 +48,6 @@ public class HomeController {
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
 
-        List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price);
 
         /*
         List<Plant> plants = new ArrayList<>();
@@ -59,9 +58,6 @@ public class HomeController {
             }
         }
         */
-
-        model.addAttribute("plants", plants);
-
         return "home";
     }
     @GetMapping("/plants")
