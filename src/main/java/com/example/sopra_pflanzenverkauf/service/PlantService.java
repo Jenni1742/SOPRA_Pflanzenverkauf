@@ -20,6 +20,7 @@ public class PlantService {
     public PlantService(PlantRepository plantRepository) {
         this.plantRepository = plantRepository;
     }
+
     public List<Plant> getAllPlants() {
         return plantRepository.findAll();
     }
@@ -27,6 +28,7 @@ public class PlantService {
     public List<Plant> searchPlantsByName(String plantname) {
         return plantRepository.findByPlantnameContainingIgnoreCase(plantname);
     }
+
     public List<Plant> searchPlants(String query) {
         return plantRepository.findByPlantnameContainingIgnoreCase(query);
     }
@@ -39,11 +41,11 @@ public class PlantService {
         return plantRepository.findByPlantname(plantname);
     }
 
-    public void updateSeller (Plant plant) {
+    public void updateSeller(Plant plant) {
         plantRepository.save(plant);
     }
 
-    public void updateBuyer (Plant plant) {
+    public void updateBuyer(Plant plant) {
         plantRepository.save(plant);
     }
 
@@ -65,14 +67,11 @@ public class PlantService {
     }
 
 
-
     public List<Plant> findFirstThreeUnsoldPlants() {
         return plantRepository.findBySoldFalseOrderByPlantIdAsc().stream()
                 .limit(3)
                 .collect(Collectors.toList());
     }
-
-
 
 
     public List<Plant> findFilteredAndSortedPlants(Category category, String price) {
@@ -107,14 +106,13 @@ public class PlantService {
         plantRepository.deleteById(plantID);
     }
 
-  /**  public Plant findById(Integer id) {
-        return plantRepository.findById(id).orElse(null);
+    /**
+     * public Plant findById(Integer id) {
+     * return plantRepository.findById(id).orElse(null);
+     * }
+     */
+    public Plant findById(Integer id) {
+        Optional<Plant> plant = plantRepository.findById(id);
+        return plant.orElse(null);
     }
-   */
-   public Plant findById(Integer id) {
-   Optional<Plant> plant = plantRepository.findById(id);
-   return plant.orElse(null);
-   }
-
-
 }
