@@ -413,7 +413,7 @@ public class TestDataLoader implements CommandLineRunner {
 
 
         Plant heidekraut = new Plant(
-                "Heidekruat namens Erika",
+                "Heidekruat Erika",
                 15,
                 10,
                 "Du kommst aus Heidenheim und hast noch keine Heidkraut? Hol dir diese Pflanze!",
@@ -457,7 +457,7 @@ public class TestDataLoader implements CommandLineRunner {
 
 
         Plant jessica = new Plant(
-                "Jessica der Traum in orange und weiß",
+                "Jessica",
                 55,
                 4,
                 "Ich habe eine neue lieblingspflanze gekauft und brauch die jetzt nicht mehr",
