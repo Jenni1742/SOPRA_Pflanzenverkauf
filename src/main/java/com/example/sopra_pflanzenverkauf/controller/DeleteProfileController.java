@@ -40,16 +40,18 @@ public class DeleteProfileController {
 
         if (bCryptPasswordEncoder.matches(password, currentUser.getPassword())) {
 
+            //Ändert bei anderen Usern den Verkäufer zu unbekannt in der Liste der gekauften Pflanzen
             for (User user:userService.findAllUsers()) {
-                for (Plant plant: currentUser.getPlantsToSell()) {
+                for (Plant plant: currentUser.getSoldPlantsList()) {
                     if (user.getPurchasedPlants().contains(plant)) {
                         Integer index = user.getPurchasedPlants().indexOf(plant);
-                        user.getPurchasedPlants().get(index).setSeller(null);
+                        user.getPurchasedPlants().get(index).setSellerWhenSold(null);
                         userService.updatePurchasedPlants(user);
                     }
                 }
             }
 
+            //Entfernt bei anderen Usern die Pflanzen aus der Merkliste
             for (User user:userService.findAllUsers()) {
                 while (user.getWishlistPlants().contains(plantService.getPlantBySeller(currentUser))) {
                     user.getWishlistPlants().remove(plantService.getPlantBySeller(currentUser));
@@ -57,15 +59,18 @@ public class DeleteProfileController {
                 }
             }
 
+            //Löscht alle zum Verkauf stehenden Pflanzen
             while (!currentUser.getPlantsToSell().isEmpty()) {
                 plantService.deletePlantByPlantId(currentUser.getPlantsToSell().removeFirst().getPlantId());
             }
 
+            //Leert die eigene Merkliste
             while (!currentUser.getWishlistPlants().isEmpty()) {
                 currentUser.getWishlistPlants().clear();
                 userService.updateWishlist(currentUser);
             }
 
+            //Ändert bei anderen Usern den Käufer zu unbekannt in der Liste der verkauften Pflanzen
             while (!currentUser.getPurchasedPlants().isEmpty()) {
                 currentUser.getPurchasedPlants().getFirst().setBuyer(null);
                 plantService.updateBuyer(currentUser.getPurchasedPlants().getFirst());

@@ -114,6 +114,10 @@ public class TestDataLoader implements CommandLineRunner {
         outdoorpflanze.setCategoryname("Outdoorpflanze");
         categoryService.persistCategory(outdoorpflanze);
 
+        Category samen = new Category();
+        samen.setCategoryname("Samen");
+        categoryService.persistCategory(samen);
+
         // create level-------------------------------------------------------------------------------------------------
         Level level0 = new Level();
         level0.setLevelname("Korn");
@@ -164,78 +168,82 @@ public class TestDataLoader implements CommandLineRunner {
 
         // create users-------------------------------------------------------------------------------------------------
         User jenniferKaisner = new User();
-        jenniferKaisner.setEmail("Jennifer.Kaisner@mail.com");
         jenniferKaisner.setUsername("JenniferK");
         jenniferKaisner.setPassword("1234");
-        jenniferKaisner.setEnabled(true);
         jenniferKaisner.setFirstName("Jennifer");
         jenniferKaisner.setLastName("Kaisner");
+        jenniferKaisner.setEmail("Jennifer.Kaisner@mail.com");
         jenniferKaisner.setPlz("72108");
+        jenniferKaisner.setBuyingLevel(level1);
         jenniferKaisner.setSellingLevel(level1);
-        jenniferKaisner.setBuyingLevel(level2);
         jenniferKaisner.setPicturePath("https://media.rimondo.net/1363699/conversions/4e431791-5f31-4f3e-9d2f-61eef8ffd846-400.webp?v=1637496632");
-        //jenniferKaisner.setNonLocked(true);
         jenniferKaisner.setRoles(userRoles);
         userService.persistUser(jenniferKaisner);
 
 
         User aylinaAshkenov = new User();
-        aylinaAshkenov.setEmail("aylinaaa.akv@mail.com");
         aylinaAshkenov.setUsername("AylinaA");
-        aylinaAshkenov.setPassword("5678");
-        aylinaAshkenov.setEnabled(true);
+        aylinaAshkenov.setPassword("1234");
         aylinaAshkenov.setFirstName("Aylina");
         aylinaAshkenov.setLastName("Ashkenov");
+        aylinaAshkenov.setEmail("aylinaaa.akv@mail.com");
         aylinaAshkenov.setPlz("70199");
+        aylinaAshkenov.setBuyingLevel(level0);
         aylinaAshkenov.setSellingLevel(level1);
-        aylinaAshkenov.setBuyingLevel(level2);
         aylinaAshkenov.setPicturePath("https://i.pinimg.com/236x/35/b1/61/35b1618bc1108909ac81f289f0814699.jpg");
         aylinaAshkenov.setRoles(userRoles);
         userService.persistUser(aylinaAshkenov);
 
         User alessiaSedelnikov = new User();
-        alessiaSedelnikov.setEmail("alessia.sedelnikov@mail.com");
         alessiaSedelnikov.setUsername("AlessiaS");
-        alessiaSedelnikov.setPassword("2345");
-        alessiaSedelnikov.setEnabled(true);
+        alessiaSedelnikov.setPassword("1234");
         alessiaSedelnikov.setFirstName("Alessia");
         alessiaSedelnikov.setLastName("Sedelnikov");
+        alessiaSedelnikov.setEmail("alessia.sedelnikov@mail.com");
         alessiaSedelnikov.setPlz("71283");
+        alessiaSedelnikov.setBuyingLevel(level1);
         alessiaSedelnikov.setSellingLevel(level1);
-        alessiaSedelnikov.setBuyingLevel(level2);
         alessiaSedelnikov.setPicturePath("https://i.pinimg.com/236x/94/fe/45/94fe45409a5fb7909b655e0987798216.jpg");
         alessiaSedelnikov.setRoles(userRoles);
         userService.persistUser(alessiaSedelnikov);
 
         User markoPetric = new User();
-        markoPetric.setEmail("marko.petric@mail.com");
         markoPetric.setUsername("MarkoP");
-        markoPetric.setPassword("3456");
-        markoPetric.setEnabled(true);
+        markoPetric.setPassword("1234");
         markoPetric.setFirstName("Marko");
         markoPetric.setLastName("Petric");
+        markoPetric.setEmail("marko.petric@mail.com");
         markoPetric.setPlz("70128");
+        markoPetric.setBuyingLevel(level0);
         markoPetric.setSellingLevel(level1);
-        markoPetric.setBuyingLevel(level2);
         markoPetric.setPicturePath("https://i.pinimg.com/474x/81/47/f6/8147f66671e37ef12238c49e42346953.jpg");
         markoPetric.setRoles(userRoles);
         userService.persistUser(markoPetric);
 
         User franziskaHornung = new User();
-        franziskaHornung.setEmail("franziskaHornung@mail.com");
         franziskaHornung.setUsername("FranziH");
-        franziskaHornung.setPassword("4567");
-        franziskaHornung.setEnabled(true);
+        franziskaHornung.setPassword("1234");
         franziskaHornung.setFirstName("Franziska");
         franziskaHornung.setLastName("Hornung");
+        franziskaHornung.setEmail("franziskaHornung@mail.com");
         franziskaHornung.setPlz("78292");
+        franziskaHornung.setBuyingLevel(level0);
         franziskaHornung.setSellingLevel(level1);
-        franziskaHornung.setBuyingLevel(level2);
         franziskaHornung.setPicturePath("https://i.pinimg.com/236x/0a/ea/c8/0aeac8c1c7a0cebb97a01a26794498ac.jpg");
         franziskaHornung.setRoles(userRoles);
         userService.persistUser(franziskaHornung);
 
         // create plants-----------------------------------------------------------------------------------------------
+
+        /*
+        A3-V löscht sein Profil aber hat schon P verkauft --Funktioniert
+        → Bei K muss Verkäufer auf null gesetzt werden
+        → Verkaufte P V auf null (SoldPlants)
+
+        A4-K löscht sein Profil aber hat schon P gekauft --Funktioniert
+        → Bei V muss Käufer auf null gesetzt werden
+        → Gekaufte P K auf null (purchasedPlants)
+        */
 
         Plant kaffeestrauch = new Plant(
                 "Kaffeestrauch",
@@ -244,21 +252,21 @@ public class TestDataLoader implements CommandLineRunner {
                 "Der Kaffeestrauch ist besonders, weil er mir jeden Morgen beim Kaffee trinken Gesellschaft geleistet hat. Da ich jetzt eine Partnerin gefunden habe, bin ich bereit meine Pflanze einem anderem Single zu überlassen",
                 "Hin und wieder mal gießen. Etwas Kaffe mit ins Wasser geben",
                 zimmerpflanze,
-                markoPetric,
+                null,
                 12345,
                 alessiaSedelnikov,
-                true
+                true,
+                "https://www.blumen-brueder.de/Content/files/1886/Coffea-arabica-600x800-proportionalsmallest.webp"
         );
-        kaffeestrauch.setImageUrl("https://www.blumen-brueder.de/Content/files/1886/Coffea-arabica-600x800-proportionalsmallest.webp");
         plantService.persistPlant(kaffeestrauch);
 
-        alessiaSedelnikov.getPurchasedPlants().add(kaffeestrauch);
-        userService.updatePurchasedPlants(alessiaSedelnikov);
+        //Alessia kauft die Pflanze von Marko
+        kaffeestrauch.setSellerWhenSold(markoPetric);
+        plantService.updatePlant(kaffeestrauch);
+        userService.updateNumberOfSoldPlants(markoPetric);
         userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
 
-        markoPetric.getSoldPlantsList().add(kaffeestrauch);
-        userService.updateSoldPlantsList(markoPetric);
-        userService.updateNumberOfSoldPlants(markoPetric);
+
 
         Plant allium = new Plant(
                 "Allium",
@@ -269,10 +277,27 @@ public class TestDataLoader implements CommandLineRunner {
                 outdoorpflanze,
                 alessiaSedelnikov,
                 70321,
-                false
+                false,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg"
         );
-        allium.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg");
         plantService.persistPlant(allium);
+
+        /*
+        A1- K hat P in Merkliste und der V löscht sein Profil --Funktioniert
+        → P muss aus Merkliste entfernt werden
+        → Aktive P müssen gelöscht werden (PlantsToSell)
+
+        A2-V löscht sein Profil aber hat P eingestellt  --Funktioniert
+        --> P muss aus Home, Searchresults und Merklisten entfernt werden
+        --> Aktive P müssen gelöscht werden (PlantsToSell)
+        */
+
+        //Jennifer fügt Pflanze ihrer Merkliste hinzu                 create Wishlist-------------------------------------------------
+        Set<Plant> wishlistPlants = new HashSet<>();
+        wishlistPlants.add(allium);
+        jenniferKaisner.setWishlistPlants(wishlistPlants);
+        userService.updateWishlist(jenniferKaisner);
+
 
         Plant kniphofia = new Plant(
                 "Kniphofia",
@@ -281,23 +306,19 @@ public class TestDataLoader implements CommandLineRunner {
                 "Was eine wunderschöne Pflanze! Die liebe Kniphofia sucht ein neues Zuhause",
                 "Nicht zu viel gießen und viel Licht.",
                 outdoorpflanze,
-                jenniferKaisner,
+                null,
                 70321,
                 alessiaSedelnikov,
-                true
+                true,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier3kniphofia_03_0734dfd3c0.jpg"
         );
-        kniphofia.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier3kniphofia_03_0734dfd3c0.jpg");
         plantService.persistPlant(kniphofia);
-        jenniferKaisner.getPlantsToSell().add(kniphofia);
-        userService.updatePlantsToSell(jenniferKaisner);
 
-        alessiaSedelnikov.getPurchasedPlants().add(kniphofia);
-        userService.updatePurchasedPlants(alessiaSedelnikov);
-        userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
-
-        jenniferKaisner.getSoldPlantsList().add(kniphofia);
-        userService.updateSoldPlantsList(jenniferKaisner);
+        //Alessia kauft die Pflanze von Jennifer
+        kniphofia.setSellerWhenSold(jenniferKaisner);
+        plantService.updatePlant(kniphofia);
         userService.updateNumberOfSoldPlants(jenniferKaisner);
+        userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
 
         Plant melanostachy = new Plant(
                 "Salix melanostachys",
@@ -308,12 +329,15 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 franziskaHornung,
                 70323,
-                false
+                false,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Salix_melanostachys_ed7602445f.jpg"
 
         );
-        melanostachy.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Salix_melanostachys_ed7602445f.jpg");
         plantService.persistPlant(melanostachy);
 
+        //Jennifer fügt Pflanze ihrer Merkliste hinzu
+        jenniferKaisner.getWishlistPlants().add(melanostachy);
+        userService.updateWishlist(jenniferKaisner);
 
         Plant prunus = new Plant(
                 "Prunus subhirtella",
@@ -324,12 +348,15 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 aylinaAshkenov,
                 70323,
-                false
+                false,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg"
 
         );
-        prunus.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg");
         plantService.persistPlant(prunus);
 
+        //Jennifer fügt Pflanze ihrer Merkliste hinzu
+        jenniferKaisner.getWishlistPlants().add(prunus);
+        userService.updateWishlist(jenniferKaisner);
 
         Plant occidentalis = new Plant(
                 "Cephalanthus",
@@ -340,14 +367,11 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 jenniferKaisner,
                 70323,
-                false
+                false,
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg"
 
         );
-        occidentalis.setImageUrl("https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg");
         plantService.persistPlant(occidentalis);
-        jenniferKaisner.getPlantsToSell().add(occidentalis);
-        userService.updatePlantsToSell(jenniferKaisner);
-
 
         Plant hahn = new Plant(
                 "Hahnenfussgewächs",
@@ -359,30 +383,63 @@ public class TestDataLoader implements CommandLineRunner {
                 alessiaSedelnikov,
                 70323,
                 jenniferKaisner,
-                true
+                true,
+                "https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg"
 
         );
-        hahn.setImageUrl("https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg");
         plantService.persistPlant(hahn);
-        jenniferKaisner.getPurchasedPlants().add(hahn);
-        userService.updatePurchasedPlants(jenniferKaisner);
+
+        //Jennifer kauft die Pflanze von Alessia
+        hahn.setSeller(null);
+        hahn.setSellerWhenSold(alessiaSedelnikov);
+        plantService.updatePlant(hahn);
+        userService.updateNumberOfSoldPlants(alessiaSedelnikov);
         userService.updateNumberOfPurchasedPlants(jenniferKaisner);
 
-        alessiaSedelnikov.getSoldPlantsList().add(hahn);
-        userService.updateSoldPlantsList(alessiaSedelnikov);
-        userService.updateNumberOfSoldPlants(alessiaSedelnikov);
-
-
-        // create wishlist-----------------------------------------------------------------------------------------------
-
-        Set<Plant> wishlistPlants = new HashSet<>();
-        wishlistPlants.add(prunus);
-        wishlistPlants.add(melanostachy);
-        wishlistPlants.add(allium);
-
-        jenniferKaisner.setWishlistPlants(wishlistPlants);
-        userService.updateWishlist(jenniferKaisner);
     }
 
 
 }
+
+
+/*
+Fehlerquellen:
+
+
+A) Mögliche Fehlerquellen beim Profil löschen: ----------------------------------------------------------------------------
+
+A1- K hat P in Merkliste und der V löscht sein Profil --Funktioniert
+--> P muss aus Merkliste entfernt werden
+--> Aktive P müssen gelöscht werden (PlantsToSell)
+
+A2-V löscht sein Profil aber hat P eingestellt --Funktioniert
+--> P muss aus Home, Searchresults und Merklisten entfernt werden
+--> Aktive P müssen gelöscht werden (PlantsToSell)
+
+A3-V löscht sein Profil aber hat schon P verkauft --Funktioniert
+--> Bei K muss Verkäufer auf null gesetzt werden
+--> Verkaufte P V auf null (SoldPlants)
+
+A4-K löscht sein Profil aber hat schon P gekauft --Funktioniert
+--> Bei V muss Käufer auf null gesetzt werden
+--> Gekaufte P K auf null (purchasedPlants)
+
+A5-V löscht sein Profil
+--> Nachrichtenaustausch muss gestoppt werden
+
+
+B) Mögliche Fehlerquellen beim Anzeige löschen: ----------------------------------------------------------------------------
+
+B1- P wurde in Merklisten von mehreren K hinzugefügt
+-->P muss aus allen Merklisten entfernt werden
+--> Chat muss gestoppt werden
+--> P muss aus Home und searchresults verschwinden
+
+C) Mögliche Fehlerquellen beim Kauf -------------------------------------------------------------------------------------
+
+C1- K kauft P von V
+--> P muss von Home und Searchresults verschwinden
+--> P muss aus PlantsToSell raus
+--> P muss beiK in gek. P
+--> P muss bei V in verk. P
+ */

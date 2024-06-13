@@ -34,6 +34,7 @@ public class MyAdvertisementsController {
 
 
         List<Plant> plantList = userService.getCurrentUser().getPlantsToSell();
+
         model.addAttribute("plantList", plantList);
 
         model.addAttribute("currentUser", currentUser);
