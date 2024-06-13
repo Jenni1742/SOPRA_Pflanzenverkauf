@@ -48,6 +48,7 @@ public class HomeController {
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
 
+        List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price);
 
         /*
         List<Plant> plants = new ArrayList<>();
@@ -58,6 +59,9 @@ public class HomeController {
             }
         }
         */
+
+        model.addAttribute("plants", plants);
+
         return "home";
     }
     @GetMapping("/plants")
@@ -72,12 +76,14 @@ public class HomeController {
 
     @PostMapping(path = "/")
     public String addToWishlist(@RequestParam("plant") Integer plant,
-                              Map<String, Object> model) {
+                                Map<String, Object> model) {
         User currentUser = userService.getCurrentUser();
 
-        currentUser.getWishlistPlants().add(plantService.getPlantByPlantId(plant));
+        if (currentUser != null && plant != null) {
+            currentUser.getWishlistPlants().add(plantService.getPlantByPlantId(plant));
 
-        userService.updateWishlist(currentUser);
+            userService.updateWishlist(currentUser);
+        }
 
         model.put("currentUser", currentUser);
         return "redirect:/";
@@ -85,7 +91,7 @@ public class HomeController {
 
     @PostMapping(path = "/delete")
     public String removePlantFromWishlist(@RequestParam("plant") Integer plant,
-                              Map<String, Object> model) {
+                                          Map<String, Object> model) {
         User currentUser = userService.getCurrentUser();
 
         currentUser.getWishlistPlants().remove(plantService.getPlantByPlantId(plant));
