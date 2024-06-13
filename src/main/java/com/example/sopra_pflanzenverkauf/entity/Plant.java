@@ -53,6 +53,10 @@ public class Plant {
     private User seller;
 
     @ManyToOne
+    @JoinColumn(name = "Verkäufer (Pflanze verkauft")
+    private User sellerWhenSold = null;
+
+    @ManyToOne
     @JoinColumn(name = "Käufer")
     private User buyer;
 
@@ -64,7 +68,21 @@ public class Plant {
         // empty constructor for Hibernate
     }
 
-    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, User buyer, Boolean sold) {
+    /**
+     * Konstruktor für Test Daten für Pflanze die verkauft ist
+     *
+     * @param plantname
+     * @param plantSize
+     * @param price
+     * @param plantDescription
+     * @param careTips
+     * @param category
+     * @param seller
+     * @param zipCode
+     * @param buyer
+     * @param sold
+     */
+    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, User buyer, Boolean sold, String imageUrl) {
         this.plantname = plantname;
         this.plantSize = plantSize;
         this.price = price;
@@ -75,9 +93,23 @@ public class Plant {
         this.zipCode = zipCode;
         this.buyer = buyer;
         this.sold = sold;
+        this.imageUrl = imageUrl;
     }
 
-    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, Boolean sold) {
+    /**
+     * Konstruktor für Test Daten für Pflanze die noch nicht verkauft ist
+     *
+     * @param plantname
+     * @param plantSize
+     * @param price
+     * @param plantDescription
+     * @param careTips
+     * @param category
+     * @param seller
+     * @param zipCode
+     * @param sold
+     */
+    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, Boolean sold, String imageUrl) {
         this.plantname = plantname;
         this.plantSize = plantSize;
         this.price = price;
@@ -87,14 +119,11 @@ public class Plant {
         this.seller = seller;
         this.zipCode = zipCode;
         this.sold = sold;
+        this.imageUrl = imageUrl;
     }
 
-    public void setSold(){
-        this.sold = sold;
-    }
-    public Boolean getSold(){
-        return sold;
-    }
+
+
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
@@ -168,7 +197,7 @@ public class Plant {
         this.seller = seller;
     }
 
-    public boolean isSold() {
+    public Boolean getSold(){
         return sold;
     }
     public void setSold(boolean sold) {
@@ -191,4 +220,11 @@ public class Plant {
         this.category = category;
     }
 
+    public User getSellerWhenSold() {
+        return sellerWhenSold;
+    }
+
+    public void setSellerWhenSold(User sellerWhenSold) {
+        this.sellerWhenSold = sellerWhenSold;
+    }
 }

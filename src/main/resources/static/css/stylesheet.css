@@ -10,6 +10,9 @@ body {
     background-color: white;
     border-color: white;
 }
+.btn-linkVerkäufer {
+    color: #017101;
+}
 .btn:hover {
     background-color: black;
     border-color: white;
@@ -75,6 +78,8 @@ body {
     border-color: #017101;
 }
 .card-footer-rePlant{
+    display: flex;
+    justify-content: center;
     background-color: #F0F0F0;
     border-color: #F0F0F0;
 }
@@ -420,7 +425,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: darkseagreen;
+    background-color: #017101;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -450,4 +455,15 @@ p {
     width: 58px;
     height: 50px;
     content: url('images/ColorRePlant.png'); /* Ändern des Bildes */
+}
+
+/* Style for disabled button */
+.chat-main button:disabled {
+    background-color: #cccccc; /* Light gray */
+    color: #666666; /* Dark gray */
+    cursor: not-allowed;
+}
+
+.typing-area button:disabled:hover i {
+    color: #fff;
 }

@@ -31,7 +31,7 @@
         </p>
         <p>Hier findest du deine verkauften Pflanzen.</p>
         <div style="flex: 0 0 auto; margin-right: 20px;">
-            <p th:if="${currentUser.getSoldPlants() == null}">
+            <p th:if="${currentUser.getSoldPlantsList().size() < 1 || currentUser.getSoldPlantsList() == null}">
                 Aktuell hast du noch keine Pflanze verkauft, aber das muss nicht so bleiben!
             </p>
         </div>
@@ -49,26 +49,34 @@
         <div class="card-body">
 
 
-            <div th:each="plant : ${currentUser.getSoldPlants()}" class="ad" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
-                <div style="flex: 0 0 auto; margin-right: 20px;">
-                    <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="width:100%; max-width:300px; height:auto;"/>
+            <div th:each="plant : ${currentUser.getSoldPlantsList()}" class="ad" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+                <div style="flex: 0 0 auto; margin-right: 20px; width: 300px;">
+                    <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
+                        <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                    </div>
                 </div>
                 <div style="flex: 1; padding-left: 20px; text-align: left">
                     <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
-                    <!-- To Do: plant.category.categoryname Problem: Nicht mehr alle angezeigt -->
-                    <p><strong>Kategorie:</strong> <span th:text="${plant.category}">Kategorie der Pflanze</span></p>
-                    <!--<p><strong>Status:</strong> <span th:text="${plant.status}">Status der Pflanze</span></p>-->
-                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.0</span> €</p>
-                    <!-- To Do: plant.seller.getUsername() Problem: Nicht mehr alle angezeigt -->
-                    <p><strong>Verkäufer:</strong> <span th:text="${plant.seller}">Name des Verkäufers</span></p>
-                    <div>
-                        <button style="background: none; border: none; cursor: pointer; color: #017101;">
-                            <i class="fas fa-heart"></i>
-                        </button>
-                        <button onclick="window.location.href='plant-details.html?id=[[${plant.id}]]'" style="background-color: #017101; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer;">
-                            Mehr erfahren
-                        </button>
+                    <p><strong>Lateinischer Name:</strong> <span th:text="${plant.latinName}">Lateinischer Name</span></p>
+                    <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}" style="font-style: italic;">Kategorie</span></p>
+                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
+                    <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
+
+                    <div th:if="${plant.buyer != null}">
+                        <p><strong>Käufer*in:</strong>
+                        <a th:href="@{/showOtherProfileBuyer/{userid}(userid=${plant.buyer.userId})}" class="btn-linkVerkäufer">
+                            <span th:text="${plant.buyer?.username} ?: 'Unbekannter Käufer'">Käufer</span>
+                        </a>
+                        </p>
                     </div>
+                    <div th:if="${plant.buyer == null}">
+                        <p><strong>Käufer*in:</strong>
+                            <span th:text="${plant.buyer?.username} ?: 'Unbekannter Käufer'">Käufer</span>
+                        </p>
+                    </div>
+
+                    <p><strong>Beschreibung:</strong> <span th:text="${plant.plantDescription}">Beschreibung</span></p>
+                    <p><strong>Pflegetipps:</strong> <span th:text="${plant.careTips}">Pflegetipps</span></p>
                 </div>
             </div>
         </div>

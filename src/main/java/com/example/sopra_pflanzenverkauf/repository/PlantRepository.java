@@ -1,6 +1,7 @@
 package com.example.sopra_pflanzenverkauf.repository;
 
 import com.example.sopra_pflanzenverkauf.entity.Plant;
+import com.example.sopra_pflanzenverkauf.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Collection;
@@ -15,4 +16,6 @@ public interface PlantRepository extends JpaRepository<Plant, Integer> {
         List<Plant> findBySoldFalseOrderByPlantIdAsc();
 
         Plant findByPlantId(Integer plantID);
+
+        Plant findBySeller(User seller);
 }

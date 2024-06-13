@@ -52,6 +52,10 @@ public class PlantService {
         return plantRepository.findByPlantId(plantID);
     }
 
+    public Plant getPlantBySeller(User seller) {
+        return plantRepository.findBySeller(seller);
+    }
+
     public Plant persistPlant(Plant plant) {
         return plantRepository.save(plant);
     }

@@ -7,7 +7,6 @@ import com.example.sopra_pflanzenverkauf.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,9 +15,12 @@ public class MessageService {
     @Autowired
     private MessageRepository messageRepository;
 
+    @Autowired
+    private UserService userService;
+
     public Message saveMessage(MessageDto messageDto) {
-        // TODO use userID from authentication
-        Message message = generateMessage(messageDto, "1");
+        User sender = userService.getCurrentUser();
+        Message message = generateMessage(messageDto, sender);
         return messageRepository.save(message);
     }
 
@@ -29,14 +31,13 @@ public class MessageService {
     public Message getMessageById(Long id) {
         return messageRepository.findById(id).orElseThrow(() -> new RuntimeException("Message not found"));
     }
-    private Message generateMessage(MessageDto messageDto, String senderId) {
+
+    private Message generateMessage(MessageDto messageDto, User sender) {
         Message message = new Message();
         message.setContent(messageDto.getContent());
         message.setTimestamp(LocalDateTime.now());
         message.setRecipient(messageDto.getRecipientId());
-        message.setContent(messageDto.getContent());
-        message.setSender(senderId);
+        message.setSender(sender.getUserId().toString());
         return message;
     }
-
 }
