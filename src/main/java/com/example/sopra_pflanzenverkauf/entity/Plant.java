@@ -53,6 +53,10 @@ public class Plant {
     private User seller;
 
     @ManyToOne
+    @JoinColumn(name = "Verkäufer (Pflanze verkauft")
+    private User sellerWhenSold = null;
+
+    @ManyToOne
     @JoinColumn(name = "Käufer")
     private User buyer;
 
@@ -216,4 +220,11 @@ public class Plant {
         this.category = category;
     }
 
+    public User getSellerWhenSold() {
+        return sellerWhenSold;
+    }
+
+    public void setSellerWhenSold(User sellerWhenSold) {
+        this.sellerWhenSold = sellerWhenSold;
+    }
 }

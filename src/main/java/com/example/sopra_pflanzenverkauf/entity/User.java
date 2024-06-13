@@ -81,7 +81,7 @@ public class User {
     @OneToMany (mappedBy = "seller")
     private java.util.List<Plant> plantsToSell = new ArrayList<>();
 
-    @OneToMany (mappedBy = "seller")
+    @OneToMany (mappedBy = "sellerWhenSold")
     private java.util.List<Plant> soldPlantsList = new ArrayList<>();
 
     @OneToMany (mappedBy = "buyer")

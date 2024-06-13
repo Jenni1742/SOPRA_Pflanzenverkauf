@@ -40,7 +40,6 @@ public class HomeController {
             List<Plant> plants = new ArrayList<>();
             for (User user:userService.findAllUsers()) {
                 if (user != currentUser) {
-                    System.out.println(user.getPlantsToSell().size());
                     plants.addAll(user.getPlantsToSell());
                 }
             }

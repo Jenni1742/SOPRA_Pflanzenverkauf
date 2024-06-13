@@ -45,7 +45,7 @@ public class DeleteProfileController {
                 for (Plant plant: currentUser.getSoldPlantsList()) {
                     if (user.getPurchasedPlants().contains(plant)) {
                         Integer index = user.getPurchasedPlants().indexOf(plant);
-                        user.getPurchasedPlants().get(index).setSeller(null);
+                        user.getPurchasedPlants().get(index).setSellerWhenSold(null);
                         userService.updatePurchasedPlants(user);
                     }
                 }

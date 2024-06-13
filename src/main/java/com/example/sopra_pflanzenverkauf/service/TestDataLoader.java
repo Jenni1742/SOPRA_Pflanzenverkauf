@@ -252,7 +252,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Der Kaffeestrauch ist besonders, weil er mir jeden Morgen beim Kaffee trinken Gesellschaft geleistet hat. Da ich jetzt eine Partnerin gefunden habe, bin ich bereit meine Pflanze einem anderem Single zu überlassen",
                 "Hin und wieder mal gießen. Etwas Kaffe mit ins Wasser geben",
                 zimmerpflanze,
-                markoPetric,
+                null,
                 12345,
                 alessiaSedelnikov,
                 true,
@@ -260,21 +260,13 @@ public class TestDataLoader implements CommandLineRunner {
         );
         plantService.persistPlant(kaffeestrauch);
 
-        //Marko hat Anzeige erstellt
-        //markoPetric.getPlantsToSell().add(kaffeestrauch);
-        //userService.updatePlantsToSell(markoPetric);
-
         //Alessia kauft die Pflanze von Marko
-        alessiaSedelnikov.getPurchasedPlants().add(kaffeestrauch);
-        userService.updatePurchasedPlants(alessiaSedelnikov);
+        kaffeestrauch.setSellerWhenSold(markoPetric);
+        plantService.updatePlant(kaffeestrauch);
+        userService.updateNumberOfSoldPlants(markoPetric);
         userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
 
-        markoPetric.getSoldPlantsList().add(kaffeestrauch);
-        userService.updateSoldPlantsList(markoPetric);
-        userService.updateNumberOfSoldPlants(markoPetric);
 
-        markoPetric.getPlantsToSell().remove(kaffeestrauch);
-        userService.updatePlantsToSell(markoPetric);
 
         Plant allium = new Plant(
                 "Allium",
@@ -300,12 +292,11 @@ public class TestDataLoader implements CommandLineRunner {
         --> Aktive P müssen gelöscht werden (PlantsToSell)
         */
 
-        //Alessia hat Anzeige erstellt
-        alessiaSedelnikov.getPlantsToSell().add(allium);
-        userService.updatePlantsToSell(alessiaSedelnikov);
-
         //Jennifer fügt Pflanze ihrer Merkliste hinzu                 create Wishlist-------------------------------------------------
-        //--> Siehe unten
+        Set<Plant> wishlistPlants = new HashSet<>();
+        wishlistPlants.add(allium);
+        jenniferKaisner.setWishlistPlants(wishlistPlants);
+        userService.updateWishlist(jenniferKaisner);
 
 
         Plant kniphofia = new Plant(
@@ -315,7 +306,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Was eine wunderschöne Pflanze! Die liebe Kniphofia sucht ein neues Zuhause",
                 "Nicht zu viel gießen und viel Licht.",
                 outdoorpflanze,
-                jenniferKaisner,
+                null,
                 70321,
                 alessiaSedelnikov,
                 true,
@@ -323,21 +314,11 @@ public class TestDataLoader implements CommandLineRunner {
         );
         plantService.persistPlant(kniphofia);
 
-        //Jennifer hat Anzeige erstellt
-        //jenniferKaisner.getPlantsToSell().add(kniphofia);
-        //userService.updatePlantsToSell(jenniferKaisner);
-
         //Alessia kauft die Pflanze von Jennifer
-        alessiaSedelnikov.getPurchasedPlants().add(kniphofia);
-        userService.updatePurchasedPlants(alessiaSedelnikov);
-        userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
-
-        jenniferKaisner.getSoldPlantsList().add(kniphofia);
-        userService.updateSoldPlantsList(jenniferKaisner);
+        kniphofia.setSellerWhenSold(jenniferKaisner);
+        plantService.updatePlant(kniphofia);
         userService.updateNumberOfSoldPlants(jenniferKaisner);
-
-        jenniferKaisner.getPlantsToSell().remove(kniphofia);
-        userService.updatePlantsToSell(jenniferKaisner);
+        userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
 
         Plant melanostachy = new Plant(
                 "Salix melanostachys",
@@ -354,12 +335,9 @@ public class TestDataLoader implements CommandLineRunner {
         );
         plantService.persistPlant(melanostachy);
 
-        //Franzi hat Anzeige erstellt
-        franziskaHornung.getPlantsToSell().add(melanostachy);
-        userService.updatePlantsToSell(franziskaHornung);
-
         //Jennifer fügt Pflanze ihrer Merkliste hinzu
-        //--> Siehe unten
+        jenniferKaisner.getWishlistPlants().add(melanostachy);
+        userService.updateWishlist(jenniferKaisner);
 
         Plant prunus = new Plant(
                 "Prunus subhirtella",
@@ -376,12 +354,9 @@ public class TestDataLoader implements CommandLineRunner {
         );
         plantService.persistPlant(prunus);
 
-        //Aylina hat Anzeige erstellt
-        alessiaSedelnikov.getPlantsToSell().add(prunus);
-        userService.updatePlantsToSell(aylinaAshkenov);
-
         //Jennifer fügt Pflanze ihrer Merkliste hinzu
-        //--> Siehe unten
+        jenniferKaisner.getWishlistPlants().add(prunus);
+        userService.updateWishlist(jenniferKaisner);
 
         Plant occidentalis = new Plant(
                 "Cephalanthus",
@@ -397,10 +372,6 @@ public class TestDataLoader implements CommandLineRunner {
 
         );
         plantService.persistPlant(occidentalis);
-
-        //Jennifer hat Anzeige erstellt
-        jenniferKaisner.getPlantsToSell().add(occidentalis);
-        userService.updatePlantsToSell(jenniferKaisner);
 
         Plant hahn = new Plant(
                 "Hahnenfussgewächs",
@@ -418,32 +389,13 @@ public class TestDataLoader implements CommandLineRunner {
         );
         plantService.persistPlant(hahn);
 
-        //Alessia hat Anzeige erstellt
-        //alessiaSedelnikov.getPlantsToSell().add(hahn);
-        //userService.updatePlantsToSell(alessiaSedelnikov);
-
         //Jennifer kauft die Pflanze von Alessia
-        jenniferKaisner.getPurchasedPlants().add(hahn);
-        userService.updatePurchasedPlants(jenniferKaisner);
+        hahn.setSeller(null);
+        hahn.setSellerWhenSold(alessiaSedelnikov);
+        plantService.updatePlant(hahn);
+        userService.updateNumberOfSoldPlants(alessiaSedelnikov);
         userService.updateNumberOfPurchasedPlants(jenniferKaisner);
 
-        alessiaSedelnikov.getSoldPlantsList().add(hahn);
-        userService.updateSoldPlantsList(alessiaSedelnikov);
-        userService.updateNumberOfSoldPlants(alessiaSedelnikov);
-
-        alessiaSedelnikov.getPlantsToSell().remove(hahn);
-        userService.updatePlantsToSell(alessiaSedelnikov);
-
-
-        //create Wishlist ------------------------------------------------------------------------------------------------
-
-        Set<Plant> wishlistPlants = new HashSet<>();
-        wishlistPlants.add(prunus);
-        wishlistPlants.add(melanostachy);
-        wishlistPlants.add(allium);
-
-        jenniferKaisner.setWishlistPlants(wishlistPlants);
-        userService.updateWishlist(jenniferKaisner);
     }
 
 
