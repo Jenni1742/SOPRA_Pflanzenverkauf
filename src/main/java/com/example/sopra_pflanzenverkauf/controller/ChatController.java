@@ -37,7 +37,7 @@ public class ChatController {
 
     @GetMapping
     public String getChatPage(
-            @RequestParam(value = "conversationId", required = false) String recipientId, Model model) {
+            @RequestParam(value = "recipientId", required = false) String recipientId, Model model) {
         User currentUser = userService.getCurrentUser();
         model.addAttribute("recipientId", recipientId);
         model.addAttribute("currentUser", currentUser);
