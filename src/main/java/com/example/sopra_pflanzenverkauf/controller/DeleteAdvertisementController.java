@@ -51,16 +51,24 @@ public class DeleteAdvertisementController {
 
         User currentUser = userService.getCurrentUser();
 
-        for (User user:userService.findAllUsers()) {
-            if(user.getWishlistPlants().contains(plantService.getPlantByPlantId(plantId))){
-                user.getWishlistPlants().remove(plantService.getPlantByPlantId(plantId));
+        if (currentUser == plantService.getPlantByPlantId(plantId).getSeller() && !plantService.getPlantByPlantId(plantId).getSold()) {
+
+            for (User user : userService.findAllUsers()) {
+                if (user.getWishlistPlants().contains(plantService.getPlantByPlantId(plantId))) {
+                    user.getWishlistPlants().remove(plantService.getPlantByPlantId(plantId));
+                }
             }
+
+            plantService.deletePlantByPlantId(plantId);
+
+            List<Plant> plantList = userService.getCurrentUser().getPlantsToSell();
+            model.addAttribute("plantList", plantList);
         }
-
-        plantService.deletePlantByPlantId(plantId);
-
-        List<Plant> plantList = userService.getCurrentUser().getPlantsToSell();
-        model.addAttribute("plantList", plantList);
+        /** TODO Fehlermeldung anzeigen, wenn löschen nicht erlaubt ist
+         else {
+         model.addAttribute("pflanzeLöschenNichtErlaubt", "Du kannst diese Pflanze nicht löschen, da du nicht der Verkäufer bist oder sie schon verkauft wurde.");
+         }
+         */
 
         return "redirect:/myAdvertisements";
     }
