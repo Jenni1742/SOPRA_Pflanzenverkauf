@@ -77,7 +77,7 @@ public class ChatSpecificController {
         messageJKService.updateMessageJK(message);
         chatJKService.updateChatJK(chat);
 
-        return "redirect: /chatSpecific";
+        return "redirect:/chatSpecific/{chatId}";
     }
 
 }
