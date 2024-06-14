@@ -14,6 +14,61 @@
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
+<div class="container">
+    <div class="chat-container">
+        <div class="chat-sidebar">
+            <div class="chat-header">
+                <h2>Chat</h2>
+            </div>
+            <!--
+            <div class="chat-search">
+                <input type="text" placeholder="Search here..">
+                <button class="search-button" style="background-color: #017101; border-color: #017101 ">
+                    <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M10 2a8 8 0 0 1 8 8c0 1.85-.63 3.55-1.69 4.91l5.39 5.39-1.42 1.42-5.39-5.39A7.944 7.944 0 0 1 10 18a8 8 0 1 1 0-16zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/>
+                    </svg>
+                </button>
+            </div>-->
+
+            <div class="chat-users">
+                <!-- Hier können Benutzer angezeigt werden -->
+                <div th:each="chat : ${chatList}">
+                    <form th:action="@{/showSpecificChat/{chatId} (chatId = chat.getChatId())}" method="get">
+                        <button class="ad" style="display: flex; align-items: flex-start; border: 1px solid #ccc; padding: 10px; width: 248px;">
+                            <div th:if="${chat.getRecipientOfChat() != currentUser}">
+                                <p th:text="${chat.getRecipientOfChat().getUsername()}"></p>
+                            </div>
+                            <div th:if="${chat.getSenderOfChat() != currentUser}">
+                                <p th:text="${chat.getRecipientOfChat().getUsername()}"></p>
+                            </div>
+                        </button>
+                    </form>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="chat-main">
+            <div class="chat-box">
+                <div th:each="message : ${messages}" th:class="${message.sender == '1'} ? 'outgoing' : 'incoming'">
+                    <div class="details">
+                        <p th:text="${message.content}"></p>
+                    </div>
+                </div>
+            </div>
+            <form action="/chat/messages" method="post" class="typing-area">
+                <input type="hidden" name="recipientId" id="recipientId" th:value="${recipientId}">
+                <input type="hidden" name="senderId" id="senderId" th:value="${currentUser.userId}">
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+                <input type="text" name="content" placeholder="Gib eine Nachricht ein." required>
+                <button type="submit" th:disabled="${recipientId == null}">
+                    <i class="fa fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>
