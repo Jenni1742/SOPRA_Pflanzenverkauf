@@ -15,7 +15,7 @@
 <div class="container">
     <header>
         <div id="branding">
-            <h1>Suchergebnisse für '<span th:text="${query}"></span>'</h1>
+            <h1 style="color:#017101;">Suchergebnisse für '<span th:text="${query}"></span>'</h1>
         </div>
         <div th:if="${plants.size() == 0 || plants == null}" class="alert alert-warning" role="alert">
             Keine Pflanzen gefunden. Versuchen Sie es mit anderen Suchbegriffen.
