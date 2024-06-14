@@ -26,11 +26,22 @@ public class SearchController {
     @GetMapping("/searchresults")
     public String search(@RequestParam("query") String query, Model model) {
         List<Plant> results = plantService.searchPlantsByName(query);
+
+        /*
+        User currentUser = userService.getCurrentUser();
+        for (Plant plant : results) {
+            if (plant.getSeller() == currentUser) {
+                results.remove(plant);
+            } else if (plant.getSold()) {
+                results.remove(plant);
+            }
+        }*/
+
+
         model.addAttribute("query", query);
         model.addAttribute("plants", results);
         System.out.println("Search query received: " + query);  // Logging für Debugging
 
-        User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", userService.getCurrentUser());
         return "searchresults";
     }

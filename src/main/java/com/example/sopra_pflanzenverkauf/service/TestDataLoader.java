@@ -99,6 +99,7 @@ public class TestDataLoader implements CommandLineRunner {
 
     /**
      * Executed during Spring boot startup.
+     *
      * @param args arguments.
      * @throws Exception exception.
      */
@@ -267,7 +268,6 @@ public class TestDataLoader implements CommandLineRunner {
         userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
 
 
-
         Plant allium = new Plant(
                 "Allium",
                 30,
@@ -330,7 +330,7 @@ public class TestDataLoader implements CommandLineRunner {
                 franziskaHornung,
                 70323,
                 false,
-                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Salix_melanostachys_ed7602445f.jpg"
+                "https://cdn.pixabay.com/photo/2016/05/24/17/42/lotus-1412858_1280.jpg"
 
         );
         plantService.persistPlant(melanostachy);
@@ -396,11 +396,97 @@ public class TestDataLoader implements CommandLineRunner {
         userService.updateNumberOfSoldPlants(alessiaSedelnikov);
         userService.updateNumberOfPurchasedPlants(jenniferKaisner);
 
+        // Weitere Pflanzen
+        Plant titanenwurzel = new Plant(
+                "Titanenwurzel",
+                160,
+                100000,
+                "Die Titanenwurz gilt als die größte Blume der Welt. An der Uni Hohenheim hat sie nun schon zum zweiten Mal geblüht. Das Interesse war groß, der Gestank auch.",
+                "Du musst schon studieren, um zu wissen, wie man mit dieser Pflanze umgehen muss",
+                outdoorpflanze,
+                alessiaSedelnikov,
+                56783,
+                false,
+                "https://www.swr.de/swraktuell/baden-wuerttemberg/stuttgart/1713352797444%2Ctitanenwurz-uni-hohenheim-stuttgart-100~_v-16x9@2dL_-6c42aff4e68b43c7868c3240d3ebfa29867457da.jpg"
+        );
+        plantService.persistPlant(titanenwurzel);
+
+
+        Plant heidekraut = new Plant(
+                "Heidekruat Erika",
+                15,
+                10,
+                "Du kommst aus Heidenheim und hast noch keine Heidkraut? Hol dir diese Pflanze!",
+                "Hin und wieder mal gießen. Ganz viel Sonne!",
+                zimmerpflanze,
+                aylinaAshkenov,
+                23456,
+                false,
+                "https://cdn.pixabay.com/photo/2018/09/13/18/18/heide-3675445_1280.jpg"
+        );
+        plantService.persistPlant(heidekraut);
+
+        Plant lotus = new Plant(
+                "Lotus grüne Pflanze",
+                25,
+                20,
+                "Jetzt wo ich auf Diät bin und keine Lotuskekse mehr essen kann, muss ich mich auch von der lotus Pflanze verabschieden, da sie mich zu sehr an die Leckerei erinnert mit ihrem Namen",
+                "Jede woche mit 100 ml bewässern",
+                zimmerpflanze,
+                aylinaAshkenov,
+                23456,
+                false,
+                "https://www.lubera.com/images/600/lotus-blatt-e1481172403391.jpg"
+        );
+
+        plantService.persistPlant(lotus);
+
+        Plant kleingruen = new Plant(
+                "Grüne Pflanze",
+                5,
+                5,
+                "Erlich kein plan was das für eine Pflanze ist",
+                "Jede woche mit 500 ml bewässern",
+                zimmerpflanze,
+                markoPetric,
+                34567,
+                false,
+                "https://cdn.pixabay.com/photo/2019/02/25/20/29/houseplant-4020532_1280.jpg"
+        );
+        plantService.persistPlant(kleingruen);
+
+
+        Plant jessica = new Plant(
+                "Jessica",
+                55,
+                4,
+                "Ich habe eine neue lieblingspflanze gekauft und brauch die jetzt nicht mehr",
+                "Wasser, Sonne und Liebe",
+                outdoorpflanze,
+                jenniferKaisner,
+                56789,
+                false,
+                "https://cdn.pixabay.com/photo/2011/04/06/15/05/garden-6239_1280.jpg"
+        );
+        plantService.persistPlant(jessica);
+
+        Plant blau = new Plant(
+                "Blaues Baby",
+                2,
+                40,
+                "Hast du Blau mit Tau, wirst du zu Blau mit Frau.... Eine Dichter und Denker Pflanze",
+                "Wasser, Sonne und Liebe",
+                outdoorpflanze,
+                aylinaAshkenov,
+                70327,
+                false,
+                "https://cdn.pixabay.com/photo/2017/04/03/07/30/blue-flower-2197679_1280.jpg"
+        );
+        plantService.persistPlant(blau);
+
+
     }
-
-
 }
-
 
 /*
 Fehlerquellen:
