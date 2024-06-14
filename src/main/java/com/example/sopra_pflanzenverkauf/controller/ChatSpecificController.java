@@ -35,22 +35,24 @@ public class ChatSpecificController {
         User recipient = userService.getUserByUsername(recipientUsername);
         User currentUser = userService.getCurrentUser();
 
-        int chatId = 0;
+        ChatJK chatJK = null;
 
         for (ChatJK chat:chatJKService.getAllChats()) {
             if (chat.getRecipientOfChat() == recipient && chat.getSenderOfChat() == currentUser ){
-                chatId = chat.getChatId();
+                chatJK = chat;
             }
         }
 
-        if(chatId == 0) {
+        if(chatJK == null) {
         ChatJK chatjk = new ChatJK();
         chatjk.setRecipientOfChat(recipient);
         chatjk.setSenderOfChat(currentUser);
-        chatJKService.updateChatJK(chatjk);
+        chatJKService.persistChat(chatjk);
         model.addAttribute("chatId", chatjk.getChatId());
+        model.addAttribute("specificChat", chatjk);
         } else {
-            model.addAttribute("chatId", chatId);
+            model.addAttribute("specificChat", chatJK );
+            model.addAttribute("chatId", chatJK.getChatId());
         }
 
         return "/chatSpecific";
