@@ -74,12 +74,17 @@ public class PlantService {
     }
 
 
-    public List<Plant> findFilteredAndSortedPlants(Category category, String price) {
+    public List<Plant> findFilteredAndSortedPlants(Category category, String price, Boolean sold) {
         List<Plant> plants = plantRepository.findAll();
 
         if (category != null) {
             plants = plants.stream()
                     .filter(plant -> plant.getCategory().equals(category))
+                    .collect(Collectors.toList());
+        }
+        if (sold != null) {
+            plants = plants.stream()
+                    .filter(plant -> plant.getSold().equals(sold))
                     .collect(Collectors.toList());
         }
 

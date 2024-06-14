@@ -3,6 +3,7 @@ package com.example.sopra_pflanzenverkauf.controller;
 import com.example.sopra_pflanzenverkauf.entity.Category;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
+import com.example.sopra_pflanzenverkauf.service.CategoryService;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class HomeController {
     private UserService userService;
     @Autowired
     private PlantService plantService;
+    @Autowired
+    private CategoryService categoryService;
+
 
     @GetMapping("/")
     public String showHome(Model model,
@@ -49,11 +53,38 @@ public class HomeController {
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
 
-        List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price);
+        List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price, false);
 
         model.addAttribute("plants", plants);
 
         return "home";
+    }
+    @GetMapping("/filteredPlants")
+    public String showFilteredPlants(Model model,
+                                     @RequestParam(value = "category", required = false) String categoryName,
+                                     @RequestParam(value = "status", required = false) Boolean sold) {
+
+        User currentUser = userService.getCurrentUser();
+        model.addAttribute("currentUser", currentUser);
+
+        /**List<Plant> plants = plantService.getAllPlants().stream()
+                .filter(plant -> category == null || plant.getCategory().getCategoryname().equalsIgnoreCase(category))
+                .filter(plant -> sold == null || plant.getSold() == sold)
+                .filter(plant -> plant.getSeller() != currentUser)
+                .collect(Collectors.toList());
+        */
+        Category category = null;
+        if (categoryName != null && !categoryName.isEmpty()) {
+            category = categoryService.getCategoryByName(categoryName);
+        }
+        List<Plant> plants = plantService.findFilteredAndSortedPlants(category, null, sold);
+        plants = plants.stream()
+                .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
+                .collect(Collectors.toList());
+
+        model.addAttribute("plants", plants);
+
+        return "filteredPlants"; // Name der HTML-Datei, die die gefilterten Pflanzen anzeigt
     }
     @GetMapping("/plants")
     public String getPlants(Model model) {

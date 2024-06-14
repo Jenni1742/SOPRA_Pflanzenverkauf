@@ -52,7 +52,7 @@
                 <input type="hidden" name="senderId" id="senderId" th:value="${currentUser.userId}">
                 <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
                 <input type="text" name="content" placeholder="Gib eine Nachricht ein." required>
-                <button type="submit" th:disabled="${recipientId == null}">
+                <button type="submit">
                     <i class="fa fa-paper-plane"></i>
                 </button>
             </form>
