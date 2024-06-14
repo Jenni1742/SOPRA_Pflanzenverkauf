@@ -41,6 +41,9 @@ public class ChatSpecificController {
             if (chat.getRecipientOfChat() == recipient && chat.getSenderOfChat() == currentUser ){
                 chatJK = chat;
             }
+            if (chat.getRecipientOfChat() == currentUser && chat.getSenderOfChat() == recipient ){
+                chatJK = chat;
+            }
         }
 
         if(chatJK == null) {
