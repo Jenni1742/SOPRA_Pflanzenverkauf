@@ -74,7 +74,7 @@ public class PlantService {
     }
 
 
-    public List<Plant> findFilteredAndSortedPlants(Category category, String price) {
+    public List<Plant> findFilteredAndSortedPlants(Category category, String price, Boolean sold) {
         List<Plant> plants = plantRepository.findAll();
 
         if (category != null) {
@@ -82,7 +82,12 @@ public class PlantService {
                     .filter(plant -> plant.getCategory().equals(category))
                     .collect(Collectors.toList());
         }
-
+        if (sold != null) {
+            plants = plants.stream()
+                    .filter(plant -> plant.getSold().equals(sold))
+                    .collect(Collectors.toList());
+        }
+        /**
         if (price != null && !price.isEmpty()) {
             // Assuming price is in format "min-max"
             String[] priceRange = price.split("-");
@@ -98,7 +103,7 @@ public class PlantService {
                 }
             }
         }
-
+        */
         return plants;
     }
 

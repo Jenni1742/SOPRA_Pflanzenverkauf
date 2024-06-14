@@ -3,6 +3,7 @@ package com.example.sopra_pflanzenverkauf.controller;
 import com.example.sopra_pflanzenverkauf.entity.Category;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
+import com.example.sopra_pflanzenverkauf.service.CategoryService;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class HomeController {
     private UserService userService;
     @Autowired
     private PlantService plantService;
+    @Autowired
+    private CategoryService categoryService;
+
 
     @GetMapping("/")
     public String showHome(Model model,
@@ -49,11 +53,37 @@ public class HomeController {
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
 
-        List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price);
+        List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price, false);
 
         model.addAttribute("plants", plants);
 
         return "home";
+    }
+    @GetMapping("/filteredPlants")
+    public String showFilteredPlants(Model model,
+                                     @RequestParam(value = "category", required = false) String category,
+                                     @RequestParam(value = "price", required = false) String price,
+                                     @RequestParam(value = "status", required = false) Boolean sold) {
+
+        User currentUser = userService.getCurrentUser();
+        model.addAttribute("currentUser", currentUser);
+
+        Category selectedCategory = null;
+        if(category!=null){
+            if(category.equals("indoor")){
+                selectedCategory= categoryService.getCategoryByName("Zimmerpflanze");
+            }else if (category.equals("outdoor")) {
+                selectedCategory = categoryService.getCategoryByName("Outdoorpflanze");
+            }
+        }
+        List<Plant> filteredPlants = plantService.findFilteredAndSortedPlants(selectedCategory, price, sold);
+        filteredPlants = filteredPlants.stream()
+                .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
+                .collect(Collectors.toList());
+
+        model.addAttribute("filteredPlants", filteredPlants);
+
+        return "filteredPlants"; // Name der HTML-Datei, die die gefilterten Pflanzen anzeigt
     }
     @GetMapping("/plants")
     public String getPlants(Model model) {
