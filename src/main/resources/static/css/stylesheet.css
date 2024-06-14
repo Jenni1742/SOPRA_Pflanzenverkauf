@@ -5,6 +5,28 @@ body {
 .bg-dark {
     background-color: black !important;
 }
+.btn-chat {
+    background-color: #017101;
+    border-color: black;
+    border: 1px solid black;
+    padding: 10px;
+    width: 248px;
+}
+.btn-chat {
+    background-color: #017101;
+    border-color: black;
+    border: 1px solid;
+    padding: 10px;
+    width: 248px;
+}
+.btn-chat:hover {
+    background-color: black;
+    color: white;
+    border-color: black;
+    border: 1px solid;
+    padding: 10px;
+    width: 248px;
+}
 
 .btn{
     background-color: white;
@@ -328,6 +350,12 @@ p {
     margin-top: auto;
     margin-bottom: 70px;
     word-wrap: break-word;
+}
+
+.chat-box .chat-header {
+    width: 15%;
+    height: 45px;
+    background-color: lightgreen;
 }
 
 /* Stil für ausgehende Nachrichten */

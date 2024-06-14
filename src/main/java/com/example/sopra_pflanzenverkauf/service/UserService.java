@@ -162,6 +162,8 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email);
     }
 
+    public User getUserByUserId(Integer userId){return userRepository.findByUserId(userId);}
+
     ///////////////////////////////////////////////////////////////////////////
     // Spring Security Authentication Methoden
     ///////////////////////////////////////////////////////////////////////////

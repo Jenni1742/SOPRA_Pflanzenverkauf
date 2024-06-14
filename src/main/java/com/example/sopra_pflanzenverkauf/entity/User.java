@@ -1,10 +1,10 @@
 package com.example.sopra_pflanzenverkauf.entity;
 
 import jakarta.persistence.*;
-import org.hibernate.mapping.List;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -69,6 +69,18 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "Merkliste", joinColumns = @JoinColumn(name = "BenutzerID"), inverseJoinColumns = @JoinColumn(name = "PflanzenID"))
     private Set<Plant> wishlistPlants;
+
+    @OneToMany (mappedBy = "sender")
+    private java.util.List<MessageJK> sentMessages = new ArrayList<>();
+
+    @OneToMany (mappedBy = "recipient")
+    private java.util.List<MessageJK> receivedMessages = new ArrayList<>();
+
+    @OneToMany (mappedBy = "senderOfChat")
+    private java.util.List<ChatJK> sentChat = new ArrayList<>();
+
+    @OneToMany (mappedBy = "recipientOfChat")
+    private java.util.List<ChatJK> receivedChat = new ArrayList<>();
 
     /*
     @OneToMany (mappedBy = "seller")
@@ -381,5 +393,43 @@ public class User {
 
     public void setSoldPlantsList(java.util.List<Plant> soldPlantsList) {
         this.soldPlantsList = soldPlantsList;
+    }
+
+    public List<MessageJK> getSentMessages() {
+        return sentMessages;
+    }
+
+    public void setSentMessages(List<MessageJK> sentMessages) {
+        this.sentMessages = sentMessages;
+    }
+
+    public List<MessageJK> getReceivedMessages() {
+        return receivedMessages;
+    }
+
+    public void setReceivedMessages(List<MessageJK> receivedMessages) {
+        this.receivedMessages = receivedMessages;
+    }
+
+    public List<ChatJK> getSentChat() {
+        return sentChat;
+    }
+
+    public void setSentChat(List<ChatJK> sentChat) {
+        this.sentChat = sentChat;
+    }
+
+    public List<ChatJK> getReceivedChat() {
+        return receivedChat;
+    }
+
+    public void setReceivedChat(List<ChatJK> receivedChat) {
+        this.receivedChat = receivedChat;
+    }
+
+    public List<ChatJK> getSentAndReceivedChats() {
+        List<ChatJK> chatList = this.getReceivedChat();
+        chatList.addAll(this.getSentChat());
+        return chatList;
     }
 }

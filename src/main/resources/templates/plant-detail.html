@@ -39,8 +39,8 @@
             <button onclick="history.back()" type="button" class="btn btn-rePlantGrey">
                 Schließen
             </button>
-            <form th:action="@{/chat}" method="get" style="text-decoration: none;">
-                <input type="hidden" name="recipientId" th:value="${plant.seller.userId}" />
+            <form th:action="@{/chatSpecific}" method="get" style="text-decoration: none;">
+                <input type="hidden" name="recipientUsername" th:value="${plant.seller.username}" />
                 <button type="submit" class="btn btn-rePlantGreen btn-inline-flex">
                     Nachricht schreiben
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16">

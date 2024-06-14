@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -96,7 +97,11 @@ public class TestDataLoader implements CommandLineRunner {
 
     @Autowired
     private MessageService messageService;
+    @Autowired
+    private ChatJKService chatJKService;
 
+    @Autowired
+    private MessageJKService messageJKService;
     /**
      * Executed during Spring boot startup.
      *
@@ -483,6 +488,43 @@ public class TestDataLoader implements CommandLineRunner {
                 "https://cdn.pixabay.com/photo/2017/04/03/07/30/blue-flower-2197679_1280.jpg"
         );
         plantService.persistPlant(blau);
+
+
+
+        ChatJK chatjk = new ChatJK();
+        chatjk.setRecipientOfChat(alessiaSedelnikov);
+        chatjk.setSenderOfChat(jenniferKaisner);
+        chatJKService.updateChatJK(chatjk);
+
+        ChatJK chatjk2 = new ChatJK();
+        chatjk2.setRecipientOfChat(markoPetric);
+        chatjk2.setSenderOfChat(jenniferKaisner);
+        chatJKService.updateChatJK(chatjk2);
+
+        ChatJK chatjk3 = new ChatJK();
+        chatjk3.setRecipientOfChat(jenniferKaisner);
+        chatjk3.setSenderOfChat(franziskaHornung);
+        chatJKService.updateChatJK(chatjk3);
+
+        MessageJK messageJK = new MessageJK();
+        messageJK.setContent("Hallo Alessia");
+        messageJK.setRecipient(alessiaSedelnikov);
+        messageJK.setSender(jenniferKaisner);
+        messageJK.setAssociatedChat(chatjk);
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        messageJK.setTimestamp(timestamp.toLocalDateTime());
+        messageJKService.updateMessageJK(messageJK);
+        chatJKService.updateChatJK(chatjk);
+
+        MessageJK messageJK2 = new MessageJK();
+        messageJK2.setContent("Hallo Jenni");
+        messageJK2.setRecipient(jenniferKaisner);
+        messageJK2.setSender(alessiaSedelnikov);
+        messageJK2.setAssociatedChat(chatjk);
+        Timestamp timestamp2 = new Timestamp(System.currentTimeMillis());
+        messageJK2.setTimestamp(timestamp2.toLocalDateTime());
+        messageJKService.updateMessageJK(messageJK2);
+        chatJKService.updateChatJK(chatjk);
 
 
     }
