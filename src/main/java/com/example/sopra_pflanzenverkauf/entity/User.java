@@ -426,4 +426,10 @@ public class User {
     public void setReceivedChat(List<ChatJK> receivedChat) {
         this.receivedChat = receivedChat;
     }
+
+    public List<ChatJK> getSentAndReceivedChats() {
+        List<ChatJK> chatList = this.getReceivedChat();
+        chatList.addAll(this.getSentChat());
+        return chatList;
+    }
 }

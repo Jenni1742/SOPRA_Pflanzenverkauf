@@ -5,6 +5,28 @@ body {
 .bg-dark {
     background-color: black !important;
 }
+.btn-chat {
+    background-color: #017101;
+    border-color: black;
+    border: 1px solid black;
+    padding: 10px;
+    width: 248px;
+}
+.btn-chat {
+    background-color: #017101;
+    border-color: black;
+    border: 1px solid;
+    padding: 10px;
+    width: 248px;
+}
+.btn-chat:hover {
+    background-color: black;
+    color: white;
+    border-color: black;
+    border: 1px solid;
+    padding: 10px;
+    width: 248px;
+}
 
 .btn{
     background-color: white;
