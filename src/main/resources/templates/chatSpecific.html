@@ -55,32 +55,59 @@
         <div class="chat-main">
             <div class="chat-header">
                 <div th:if="${specificChat.getRecipientOfChat() != currentUser}">
-                    <div>Chatpartner: <span th:text="${specificChat.getRecipientOfChat().getUsername()}"></span>
+                    <div>
                         <a th:href="@{/showOtherProfileSeller/{userid}(userid=${specificChat.getRecipientOfChat().userId})}">
                             <img th:src="${specificChat.getRecipientOfChat().getPicturePath()}" style="width: 30px; height: 30px; border-color: transparent"
                                 onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'"
                                 class="rounded-circle"></a>
+                        <span th:text="${specificChat.getRecipientOfChat().getUsername()}"></span>
                     </div>
                 </div>
                 <div th:if="${specificChat.getRecipientOfChat() == currentUser}">
-                    <div>Chatpartner: <span th:text="${specificChat.getSenderOfChat().getUsername()}"></span>
+                    <div>
                         <a th:href="@{/showOtherProfileSeller/{userid}(userid=${specificChat.getSenderOfChat().userId})}">
                             <img th:src="${specificChat.getSenderOfChat().getPicturePath()}" style="width: 30px; height: 30px; border-color: transparent"
                                  onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'"
                                  class="rounded-circle"></a>
+                        <span th:text="${specificChat.getSenderOfChat().getUsername()}"></span>
                     </div>
                 </div>
             </div>
             <div class="chat-box">
                 <div th:if="${specificChat != null}">
                     <div th:each="message : ${specificChat.getMessagesInChat()}"
-                         th:class="${message.sender == '1'} ? 'outgoing' : 'incoming'">
-                        <div class="chat-header" style="width: 280px">
-                            <div th:text=" ${message.getSender().getUsername()}" style="text-align: center"></div>
+                         th:class="${message.sender == currentUser} ? 'outgoing' : 'incoming'">
+
+                        <!--
+                        <div th:if="${message.getSender() == currentUser}">
+                            <div class="chat-header" style="width: 280px; background-color: #757575; color: white;">
+                                <div>Du:</div>
+                            </div>
+                        </div>-->
+                        <div class="details">
+                            <p th:text="${message.getContent()}" th:if="${message.getSender() == currentUser}" style="background-color: #959595 "></p>
+                            <span th:text="${message.getTimestamp().getHour()}" th:if="${message.getSender() == currentUser}"></span>
+                            <span th:if="${message.getSender() == currentUser && message.getTimestamp().getMinute() >= 10}">:</span>
+                            <span th:if="${message.getSender() == currentUser && message.getTimestamp().getMinute() < 10}">: 0</span>
+                            <span th:text="${message.getTimestamp().getMinute()}" th:if="${message.getSender() == currentUser}"></span>
+                            <span th:if="${message.getSender() == currentUser}"> Uhr</span>
                         </div>
                         <div class="details">
-                            <p th:text="${message.getContent()} " style="background-color: #959595 "></p>
+                            <p th:text="${message.getContent()}" th:if="${message.getSender() != currentUser}" style="background-color: #017101; color: white "></p>
+                            <span th:text="${message.getTimestamp().getHour()}" th:if="${message.getSender() != currentUser}">:</span>
+                            <span th:if="${message.getSender() != currentUser && message.getTimestamp().getMinute() >= 10}">:</span>
+                            <span th:if="${message.getSender() != currentUser && message.getTimestamp().getMinute() < 10}">: 0</span>
+                            <span th:text="${message.getTimestamp().getMinute()}" th:if="${message.getSender() != currentUser}"></span>
+                            <span th:if="${message.getSender() != currentUser}"> Uhr</span>
                         </div>
+
+                        <!--
+                        <div th:if="${message.getSender() != currentUser}">
+                            <div class="chat-header" style="width: 280px; background-color: #017101; color: white ">
+                                <div th:text="${message.getSender().getUsername()}"></div>
+                            </div>
+                        </div>-->
+
                     </div>
                 </div>
 
