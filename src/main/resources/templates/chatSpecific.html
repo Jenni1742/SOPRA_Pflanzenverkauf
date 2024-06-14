@@ -61,8 +61,13 @@
                         </div>
                     </div>
                 </div>
-                <div th:if="${specificChat == null || specificChat.getMessagesInChat().isEmpty()}">
-                    <p>null</p>
+                <div th:if="${specificChat == null}" class="alert alert-danger">
+                    <p>Der Chat ist null</p>
+
+                </div>
+                <div th:if="${specificChat.getMessagesInChat().isEmpty()}" class="alert alert-danger">
+                    <p>Der Chat ist leer, sende eine Nachricht um mit <span th:text="${specificChat.getRecipientOfChat().getUsername()}"></span> in Kontakt zu treten.</p>
+
                 </div>
                 <form th:action="@{/chatSpecific/{chatId} (chatId=${chatId})}" method="post" class="typing-area">
                     <!--input wird unterstrichen, weil wohl ein Label fehlt, aber mit Label sieht es komisch aus und funktioniert auch ohne-->
