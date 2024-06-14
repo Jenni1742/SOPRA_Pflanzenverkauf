@@ -57,8 +57,9 @@ public class ChatSpecificController {
             model.addAttribute("specificChat", chatJK );
             model.addAttribute("chatId", chatJK.getChatId());
         }
+        model.addAttribute("currentUser", userService.getCurrentUser());
 
-        return "/chatSpecific";
+        return "redirect:/chatJK";
     }
 
     @RequestMapping (value = "/chatSpecific/{chatId}", method = RequestMethod.GET)
@@ -109,7 +110,7 @@ public class ChatSpecificController {
         messageJKService.updateMessageJK(message);
         chatJKService.updateChatJK(chat);
 
-        return "c/chatSpecific/{chatId}";
+        return "redirect:/chatSpecific/{chatId}";
     }
 
 }
