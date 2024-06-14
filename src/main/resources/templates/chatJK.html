@@ -33,29 +33,37 @@
             <div class="chat-users">
                 <!-- Hier können Benutzer angezeigt werden -->
                 <div th:each="chat : ${chatList}">
-                    <form th:action="@{/showSpecificChat/{chatId} (chatId = chat.getChatId())}" method="get">
+                    <a th:href="@{/chatSpecific/{chatId} (chatId = ${chat.getChatId()})}">
                         <button class="ad" style="display: flex; align-items: flex-start; border: 1px solid #ccc; padding: 10px; width: 248px;">
                             <div th:if="${chat.getRecipientOfChat() != currentUser}">
                                 <p th:text="${chat.getRecipientOfChat().getUsername()}"></p>
                             </div>
                             <div th:if="${chat.getSenderOfChat() != currentUser}">
-                                <p th:text="${chat.getRecipientOfChat().getUsername()}"></p>
+                                <p th:text="${chat.getSenderOfChat().getUsername()}"></p>
                             </div>
                         </button>
-                    </form>
+                    </a>
                 </div>
-
 
             </div>
         </div>
+
+        <!--
         <div class="chat-main">
             <div class="chat-box">
-                <div th:each="message : ${messages}" th:class="${message.sender == '1'} ? 'outgoing' : 'incoming'">
-                    <div class="details">
-                        <p th:text="${message.content}"></p>
+                <div th:if="${specificChat != null}">
+                    <div th:each="message : ${specificChat.getMessagesInChat()}" th:class="${message.sender == '1'} ? 'outgoing' : 'incoming'">
+                        <div class="details">
+                            <p th:text="${message.getContent()}"></p>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div th:if="${specificChat == null}">
+                    <p>null</p>
+                </div>
+
+            </div>-->
+            <!--
             <form action="/chat/messages" method="post" class="typing-area">
                 <input type="hidden" name="recipientId" id="recipientId" th:value="${recipientId}">
                 <input type="hidden" name="senderId" id="senderId" th:value="${currentUser.userId}">
@@ -64,7 +72,7 @@
                 <button type="submit" th:disabled="${recipientId == null}">
                     <i class="fa fa-paper-plane"></i>
                 </button>
-            </form>
+            </form>-->
         </div>
     </div>
 </div>

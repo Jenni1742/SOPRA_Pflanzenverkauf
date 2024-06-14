@@ -100,6 +100,8 @@ public class TestDataLoader implements CommandLineRunner {
     @Autowired
     private ChatJKService chatJKService;
 
+    @Autowired
+    private MessageJKService messageJKService;
     /**
      * Executed during Spring boot startup.
      *
@@ -511,6 +513,18 @@ public class TestDataLoader implements CommandLineRunner {
         messageJK.setAssociatedChat(chatjk);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         messageJK.setTimestamp(timestamp.toLocalDateTime());
+        messageJKService.updateMessageJK(messageJK);
+        chatJKService.updateChatJK(chatjk);
+
+        MessageJK messageJK2 = new MessageJK();
+        messageJK2.setContent("Hallo Jenni");
+        messageJK2.setRecipient(jenniferKaisner);
+        messageJK2.setSender(alessiaSedelnikov);
+        messageJK2.setAssociatedChat(chatjk);
+        Timestamp timestamp2 = new Timestamp(System.currentTimeMillis());
+        messageJK2.setTimestamp(timestamp2.toLocalDateTime());
+        messageJKService.updateMessageJK(messageJK2);
+        chatJKService.updateChatJK(chatjk);
 
 
     }
