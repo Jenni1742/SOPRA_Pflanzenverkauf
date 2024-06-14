@@ -29,6 +29,33 @@ public class ChatSpecificController {
     @Autowired
     private ChatJKService chatJKService;
 
+    @RequestMapping (value = "/chatSpecific", method = RequestMethod.GET)
+    public String getChatPage(@RequestParam(value = "recipientUsername", required = false) String recipientUsername, Model model) {
+
+        User recipient = userService.getUserByUsername(recipientUsername);
+        User currentUser = userService.getCurrentUser();
+
+        int chatId = 0;
+
+        for (ChatJK chat:chatJKService.getAllChats()) {
+            if (chat.getRecipientOfChat() == recipient && chat.getSenderOfChat() == currentUser ){
+                chatId = chat.getChatId();
+            }
+        }
+
+        if(chatId == 0) {
+        ChatJK chatjk = new ChatJK();
+        chatjk.setRecipientOfChat(recipient);
+        chatjk.setSenderOfChat(currentUser);
+        chatJKService.updateChatJK(chatjk);
+        model.addAttribute("chatId", chatjk.getChatId());
+        } else {
+            model.addAttribute("chatId", chatId);
+        }
+
+        return "/chatSpecific";
+    }
+
     @RequestMapping (value = "/chatSpecific/{chatId}", method = RequestMethod.GET)
     public String showSpecificChat(@PathVariable("chatId") Integer chatId,
                                    Model model) {
@@ -77,7 +104,7 @@ public class ChatSpecificController {
         messageJKService.updateMessageJK(message);
         chatJKService.updateChatJK(chat);
 
-        return "redirect:/chatSpecific/{chatId}";
+        return "c/chatSpecific/{chatId}";
     }
 
 }
