@@ -87,7 +87,7 @@ public class PlantService {
                     .filter(plant -> plant.getSold().equals(sold))
                     .collect(Collectors.toList());
         }
-
+        /**
         if (price != null && !price.isEmpty()) {
             // Assuming price is in format "min-max"
             String[] priceRange = price.split("-");
@@ -103,7 +103,7 @@ public class PlantService {
                 }
             }
         }
-
+        */
         return plants;
     }
 

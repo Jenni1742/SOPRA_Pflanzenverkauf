@@ -61,28 +61,27 @@ public class HomeController {
     }
     @GetMapping("/filteredPlants")
     public String showFilteredPlants(Model model,
-                                     @RequestParam(value = "category", required = false) String categoryName,
+                                     @RequestParam(value = "category", required = false) String category,
+                                     @RequestParam(value = "price", required = false) String price,
                                      @RequestParam(value = "status", required = false) Boolean sold) {
 
         User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", currentUser);
 
-        /**List<Plant> plants = plantService.getAllPlants().stream()
-                .filter(plant -> category == null || plant.getCategory().getCategoryname().equalsIgnoreCase(category))
-                .filter(plant -> sold == null || plant.getSold() == sold)
-                .filter(plant -> plant.getSeller() != currentUser)
-                .collect(Collectors.toList());
-        */
-        Category category = null;
-        if (categoryName != null && !categoryName.isEmpty()) {
-            category = categoryService.getCategoryByName(categoryName);
+        Category selectedCategory = null;
+        if(category!=null){
+            if(category.equals("indoor")){
+                selectedCategory= categoryService.getCategoryByName("Zimmerpflanze");
+            }else if (category.equals("outdoor")) {
+                selectedCategory = categoryService.getCategoryByName("Outdoorpflanze");
+            }
         }
-        List<Plant> plants = plantService.findFilteredAndSortedPlants(category, null, sold);
-        plants = plants.stream()
+        List<Plant> filteredPlants = plantService.findFilteredAndSortedPlants(selectedCategory, price, sold);
+        filteredPlants = filteredPlants.stream()
                 .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
                 .collect(Collectors.toList());
 
-        model.addAttribute("plants", plants);
+        model.addAttribute("filteredPlants", filteredPlants);
 
         return "filteredPlants"; // Name der HTML-Datei, die die gefilterten Pflanzen anzeigt
     }
