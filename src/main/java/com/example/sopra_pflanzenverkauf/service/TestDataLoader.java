@@ -95,8 +95,7 @@ public class TestDataLoader implements CommandLineRunner {
     @Autowired
     private LevelService levelService;
 
-    @Autowired
-    private MessageService messageService;
+
     @Autowired
     private ChatJKService chatJKService;
 
