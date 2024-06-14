@@ -58,8 +58,11 @@ public class ChatSpecificController {
 
         MessageJK message = new MessageJK();
 
-        User recipient = chat.getRecipientOfChat();
-        message.setRecipient(recipient);
+        if(chat.getRecipientOfChat() == userService.getCurrentUser()){
+            message.setRecipient(chat.getSenderOfChat());
+        } else {
+            message.setRecipient(chat.getRecipientOfChat());
+        }
 
         User sender = userService.getCurrentUser();
         message.setSender(sender);
