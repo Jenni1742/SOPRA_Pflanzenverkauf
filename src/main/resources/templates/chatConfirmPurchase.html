@@ -19,7 +19,7 @@
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
 <div class="container">
-    <form th:action="@{/chatConfirmPurchase/{id}(id=${plantId})}" method="post" class="form-horizontal">
+    <!--<form th:action="@{/chatConfirmPurchase/{id}(id=${plantId})}" method="post" class="form-horizontal">-->
         <h1> Kauf abschließen: </h1>
         <div class="card card-rePlant">
             <div class="card-head">
@@ -28,14 +28,14 @@
             </div>
             <div class="card-body">
                 <div class="card-footer text-center card-footer-rePlant">
-                    <p>Folgende Pflanze wird gekauft: <span th:text="${plant.plantname}"></span></p>
+                    <p>Folgende Pflanze wird gekauft: <!--<span th:text="${plant.plantname}"></span>--></p>
                 </div>
 
                 <div class="card-footer-rePlant">
 
-                    <a href="/chatJK" class="btn-linkButton">
-                        <button type="button" class="btn btn-rePlantGrey">Pflanze nicht kaufen</button>
-                    </a>
+
+                    <button onclick="history.back()" type="button" class="btn btn-rePlantGrey">Pflanze nicht kaufen</button>
+
                     <a>
                         <button type="submit" class="btn btn-rePlantGreen">Pflanze kaufen
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-    </form>
+    <!--</form>-->
 </div>
 </body>
 </html>

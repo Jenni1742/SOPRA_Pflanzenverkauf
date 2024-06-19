@@ -72,18 +72,14 @@
                         <span th:text="${specificChat.getSenderOfChat().getUsername()}"></span>
                     </div>
                 </div>
+
+                <!-- Pflanze um die es geht-->
             </div>
             <div class="chat-box">
                 <div th:if="${specificChat != null}">
                     <div th:each="message : ${specificChat.getMessagesInChat()}"
                          th:class="${message.sender == currentUser} ? 'outgoing' : 'incoming'">
 
-                        <!--
-                        <div th:if="${message.getSender() == currentUser}">
-                            <div class="chat-header" style="width: 280px; background-color: #757575; color: white;">
-                                <div>Du:</div>
-                            </div>
-                        </div>-->
                         <div class="details">
                             <p th:text="${message.getContent()}" th:if="${message.getSender() == currentUser}" style="background-color: #959595 "></p>
                             <span th:text="${message.getTimestamp().getHour()}" th:if="${message.getSender() == currentUser}"></span>
@@ -101,13 +97,6 @@
                             <span th:if="${message.getSender() != currentUser}"> Uhr</span>
                         </div>
 
-                        <!--
-                        <div th:if="${message.getSender() != currentUser}">
-                            <div class="chat-header" style="width: 280px; background-color: #017101; color: white ">
-                                <div th:text="${message.getSender().getUsername()}"></div>
-                            </div>
-                        </div>-->
-
                     </div>
                 </div>
 
@@ -119,21 +108,34 @@
                 </div>
             </div>
 
-            <form th:action="@{/chatSpecific/{chatId} (chatId=${chatId})}" method="post"
+            <form th:action="@{/chatSpecific/{chatId} (chatId=${chatId})}" method="post">
                 <div class="typing-area">
-                        <!--input wird unterstrichen, weil wohl ein Label fehlt, aber mit Label sieht es komisch aus und funktioniert auch ohne-->
-                        <input type="text" id="content" name="content" placeholder="Gib eine Nachricht ein." required style="width: 900px">
-                        <button type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                 class="bi bi-send" viewBox="0 0 16 16" color="white">
-                                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
-                            </svg>
-                        </button>
-                </div>
+                    <!--input wird unterstrichen, weil wohl ein Label fehlt, aber mit Label sieht es komisch aus und funktioniert auch ohne-->
+                    <input type="text" id="content" name="content" placeholder="Gib eine Nachricht ein." required style="width: 700px">
+                    <button type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                             class="bi bi-send" viewBox="0 0 16 16" color="white">
+                            <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+                        </svg>
+                    </button>
+                    <div style="color: transparent">.</div>
             </form>
-            <form  th:action="@{/chatConfirmPurchase/{chatId} (chatId=${chatId})}" method="post">
+                    <div th:if="${specificChat.getRecipientOfChat() != currentUser}">
+                        <a href="chatConfirmPurchase" class="btn-linkButton">
+                            <button type="button" class="btn btn-rePlantGreen" style="width: 100px">
+                                Kaufen
+                            </button>
+                        </a>
+                    </div>
 
-            </form>
+                    <div th:if="${specificChat.getRecipientOfChat() == currentUser}">
+                        <a href="chatConfirmSale" class="btn-linkButton">
+                            <button type="button" class="btn btn-rePlantGreen" style="width: 100px;">
+                                Verkaufen
+                            </button>
+                        </a>
+                    </div>
+                </div>
         </div>
     </div>
 </div>
