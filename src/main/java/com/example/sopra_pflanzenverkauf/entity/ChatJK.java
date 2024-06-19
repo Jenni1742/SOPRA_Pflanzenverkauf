@@ -13,6 +13,12 @@ public class ChatJK {
     @Column(name = "ChatID")
     private Integer chatId;
 
+    @Column(name = "Verkäufer akzeptiert")
+    private Boolean recipientAccept = false;
+
+    @Column(name = "Käufer akzeptiert")
+    private Boolean senderAccept = false;
+
     @ManyToOne
     @JoinColumn(name = "Sender")
     private User senderOfChat;
@@ -67,5 +73,21 @@ public class ChatJK {
 
     public void setChatPlant(Plant chatPlant) {
         this.chatPlant = chatPlant;
+    }
+
+    public Boolean getRecipientAccept() {
+        return recipientAccept;
+    }
+
+    public void setRecipientAccept(Boolean recipientAccept) {
+        this.recipientAccept = recipientAccept;
+    }
+
+    public Boolean getSenderAccept() {
+        return senderAccept;
+    }
+
+    public void setSenderAccept(Boolean senderAccept) {
+        this.senderAccept = senderAccept;
     }
 }

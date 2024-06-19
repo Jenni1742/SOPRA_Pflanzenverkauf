@@ -494,6 +494,8 @@ public class TestDataLoader implements CommandLineRunner {
         chatjk.setRecipientOfChat(alessiaSedelnikov);
         chatjk.setSenderOfChat(jenniferKaisner);
         chatjk.setChatPlant(hahn);
+        chatjk.setRecipientAccept(false);
+        chatjk.setSenderAccept(false);
         chatJKService.updateChatJK(chatjk);
 
         MessageJK messageJK = new MessageJK();

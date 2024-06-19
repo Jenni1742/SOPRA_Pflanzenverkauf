@@ -1,6 +1,7 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
 import com.example.sopra_pflanzenverkauf.entity.ChatJK;
+import com.example.sopra_pflanzenverkauf.entity.MessageJK;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.service.ChatJKService;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.sql.Timestamp;
 
 @Controller
 public class ChatConfirmPurchaseController {
@@ -70,6 +73,37 @@ public class ChatConfirmPurchaseController {
         model.addAttribute("currentUser", currentUser);
 
         return "chatConfirmPurchase";
+    }
+
+    @RequestMapping (value = "/chatConfirmPurchase/{chatId}", method = RequestMethod.POST)
+    public String sendMessage (@PathVariable("chatId") Integer chatId,
+                               Model model){
+
+        ChatJK chat = chatJKService.getChatJKByChatId(chatId);
+
+
+        if (chat.getRecipientAccept() == false) {
+            chat.setSenderAccept(true);
+        }
+
+        if (chat.getRecipientAccept() == true) {
+
+            chat.setSenderAccept(true);
+
+
+
+        }
+
+
+
+        //Chats bzgl der Pflanze muss bei anderen gelöscht werden
+
+
+
+
+
+
+        return "redirect:/chatConfirmPurchase/{chatId}";
     }
 
 }
