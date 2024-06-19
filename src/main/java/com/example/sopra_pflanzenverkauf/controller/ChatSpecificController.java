@@ -6,6 +6,7 @@ import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.service.ChatJKService;
 import com.example.sopra_pflanzenverkauf.service.MessageJKService;
+import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,9 +29,26 @@ public class ChatSpecificController {
 
     @Autowired
     private ChatJKService chatJKService;
+    @Autowired
+    private PlantService plantService;
 
     @RequestMapping (value = "/chatSpecific", method = RequestMethod.GET)
-    public String getChatPage(@RequestParam(value = "recipientUsername", required = false) String recipientUsername, Model model) {
+    public String getChatPage(@RequestParam(value = "recipientUsername", required = false) String recipientUsername,
+                              @RequestParam(value = "plantToBuyID", required = false) String plantToBuyID,
+                              @RequestParam(value = "plantToBuyName", required = false) String plantToBuyName,
+                              Model model) {
+
+        Plant plant;
+
+        for (Plant plantOfList : plantService.getAllPlants()) {
+            if (plantOfList.getPlantname().equals(plantToBuyName)) {
+                if (plantOfList.getPlantId().toString().equals(plantToBuyID)) {
+                    plant = plantOfList;
+                }
+            }
+        }
+
+
 
         User recipient = userService.getUserByUsername(recipientUsername);
         User currentUser = userService.getCurrentUser();
