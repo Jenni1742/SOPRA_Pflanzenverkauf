@@ -19,7 +19,7 @@
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
 <div class="container">
-    <form th:action="@{/chatConfirmSale/{id}(id=${plantId})}" method="post" class="form-horizontal">
+    <form th:action="@{/chatConfirmSale/{chatId} (chatId = ${specificChat.getChatId()})}" method="post" class="form-horizontal">
         <h1> Verkauf abschließen: </h1>
         <div class="card card-rePlant">
             <div class="card-head">

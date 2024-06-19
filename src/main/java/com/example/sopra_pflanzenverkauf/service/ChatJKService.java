@@ -2,6 +2,7 @@ package com.example.sopra_pflanzenverkauf.service;
 
 import com.example.sopra_pflanzenverkauf.entity.ChatJK;
 import com.example.sopra_pflanzenverkauf.entity.MessageJK;
+import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.repository.ChatJKRepository;
 import com.example.sopra_pflanzenverkauf.repository.MessageJKRepository;
@@ -36,6 +37,10 @@ public class ChatJKService {
 
     public ChatJK getChatJKByRecipientOfChat(User recipientOfChat) {
         return chatJKRepository.findByRecipientOfChat(recipientOfChat);
+    }
+
+    public ChatJK getChatJKByChatPlant(Plant chatPlant) {
+        return chatJKRepository.findByChatPlant(chatPlant);
     }
 
     public ChatJK persistChat(ChatJK chatJK) {

@@ -6,6 +6,7 @@ import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.service.ChatJKService;
 import com.example.sopra_pflanzenverkauf.service.MessageJKService;
+import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,9 @@ public class ChatConfirmPurchaseController {
 
     @Autowired
     private ChatJKService chatJKService;
+
+    @Autowired
+    private PlantService plantService;
 
     /**
      * Handles GET requests targeted at the confirm purchase page.
@@ -77,33 +81,51 @@ public class ChatConfirmPurchaseController {
 
     @RequestMapping (value = "/chatConfirmPurchase/{chatId}", method = RequestMethod.POST)
     public String sendMessage (@PathVariable("chatId") Integer chatId,
-                               Model model){
+                               Model model) {
+
+        User currentUser = userService.getCurrentUser();
 
         ChatJK chat = chatJKService.getChatJKByChatId(chatId);
+
+        Plant plant = chat.getChatPlant();
 
 
         if (chat.getRecipientAccept() == false) {
             chat.setSenderAccept(true);
+            chatJKService.updateChatJK(chat);
         }
 
         if (chat.getRecipientAccept() == true) {
 
             chat.setSenderAccept(true);
+            chatJKService.updateChatJK(chat);
 
+            //Chats bzgl der Pflanze muss bei anderen gelöscht werden
+            for (ChatJK chatOfAll : chatJKService.getAllChats()) {
+                if (chatOfAll.getChatPlant() == chat.getChatPlant()) {
+                    if (chatOfAll.getSenderOfChat() != currentUser) {
+                        while (!chatOfAll.getMessagesInChat().isEmpty()) {
+                            chatOfAll.getMessagesInChat().removeFirst();
+                            chatJKService.updateChatJK(chatOfAll);
+                        }
+                        chatJKService.deleteChatByChatId(chatOfAll.getChatId());
+                    }
+                }
+            }
+
+            //Pflanzen Käufe rund Verkäufer eintragen und als Verkauft angeben
+            User seller = plant.getSeller();
+            plant.setSellerWhenSold(seller);
+            plant.setSeller(null);
+            plant.setBuyer(chat.getSenderOfChat());
+            plant.setSold(true);
+            plantService.updatePlant(plant);
 
 
         }
 
 
-
-        //Chats bzgl der Pflanze muss bei anderen gelöscht werden
-
-
-
-
-
-
-        return "redirect:/chatConfirmPurchase/{chatId}";
+        return "redirect:/chatSpecific/{chatId}";
     }
 
 }
