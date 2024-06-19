@@ -99,7 +99,7 @@ public class chatConfirmSaleController {
             //Chats bzgl der Pflanze muss bei anderen gelöscht werden
             for (ChatJK chatOfAll : chatJKService.getAllChats()) {
                 if (chatOfAll.getChatPlant() == chat.getChatPlant()) {
-                    if (chatOfAll.getRecipientOfChat() != currentUser) {
+                    if (chatOfAll.getSenderOfChat() != chat.getSenderOfChat()) {
                         while (!chatOfAll.getMessagesInChat().isEmpty()) {
                             chatOfAll.getMessagesInChat().removeFirst();
                             chatJKService.updateChatJK(chatOfAll);
