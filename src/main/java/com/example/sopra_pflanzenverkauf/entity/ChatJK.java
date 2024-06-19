@@ -21,6 +21,10 @@ public class ChatJK {
     @JoinColumn(name = "Empfänger")
     private User recipientOfChat;
 
+    @ManyToOne
+    @JoinColumn(name = "Pflanze")
+    private Plant chatPlant;
+
     @OneToMany (mappedBy = "associatedChat")
     private java.util.List<MessageJK> messagesInChat = new ArrayList<>();
 
@@ -55,5 +59,13 @@ public class ChatJK {
 
     public void setMessagesInChat(List<MessageJK> messagesInChat) {
         this.messagesInChat = messagesInChat;
+    }
+
+    public Plant getChatPlant() {
+        return chatPlant;
+    }
+
+    public void setChatPlant(Plant chatPlant) {
+        this.chatPlant = chatPlant;
     }
 }

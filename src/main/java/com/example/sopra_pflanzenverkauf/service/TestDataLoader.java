@@ -493,6 +493,7 @@ public class TestDataLoader implements CommandLineRunner {
         ChatJK chatjk = new ChatJK();
         chatjk.setRecipientOfChat(alessiaSedelnikov);
         chatjk.setSenderOfChat(jenniferKaisner);
+        chatjk.setChatPlant(hahn);
         chatJKService.updateChatJK(chatjk);
 
         MessageJK messageJK = new MessageJK();

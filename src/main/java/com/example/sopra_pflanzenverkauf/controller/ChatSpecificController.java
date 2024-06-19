@@ -38,7 +38,7 @@ public class ChatSpecificController {
                               @RequestParam(value = "plantToBuyName", required = false) String plantToBuyName,
                               Model model) {
 
-        Plant plant;
+        Plant plant = null;
 
         for (Plant plantOfList : plantService.getAllPlants()) {
             if (plantOfList.getPlantname().equals(plantToBuyName)) {
@@ -48,32 +48,42 @@ public class ChatSpecificController {
             }
         }
 
-
-
+        
         User recipient = userService.getUserByUsername(recipientUsername);
         User currentUser = userService.getCurrentUser();
 
         ChatJK chatJK = null;
 
         for (ChatJK chat:chatJKService.getAllChats()) {
-            if (chat.getRecipientOfChat() == recipient && chat.getSenderOfChat() == currentUser ){
+            if (chat.getRecipientOfChat() == recipient && chat.getSenderOfChat() == currentUser && chat.getChatPlant() == plant){
+                chatJK = chat;
+            }
+        }
+
+        /*for (ChatJK chat:chatJKService.getAllChats()) {
+            if (chat.getRecipientOfChat() == recipient && chat.getSenderOfChat() == currentUser){
                 chatJK = chat;
             }
             if (chat.getRecipientOfChat() == currentUser && chat.getSenderOfChat() == recipient ){
                 chatJK = chat;
             }
-        }
+        }*/
+
+
 
         if(chatJK == null) {
         ChatJK chatjk = new ChatJK();
         chatjk.setRecipientOfChat(recipient);
         chatjk.setSenderOfChat(currentUser);
+        chatjk.setChatPlant(plant);
         chatJKService.persistChat(chatjk);
         model.addAttribute("chatId", chatjk.getChatId());
         model.addAttribute("specificChat", chatjk);
+        model.addAttribute("chatPlant", plant);
         } else {
             model.addAttribute("specificChat", chatJK );
             model.addAttribute("chatId", chatJK.getChatId());
+            model.addAttribute("chatPlant", chatJK.getChatPlant());
         }
         model.addAttribute("currentUser", userService.getCurrentUser());
 

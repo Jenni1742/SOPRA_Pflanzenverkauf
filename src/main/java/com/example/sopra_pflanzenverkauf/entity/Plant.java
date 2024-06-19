@@ -2,6 +2,8 @@ package com.example.sopra_pflanzenverkauf.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -59,6 +61,9 @@ public class Plant {
     @ManyToOne
     @JoinColumn(name = "Käufer")
     private User buyer;
+
+    @OneToMany (mappedBy = "chatPlant")
+    private java.util.List<ChatJK> chatsOfPlant = new ArrayList<>();
 
     
     /**
@@ -226,5 +231,13 @@ public class Plant {
 
     public void setSellerWhenSold(User sellerWhenSold) {
         this.sellerWhenSold = sellerWhenSold;
+    }
+
+    public List<ChatJK> getChatsOfPlant() {
+        return chatsOfPlant;
+    }
+
+    public void setChatsOfPlant(List<ChatJK> chatsOfPlant) {
+        this.chatsOfPlant = chatsOfPlant;
     }
 }
