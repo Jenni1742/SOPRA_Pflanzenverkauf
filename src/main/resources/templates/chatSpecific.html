@@ -43,9 +43,11 @@
                         <button class="ad btn-chat">
                             <div th:if="${chat.getRecipientOfChat() != currentUser}">
                                 <div th:text="${chat.getRecipientOfChat().getUsername()}" style="color: white; text-align: center"></div>
+                                <div th:text="${chat.getChatPlant().getPlantname()}" style="color: white; text-align: center"></div>
                             </div>
                             <div th:if="${chat.getSenderOfChat() != currentUser}">
                                 <div th:text="${chat.getSenderOfChat().getUsername()}" style="color: white; text-align: center"></div>
+                                <div th:text="${chat.getChatPlant().getPlantname()}" style="color: white; text-align: center"></div>
                             </div>
                         </button>
                     </form>
@@ -71,6 +73,10 @@
                                  class="rounded-circle"></a>
                         <span th:text="${specificChat.getSenderOfChat().getUsername()}"></span>
                     </div>
+                </div>
+                <div>
+                    Pflanze:
+                    <span th:text="${specificChat.getChatPlant().plantname}"></span>
                 </div>
 
                 <!-- Pflanze um die es geht-->
@@ -121,7 +127,7 @@
                     <div style="color: transparent">.</div>
             </form>
                     <div th:if="${specificChat.getRecipientOfChat() != currentUser}">
-                        <a href="http://localhost:8080/chatConfirmPurchase" class="btn-linkButton">
+                        <a th:href="@{/chatConfirmPurchase/{chatId} (chatId = ${specificChat.getChatId()})}" class="btn-linkButton">
                             <button type="button" class="btn btn-rePlantGreen" style="width: 100px">
                                 Kaufen
                             </button>
@@ -129,7 +135,7 @@
                     </div>
 
                     <div th:if="${specificChat.getRecipientOfChat() == currentUser}">
-                        <a href="http://localhost:8080/chatConfirmSale" class="btn-linkButton">
+                        <a th:href="@{/chatConfirmSale/{chatId} (chatId = ${specificChat.getChatId()})}" class="btn-linkButton">
                             <button type="button" class="btn btn-rePlantGreen" style="width: 100px;">
                                 Verkaufen
                             </button>

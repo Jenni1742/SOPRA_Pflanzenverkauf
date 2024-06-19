@@ -37,9 +37,11 @@
                         <button class="ad btn-chat">
                             <div th:if="${chat.getRecipientOfChat() != currentUser}">
                                 <div th:text="${chat.getRecipientOfChat().getUsername()}" style="color: white; text-align: center"></div>
+                                <div th:text="${chat.getChatPlant().getPlantname()}" style="color: white; text-align: center"></div>
                             </div>
                             <div th:if="${chat.getSenderOfChat() != currentUser}">
                                 <div th:text="${chat.getSenderOfChat().getUsername()}" style="color: white; text-align: center; "></div>
+                                <div th:text="${chat.getChatPlant().getPlantname()}" style="color: white; text-align: center"></div>
                             </div>
                         </button>
                     </a>

@@ -48,7 +48,7 @@ public class ChatSpecificController {
             }
         }
 
-        
+
         User recipient = userService.getUserByUsername(recipientUsername);
         User currentUser = userService.getCurrentUser();
 
@@ -101,6 +101,8 @@ public class ChatSpecificController {
         model.addAttribute("specificChat", chat);
 
         model.addAttribute("chatId", chatId);
+
+        model.addAttribute("chatPlant", chat.getChatPlant());
 
         System.out.println(chat.getMessagesInChat().size());
 
