@@ -3,10 +3,7 @@ package com.example.sopra_pflanzenverkauf.controller;
 import com.example.sopra_pflanzenverkauf.entity.ChatJK;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
-import com.example.sopra_pflanzenverkauf.service.ChatJKService;
-import com.example.sopra_pflanzenverkauf.service.MessageJKService;
-import com.example.sopra_pflanzenverkauf.service.PlantService;
-import com.example.sopra_pflanzenverkauf.service.UserService;
+import com.example.sopra_pflanzenverkauf.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +26,9 @@ public class chatConfirmSaleController {
 
     @Autowired
     private PlantService plantService;
+
+    @Autowired
+    private LevelService levelService;
 
     /**
      * Handles GET requests targeted at the confirm sale page.
@@ -116,6 +116,74 @@ public class chatConfirmSaleController {
             plant.setBuyer(chat.getSenderOfChat());
             plant.setSold(true);
             plantService.updatePlant(plant);
+
+
+            //Levels anpassen
+
+            System.out.println(plant.getBuyer().getPurchasedPlants().size());
+
+            if (plant.getBuyer().getPurchasedPlants().size() < 1) {
+                plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Korn"));
+                if (plant.getBuyer().getPurchasedPlants().size() >= 1) {
+                    plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Sprössling"));
+                    if (plant.getBuyer().getPurchasedPlants().size() >= 5) {
+                        plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Grüner-Daumen"));
+                        if (plant.getBuyer().getPurchasedPlants().size() >= 10) {
+                            plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Pflanzenfreund"));
+                            if (plant.getBuyer().getPurchasedPlants().size() >= 15) {
+                                plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Gärtner-Novize"));
+                                if (plant.getBuyer().getPurchasedPlants().size() >= 25) {
+                                    plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Blattmeister"));
+                                    if (plant.getBuyer().getPurchasedPlants().size() >= 35) {
+                                        plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Wurzelprofi"));
+                                        if (plant.getBuyer().getPurchasedPlants().size() >= 50) {
+                                            plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Pflanzenliebhaber"));
+                                            if (plant.getBuyer().getPurchasedPlants().size() >= 75) {
+                                                plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Botanik-Experte"));
+                                                if (plant.getBuyer().getPurchasedPlants().size() >= 100) {
+                                                    plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Meister des Gartens"));
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            if (plant.getSellerWhenSold().getSoldPlantsList().size() < 1) {
+                plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Korn"));
+                if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
+                    plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Sprössling"));
+                    if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
+                        plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Grüner-Daumen"));
+                        if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
+                            plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Pflanzenfreund"));
+                            if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
+                                plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Gärtner-Novize"));
+                                if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
+                                    plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Blattmeister"));
+                                    if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
+                                        plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Wurzelprofi"));
+                                        if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
+                                            plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Pflanzenliebhaber"));
+                                            if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
+                                                plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Botanik-Experte"));
+                                                if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
+                                                    plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Meister des Gartens"));
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
 
         }
