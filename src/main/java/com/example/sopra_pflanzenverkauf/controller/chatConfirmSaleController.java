@@ -124,25 +124,37 @@ public class chatConfirmSaleController {
 
             if (plant.getBuyer().getPurchasedPlants().size() < 1) {
                 plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Korn"));
-                if (plant.getBuyer().getPurchasedPlants().size() >= 1) {
-                    plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Sprössling"));
-                    if (plant.getBuyer().getPurchasedPlants().size() >= 5) {
-                        plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Grüner-Daumen"));
-                        if (plant.getBuyer().getPurchasedPlants().size() >= 10) {
-                            plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Pflanzenfreund"));
-                            if (plant.getBuyer().getPurchasedPlants().size() >= 15) {
-                                plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Gärtner-Novize"));
-                                if (plant.getBuyer().getPurchasedPlants().size() >= 25) {
-                                    plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Blattmeister"));
-                                    if (plant.getBuyer().getPurchasedPlants().size() >= 35) {
-                                        plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Wurzelprofi"));
-                                        if (plant.getBuyer().getPurchasedPlants().size() >= 50) {
-                                            plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Pflanzenliebhaber"));
-                                            if (plant.getBuyer().getPurchasedPlants().size() >= 75) {
-                                                plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Botanik-Experte"));
-                                                if (plant.getBuyer().getPurchasedPlants().size() >= 100) {
-                                                    plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Meister des Gartens"));
-                                                }
+                userService.updateBuyingLevel(plant.getBuyer());
+            }
+
+
+            if (plant.getBuyer().getPurchasedPlants().size() >= 1) {
+                plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Sprössling"));
+                userService.updateBuyingLevel(plant.getBuyer());
+                if (plant.getBuyer().getPurchasedPlants().size() >= 5) {
+                    plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Grüner-Daumen"));
+                    userService.updateBuyingLevel(plant.getBuyer());
+                    if (plant.getBuyer().getPurchasedPlants().size() >= 10) {
+                        plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Pflanzenfreund"));
+                        userService.updateBuyingLevel(plant.getBuyer());
+                        if (plant.getBuyer().getPurchasedPlants().size() >= 15) {
+                            plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Gärtner-Novize"));
+                            userService.updateBuyingLevel(plant.getBuyer());
+                            if (plant.getBuyer().getPurchasedPlants().size() >= 25) {
+                                plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Blattmeister"));
+                                userService.updateBuyingLevel(plant.getBuyer());
+                                if (plant.getBuyer().getPurchasedPlants().size() >= 35) {
+                                    plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Wurzelprofi"));
+                                    userService.updateBuyingLevel(plant.getBuyer());
+                                    if (plant.getBuyer().getPurchasedPlants().size() >= 50) {
+                                        plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Pflanzenliebhaber"));
+                                        userService.updateBuyingLevel(plant.getBuyer());
+                                        if (plant.getBuyer().getPurchasedPlants().size() >= 75) {
+                                            plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Botanik-Experte"));
+                                            userService.updateBuyingLevel(plant.getBuyer());
+                                            if (plant.getBuyer().getPurchasedPlants().size() >= 100) {
+                                                plant.getBuyer().setBuyingLevel(levelService.getLevelByLevelname("Meister des Gartens"));
+                                                userService.updateBuyingLevel(plant.getBuyer());
                                             }
                                         }
                                     }
@@ -152,29 +164,43 @@ public class chatConfirmSaleController {
                     }
                 }
             }
+
+
+
 
 
             if (plant.getSellerWhenSold().getSoldPlantsList().size() < 1) {
                 plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Korn"));
-                if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
-                    plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Sprössling"));
-                    if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
-                        plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Grüner-Daumen"));
-                        if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
-                            plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Pflanzenfreund"));
-                            if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
-                                plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Gärtner-Novize"));
-                                if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
-                                    plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Blattmeister"));
-                                    if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
-                                        plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Wurzelprofi"));
-                                        if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
-                                            plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Pflanzenliebhaber"));
-                                            if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
-                                                plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Botanik-Experte"));
-                                                if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
-                                                    plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Meister des Gartens"));
-                                                }
+                userService.updateSellingLevel(plant.getSellerWhenSold());
+            }
+
+            if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 1) {
+                plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Sprössling"));
+                userService.updateSellingLevel(plant.getSellerWhenSold());
+                if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 5) {
+                    plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Grüner-Daumen"));
+                    userService.updateSellingLevel(plant.getSellerWhenSold());
+                    if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 10) {
+                        plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Pflanzenfreund"));
+                        userService.updateSellingLevel(plant.getSellerWhenSold());
+                        if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 15) {
+                            plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Gärtner-Novize"));
+                            userService.updateSellingLevel(plant.getSellerWhenSold());
+                            if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 25) {
+                                plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Blattmeister"));
+                                userService.updateSellingLevel(plant.getSellerWhenSold());
+                                if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 35) {
+                                    plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Wurzelprofi"));
+                                    userService.updateSellingLevel(plant.getSellerWhenSold());
+                                    if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 50) {
+                                        plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Pflanzenliebhaber"));
+                                        userService.updateSellingLevel(plant.getSellerWhenSold());
+                                        if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 75) {
+                                            plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Botanik-Experte"));
+                                            userService.updateSellingLevel(plant.getSellerWhenSold());
+                                            if (plant.getSellerWhenSold().getSoldPlantsList().size() >= 100) {
+                                                plant.getSellerWhenSold().setSellingLevel(levelService.getLevelByLevelname("Meister des Gartens"));
+                                                userService.updateSellingLevel(plant.getSellerWhenSold());
                                             }
                                         }
                                     }
@@ -184,6 +210,7 @@ public class chatConfirmSaleController {
                     }
                 }
             }
+
 
 
         }

@@ -133,36 +133,36 @@ public class TestDataLoader implements CommandLineRunner {
         levelService.persistLevel(level1);
 
         Level level2 = new Level();
-        level1.setLevelname("Grüner-Daumen");
+        level2.setLevelname("Grüner-Daumen");
         levelService.persistLevel(level2);
 
         Level level3 = new Level();
-        level1.setLevelname("Pflanzenfreund");
+        level3.setLevelname("Pflanzenfreund");
         levelService.persistLevel(level3);
 
         Level level4 = new Level();
-        level1.setLevelname("Gärtner-Novize");
+        level4.setLevelname("Gärtner-Novize");
         levelService.persistLevel(level4);
 
         Level level5 = new Level();
-        level1.setLevelname("Blattmeister");
+        level5.setLevelname("Blattmeister");
         levelService.persistLevel(level5);
 
         Level level6 = new Level();
-        level1.setLevelname("Wurzelprofi");
+        level6.setLevelname("Wurzelprofi");
         levelService.persistLevel(level6);
 
         Level level7 = new Level();
-        level2.setLevelname("Pflanzenliebhaber");
+        level7.setLevelname("Pflanzenliebhaber");
         levelService.persistLevel(level7);
 
         Level level8 = new Level();
-        level2.setLevelname("Botanik-Experte");
+        level8.setLevelname("Botanik-Experte");
         levelService.persistLevel(level8);
 
         Level level9 = new Level();
-        level2.setLevelname("Meister des Gartens");
-        levelService.persistLevel(level7);
+        level9.setLevelname("Meister des Gartens");
+        levelService.persistLevel(level9);
 
         // create roles-------------------------------------------------------------------------------------------------
         Role userRole = new Role();
