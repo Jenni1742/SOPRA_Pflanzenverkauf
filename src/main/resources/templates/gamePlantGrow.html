@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pflanzen-Wachstums-Spiel</title>
-    <link rel="gameStylesheet" href="styles.css">
+    <title>Spiele</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/stylesheet.css">
 </head>
 <body>
+
+<div th:insert="~{fragments/htmlHead :: navbar}"></div>
+
 <h1>Pflanzen-Wachstums-Spiel</h1>
 <div class="game-container">
     <div class="plant-area">
-        <img src="seed.png" id="seed" class="draggable" draggable="true" alt="Seed">
+        <img src="images/seed.png" id="seed" class="draggable" draggable="true" alt="Seed">
         <div id="plant" class="plant">
-            <img src="sprout.png" id="sprout" class="hidden" alt="Sprout">
-            <img src="flower.png" id="flower" class="hidden" alt="Flower">
+            <img src="images/sprout.png" id="sprout" class="hidden" alt="Sprout">
+            <img src="images/flower.png" id="flower" class="hidden" alt="Flower">
         </div>
     </div>
     <div class="tools">
-        <img src="water.png" id="water" class="draggable" draggable="true" alt="Water">
-        <img src="fertilizer.png" id="fertilizer" class="draggable" draggable="true" alt="Fertilizer">
+        <img src="images/water.png" id="water" class="draggable" draggable="true" alt="Water">
+        <img src="images/fertilizer.png" id="fertilizer" class="draggable" draggable="true" alt="Fertilizer">
     </div>
     <div class="score-board">
         <p>PlantCoins: <span id="score">0</span></p>
