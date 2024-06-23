@@ -73,7 +73,7 @@
 <div class="daisy-container" id="daisy-container">
   <div class="daisy-background"></div>
 </div>
-<div class="message" id="message">er liebt mich</div>
+<div class="message" id="message">ich kaufe die Pflanze</div>
 
 <script>
     const daisyContainer = document.getElementById('daisy-container');
@@ -88,7 +88,7 @@
         petal.style.transform = `rotate(${angle}deg) translateY(-180px)`; // Adjust this value to match the background
         petal.addEventListener('click', () => {
             love = !love;
-            message.textContent = love ? 'er liebt mich' : 'er liebt mich nicht';
+            message.textContent = love ? 'ich kaufe die Pflanze' : 'ich kaufe die Pflanze nicht';
             petal.remove();
         });
         daisyContainer.appendChild(petal);

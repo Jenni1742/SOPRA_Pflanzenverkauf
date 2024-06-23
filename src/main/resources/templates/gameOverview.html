@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Spiele</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/stylesheet.css">
+</head>
+<body>
+
+<div th:insert="~{fragments/htmlHead :: navbar}"></div>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <h1>Willkommen zu den Pflanzenspielen!</h1>
+        <div class="col-10 offset-1">
+            <div class="white-box p-4 mb-4">
+                <h2>Lass die Pflanzen sprießen!</h2>
+                <div class="row mb-4">
+                    <div class="col-10 offset-1 text-center">
+                        <img src="images/plantCoins.png" alt="PlantCoins" class="responsive-image">
+                    </div>
+                </div>
+                <p>Spiele spiele und sammle die "PlantCoins", um deine Anzeigen zu boosten.</p>
+                <a th:href="gamePlantGrow.html" style="text-decoration: none;" class="btn-linkButton">
+                    <button type="button" class="btn btn-rePlantGreen mb-4">
+                        Zum Spiel
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-10 offset-1">
+            <div class="white-box p-4 mb-4">
+                <div class="row mb-4">
+                    <h2>Brauchst du Entscheidungshilfe?</h2>
+                    <div class="col-10 offset-1 text-center">
+                        <img src="images/orakel.png" alt="Orakel" class="responsive-image">
+                    </div>
+                </div>
+                <p>Du kannst dich nicht entscheiden, ob du eine Pflanze kaufen möchtest? Nutze das Orakel, um dich zu entscheiden.</p>
+                <a th:href="gameLove.html" style="text-decoration: none;" class="btn-linkButton">
+                    <button type="button" class="btn btn-rePlantGreen mb-4">
+                        Zum Orakel
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-10 offset-1">
+            <div class="white-box p-4 mb-4">
+                <div class="row mb-4">
+                    <h2>Es ist Quiz Zeit!</h2>
+                    <div class="col-10 offset-1 text-center">
+                        <img src="images/quiz.png" alt="QuizBild" class="responsive-image">
+                    </div>
+                </div>
+                <p>Teste dein Wissen über Pflanzen in unserem spannenden Quiz!</p>
+                <a th:href="quiz.html" style="text-decoration: none;" class="btn-linkButton">
+                    <button type="button" class="btn btn-rePlantGreen mb-4">
+                        Zum Quiz
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

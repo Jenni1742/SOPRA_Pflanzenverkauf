@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pflanzen-Wachstums-Spiel</title>
+    <link rel="gameStylesheet" href="styles.css">
+</head>
+<body>
+<h1>Pflanzen-Wachstums-Spiel</h1>
+<div class="game-container">
+    <div class="plant-area">
+        <img src="seed.png" id="seed" class="draggable" draggable="true" alt="Seed">
+        <div id="plant" class="plant">
+            <img src="sprout.png" id="sprout" class="hidden" alt="Sprout">
+            <img src="flower.png" id="flower" class="hidden" alt="Flower">
+        </div>
+    </div>
+    <div class="tools">
+        <img src="water.png" id="water" class="draggable" draggable="true" alt="Water">
+        <img src="fertilizer.png" id="fertilizer" class="draggable" draggable="true" alt="Fertilizer">
+    </div>
+    <div class="score-board">
+        <p>PlantCoins: <span id="score">0</span></p>
+    </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
