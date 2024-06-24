@@ -85,6 +85,22 @@
                 <div th:if="${specificChat.getRecipientAccept() == true && specificChat.getSenderAccept() == true}" class="alert alert-success">
                     <p>Der Deal wurde abgeschlossen</p>
                 </div>
+                <div th:if="${specificChat.getRecipientAccept() == true && specificChat.getRecipientOfChat() != currentUser && specificChat.getSenderAccept() == false}" class="alert alert-success">
+                    <span th:text="${specificChat.getRecipientOfChat().getUsername()}"></span> hat den Verkauf bestätigt,
+                        bestätige auch du den Kauf mit dem Button "Kaufen", um den Deal abzuschließen.
+                </div>
+                <div th:if="${specificChat.getRecipientAccept() == true && specificChat.getRecipientOfChat() == currentUser && specificChat.getSenderAccept() == false}" class="alert alert-success">
+                    Du hast den Verkauf bestätigt, nun musst du warten, bis <span th:text="${specificChat.getSenderOfChat().getUsername()}"></span> den Kauf bestätigt,
+                    um den Deal abzuschließen. Er/Sie wurde über deine Bestätigung informiert.
+                </div>
+                <div th:if="${specificChat.getSenderAccept() == true && specificChat.getSenderOfChat() != currentUser && specificChat.getRecipientAccept() == false}" class="alert alert-success">
+                    <span th:text="${specificChat.getSenderOfChat().getUsername()}"></span> hat den Kauf bestätigt,
+                    bestätige auch du den Verkauf mit dem Button "Verkaufen", um den Deal abzuschließen.
+                </div>
+                <div th:if="${specificChat.getSenderAccept() == true && specificChat.getSenderOfChat() == currentUser && specificChat.getRecipientAccept() == false}" class="alert alert-success">
+                    Du hast den Kauf bestätigt, nun musst du warten, bis <span th:text="${specificChat.getRecipientOfChat().getUsername()}"></span> den Verkauf bestätigt,
+                    um den Deal abzuschließen. Er/Sie wurde über deine Bestätigung informiert.
+                </div>
                 <div th:if="${specificChat != null}">
                     <div th:each="message : ${specificChat.getMessagesInChat()}"
                          th:class="${message.sender == currentUser} ? 'outgoing' : 'incoming'">
