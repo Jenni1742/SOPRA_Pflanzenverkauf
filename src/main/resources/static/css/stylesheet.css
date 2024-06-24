@@ -557,3 +557,61 @@ p {
     width: 50px;
     height: 50px;
 }
+// Test Spiel Daten
+
+#game-container {
+    position: relative;
+    width: 100%;
+}
+
+#garden {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+#garden-background {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+#weeds-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.weed {
+    position: absolute;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
+#basket {
+    margin: 20px auto;
+}
+
+#basket img {
+    width: 200px;
+    cursor: pointer;
+}
+
+#coin-display {
+    margin-top: 20px;
+}
+
+.coin-icon {
+    width: 50px;
+    vertical-align: middle;
+}
+
+#plantcoin-count, #weed-count {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+// Ende Test unkrautjagd
