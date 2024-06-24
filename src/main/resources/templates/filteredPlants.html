@@ -20,7 +20,11 @@
         <div id="branding">
             <h1 style="color:#017101;">Gefilterte Pflanzen:</h1>
         </div>
+        <div th:if="${filteredPlants.size() == 0 || filteredPlants == null}" class="alert alert-warning" role="alert">
+            Keine Pflanzen gefunden. Versuche es mit einem anderen Filter.
+        </div>
     </header>
+
 
     <div class="row">
         <div class="col-md-3">
