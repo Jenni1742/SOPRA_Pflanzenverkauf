@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="css/stylesheet.css">
+
+</head>
+<body>
+<div th:insert="~{fragments/htmlHead :: navbar}"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="card card-rePlant">
+                <div class="card-head" align="center">
+                    <p></p>
+                    <h2>Übersicht:</h2>
+                </div>
+                <div class="card-body" style="color: #017101">
+                    <ul>
+                        <li>
+                            <a style="color: #017101" href="#Pflanzegießen">Pflanze gießen</a>
+                        </li>
+                        <p></p>
+                        <li>
+                        <a style="color: #017101" href="#Indoorpflanze">Hinweise zu Indoorpflanzen</a>
+                        </li>
+                        <p></p>
+                        <li>
+                        <a style="color: #017101" href="#Outdoorpflanze">Hinweise zu Outdoorpflanzen</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card card-rePlant">
+                <div class="card-head" align="center">
+                    <p></p>
+                    <h2>Herzlich Willkommen beim Pflanzenwiki!</h2>
+                </div>
+                <div class="card-body">
+                    <h3><a id="Pflanzegießen">Woran erkenne ich, dass ich meine Pflanze gießen muss?</a></h3>
+                    <p></p>
+                    <!-- Quelle: https://gartenratgeber.com/indoor-garden/ -->
+                    Viele Pflanzen bekommen zuerst blasses Laub, bevor das Laub anschworan erkenne ich dass ich meine pflanze gießen mussließend schlapp herunter hängt.
+                    Dieses kurzfristige Herunterhängen schadet der Pflanze nicht,
+                    wenn dann rechtzeitig gegossen wird.
+                    Einige Pflanzen reagieren auf Trockenheit erst zeitversetzt mit gelben Blättern und Laubfall.
+                    Es gibt Pflanzen, die auf trockene Standorte spezialisiert sind. Diese brauchen auch im Garten kaum beziehungsweise je nach Boden und Standort nur sehr wenig. Graulaubige und mediterrane Pflanzen gehören dazu.
+                    Besondere Aufmerksamkeit ist bei Pflanzen geboten, die aufgrund ihrer Blattstruktur ihren Wassermangel nicht anzeigen können, wie die neugepflanzte Thujahecke. Vorsicht ist auch bei neu gepflanzten Gartenschätzen angebracht, die noch wenig Wurzelwerk entwickeln konnten: Eine Hecke, die im Frühling gepflanzt wurde und im Mai unter Trockenheit leidet, wird erst zeitversetzt und dann meist zu spät braun.
+                    Nach langer Hitze und Trockenheit freuen sich auch eingewachsene Pflanzen mit ausladendem Wurzelwerk  hin und wieder über Wasser. Am einfachsten legt man den Gartenschlauch etwa zehn Minuten auf den Boden und lässt ihn den Boden um die Pflanzen beregnen.
+                    Leichte, sandige Böden halten wenig Wasser, dies bedeutet, man muss früher und öfter gießen.
+                    Wenn der Topf voller Wurzeln ist, ist kein Platz für Erde, die das Wasser halten kann. Dann sollte besser bald umgetopft werden.
+                    <a id="Indoorpflanze">Billigerde</a> ist hierbei nicht die erste Wahl: Torf wird, wenn er stark getrocknet ist, extrem schlecht wieder nass. Das Wasser läuft dann einfach durch den Topf hindurch. In diesem Fall ist es hilfreich, den Wurzelballen komplett in Wasser zu tauchen und eine gute Kübelpflanzenerde zu verwenden.
+                    Wasser darf nicht tagelang im Untersetzer stehen. Also Vorsicht mit Untersetzern in feuchten Sommern.
+                    <p></p>
+                    <h3>Was muss ich bei einer Indoorpflanze beachten?</h3>
+                    <p></p>
+                    <!-- Quelle: https://graefin-von-zeppelin.de/blogs/garten-tipps/pflanzen-richtig-giessen -->
+                    Achten Sie darauf, dass der gewählte Standort ausreichend natürliches Licht erhält. Idealerweise sollten Ihre Pflanzen mindestens 6-8 Stunden direktes Sonnenlicht pro Tag erhalten. Beachten Sie die Ausrichtung der Fenster und die Schattenbildung durch umliegende Gebäude oder Bäume.
+                    Wählen Sie einen Standort, der eine konstante Raumtemperatur bietet und vor extremen Temperaturschwankungen geschützt ist. Die meisten Pflanzenarten für den Innenbereich gedeihen am besten bei Temperaturen zwischen 18 und 24 °C.
+                    Denken Sie daran, dass der Standort eine gute Luftzirkulation ermöglicht, um die Ausbreitung von Schimmel und Pilzen zu verhindern. Vermeiden Sie enge Räume oder Bereiche mit begrenzter Luftbewegung.
+                    Wählen Sie geeignete Pflanzgefäße, die zur Art der Pflanzen passen. Berücksichtigen Sie, dass die Töpfe ausreichende Abflusslöcher haben, damit überschüssiges Wasser abfließen kann. Wählen Sie außerdem ein hochwertiges Substrat mit guter Wasserspeicherung und Drainage.
+                    Verschiedene Pflanzen haben unterschiedliche Ansprüche an die Lichtintensität. Wählen Sie Pflanzen, die sich an die Lichtverhältnisse in Ihrem Zimmergarten anpassen können. Es gibt Pflanzen, die sowohl in voller Sonne als auch in schattigen Bereichen gut gedeihen.
+                    Achten Sie darauf, dass die ausgewählten Pflanzen in Bezug auf Größe und Wurzelsystem zum verfügbaren Platz in Ihrem Indoor-Garten passen. Kleinere Topfpflanzen eignen sich gut für Fensterbänke oder kleine Regale, während größere Pflanzen mehr Platz in der Wohnung benötigen.
+                    Halten Sie Ihren eigenen Zeitplan und Ihre Fähigkeiten bei der Pflege der Pflanzen im Auge. Einige Pflanzen benötigen regelmäßiges Gießen, Düngen und gelegentliches Umtopfen, während andere weniger anspruchsvoll sind. Wählen Sie darum exakt die Pflanzen aus, die am besten zu Ihrem
+                    verfügbaren <a id="Outdoorpflanze">Zeitkontingent</a> und gärtnerischen Fähigkeiten passen.
+                    Überlegen Sie sich im Vorfeld, welchen Zweck Ihr Indoor Garden erfüllen soll. Wollen Sie nur Zierpflanzen für die Ästhetik oder auch essbare Pflanzen anbauen? Je nach Ihren Zielen können Sie Kräuter, Gemüse, Blühpflanzen oder eine Kombination davon wählen.
+                    <p></p>
+                    <h3>Was muss ich bei einer Outdoorpflanze beachten?</h3>
+                    <p></p>
+                    <!-- Quelle: https://wildblumenliebe.de/blog/wildpflanzen-im-topf-eine-pflanzanleitung/-->
+                    Es ist für das Wachstum, die Gesundheit und die Blüte wichtig, dass die Pflanzen am richtigen Standort wachsen können. Daher schaue dir die drei Punkte im Hinblick auf deinen Balkon oder Terrasse an.
+                    Wie sind die Lichtverhältnisse auf deinem Balkon oder Terrasse? Also wie viele Stunden am Tag scheint die Sonne drauf? Ganztägig und/oder über die Mittagszeit sind sonnige Standorte. Morgensonne und Abendsonne sind Halbschattenorte. Weniger läuft unter Schatten.
+                    Ist dein Balkon oder Terrasse windgeschützt oder eher nicht? Wind kurbelt die Verdunstung an und erhöht so den Trockenheitsfaktor. Außerdem haben zarte Pflanzen es schwer standhaft zu bleiben.
+                    Für den Wasserbedarf ist die Frage nach einer vorhandenen Überdachung relevant. Ohne Dach kann der Regen praktischerweise mit gießen.
+                    Grundsätzlich ist ein großes Gefäß besser als ein kleines: die Pflanze hat mehr Wurzelraum, es heizt bei Sonnenstrahlung nicht so schnell auf, lässt auf Grund der Menge des Substrats weniger Wasser verdunsten und weist mehr Bodenleben auf. Also, wenn du die Möglichkeit hast, dann denke groß!
+                    Eine kleine Materialkunde zu den gängigsten Gefäßen: Ton, Metall, Kunststoff und Holz. Letztlich entscheidest du, was sich für dich richtig anfühlt, was dir gefällt oder was du grad zur Verfügung hast.
+                    Tontöpfe sind ideal. Sie gleichen Temperaturen und Feuchtigkeit aus und sind atmungsaktiv. Allerdings sind sie schwer, was auf einem Balkon bedacht werden muss. Es heißt, sie seien nicht frostfest, weil Feuchtigkeit im Ton ihn bei Frost sprengen kann. Ich habe in all den Jahren nicht diese Erfahrung gemacht, selbst ohne Winterschutz.
+                    Kunststoff wird zwar irgendwann durch die Sonne spröde, ist aber wunderbar leicht – daher interessant auf dem Balkon – und verhindert die Verdunstung von Wasser. Leider heizt es sich bei Sonne recht schnell auf.
+                    Metall hat die gleichen guten Eigenschaften wie Kunststoff, ist dafür aber langlebiger. Es heizt sich auch schnellerer auf, als beispielsweise Ton. Beliebte Pflanzgefäße sind Zinkwannen und -eimer, sowie Eimer und Schüsseln aus Emaille. Neben Tontöpfen nutze ich sie am liebsten.
+                    Holzgefäße mit Leinöl imprägniert halten etliche Jahre. Sie vereinen alle guten Eigenschaften von Ton und Metall und sind mittelschwer.
+                    <p></p>
+                    <h3 align="center"><a style="color: #017101" href="#">Nach oben</a></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
