@@ -41,19 +41,42 @@ public class HomeController {
         if (query != null && !query.isEmpty()) {
             List<Plant> plants = plantService.searchPlantsByName(query);
 
-            for (Plant plant : plants) {
-                if (plant.getSeller() == currentUser) {
+            /*
+            int i = 0;
+            while (i < plants.size()) {
+                Plant plant = plants.get(i);
+                if (plant.getSeller() == currentUser || plant.getSold()) {
+                    System.out.println("B");
                     plants.remove(plant);
-                } else if (plant.getSold() == true) {
-                    plants.remove(plant);
+                    System.out.println("B");
+                    i = i;
+                } else {
+                    i = i + 1;
                 }
-            }
+                System.out.println(i);
+                System.out.println(plants.size());
+            }*/
 
             model.addAttribute("plants", plants);
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
 
         List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price, false);
+
+        int i = 0;
+        while (i < plants.size()) {
+            Plant plant = plants.get(i);
+            if (plant.getSeller() == currentUser || plant.getSold()) {
+                System.out.println("B");
+                plants.remove(plant);
+                System.out.println("B");
+                i = i;
+            } else {
+                i = i + 1;
+            }
+            System.out.println(i);
+            System.out.println(plants.size());
+        }
 
         model.addAttribute("plants", plants);
 

@@ -15,147 +15,153 @@
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
+
 <div class="container">
     <header>
         <div id="branding">
             <h1 style="color:#017101;">Anzeigen, die dir gefallen könnten:</h1>
         </div>
+        <div th:if="${plants.size() == 0 || plants == null}" class="alert alert-warning" role="alert">
+            Keine Pflanzen gefunden. Aktuell scheint kein anderer Nutzer eine Pflanze zum Verkauf anzubieten.
+        </div>
     </header>
 
-    <div class="row">
-        <div class="col-md-3">
-            <div class="rounded-box mb-3 margin-top-20">
-                <h4>Filtern</h4>
-                <form method="get" action = "/filteredPlants">
-                <div class="mb-3">
-                    <label class="form-label">Kategorie:</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="category" id="indoor" value="indoor">
-                        <label class="form-check-label" for="indoor">
-                            Zimmerpflanze
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="category" id="outdoor" value="outdoor">
-                        <label class="form-check-label" for="outdoor">
-                            Outdoorpflanze
-                        </label>
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Status:</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="status" id="offen" value="offen">
-                        <label class="form-check-label" for="offen">
-                            offen
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="status" id="verkauft" value="verkauft">
-                        <label class="form-check-label" for="verkauft">
-                            verkauft
-                        </label>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-rePlantGreen">Filter anwenden</button>
-                </form>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div class="d-flex justify-content-end mb-3">
-                <form method="get" action="/" id="sortForm">
-                        <div class="rounded-box d-flex align-items-center">
-                            <label for="sortField" class="form-label me-2 mb-0">Sortieren:</label>
-                            <select id="sortField" class="form-select" name="sort" onchange="document.getElementById('sortForm').submit();">
-                                <option value="">default</option>
-                                <option value="price_asc">Preis aufsteigend</option>
-                                <option value="price_desc">Preis absteigend</option>
-                                <option value="size_asc">Größe aufsteigend</option>
-                                <option value="size_desc">Größe absteigend</option>
-                            </select>
+    <div th:if="${plants.size() != 0}">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="rounded-box mb-3 margin-top-20">
+                    <h4>Filtern</h4>
+                    <form method="get" action = "/filteredPlants">
+                    <div class="mb-3">
+                        <label class="form-label">Kategorie:</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="category" id="indoor" value="indoor">
+                            <label class="form-check-label" for="indoor">
+                                Zimmerpflanze
+                            </label>
                         </div>
-                </form>
-            </div>
-            <section class="ads">
-                <div th:each="plant : ${plants}" th:if="${plant.sold == false && plant.getSeller() != currentUser}" class="ad" style="display: flex; align-items: flex-start; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
-                    <div style="flex: 0 0 auto; margin-right: 20px; width: 300px;">
-                        <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
-                            <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="category" id="outdoor" value="outdoor">
+                            <label class="form-check-label" for="outdoor">
+                                Outdoorpflanze
+                            </label>
                         </div>
                     </div>
-                    <div style="flex: 1; padding-left: 20px;">
-                        <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
-                        <p th:text="${plant.category.categoryname}" style="font-style: italic;"></p>
-                        <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
-                        <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
+                    <div class="mb-3">
+                        <label class="form-label">Status:</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="offen" value="offen">
+                            <label class="form-check-label" for="offen">
+                                offen
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="status" id="verkauft" value="verkauft">
+                            <label class="form-check-label" for="verkauft">
+                                verkauft
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-rePlantGreen">Filter anwenden</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="d-flex justify-content-end mb-3">
+                    <form method="get" action="/" id="sortForm">
+                            <div class="rounded-box d-flex align-items-center">
+                                <label for="sortField" class="form-label me-2 mb-0">Sortieren:</label>
+                                <select id="sortField" class="form-select" name="sort" onchange="document.getElementById('sortForm').submit();">
+                                    <option value="">default</option>
+                                    <option value="price_asc">Preis aufsteigend</option>
+                                    <option value="price_desc">Preis absteigend</option>
+                                    <option value="size_asc">Größe aufsteigend</option>
+                                    <option value="size_desc">Größe absteigend</option>
+                                </select>
+                            </div>
+                    </form>
+                </div>
+                <section class="ads">
+                    <div th:each="plant : ${plants}" th:if="${plant.sold == false && plant.getSeller() != currentUser}" class="ad" style="display: flex; align-items: flex-start; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+                        <div style="flex: 0 0 auto; margin-right: 20px; width: 300px;">
+                            <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
+                                <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </div>
+                        <div style="flex: 1; padding-left: 20px;">
+                            <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
+                            <p th:text="${plant.category.categoryname}" style="font-style: italic;"></p>
+                            <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
+                            <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
 
-                        <div th:if="${plant.seller != null}">
-                            <p><strong>Verkäufer*in:</strong>
-                                <a th:href="@{/showOtherProfileSeller/{userid}(userid=${plant.seller.userId})}" class="btn-linkVerkäufer">
+                            <div th:if="${plant.seller != null}">
+                                <p><strong>Verkäufer*in:</strong>
+                                    <a th:href="@{/showOtherProfileSeller/{userid}(userid=${plant.seller.userId})}" class="btn-linkVerkäufer">
+                                        <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Verkäufer</span>
+                                    </a>
+                                </p>
+                            </div>
+                            <div th:if="${plant.seller == null}">
+                                <p><strong>Verkäufer*in:</strong>
                                     <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Verkäufer</span>
-                                </a>
-                            </p>
-                        </div>
-                        <div th:if="${plant.seller == null}">
-                            <p><strong>Verkäufer*in:</strong>
-                                <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Verkäufer</span>
-                            </p>
-                        </div>
+                                </p>
+                            </div>
 
-                        <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
-                        <div style="text-align: right; margin-top: -50px;">
-                        <a th:href="@{/plant-detail/{id}(id=${plant.plantId})}" style="text-decoration: none;" class="btn-linkButton">
-                            <button type="button" class="btn btn-rePlantGreen">
-                                Mehr erfahren
+                            <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
+                            <div style="text-align: right; margin-top: -50px;">
+                            <a th:href="@{/plant-detail/{id}(id=${plant.plantId})}" style="text-decoration: none;" class="btn-linkButton">
+                                <button type="button" class="btn btn-rePlantGreen">
+                                    Mehr erfahren
+                                </button>
+                            </a>
+                            </div>
+                        <div>
+
+
+                        <div class="ad" style="position: relative;">
+
+                            <!-- Button trigger modal -->
+                            <div th:if="${currentUser.getWishlistPlants().contains(plant) == true}">
+                            <button  type="button" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal" style="top: -280px; right: 0px;  position: absolute;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                </svg>
                             </button>
-                        </a>
-                        </div>
-                    <div>
-
-
-                    <div class="ad" style="position: relative;">
-
-                        <!-- Button trigger modal -->
-                        <div th:if="${currentUser.getWishlistPlants().contains(plant) == true}">
-                        <button  type="button" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal" style="top: -280px; right: 0px;  position: absolute;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                            </svg>
-                        </button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <form th:action="@{/delete (plant = ${plant.plantId})}" id="plant" name="plant" method="post">
-                                        <div class="modal-body">
-                                            <p align="left">Bist Du sicher, dass du diese Pflanze aus deiner Merkliste entfernen möchtest?</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Nein, Pflanze in der Merkliste lassen</button>
-                                            <button type="submit" class="btn btn-rePlantGreen">Ja, Pflanze aus Merkliste entfernen</button>
-                                        </div>
-                                    </form>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <form th:action="@{/delete (plant = ${plant.plantId})}" id="plant" name="plant" method="post">
+                                            <div class="modal-body">
+                                                <p align="left">Bist Du sicher, dass du diese Pflanze aus deiner Merkliste entfernen möchtest?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Nein, Pflanze in der Merkliste lassen</button>
+                                                <button type="submit" class="btn btn-rePlantGreen">Ja, Pflanze aus Merkliste entfernen</button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
 
-                        <form th:action="@{/ (plant = ${plant.plantId})}" id="plant2" name="plant" method="post">
-                        <div th:if="${currentUser.getWishlistPlants().contains(plant) == false}">
-                            <button  type="submit" class="btn-rePlantHeartEmpty" style="top: -280px; right: 0px;  position: absolute;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="red" class="bi bi-heart" viewBox="0 0 16 16">
-                                     <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                                </svg>
+                            <form th:action="@{/ (plant = ${plant.plantId})}" id="plant2" name="plant" method="post">
+                            <div th:if="${currentUser.getWishlistPlants().contains(plant) == false}">
+                                <button  type="submit" class="btn-rePlantHeartEmpty" style="top: -280px; right: 0px;  position: absolute;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="red" class="bi bi-heart" viewBox="0 0 16 16">
+                                         <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                    </svg>
 
-                            </button>
+                                </button>
+                            </div>
+                            </form>
                         </div>
-                        </form>
-                    </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         </div>
     </div>
 </div>
