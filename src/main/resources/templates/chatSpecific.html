@@ -42,7 +42,9 @@
                     <form th:action="@{/chatSpecific/{chatId} (chatId = ${chat.getChatId()})}" method="get">
                         <button class="ad btn-chat">
                             <div th:if="${chat.getRecipientOfChat() != currentUser}">
-                                <div th:text="${chat.getRecipientOfChat().getUsername()}" style="color: white; text-align: center"></div>
+                                <div>
+                                    <span th:text="${chat.getRecipientOfChat().getUsername()}" style="color: white; text-align: center"></span>
+                                </div>
                                 <div>
                                     <span th:text="${chat.getChatPlant().getPlantname()}" style="color: white; text-align: center"></span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-cart" viewBox="0 0 16 16">
