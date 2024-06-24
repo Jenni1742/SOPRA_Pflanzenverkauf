@@ -57,7 +57,7 @@
         <div class="chat-main">
             <div class="chat-header">
                 <div th:if="${specificChat.getRecipientOfChat() != currentUser}">
-                    <div>
+                    <div>Verkäufer:
                         <a th:href="@{/showOtherProfileSeller/{userid}(userid=${specificChat.getRecipientOfChat().userId})}">
                             <img th:src="${specificChat.getRecipientOfChat().getPicturePath()}" style="width: 30px; height: 30px; border-color: transparent"
                                 onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'"
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div th:if="${specificChat.getRecipientOfChat() == currentUser}">
-                    <div>
+                    <div>Käufer:
                         <a th:href="@{/showOtherProfileSeller/{userid}(userid=${specificChat.getSenderOfChat().userId})}">
                             <img th:src="${specificChat.getSenderOfChat().getPicturePath()}" style="width: 30px; height: 30px; border-color: transparent"
                                  onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'"
