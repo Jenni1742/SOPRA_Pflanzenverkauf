@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class MessageJK {
+public class Message {
 
     @Id
     @GeneratedValue
@@ -28,7 +28,7 @@ public class MessageJK {
 
     @ManyToOne
     @JoinColumn(name = "Chat")
-    private ChatJK associatedChat;
+    private Chat associatedChat;
 
     public Integer getMessageId() {
         return messageId;
@@ -70,11 +70,11 @@ public class MessageJK {
         this.recipient = recipient;
     }
 
-    public ChatJK getAssociatedChat() {
+    public Chat getAssociatedChat() {
         return associatedChat;
     }
 
-    public void setAssociatedChat(ChatJK associatedChat) {
+    public void setAssociatedChat(Chat associatedChat) {
         this.associatedChat = associatedChat;
     }
 }

@@ -97,10 +97,10 @@ public class TestDataLoader implements CommandLineRunner {
 
 
     @Autowired
-    private ChatJKService chatJKService;
+    private ChatService chatService;
 
     @Autowired
-    private MessageJKService messageJKService;
+    private MessageService messageService;
     /**
      * Executed during Spring boot startup.
      *
@@ -490,63 +490,63 @@ public class TestDataLoader implements CommandLineRunner {
 
 
 
-        ChatJK chatjk = new ChatJK();
-        chatjk.setRecipientOfChat(alessiaSedelnikov);
-        chatjk.setSenderOfChat(jenniferKaisner);
-        chatjk.setChatPlant(hahn);
-        chatjk.setRecipientAccept(false);
-        chatjk.setSenderAccept(false);
-        chatJKService.updateChatJK(chatjk);
+        Chat chatTest = new Chat();
+        chatTest.setRecipientOfChat(alessiaSedelnikov);
+        chatTest.setSenderOfChat(jenniferKaisner);
+        chatTest.setChatPlant(hahn);
+        chatTest.setRecipientAccept(false);
+        chatTest.setSenderAccept(false);
+        chatService.updateChat(chatTest);
 
-        MessageJK messageJK = new MessageJK();
-        messageJK.setContent("Hallo Alessia, ich würde gerne das Hahnenfussgewächs von dir kaufen. Ich wohne ganz in der Nähe.");
-        messageJK.setRecipient(alessiaSedelnikov);
-        messageJK.setSender(jenniferKaisner);
-        messageJK.setAssociatedChat(chatjk);
+        Message message = new Message();
+        message.setContent("Hallo Alessia, ich würde gerne das Hahnenfussgewächs von dir kaufen. Ich wohne ganz in der Nähe.");
+        message.setRecipient(alessiaSedelnikov);
+        message.setSender(jenniferKaisner);
+        message.setAssociatedChat(chatTest);
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        messageJK.setTimestamp(timestamp.toLocalDateTime());
-        messageJKService.updateMessageJK(messageJK);
-        chatJKService.updateChatJK(chatjk);
+        message.setTimestamp(timestamp.toLocalDateTime());
+        messageService.updateMessage(message);
+        chatService.updateChat(chatTest);
 
-        MessageJK messageJK2 = new MessageJK();
-        messageJK2.setContent("Hallo Jennifer, das freut mich! Wann möchtest du die Pflanze abholen?");
-        messageJK2.setRecipient(jenniferKaisner);
-        messageJK2.setSender(alessiaSedelnikov);
-        messageJK2.setAssociatedChat(chatjk);
+        Message message2 = new Message();
+        message2.setContent("Hallo Jennifer, das freut mich! Wann möchtest du die Pflanze abholen?");
+        message2.setRecipient(jenniferKaisner);
+        message2.setSender(alessiaSedelnikov);
+        message2.setAssociatedChat(chatTest);
         Timestamp timestamp2 = new Timestamp(System.currentTimeMillis());
-        messageJK2.setTimestamp(timestamp2.toLocalDateTime());
-        messageJKService.updateMessageJK(messageJK2);
-        chatJKService.updateChatJK(chatjk);
+        message2.setTimestamp(timestamp2.toLocalDateTime());
+        messageService.updateMessage(message2);
+        chatService.updateChat(chatTest);
 
-        MessageJK messageJK3 = new MessageJK();
-        messageJK3.setContent("Samstag Nachmittag?");
-        messageJK3.setRecipient(alessiaSedelnikov);
-        messageJK3.setSender(jenniferKaisner);
-        messageJK3.setAssociatedChat(chatjk);
+        Message message3 = new Message();
+        message3.setContent("Samstag Nachmittag?");
+        message3.setRecipient(alessiaSedelnikov);
+        message3.setSender(jenniferKaisner);
+        message3.setAssociatedChat(chatTest);
         Timestamp timestamp3 = new Timestamp(System.currentTimeMillis());
-        messageJK3.setTimestamp(timestamp.toLocalDateTime());
-        messageJKService.updateMessageJK(messageJK3);
-        chatJKService.updateChatJK(chatjk);
+        message3.setTimestamp(timestamp.toLocalDateTime());
+        messageService.updateMessage(message3);
+        chatService.updateChat(chatTest);
 
-        MessageJK messageJK4 = new MessageJK();
-        messageJK4.setContent("Ja. Komm gerne gegen 15 Uhr vorbei. Adresse ist die Beispielstraße 1 71283 Beispielstadt.");
-        messageJK4.setRecipient(jenniferKaisner);
-        messageJK4.setSender(alessiaSedelnikov);
-        messageJK4.setAssociatedChat(chatjk);
+        Message message4 = new Message();
+        message4.setContent("Ja. Komm gerne gegen 15 Uhr vorbei. Adresse ist die Beispielstraße 1 71283 Beispielstadt.");
+        message4.setRecipient(jenniferKaisner);
+        message4.setSender(alessiaSedelnikov);
+        message4.setAssociatedChat(chatTest);
         Timestamp timestamp4 = new Timestamp(System.currentTimeMillis());
-        messageJK4.setTimestamp(timestamp4.toLocalDateTime());
-        messageJKService.updateMessageJK(messageJK4);
-        chatJKService.updateChatJK(chatjk);
+        message4.setTimestamp(timestamp4.toLocalDateTime());
+        messageService.updateMessage(message4);
+        chatService.updateChat(chatTest);
 
-        MessageJK messageJK5 = new MessageJK();
-        messageJK5.setContent("Alles klar, dann bis Samstag!");
-        messageJK5.setRecipient(alessiaSedelnikov);
-        messageJK5.setSender(jenniferKaisner);
-        messageJK5.setAssociatedChat(chatjk);
+        Message message5 = new Message();
+        message5.setContent("Alles klar, dann bis Samstag!");
+        message5.setRecipient(alessiaSedelnikov);
+        message5.setSender(jenniferKaisner);
+        message5.setAssociatedChat(chatTest);
         Timestamp timestamp5 = new Timestamp(System.currentTimeMillis());
-        messageJK5.setTimestamp(timestamp.toLocalDateTime());
-        messageJKService.updateMessageJK(messageJK5);
-        chatJKService.updateChatJK(chatjk);
+        message5.setTimestamp(timestamp.toLocalDateTime());
+        messageService.updateMessage(message5);
+        chatService.updateChat(chatTest);
 
 
 

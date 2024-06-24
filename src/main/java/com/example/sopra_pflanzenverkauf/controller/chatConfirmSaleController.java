@@ -1,6 +1,6 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
-import com.example.sopra_pflanzenverkauf.entity.ChatJK;
+import com.example.sopra_pflanzenverkauf.entity.Chat;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.service.*;
@@ -19,10 +19,10 @@ public class chatConfirmSaleController {
     private UserService userService;
 
     @Autowired
-    private MessageJKService messageJKService;
+    private MessageService messageService;
 
     @Autowired
-    private ChatJKService chatJKService;
+    private ChatService chatService;
 
     @Autowired
     private PlantService plantService;
@@ -39,9 +39,9 @@ public class chatConfirmSaleController {
     public String showChatConfirmSale(@RequestParam(value = "chatId", required = false) String chatId,
                                           Model model) {
 
-        ChatJK currentChat = null;
+        Chat currentChat = null;
 
-        for (ChatJK chat : chatJKService.getAllChats()) {
+        for (Chat chat : chatService.getAllChats()) {
             if (chat.getChatId().toString().equals(chatId)) {
                 currentChat = chat;
             }
@@ -60,7 +60,7 @@ public class chatConfirmSaleController {
 
         User currentUser = userService.getCurrentUser();
 
-        ChatJK chat = chatJKService.getChatJKByChatId(chatId);
+        Chat chat = chatService.getChatByChatId(chatId);
 
         model.addAttribute("specificChat", chat);
 
@@ -81,30 +81,30 @@ public class chatConfirmSaleController {
 
         User currentUser = userService.getCurrentUser();
 
-        ChatJK chat = chatJKService.getChatJKByChatId(chatId);
+        Chat chat = chatService.getChatByChatId(chatId);
 
         Plant plant = chat.getChatPlant();
 
 
         if (chat.getSenderAccept() == false) {
             chat.setRecipientAccept(true);
-            chatJKService.updateChatJK(chat);
+            chatService.updateChat(chat);
         }
 
         if (chat.getSenderAccept() == true) {
 
             chat.setRecipientAccept(true);
-            chatJKService.updateChatJK(chat);
+            chatService.updateChat(chat);
 
             //Chats bzgl der Pflanze muss bei anderen gelöscht werden
-            for (ChatJK chatOfAll : chatJKService.getAllChats()) {
+            for (Chat chatOfAll : chatService.getAllChats()) {
                 if (chatOfAll.getChatPlant() == chat.getChatPlant()) {
                     if (chatOfAll.getSenderOfChat() != chat.getSenderOfChat()) {
                         while (!chatOfAll.getMessagesInChat().isEmpty()) {
                             chatOfAll.getMessagesInChat().removeFirst();
-                            chatJKService.updateChatJK(chatOfAll);
+                            chatService.updateChat(chatOfAll);
                         }
-                    chatJKService.deleteChatByChatId(chatOfAll.getChatId());
+                    chatService.deleteChatByChatId(chatOfAll.getChatId());
                     }
                 }
             }

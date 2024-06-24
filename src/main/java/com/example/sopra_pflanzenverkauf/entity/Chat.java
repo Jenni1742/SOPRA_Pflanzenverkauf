@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class ChatJK {
+public class Chat {
 
     @Id
     @GeneratedValue
@@ -32,7 +32,7 @@ public class ChatJK {
     private Plant chatPlant;
 
     @OneToMany (mappedBy = "associatedChat")
-    private java.util.List<MessageJK> messagesInChat = new ArrayList<>();
+    private java.util.List<Message> messagesInChat = new ArrayList<>();
 
 
     public Integer getChatId() {
@@ -59,11 +59,11 @@ public class ChatJK {
         this.recipientOfChat = recipientOfChat;
     }
 
-    public List<MessageJK> getMessagesInChat() {
+    public List<Message> getMessagesInChat() {
         return messagesInChat;
     }
 
-    public void setMessagesInChat(List<MessageJK> messagesInChat) {
+    public void setMessagesInChat(List<Message> messagesInChat) {
         this.messagesInChat = messagesInChat;
     }
 

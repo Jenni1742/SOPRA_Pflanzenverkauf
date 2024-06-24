@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * The Entity "Pflanze".
@@ -63,7 +62,7 @@ public class Plant {
     private User buyer;
 
     @OneToMany (mappedBy = "chatPlant")
-    private java.util.List<ChatJK> chatsOfPlant = new ArrayList<>();
+    private java.util.List<Chat> chatsOfPlant = new ArrayList<>();
 
     
     /**
@@ -233,11 +232,11 @@ public class Plant {
         this.sellerWhenSold = sellerWhenSold;
     }
 
-    public List<ChatJK> getChatsOfPlant() {
+    public List<Chat> getChatsOfPlant() {
         return chatsOfPlant;
     }
 
-    public void setChatsOfPlant(List<ChatJK> chatsOfPlant) {
+    public void setChatsOfPlant(List<Chat> chatsOfPlant) {
         this.chatsOfPlant = chatsOfPlant;
     }
 }

@@ -1,10 +1,10 @@
 package com.example.sopra_pflanzenverkauf.controller;
-import com.example.sopra_pflanzenverkauf.entity.ChatJK;
-import com.example.sopra_pflanzenverkauf.entity.MessageJK;
+import com.example.sopra_pflanzenverkauf.entity.Chat;
+import com.example.sopra_pflanzenverkauf.entity.Message;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
-import com.example.sopra_pflanzenverkauf.service.ChatJKService;
-import com.example.sopra_pflanzenverkauf.service.MessageJKService;
+import com.example.sopra_pflanzenverkauf.service.ChatService;
+import com.example.sopra_pflanzenverkauf.service.MessageService;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +26,10 @@ public class DeleteProfileController {
     private PlantService plantService;
 
     @Autowired
-    private MessageJKService messageJKService;
+    private MessageService messageService;
 
     @Autowired
-    private ChatJKService chatJKService;
+    private ChatService chatService;
 
     /**
      * Handles GET requests targeted at the delete Userprofile page.
@@ -120,33 +120,33 @@ public class DeleteProfileController {
 
             //Löscht alle gesendeten Nachrichten
             while (!currentUser.getSentMessages().isEmpty()) {
-                MessageJK message = currentUser.getSentMessages().getFirst();
+                Message message = currentUser.getSentMessages().getFirst();
                 currentUser.getSentMessages().removeFirst();
-                messageJKService.deleteMessageByMessageId(message.getMessageId());
+                messageService.deleteMessageByMessageId(message.getMessageId());
             }
             System.out.println("2");
 
             //Löscht alle empfangenen Nachrichten
             while (!currentUser.getReceivedMessages().isEmpty()) {
-                MessageJK message = currentUser.getReceivedMessages().getFirst();
+                Message message = currentUser.getReceivedMessages().getFirst();
                 currentUser.getReceivedMessages().removeFirst();
-                messageJKService.deleteMessageByMessageId(message.getMessageId());
+                messageService.deleteMessageByMessageId(message.getMessageId());
             }
             System.out.println("3");
 
             //Löscht alle gesendeten Chats
             while (!currentUser.getSentChat().isEmpty()) {
-                ChatJK chat = currentUser.getSentChat().getFirst();
+                Chat chat = currentUser.getSentChat().getFirst();
                 currentUser.getSentChat().removeFirst();
-                chatJKService.deleteChatByChatId(chat.getChatId());
+                chatService.deleteChatByChatId(chat.getChatId());
             }
             System.out.println("4");
 
             //Löscht alle empfangenen Chats
             while (!currentUser.getReceivedChat().isEmpty()) {
-                ChatJK chat = currentUser.getReceivedChat().getFirst();
+                Chat chat = currentUser.getReceivedChat().getFirst();
                 currentUser.getReceivedChat().removeFirst();
-                chatJKService.deleteChatByChatId(chat.getChatId());
+                chatService.deleteChatByChatId(chat.getChatId());
             }
 
             System.out.println("Hallo");

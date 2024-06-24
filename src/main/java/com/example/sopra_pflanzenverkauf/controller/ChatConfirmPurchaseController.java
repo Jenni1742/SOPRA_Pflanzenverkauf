@@ -1,7 +1,6 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
-import com.example.sopra_pflanzenverkauf.entity.ChatJK;
-import com.example.sopra_pflanzenverkauf.entity.MessageJK;
+import com.example.sopra_pflanzenverkauf.entity.Chat;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.service.*;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.sql.Timestamp;
-
 @Controller
 public class ChatConfirmPurchaseController {
 
@@ -22,10 +19,10 @@ public class ChatConfirmPurchaseController {
     private UserService userService;
 
     @Autowired
-    private MessageJKService messageJKService;
+    private MessageService messageService;
 
     @Autowired
-    private ChatJKService chatJKService;
+    private ChatService chatService;
 
     @Autowired
     private PlantService plantService;
@@ -42,9 +39,9 @@ public class ChatConfirmPurchaseController {
     public String showChatConfirmPurchase(@RequestParam(value = "chatId", required = false) String chatId,
                                           Model model) {
 
-        ChatJK currentChat = null;
+        Chat currentChat = null;
 
-        for (ChatJK chat : chatJKService.getAllChats()) {
+        for (Chat chat : chatService.getAllChats()) {
             if (chat.getChatId().toString().equals(chatId)) {
                 currentChat = chat;
             }
@@ -64,7 +61,7 @@ public class ChatConfirmPurchaseController {
 
         User currentUser = userService.getCurrentUser();
 
-        ChatJK chat = chatJKService.getChatJKByChatId(chatId);
+        Chat chat = chatService.getChatByChatId(chatId);
 
         model.addAttribute("specificChat", chat);
 
@@ -85,30 +82,30 @@ public class ChatConfirmPurchaseController {
 
         User currentUser = userService.getCurrentUser();
 
-        ChatJK chat = chatJKService.getChatJKByChatId(chatId);
+        Chat chat = chatService.getChatByChatId(chatId);
 
         Plant plant = chat.getChatPlant();
 
 
         if (chat.getRecipientAccept() == false) {
             chat.setSenderAccept(true);
-            chatJKService.updateChatJK(chat);
+            chatService.updateChat(chat);
         }
 
         if (chat.getRecipientAccept() == true) {
 
             chat.setSenderAccept(true);
-            chatJKService.updateChatJK(chat);
+            chatService.updateChat(chat);
 
             //Chats bzgl der Pflanze muss bei anderen gelöscht werden
-            for (ChatJK chatOfAll : chatJKService.getAllChats()) {
+            for (Chat chatOfAll : chatService.getAllChats()) {
                 if (chatOfAll.getChatPlant() == chat.getChatPlant()) {
                     if (chatOfAll.getSenderOfChat() != currentUser) {
                         while (!chatOfAll.getMessagesInChat().isEmpty()) {
                             chatOfAll.getMessagesInChat().removeFirst();
-                            chatJKService.updateChatJK(chatOfAll);
+                            chatService.updateChat(chatOfAll);
                         }
-                        chatJKService.deleteChatByChatId(chatOfAll.getChatId());
+                        chatService.deleteChatByChatId(chatOfAll.getChatId());
                     }
                 }
             }

@@ -1,22 +1,19 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
-import com.example.sopra_pflanzenverkauf.entity.ChatJK;
-import com.example.sopra_pflanzenverkauf.entity.MessageJK;
+import com.example.sopra_pflanzenverkauf.entity.Chat;
+import com.example.sopra_pflanzenverkauf.entity.Message;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
-import com.example.sopra_pflanzenverkauf.service.ChatJKService;
-import com.example.sopra_pflanzenverkauf.service.MessageJKService;
+import com.example.sopra_pflanzenverkauf.service.ChatService;
+import com.example.sopra_pflanzenverkauf.service.MessageService;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 @Controller
 public class ChatSpecificController {
@@ -25,10 +22,10 @@ public class ChatSpecificController {
     private UserService userService;
 
     @Autowired
-    private MessageJKService messageJKService;
+    private MessageService messageService;
 
     @Autowired
-    private ChatJKService chatJKService;
+    private ChatService chatService;
     @Autowired
     private PlantService plantService;
 
@@ -52,42 +49,42 @@ public class ChatSpecificController {
         User recipient = userService.getUserByUsername(recipientUsername);
         User currentUser = userService.getCurrentUser();
 
-        ChatJK chatJK = null;
+        Chat chat1 = null;
 
-        for (ChatJK chat:chatJKService.getAllChats()) {
+        for (Chat chat: chatService.getAllChats()) {
             if (chat.getRecipientOfChat() == recipient && chat.getSenderOfChat() == currentUser && chat.getChatPlant() == plant){
-                chatJK = chat;
+                chat1 = chat;
             }
         }
 
-        /*for (ChatJK chat:chatJKService.getAllChats()) {
+        /*for (Chat chat:chatService.getAllChats()) {
             if (chat.getRecipientOfChat() == recipient && chat.getSenderOfChat() == currentUser){
-                chatJK = chat;
+                chat1 = chat;
             }
             if (chat.getRecipientOfChat() == currentUser && chat.getSenderOfChat() == recipient ){
-                chatJK = chat;
+                chat1 = chat;
             }
         }*/
 
 
 
-        if(chatJK == null) {
-        ChatJK chatjk = new ChatJK();
-        chatjk.setRecipientOfChat(recipient);
-        chatjk.setSenderOfChat(currentUser);
-        chatjk.setChatPlant(plant);
-        chatJKService.persistChat(chatjk);
-        model.addAttribute("chatId", chatjk.getChatId());
-        model.addAttribute("specificChat", chatjk);
+        if(chat1 == null) {
+        Chat chatObject = new Chat();
+        chatObject.setRecipientOfChat(recipient);
+        chatObject.setSenderOfChat(currentUser);
+        chatObject.setChatPlant(plant);
+        chatService.persistChat(chatObject);
+        model.addAttribute("chatId", chatObject.getChatId());
+        model.addAttribute("specificChat", chatObject);
         model.addAttribute("chatPlant", plant);
         } else {
-            model.addAttribute("specificChat", chatJK );
-            model.addAttribute("chatId", chatJK.getChatId());
-            model.addAttribute("chatPlant", chatJK.getChatPlant());
+            model.addAttribute("specificChat", chat1 );
+            model.addAttribute("chatId", chat1.getChatId());
+            model.addAttribute("chatPlant", chat1.getChatPlant());
         }
         model.addAttribute("currentUser", userService.getCurrentUser());
 
-        return "redirect:/chatJK";
+        return "redirect:/chat";
     }
 
     @RequestMapping (value = "/chatSpecific/{chatId}", method = RequestMethod.GET)
@@ -96,7 +93,7 @@ public class ChatSpecificController {
 
         User currentUser = userService.getCurrentUser();
 
-        ChatJK chat = chatJKService.getChatJKByChatId(chatId);
+        Chat chat = chatService.getChatByChatId(chatId);
 
         model.addAttribute("specificChat", chat);
 
@@ -117,9 +114,9 @@ public class ChatSpecificController {
                                @RequestParam("content") String content,
                                Model model){
 
-        ChatJK chat = chatJKService.getChatJKByChatId(chatId);
+        Chat chat = chatService.getChatByChatId(chatId);
 
-        MessageJK message = new MessageJK();
+        Message message = new Message();
 
         if(chat.getRecipientOfChat() == userService.getCurrentUser()){
             message.setRecipient(chat.getSenderOfChat());
@@ -137,8 +134,8 @@ public class ChatSpecificController {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         message.setTimestamp(timestamp.toLocalDateTime());
 
-        messageJKService.updateMessageJK(message);
-        chatJKService.updateChatJK(chat);
+        messageService.updateMessage(message);
+        chatService.updateChat(chat);
 
         return "redirect:/chatSpecific/{chatId}";
     }

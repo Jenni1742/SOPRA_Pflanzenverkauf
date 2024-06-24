@@ -19,7 +19,7 @@
         <div class="chat-sidebar">
             <div class="chat-header">
                 <h2>Chat</h2>
-                <a href="http://localhost:8080/chatJK">
+                <a href="http://localhost:8080/chat">
                     <button type="button" class="btn btn-rePlantGrey">
                         schließen
                     </button>
@@ -98,7 +98,7 @@
             </div>
             <div class="chat-box">
                 <div th:if="${specificChat.getRecipientAccept() == true && specificChat.getSenderAccept() == true}" class="alert alert-success">
-                    <p>Der Deal wurde abgeschlossen</p>
+                    Der Deal wurde abgeschlossen.
                 </div>
                 <div th:if="${specificChat.getRecipientAccept() == true && specificChat.getRecipientOfChat() != currentUser && specificChat.getSenderAccept() == false}" class="alert alert-success">
                     <span th:text="${specificChat.getRecipientOfChat().getUsername()}"></span> hat den Verkauf bestätigt,
@@ -141,7 +141,7 @@
                 </div>
 
                 <div th:if="${specificChat == null}" class="alert alert-danger">
-                    <p>Der Chat ist null</p>
+                    Der Chat ist null!
                 </div>
                 <div th:if="${specificChat.getMessagesInChat().isEmpty() && specificChat.getSenderOfChat() == currentUser}" class="alert alert-warning">
                     Wenn du an der Pflanze <span th:text="${specificChat.getChatPlant().getPlantname()}"></span> interesse hast,

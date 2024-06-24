@@ -71,16 +71,16 @@ public class User {
     private Set<Plant> wishlistPlants;
 
     @OneToMany (mappedBy = "sender")
-    private java.util.List<MessageJK> sentMessages = new ArrayList<>();
+    private java.util.List<Message> sentMessages = new ArrayList<>();
 
     @OneToMany (mappedBy = "recipient")
-    private java.util.List<MessageJK> receivedMessages = new ArrayList<>();
+    private java.util.List<Message> receivedMessages = new ArrayList<>();
 
     @OneToMany (mappedBy = "senderOfChat")
-    private java.util.List<ChatJK> sentChat = new ArrayList<>();
+    private java.util.List<Chat> sentChat = new ArrayList<>();
 
     @OneToMany (mappedBy = "recipientOfChat")
-    private java.util.List<ChatJK> receivedChat = new ArrayList<>();
+    private java.util.List<Chat> receivedChat = new ArrayList<>();
 
     /*
     @OneToMany (mappedBy = "seller")
@@ -395,40 +395,40 @@ public class User {
         this.soldPlantsList = soldPlantsList;
     }
 
-    public List<MessageJK> getSentMessages() {
+    public List<Message> getSentMessages() {
         return sentMessages;
     }
 
-    public void setSentMessages(List<MessageJK> sentMessages) {
+    public void setSentMessages(List<Message> sentMessages) {
         this.sentMessages = sentMessages;
     }
 
-    public List<MessageJK> getReceivedMessages() {
+    public List<Message> getReceivedMessages() {
         return receivedMessages;
     }
 
-    public void setReceivedMessages(List<MessageJK> receivedMessages) {
+    public void setReceivedMessages(List<Message> receivedMessages) {
         this.receivedMessages = receivedMessages;
     }
 
-    public List<ChatJK> getSentChat() {
+    public List<Chat> getSentChat() {
         return sentChat;
     }
 
-    public void setSentChat(List<ChatJK> sentChat) {
+    public void setSentChat(List<Chat> sentChat) {
         this.sentChat = sentChat;
     }
 
-    public List<ChatJK> getReceivedChat() {
+    public List<Chat> getReceivedChat() {
         return receivedChat;
     }
 
-    public void setReceivedChat(List<ChatJK> receivedChat) {
+    public void setReceivedChat(List<Chat> receivedChat) {
         this.receivedChat = receivedChat;
     }
 
-    public List<ChatJK> getSentAndReceivedChats() {
-        List<ChatJK> chatList = this.getReceivedChat();
+    public List<Chat> getSentAndReceivedChats() {
+        List<Chat> chatList = this.getReceivedChat();
         chatList.addAll(this.getSentChat());
         return chatList;
     }
