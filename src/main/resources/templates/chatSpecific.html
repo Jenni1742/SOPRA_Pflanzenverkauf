@@ -112,8 +112,14 @@
                 <div th:if="${specificChat == null}" class="alert alert-danger">
                     <p>Der Chat ist null</p>
                 </div>
-                <div th:if="${specificChat.getMessagesInChat().isEmpty()}" class="alert alert-danger">
-                    <p>Der Chat ist leer, sende eine Nachricht um mit <span th:text="${specificChat.getRecipientOfChat().getUsername()}"></span> in Kontakt zu treten.</p>
+                <div th:if="${specificChat.getMessagesInChat().isEmpty() && specificChat.getSenderOfChat() == currentUser}" class="alert alert-warning">
+                    Wenn du an der Pflanze <span th:text="${specificChat.getChatPlant().getPlantname()}"></span> interesse hast,
+                    sende eine Nachricht, um mit <span th:text="${specificChat.getRecipientOfChat().getUsername()}"></span> in Kontakt zu treten.
+                </div>
+                <div th:if="${specificChat.getMessagesInChat().isEmpty() && specificChat.getRecipientOfChat() == currentUser}" class="alert alert-warning">
+                    <span th:text="${specificChat.getSenderOfChat().getUsername()}"></span> scheint an deiner Verkaufsanzeige interessiert zu sein.
+                    Er/Sie hat jedoch noch keine Nachricht an dich gesendet.
+                        Sende selbst eine Nachricht, um mit <span th:text="${specificChat.getSenderOfChat().getUsername()}"></span> in Kontakt zu treten.
                 </div>
             </div>
 
