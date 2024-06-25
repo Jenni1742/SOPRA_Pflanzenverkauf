@@ -1,12 +1,52 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
+import com.example.sopra_pflanzenverkauf.service.QuizService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
+@RequestMapping("/quiz")
 public class QuizController {
-    @GetMapping("/quiz")
-    public String quiz() {
+    @Autowired
+    private QuizService quizService;
+
+    @GetMapping
+    public String showQuiz(Model model) {
+        model.addAttribute("quiz", quizService.getQuiz());
         return "quiz";
     }
+
+    @GetMapping("/result")
+    public String showQuizResult(Model model) {
+        return "quizResult";
+    }
+
+    @PostMapping("/submit")
+    public String submitQuiz(@RequestParam Map<String, String> allParams, Model model) {
+        Map<Long, Long> userAnswers = allParams.entrySet().stream()
+                .filter(entry -> !entry.getKey().equals("_csrf"))
+                .filter(entry -> {
+                    try {
+                        Long.parseLong(entry.getKey());
+                        Long.parseLong(entry.getValue());
+                        return true;
+                    } catch (NumberFormatException e) {
+                        return false;
+                    }
+                })
+                .collect(Collectors.toMap(
+                        entry -> Long.parseLong(entry.getKey()),
+                        entry -> Long.parseLong(entry.getValue())
+                ));
+
+        int score = quizService.calculateScore(userAnswers);
+        model.addAttribute("score", score);
+        return "quizResult";
+    }
+
 }
