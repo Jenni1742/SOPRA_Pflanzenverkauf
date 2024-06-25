@@ -82,7 +82,7 @@ public class UserService implements UserDetailsService {
     public void updatePlantCoin(String username, int newPlantCoinAmount) {
         User user = userRepository.findByUsername(username);
         if (user != null) {
-            user.setPlantCoin(newPlantCoinAmount);
+            user.setPlantCoinCount(newPlantCoinAmount);
             userRepository.save(user);
         }}
 

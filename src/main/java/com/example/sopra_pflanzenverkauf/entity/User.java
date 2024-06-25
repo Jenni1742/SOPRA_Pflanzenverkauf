@@ -63,8 +63,6 @@ public class User {
     @Column(name = "Anzahl PlantCoins")
     private Integer plantCoinCount = 0;
 
-    @Column(name = "plantCoin")
-    private Integer plantCoin = 0;
 
 
     //TODO Wird wahrscheinlich nicht benötigt
@@ -449,11 +447,4 @@ public class User {
         return chatList;
     }
 
-    public int getPlantCoin() {
-        return plantCoin;
-    }
-
-    public void setPlantCoin(int plantCoin) {
-        this.plantCoin = plantCoin;
-    }
 }
