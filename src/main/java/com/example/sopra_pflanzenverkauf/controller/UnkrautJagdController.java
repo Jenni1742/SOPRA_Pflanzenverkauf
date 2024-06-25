@@ -17,17 +17,14 @@ public class UnkrautJagdController {
 
     @Autowired
     private UserService userService;
-    public void updatePlantCoinForCurrentUser(String username, int newPlantCoinAmount) {
-        userService.updatePlantCoin(username, newPlantCoinAmount);
-    }
+
     @GetMapping
     public String getGamePage(Model model) {
         User user = userService.getCurrentUser();
         Integer plantCoinCount = user.getPlantCoinCount();
-        model.addAttribute("plantCoinCount", plantCoinCount);
+        model.addAttribute("coinCount", plantCoinCount);
         return "unkrautjagd";
     }
-
 
     @PostMapping
     public String collectPlantCoins(@RequestParam("coinCount") Integer coinCount, Model model) {
@@ -38,10 +35,10 @@ public class UnkrautJagdController {
         model.addAttribute("coinCount", coinCount);
         System.out.println("Updated Coin Count: " + coinCount);
 
-        return "unkrautjagd";
+        return "redirect:/unkrautjagd";  // Redirect to avoid form resubmission
     }
 
-    @PostMapping("/unkrautjagd/update")
+    @PostMapping("/update")
     @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseBody
     public ResponseEntity<?> updatePlantCoins(@RequestBody Map<String, Integer> payload) {

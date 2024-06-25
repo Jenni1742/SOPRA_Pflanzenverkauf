@@ -47,10 +47,10 @@ public class MyUserprofileController {
         //}
 
         model.put("currentUser", userService.getCurrentUser());
+        model.put("plantCoins", userService.getCurrentUser().getPlantCoinCount());
 
         return "myUserprofile";
     }
-
     @PostMapping(path = "/myUserprofile")
     public String changePassword(@RequestParam("oldPassword") String oldPassword,
                                  @RequestParam("newPassword") String newPassword,

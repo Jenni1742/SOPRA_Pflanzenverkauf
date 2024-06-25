@@ -25,13 +25,12 @@
     <p>Dein aktuellen PlantCoins: <span id="plantcoin-count" th:text="${coinCount}">0</span></p>
   </div>
 
-  <form th:action="@{/unkrautjagd}" method="post" style="display: inline;">
+  <form id="collect-coin-form" th:action="@{/unkrautjagd}" method="post" style="display: inline;">
     <input type="hidden" id="coinCountInput" name="coinCount" value="0">
     <button type="submit" class="btn btn-rePlantGreen mb-4">
       plantCoins einsammeln!
     </button>
   </form>
-
 
   <div id="basket">
     <img src="images/korb.png" alt="Korb">
@@ -43,10 +42,14 @@
     <img src="images/blumenfeld.png" alt="Blumenfeld" id="garden-background">
     <div id="weeds-container"></div>
   </div>
-
-
 </div>
 
 <script src="js/unkrautGame.js"></script>
+<script>
+  document.getElementById('collect-coin-form').addEventListener('submit', function (event) {
+    const coinCount = document.getElementById('plantcoin-count').innerText;
+    document.getElementById('coinCountInput').value = coinCount;
+  });
+</script>
 </body>
 </html>
