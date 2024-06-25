@@ -46,6 +46,9 @@ public class Plant {
     @Column(name = "Postleitzahl")
     private Integer zipCode;
 
+    @Column(name = "Übertopf")
+    private boolean planter = false;
+
     @ManyToOne
     @JoinColumn(name = "Kategorie")
     private Category category;
@@ -86,8 +89,9 @@ public class Plant {
      * @param zipCode
      * @param buyer
      * @param sold
+     * @param planter
      */
-    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, User buyer, Boolean sold, String imageUrl) {
+    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, User buyer, Boolean sold, Boolean planter,String imageUrl) {
         this.plantname = plantname;
         this.plantSize = plantSize;
         this.price = price;
@@ -98,6 +102,7 @@ public class Plant {
         this.zipCode = zipCode;
         this.buyer = buyer;
         this.sold = sold;
+        this.planter = planter;
         this.imageUrl = imageUrl;
     }
 
@@ -113,8 +118,9 @@ public class Plant {
      * @param seller
      * @param zipCode
      * @param sold
+     * @param planter
      */
-    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, Boolean sold, String imageUrl) {
+    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, Boolean sold, Boolean planter, String imageUrl) {
         this.plantname = plantname;
         this.plantSize = plantSize;
         this.price = price;
@@ -124,6 +130,7 @@ public class Plant {
         this.seller = seller;
         this.zipCode = zipCode;
         this.sold = sold;
+        this.planter = planter;
         this.imageUrl = imageUrl;
     }
 
@@ -240,4 +247,13 @@ public class Plant {
     public void setChatsOfPlant(List<Chat> chatsOfPlant) {
         this.chatsOfPlant = chatsOfPlant;
     }
+
+    public boolean getPlanter() {
+        return planter;
+    }
+
+    public void setPlanter(boolean planter) {
+        this.planter = planter;
+    }
+
 }

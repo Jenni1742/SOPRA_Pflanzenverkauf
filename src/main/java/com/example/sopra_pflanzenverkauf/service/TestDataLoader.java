@@ -261,6 +261,7 @@ public class TestDataLoader implements CommandLineRunner {
                 12345,
                 alessiaSedelnikov,
                 true,
+                false,
                 "https://www.blumen-brueder.de/Content/files/1886/Coffea-arabica-600x800-proportionalsmallest.webp"
         );
         plantService.persistPlant(kaffeestrauch);
@@ -281,6 +282,7 @@ public class TestDataLoader implements CommandLineRunner {
                 outdoorpflanze,
                 alessiaSedelnikov,
                 70321,
+                false,
                 false,
                 "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg"
         );
@@ -314,6 +316,7 @@ public class TestDataLoader implements CommandLineRunner {
                 70321,
                 alessiaSedelnikov,
                 true,
+                false,
                 "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier3kniphofia_03_0734dfd3c0.jpg"
         );
         plantService.persistPlant(kniphofia);
@@ -334,6 +337,7 @@ public class TestDataLoader implements CommandLineRunner {
                 franziskaHornung,
                 70323,
                 false,
+                true,
                 "https://cdn.pixabay.com/photo/2016/05/24/17/42/lotus-1412858_1280.jpg"
 
         );
@@ -353,6 +357,7 @@ public class TestDataLoader implements CommandLineRunner {
                 aylinaAshkenov,
                 70323,
                 false,
+                true,
                 "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg"
 
         );
@@ -372,6 +377,7 @@ public class TestDataLoader implements CommandLineRunner {
                 jenniferKaisner,
                 70323,
                 false,
+                false,
                 "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg"
 
         );
@@ -388,6 +394,7 @@ public class TestDataLoader implements CommandLineRunner {
                 70323,
                 jenniferKaisner,
                 true,
+                false,
                 "https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg"
 
         );
@@ -411,6 +418,7 @@ public class TestDataLoader implements CommandLineRunner {
                 alessiaSedelnikov,
                 56783,
                 false,
+                false,
                 "https://www.swr.de/swraktuell/baden-wuerttemberg/stuttgart/1713352797444%2Ctitanenwurz-uni-hohenheim-stuttgart-100~_v-16x9@2dL_-6c42aff4e68b43c7868c3240d3ebfa29867457da.jpg"
         );
         plantService.persistPlant(titanenwurzel);
@@ -426,6 +434,7 @@ public class TestDataLoader implements CommandLineRunner {
                 aylinaAshkenov,
                 23456,
                 false,
+                false,
                 "https://cdn.pixabay.com/photo/2018/09/13/18/18/heide-3675445_1280.jpg"
         );
         plantService.persistPlant(heidekraut);
@@ -440,6 +449,7 @@ public class TestDataLoader implements CommandLineRunner {
                 aylinaAshkenov,
                 23456,
                 false,
+                true,
                 "https://www.lubera.com/images/600/lotus-blatt-e1481172403391.jpg"
         );
 
@@ -454,6 +464,7 @@ public class TestDataLoader implements CommandLineRunner {
                 zimmerpflanze,
                 markoPetric,
                 34567,
+                false,
                 false,
                 "https://cdn.pixabay.com/photo/2019/02/25/20/29/houseplant-4020532_1280.jpg"
         );
@@ -470,6 +481,7 @@ public class TestDataLoader implements CommandLineRunner {
                 jenniferKaisner,
                 56789,
                 false,
+                true,
                 "https://cdn.pixabay.com/photo/2011/04/06/15/05/garden-6239_1280.jpg"
         );
         plantService.persistPlant(jessica);
@@ -483,6 +495,7 @@ public class TestDataLoader implements CommandLineRunner {
                 outdoorpflanze,
                 aylinaAshkenov,
                 70327,
+                false,
                 false,
                 "https://cdn.pixabay.com/photo/2017/04/03/07/30/blue-flower-2197679_1280.jpg"
         );
