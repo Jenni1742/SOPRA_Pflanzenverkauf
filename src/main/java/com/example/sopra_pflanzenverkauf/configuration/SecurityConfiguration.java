@@ -48,6 +48,7 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf
                         .ignoringRequestMatchers("/console/**")//Deaktiviert CSRF-Schutz für die H2-Konsole
                         .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) //Test
                 )
                 .headers(headers -> headers.frameOptions().sameOrigin() // Ermöglicht das Einbetten der H2-Konsole in Frames
                 );

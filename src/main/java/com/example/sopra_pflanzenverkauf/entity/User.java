@@ -60,7 +60,15 @@ public class User {
     @Column(name = "Anzahl verkaufter Pflanzen")
     private Integer numberOfSoldPlants = 0;
 
+    @Column(name = "Anzahl PlantCoins")
+    private Integer plantCoinCount = 0;
+
+    @Column(name = "plantCoin")
+    private Integer plantCoin = 0;
+
+
     //TODO Wird wahrscheinlich nicht benötigt
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "benutzer_rolle", joinColumns = @JoinColumn(name = "BenutzerID"), inverseJoinColumns = @JoinColumn(name = "RollenID"))
@@ -195,6 +203,7 @@ public class User {
         this.firstName = firstName;
     }
 
+
     /**
      * Gets last name.
      *
@@ -222,6 +231,13 @@ public class User {
         return email;
     }
 
+    public Integer getPlantCoinCount() {
+        return plantCoinCount;
+    }
+
+    public void setPlantCoinCount(Integer plantCoinCount) {
+        this.plantCoinCount = plantCoinCount;
+    }
     /**
      * Sets email.
      *
@@ -431,5 +447,13 @@ public class User {
         List<Chat> chatList = this.getReceivedChat();
         chatList.addAll(this.getSentChat());
         return chatList;
+    }
+
+    public int getPlantCoin() {
+        return plantCoin;
+    }
+
+    public void setPlantCoin(int plantCoin) {
+        this.plantCoin = plantCoin;
     }
 }

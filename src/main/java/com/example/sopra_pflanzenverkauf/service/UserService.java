@@ -65,6 +65,9 @@ public class UserService implements UserDetailsService {
     public void updatePLZ(User user) {
         userRepository.save(user);
     }
+    public void updateCoinCount(User user){
+        userRepository.save(user);
+    }
 
     public void updateWishlist(User user) {
         userRepository.save(user);
@@ -75,6 +78,13 @@ public class UserService implements UserDetailsService {
     public void updateSellingLevel(User user) {userRepository.save(user);}
 
     public void updatePlantsToSell(User user) {userRepository.save(user);}
+
+    public void updatePlantCoin(String username, int newPlantCoinAmount) {
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+            user.setPlantCoin(newPlantCoinAmount);
+            userRepository.save(user);
+        }}
 
     public void updateRoles(User user) {userRepository.save(user);}
 

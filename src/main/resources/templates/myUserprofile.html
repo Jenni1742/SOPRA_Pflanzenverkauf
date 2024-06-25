@@ -57,6 +57,7 @@
                     <th scope="row">Verkäuferlevel:</th>
                     <td th:text="${currentUser.getSellingLevel().getLevelname()}"/>
                 </tr>
+
             </tbody>
         </table>
         <div class="card-body">
@@ -81,6 +82,10 @@
                 <tr>
                     <th scope="row">Postleitzahl:</th>
                     <td th:text="${currentUser.getPlz()}"/>
+                </tr>
+                <tr>
+                    <th scope = "row">PlantCoins:</th>
+                    <td text="${currentUser.getPlantCoinCount()}" />
                 </tr>
                 </tbody>
             </table>

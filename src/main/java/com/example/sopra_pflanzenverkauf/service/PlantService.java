@@ -4,6 +4,7 @@ import com.example.sopra_pflanzenverkauf.entity.Category;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
+import com.example.sopra_pflanzenverkauf.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,8 @@ public class PlantService {
 
     @Autowired
     private PlantRepository plantRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     public PlantService(PlantRepository plantRepository) {
         this.plantRepository = plantRepository;
@@ -88,22 +91,22 @@ public class PlantService {
                     .collect(Collectors.toList());
         }
         /**
-        if (price != null && !price.isEmpty()) {
-            // Assuming price is in format "min-max"
-            String[] priceRange = price.split("-");
-            if (priceRange.length == 2) {
-                try {
-                    double minPrice = Double.parseDouble(priceRange[0]);
-                    double maxPrice = Double.parseDouble(priceRange[1]);
-                    plants = plants.stream()
-                            .filter(plant -> plant.getPrice() >= minPrice && plant.getPrice() <= maxPrice)
-                            .collect(Collectors.toList());
-                } catch (NumberFormatException e) {
-                    // Handle exception
-                }
-            }
-        }
-        */
+         if (price != null && !price.isEmpty()) {
+         // Assuming price is in format "min-max"
+         String[] priceRange = price.split("-");
+         if (priceRange.length == 2) {
+         try {
+         double minPrice = Double.parseDouble(priceRange[0]);
+         double maxPrice = Double.parseDouble(priceRange[1]);
+         plants = plants.stream()
+         .filter(plant -> plant.getPrice() >= minPrice && plant.getPrice() <= maxPrice)
+         .collect(Collectors.toList());
+         } catch (NumberFormatException e) {
+         // Handle exception
+         }
+         }
+         }
+         */
         return plants;
     }
 
@@ -120,4 +123,23 @@ public class PlantService {
         Optional<Plant> plant = plantRepository.findById(id);
         return plant.orElse(null);
     }
+
+/**
+    public void boostAdvertisement(Long plantId, Long userId) {
+        Plant ad = plantRepository.findById(Math.toIntExact(plantId))
+                .orElseThrow(() -> new RuntimeException("Advertisement not found"));
+
+        User user = userRepository.findById(Math.toIntExact(userId))
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (user.getNumberPlantCoins() >= 10) {
+            user.setNumberPlantCoins(user.getNumberPlantCoins() - 10);
+            ad.setBoosted(true);
+            userRepository.save(user);
+            plantRepository.save(ad);
+        } else {
+            throw new RuntimeException("Not enough Plant Coins");
+        }
+    }
+ */
 }

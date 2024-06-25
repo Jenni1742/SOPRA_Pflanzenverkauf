@@ -22,8 +22,16 @@
 
   <div id="coin-display">
     <img src="images/plantCoin.png" alt="PlantCoin" class="coin-icon">
-    <p>Dein aktuellen PlantCoins: <span id="plantcoin-count">0</span></p>
+    <p>Dein aktuellen PlantCoins: <span id="plantcoin-count" th:text="${coinCount}">0</span></p>
   </div>
+
+  <form th:action="@{/unkrautjagd}" method="post" style="display: inline;">
+    <input type="hidden" id="coinCountInput" name="coinCount" value="0">
+    <button type="submit" class="btn btn-rePlantGreen mb-4">
+      plantCoins einsammeln!
+    </button>
+  </form>
+
 
   <div id="basket">
     <img src="images/korb.png" alt="Korb">
