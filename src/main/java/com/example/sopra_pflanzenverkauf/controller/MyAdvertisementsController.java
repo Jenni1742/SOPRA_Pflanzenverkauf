@@ -20,7 +20,8 @@ public class MyAdvertisementsController {
 
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private User user;
 
     /**
      * Handles GET requests targeted at the advertisements page.
@@ -38,6 +39,7 @@ public class MyAdvertisementsController {
         model.addAttribute("plantList", plantList);
 
         model.addAttribute("currentUser", currentUser);
+
 
         return "myAdvertisements";
     }
@@ -64,6 +66,23 @@ public class MyAdvertisementsController {
         model.addAttribute("plantList", plantList);
          */
 
+        model.addAttribute("currentUser", currentUser);
+
+        return "myAdvertisements";
+    }
+    @RequestMapping(value = "/myAdvertisements/{plantId}/boost", method = RequestMethod.POST)
+    public String boostPlant(@PathVariable("plantId") Integer plantId, Model model) {
+        User currentUser = userService.getCurrentUser();
+        Plant plant = plantService.getPlantByPlantId(plantId);
+
+        if (currentUser.getPlantCoinCount() >= 10) {
+            currentUser.setPlantCoinCount(currentUser.getPlantCoinCount() - 10);
+            plant.setBooster(true);
+            plantService.updatePlant(plant);
+        }
+
+        List<Plant> plantList = currentUser.getPlantsToSell();
+        model.addAttribute("plantList", plantList);
         model.addAttribute("currentUser", currentUser);
 
         return "myAdvertisements";

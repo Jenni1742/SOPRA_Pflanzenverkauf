@@ -34,6 +34,9 @@
             </svg>
         </p>
         <p>Hier findest du deine Verkaufsanzeigen.</p>
+        <p>Mit PlantCoins kannst du deine Anzeigen boosten und sie auf der Startseite hervorheben. Jede Boosting-Aktion kostet 10 PlantCoins.</p>
+        <p>Deine aktuellen PlantCoins: <span th:text="${currentUser.plantCoins}"></span></p>
+
         <div style="flex: 0 0 auto; margin-right: 20px;">
             <p th:if="${plantList.size()} == 0">
                 Aktuell hast du noch keine Verkaufsanzeigen, aber das muss nicht so bleiben!
@@ -74,7 +77,14 @@
                         </a>
                     </p>
                     <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
-
+                    <form th:action="@{/myAdvertisements/{plantId}/boost(plantId=${plant.plantId})}" method="post"
+                          style="margin-top: 10px;">
+                        <button type="submit" class="btn btn-primary"
+                                th:disabled="${plant.boosted} || ${currentUser.plantCoins} < 10">
+                            <span th:text="${plant.boosted ? 'Bereits geboostet' : 'Anzeige boosten'}"></span>
+                        </button>
+                        <p th:if="${currentUser.plantCoins < 10}" style="color: red;">Nicht genügend PlantCoins!</p>
+                    </form>
                     <!--<p><strong>Verkäufer*in:</strong> <span
                             th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span>
                     </p>-->

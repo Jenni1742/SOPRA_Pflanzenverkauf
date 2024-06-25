@@ -46,6 +46,9 @@ public class Plant {
     @Column(name = "Postleitzahl")
     private Integer zipCode;
 
+    @Column(name = "Booster")
+    private boolean booster = false;
+
     @ManyToOne
     @JoinColumn(name = "Kategorie")
     private Category category;
@@ -129,6 +132,13 @@ public class Plant {
 
 
 
+    public void setBooster(Boolean booster){
+        this.booster = booster;
+    }
+
+    public Boolean getBooster(){
+        return booster;
+    }
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
@@ -240,4 +250,5 @@ public class Plant {
     public void setChatsOfPlant(List<Chat> chatsOfPlant) {
         this.chatsOfPlant = chatsOfPlant;
     }
+
 }
