@@ -20,26 +20,21 @@ public class MyAdvertisementsController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private User user;
 
     /**
      * Handles GET requests targeted at the advertisements page.
      *
      * @return  the advertisements page
      */
+
     @RequestMapping(value = "/myAdvertisements", method = RequestMethod.GET)
     public String showMyAdvertisementsPage(Model model) {
-
         User currentUser = userService.getCurrentUser();
-
-
-        List<Plant> plantList = userService.getCurrentUser().getPlantsToSell();
+        List<Plant> plantList = currentUser.getPlantsToSell();
 
         model.addAttribute("plantList", plantList);
-
         model.addAttribute("currentUser", currentUser);
-
+        model.addAttribute("coinCount", currentUser.getPlantCoinCount());
 
         return "myAdvertisements";
     }
@@ -73,6 +68,10 @@ public class MyAdvertisementsController {
     @RequestMapping(value = "/myAdvertisements/{plantId}/boost", method = RequestMethod.POST)
     public String boostPlant(@PathVariable("plantId") Integer plantId, Model model) {
         User currentUser = userService.getCurrentUser();
+        if (currentUser == null) {
+            return "error";
+        }
+
         Plant plant = plantService.getPlantByPlantId(plantId);
 
         if (currentUser.getPlantCoinCount() >= 10) {
@@ -87,5 +86,5 @@ public class MyAdvertisementsController {
 
         return "myAdvertisements";
     }
-
 }
+

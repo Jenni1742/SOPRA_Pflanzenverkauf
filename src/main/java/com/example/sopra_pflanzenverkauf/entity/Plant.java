@@ -79,16 +79,16 @@ public class Plant {
     /**
      * Konstruktor für Test Daten für Pflanze die verkauft ist
      *
-     * @param plantname
-     * @param plantSize
-     * @param price
-     * @param plantDescription
-     * @param careTips
-     * @param category
-     * @param seller
-     * @param zipCode
-     * @param buyer
-     * @param sold
+     * @param plantname Name
+     * @param plantSize Größe in cm
+     * @param price Preis
+     * @param plantDescription Beschreibung
+     * @param careTips Pflegetipps
+     * @param category Kategorie (outdoor oder indoor)
+     * @param seller Vekäufer
+     * @param zipCode PLZ
+     * @param buyer Käufer
+     * @param sold Verkauft oder nicht boolean
      */
     public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, User buyer, Boolean sold, String imageUrl) {
         this.plantname = plantname;
