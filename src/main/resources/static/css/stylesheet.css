@@ -615,3 +615,35 @@ p {
 }
 
 // Ende Test unkrautjagd
+
+      .btn-boost-ad {
+            background-color: #FFA500; /* Gelb-Orange */
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 50%; /* Kreisform */
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-boost-ad:hover {
+            background-color: #FF8C00; /* Dunkleres Gelb-Orange beim Hover */
+        }
+        .btn-rePlantHeart, .btn-boost-ad {
+            position: absolute;
+            right: 10px;
+        }
+        .btn-rePlantHeart {
+            top: 10px;
+        }
+        .btn-boost-ad {
+            top: 80px;
+        }
+        .btn-rePlantGreen {
+            display: block;
+            margin: 0 auto;
+        }

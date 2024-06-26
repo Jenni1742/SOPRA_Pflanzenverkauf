@@ -77,18 +77,14 @@
                         </a>
                     </p>
                     <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
-                    <form th:action="@{/myAdvertisements/{plantId}/boost(plantId=${plant.plantId})}" method="post"
-                          style="margin-top: 10px;">
-                        <button type="submit" class="btn btn-primary"
-                                th:disabled="${plant.boosted} || ${currentUser.plantCoins} < 10">
-                            <span th:text="${plant.boosted ? 'Bereits geboostet' : 'Anzeige boosten'}"></span>
-                        </button>
-                        <p th:if="${currentUser.plantCoins < 10}" style="color: red;">Nicht genügend PlantCoins!</p>
-                    </form>
                     <!--<p><strong>Verkäufer*in:</strong> <span
                             th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Name des Verkäufers Unbekannt</span>
                     </p>-->
-
+                    <a th:href="@{/boostAdvertisement/{id}(id=${plant.plantId})}">
+                        <button type="button" class="btn-boost-ad">
+                            Boost für 10 PlantCoins einlösen
+                        </button>
+                    </a>
                     <div style="text-align: right; margin-top: -50px;">
                         <a th:href="@{/showAdvertisement/{id}(id=${plant.plantId})}"
                            style="text-decoration: none; background: none; border: none; cursor: pointer; color: #017101;">
@@ -105,8 +101,7 @@
                 </div>
 
                 <div class="ad" style="position: relative;">
-
-                    <a th:href="@{/deleteAdvertisement/{id}(id=${plant.plantId})}">
+                        <a th:href="@{/deleteAdvertisement/{id}(id=${plant.plantId})}">
                         <button type="button" class="btn-rePlantHeart"
                                 style="top: -150px; right: 0px;  position: absolute;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#017101"
