@@ -86,7 +86,7 @@ public class HomeController {
     public String showFilteredPlants(Model model,
                                      @RequestParam(value = "category", required = false) String category,
                                      @RequestParam(value = "price", required = false) String price,
-                                     @RequestParam(value = "status", required = false) Boolean sold) {
+                                     @RequestParam(value = "status", required = false) String status) {
 
         User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", currentUser);
@@ -99,7 +99,23 @@ public class HomeController {
                 selectedCategory = categoryService.getCategoryByName("Outdoorpflanze");
             }
         }
+        Boolean sold = null;
+        if (status != null) {
+            if (status.equalsIgnoreCase("offen")) {
+                sold = false;
+            } else if (status.equalsIgnoreCase("verkauft")) {
+                sold = true;
+            }
+        }
+
         List<Plant> filteredPlants = plantService.findFilteredAndSortedPlants(selectedCategory, price, sold);
+
+//        if (sold != null) {
+//            filteredPlants = filteredPlants.stream()
+//                    .filter(plant -> plant.getSold().equals(sold))
+//                    .collect(Collectors.toList());
+//        }
+
         filteredPlants = filteredPlants.stream()
                 .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
                 .collect(Collectors.toList());
