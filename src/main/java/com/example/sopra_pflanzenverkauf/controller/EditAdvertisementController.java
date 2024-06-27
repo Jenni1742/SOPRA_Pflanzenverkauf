@@ -37,20 +37,18 @@ public class EditAdvertisementController {
     @GetMapping("/editAdvertisement/{id}")
     public String editPlant(@PathVariable("id") Integer plantId, Model model) {
         Plant plant = plantRepository.findById(plantId)
-                .orElseThrow(() -> {
-                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "Plant not found");
-                });
+                .orElse(null);
         model.addAttribute("plant", plant);
 
         List<Category> categories = categoryService.findAllCategories();
         model.addAttribute("categories", categories);
 
-        if (userService.getCurrentUser() == plant.getSeller()){
+        if (plant == null) {
+            return "error/errorIDDoNotExist";
+        } else if (userService.getCurrentUser() == plant.getSeller()){
             return "editAdvertisement";
-        } else if(plantService.getPlantByPlantId(plantId) == null) {
-            return "error/404";
         } else {
-            return "error/404";
+            return "error/errorEditAdvertisement";
         }
     }
 
