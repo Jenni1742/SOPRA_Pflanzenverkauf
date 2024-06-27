@@ -27,6 +27,10 @@ public class DeleteAdvertisementController {
 
     @Autowired
     private PlantRepository plantRepository;
+    @Autowired
+    private ErrorIDDoNotExistController errorIDDoNotExistController;
+    @Autowired
+    private ErrorDeleteAdvertisement errorDeleteAdvertisement;
 
 
     @GetMapping("/deleteAdvertisement/{id}")
@@ -35,15 +39,14 @@ public class DeleteAdvertisementController {
         model.addAttribute("plantId", plantId);
 
         Plant plant = plantRepository.findById(plantId)
-                .orElseThrow(() -> {
-                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "Plant not found");
-                });
+                .orElse(null);
+
         model.addAttribute("plant", plant);
 
-        if (userService.getCurrentUser() == plant.getSeller()){
+        if (plant == null) {
+            return "error/errorIDDoNotExist";
+        } else if (userService.getCurrentUser() == plant.getSeller()){
             return "deleteAdvertisement";
-        } else if(plantService.getPlantByPlantId(plantId) == null) {
-            return "error/404";
         } else {
             return "error/errorDeleteAdvertisement";
         }
