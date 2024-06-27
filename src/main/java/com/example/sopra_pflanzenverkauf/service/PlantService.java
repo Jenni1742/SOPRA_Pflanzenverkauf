@@ -153,4 +153,7 @@ public class PlantService {
         }
     }
  */
+        public Plant save(Plant plant) {
+             return plantRepository.save(plant);
+}
 }

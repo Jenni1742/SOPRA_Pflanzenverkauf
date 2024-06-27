@@ -641,4 +641,15 @@ p {
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-        }
+ }
+
+
+
+.boosted {
+    background-color: #3bb54a;
+    color: white;
+    border: 1px solid #3bb54a;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}

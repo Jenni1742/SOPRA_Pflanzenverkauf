@@ -65,26 +65,20 @@ public class MyAdvertisementsController {
 
         return "myAdvertisements";
     }
-    @RequestMapping(value = "/myAdvertisements/{plantId}/boost", method = RequestMethod.POST)
-    public String boostPlant(@PathVariable("plantId") Integer plantId, Model model) {
+    @PostMapping("/boostAdvertisement/{id}")
+    public String boostAdvertisement(@PathVariable("id") Long plantId, Model model) {
         User currentUser = userService.getCurrentUser();
-        if (currentUser == null) {
-            return "error";
-        }
-
-        Plant plant = plantService.getPlantByPlantId(plantId);
+        Plant plant = plantService.findById(Math.toIntExact(plantId));
 
         if (currentUser.getPlantCoinCount() >= 10) {
             currentUser.setPlantCoinCount(currentUser.getPlantCoinCount() - 10);
+            userService.save(currentUser);
             plant.setBooster(true);
-            plantService.updatePlant(plant);
+            plantService.save(plant);
+            return "home";
+        } else {
+            return "myAdvertisement";
         }
-
-        List<Plant> plantList = currentUser.getPlantsToSell();
-        model.addAttribute("plantList", plantList);
-        model.addAttribute("currentUser", currentUser);
-
-        return "myAdvertisements";
     }
 }
 
