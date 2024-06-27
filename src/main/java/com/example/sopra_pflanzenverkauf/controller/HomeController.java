@@ -40,23 +40,6 @@ public class HomeController {
 
         if (query != null && !query.isEmpty()) {
             List<Plant> plants = plantService.searchPlantsByName(query);
-
-            /*
-            int i = 0;
-            while (i < plants.size()) {
-                Plant plant = plants.get(i);
-                if (plant.getSeller() == currentUser || plant.getSold()) {
-                    System.out.println("B");
-                    plants.remove(plant);
-                    System.out.println("B");
-                    i = i;
-                } else {
-                    i = i + 1;
-                }
-                System.out.println(i);
-                System.out.println(plants.size());
-            }*/
-
             model.addAttribute("plants", plants);
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
@@ -85,8 +68,7 @@ public class HomeController {
     @GetMapping("/filteredPlants")
     public String showFilteredPlants(Model model,
                                      @RequestParam(value = "category", required = false) String category,
-                                     @RequestParam(value = "price", required = false) String price,
-                                     @RequestParam(value = "status", required = false) Boolean sold) {
+                                     @RequestParam(value = "price", required = false) String price) {
 
         User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", currentUser);
@@ -99,7 +81,18 @@ public class HomeController {
                 selectedCategory = categoryService.getCategoryByName("Outdoorpflanze");
             }
         }
-        List<Plant> filteredPlants = plantService.findFilteredAndSortedPlants(selectedCategory, price, sold);
+
+        String selectedPrice = null;
+        if (price!=null){
+            if(price.equalsIgnoreCase("Preis aufsteigend")){
+                selectedPrice= price;
+            }else if (price.equalsIgnoreCase("Preis absteigend")){
+                selectedPrice=price;
+            }
+        }
+
+        List<Plant> filteredPlants = plantService.findFilteredAndSortedPlants(selectedCategory, selectedPrice, false);
+
         filteredPlants = filteredPlants.stream()
                 .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
                 .collect(Collectors.toList());

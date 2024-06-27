@@ -42,7 +42,13 @@ public class DeleteAdvertisementController {
                 });
         model.addAttribute("plant", plant);
 
-        return "deleteAdvertisement";
+        if (userService.getCurrentUser() == plant.getSeller()){
+            return "deleteAdvertisement";
+        } else {
+            return "error/404";
+        }
+
+
     }
 
 
