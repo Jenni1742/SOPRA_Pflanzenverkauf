@@ -51,7 +51,14 @@ public class PlantDetailController {
                 });
         model.addAttribute("plant", plant);
         model.addAttribute("currentUser", currentUser);
-        return "plant-detail";  // assuming the Thymeleaf template is named 'plant-detail.html'
+
+        if (userService.getCurrentUser() == plant.getSeller()){
+            return "plant-detail";
+        } else if(plantService.getPlantByPlantId(plantId) == null) {
+            return "error/404";
+        } else {
+            return "error/404";
+        }
     }
 
     @PostMapping(path = "/plant-detail/{id}")
