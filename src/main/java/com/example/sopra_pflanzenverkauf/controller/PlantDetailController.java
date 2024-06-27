@@ -46,18 +46,16 @@ public class PlantDetailController {
         User currentUser = userService.getCurrentUser();
 
         Plant plant = plantRepository.findById(plantId)
-                .orElseThrow(() -> {
-                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "Plant not found");
-                });
+                .orElse(null);
         model.addAttribute("plant", plant);
         model.addAttribute("currentUser", currentUser);
 
-        if (userService.getCurrentUser() == plant.getSeller()){
+        if (plant == null) {
+            return "error/errorIDDoNotExist";
+        } else if (userService.getCurrentUser() != plant.getSeller() && plant.getSeller() != null){
             return "plant-detail";
-        } else if(plantService.getPlantByPlantId(plantId) == null) {
-            return "error/404";
         } else {
-            return "error/404";
+            return "error/errorPlantDetails";
         }
     }
 
