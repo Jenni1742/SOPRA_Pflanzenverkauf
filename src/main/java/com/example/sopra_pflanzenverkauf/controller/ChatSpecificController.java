@@ -4,6 +4,7 @@ import com.example.sopra_pflanzenverkauf.entity.Chat;
 import com.example.sopra_pflanzenverkauf.entity.Message;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
+import com.example.sopra_pflanzenverkauf.repository.ChatRepository;
 import com.example.sopra_pflanzenverkauf.service.ChatService;
 import com.example.sopra_pflanzenverkauf.service.MessageService;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
@@ -28,6 +29,8 @@ public class ChatSpecificController {
     private ChatService chatService;
     @Autowired
     private PlantService plantService;
+    @Autowired
+    private ChatRepository chatRepository;
 
     @RequestMapping (value = "/chatSpecific", method = RequestMethod.GET)
     public String getChatPage(@RequestParam(value = "recipientUsername", required = false) String recipientUsername,
@@ -93,20 +96,27 @@ public class ChatSpecificController {
 
         User currentUser = userService.getCurrentUser();
 
-        Chat chat = chatService.getChatByChatId(chatId);
+        Chat chat = chatRepository.findById(chatId)
+                .orElse(null);
 
-        model.addAttribute("specificChat", chat);
+        if (chat == null) {
+            return "error/errorIDDoNotExist";
+        } else if (chat.getRecipientOfChat() == currentUser || chat.getSenderOfChat() == currentUser){
+            model.addAttribute("specificChat", chat);
 
-        model.addAttribute("chatId", chatId);
+            model.addAttribute("chatId", chatId);
 
-        model.addAttribute("chatPlant", chat.getChatPlant());
+            model.addAttribute("chatPlant", chat.getChatPlant());
 
-        System.out.println(chat.getMessagesInChat().size());
+            System.out.println(chat.getMessagesInChat().size());
 
 
-        model.addAttribute("currentUser", currentUser);
+            model.addAttribute("currentUser", currentUser);
 
-        return "chatSpecific";
+            return "chatSpecific";
+        } else {
+            return "error/errorSpecificChatNoAccess";
+        }
     }
 
     @RequestMapping (value = "/chatSpecific/{chatId}", method = RequestMethod.POST)
