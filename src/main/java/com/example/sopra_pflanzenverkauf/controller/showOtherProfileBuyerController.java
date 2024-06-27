@@ -22,10 +22,12 @@ public class showOtherProfileBuyerController {
     @GetMapping("/showOtherProfileBuyer/{userid}")
     public String showUserDetailBuyer(@PathVariable("userid") Integer userId, Model model) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> {
-                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found");
-                });
+                .orElse(null);
         model.addAttribute("user", user);
-        return "showOtherProfileBuyer";
+        if (user == null) {
+            return "error/errorIDDoNotExist";
+        } else {
+            return "showOtherProfileBuyer";
+        }
     }
 }
