@@ -26,6 +26,9 @@ public class EditAdvertisementController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private UserService userService;
+
     /**
      * Handles GET requests targeted at the editAdvertisement page.
      *
@@ -42,7 +45,13 @@ public class EditAdvertisementController {
         List<Category> categories = categoryService.findAllCategories();
         model.addAttribute("categories", categories);
 
-        return "editAdvertisement";
+        if (userService.getCurrentUser() == plant.getSeller()){
+            return "editAdvertisement";
+        } else if(plantService.getPlantByPlantId(plantId) == null) {
+            return "error/404";
+        } else {
+            return "error/404";
+        }
     }
 
 

@@ -42,11 +42,11 @@ public class DeleteAdvertisementController {
 
         if (userService.getCurrentUser() == plant.getSeller()){
             return "deleteAdvertisement";
+        } else if(plantService.getPlantByPlantId(plantId) == null) {
+            return "error/404";
         } else {
             return "error/errorDeleteAdvertisement";
         }
-
-
     }
 
 
