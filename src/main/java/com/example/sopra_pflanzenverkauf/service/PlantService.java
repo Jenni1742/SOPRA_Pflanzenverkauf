@@ -8,6 +8,7 @@ import com.example.sopra_pflanzenverkauf.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -90,23 +91,33 @@ public class PlantService {
                     .filter(plant -> plant.getSold().equals(sold))
                     .collect(Collectors.toList());
         }
-        /**
-         if (price != null && !price.isEmpty()) {
-         // Assuming price is in format "min-max"
-         String[] priceRange = price.split("-");
-         if (priceRange.length == 2) {
-         try {
-         double minPrice = Double.parseDouble(priceRange[0]);
-         double maxPrice = Double.parseDouble(priceRange[1]);
-         plants = plants.stream()
-         .filter(plant -> plant.getPrice() >= minPrice && plant.getPrice() <= maxPrice)
-         .collect(Collectors.toList());
-         } catch (NumberFormatException e) {
-         // Handle exception
-         }
-         }
-         }
-         */
+
+//         if (price != null && !price.isEmpty()) {
+//            // Assuming price is in format "min-max"
+//            String[] priceRange = price.split("-");
+//                if (priceRange.length == 2) {
+//                    try {
+//                        double minPrice = Double.parseDouble(priceRange[0]);
+//                        double maxPrice = Double.parseDouble(priceRange[1]);
+//                        plants = plants.stream()
+//                            .filter(plant -> plant.getPrice() >= minPrice && plant.getPrice() <= maxPrice)
+//                            .collect(Collectors.toList());
+//                    } catch (NumberFormatException e) {
+//                    // Handle exception
+//                }
+//            }
+//         }
+        if (price != null) {
+            switch (price) {
+                case "price_asc":
+                    plants.sort(Comparator.comparing(Plant::getPrice));
+                    break;
+                case "price_desc":
+                    plants.sort(Comparator.comparing(Plant::getPrice).reversed());
+                    break;
+            }
+        }
+
         return plants;
     }
 
