@@ -1,10 +1,8 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
-import com.example.sopra_pflanzenverkauf.entity.Category;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
-import com.example.sopra_pflanzenverkauf.service.CategoryService;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +43,7 @@ public class DeleteAdvertisementController {
         if (userService.getCurrentUser() == plant.getSeller()){
             return "deleteAdvertisement";
         } else {
-            return "error/404";
+            return "error/errorDeleteAdvertisement";
         }
 
 
