@@ -91,22 +91,6 @@ public class PlantService {
                     .filter(plant -> plant.getSold().equals(sold))
                     .collect(Collectors.toList());
         }
-
-//         if (price != null && !price.isEmpty()) {
-//            // Assuming price is in format "min-max"
-//            String[] priceRange = price.split("-");
-//                if (priceRange.length == 2) {
-//                    try {
-//                        double minPrice = Double.parseDouble(priceRange[0]);
-//                        double maxPrice = Double.parseDouble(priceRange[1]);
-//                        plants = plants.stream()
-//                            .filter(plant -> plant.getPrice() >= minPrice && plant.getPrice() <= maxPrice)
-//                            .collect(Collectors.toList());
-//                    } catch (NumberFormatException e) {
-//                    // Handle exception
-//                }
-//            }
-//         }
         if (price != null) {
             switch (price) {
                 case "price_asc":

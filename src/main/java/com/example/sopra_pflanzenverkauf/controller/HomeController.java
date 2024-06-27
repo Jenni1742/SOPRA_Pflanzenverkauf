@@ -68,7 +68,7 @@ public class HomeController {
     @GetMapping("/filteredPlants")
     public String showFilteredPlants(Model model,
                                      @RequestParam(value = "category", required = false) String category,
-                                     @RequestParam(value = "price", required = false) String price) {
+                                     @RequestParam(value = "sort", required = false) String sort) {
 
         User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", currentUser);
@@ -82,16 +82,7 @@ public class HomeController {
             }
         }
 
-        String selectedPrice = null;
-        if (price!=null){
-            if(price.equalsIgnoreCase("Preis aufsteigend")){
-                selectedPrice= price;
-            }else if (price.equalsIgnoreCase("Preis absteigend")){
-                selectedPrice=price;
-            }
-        }
-
-        List<Plant> filteredPlants = plantService.findFilteredAndSortedPlants(selectedCategory, selectedPrice, false);
+        List<Plant> filteredPlants = plantService.findFilteredAndSortedPlants(selectedCategory, sort, false);
 
         filteredPlants = filteredPlants.stream()
                 .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
@@ -99,7 +90,7 @@ public class HomeController {
 
         model.addAttribute("filteredPlants", filteredPlants);
 
-        return "filteredPlants"; // Name der HTML-Datei, die die gefilterten Pflanzen anzeigt
+        return "filteredPlants";
     }
     @GetMapping("/plants")
     public String getPlants(Model model) {
