@@ -33,17 +33,15 @@ public class ShowAdvertisementController {
     @GetMapping ("/showAdvertisement/{id}")
     public String showPlant(@PathVariable("id") Integer plantId, Model model) {
         Plant plant = plantRepository.findById(plantId)
-                .orElseThrow(() -> {
-                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "Plant not found");
-                });
+                .orElse(null);
         model.addAttribute("plant", plant);
 
-        if (userService.getCurrentUser() == plant.getSeller()){
+        if (plant == null) {
+            return "error/errorIDDoNotExist";
+        } else if (userService.getCurrentUser() == plant.getSeller()){
             return "showAdvertisement";
-        } else if(plantService.getPlantByPlantId(plantId) == null) {
-            return "error/404";
-        }else {
-            return "error/404";
+        } else {
+            return "error/errorShowAdvertisement";
         }
     }
 }
