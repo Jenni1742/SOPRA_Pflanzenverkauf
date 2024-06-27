@@ -46,6 +46,9 @@ public class Plant {
     @Column(name = "Postleitzahl")
     private Integer zipCode;
 
+    @Column(name = "Booster")
+    private boolean booster = false;
+
     @Column(name = "Übertopf")
     private boolean planter = false;
 
@@ -75,24 +78,21 @@ public class Plant {
     public Plant() {
         // empty constructor for Hibernate
     }
-
     /**
      * Konstruktor für Test Daten für Pflanze die verkauft ist
      *
-     * @param plantname
-     * @param plantSize
-     * @param price
-     * @param plantDescription
-     * @param careTips
-     * @param category
-     * @param seller
-     * @param zipCode
-     * @param buyer
-     * @param sold
-     * @param planter
+     * @param plantname Name
+     * @param plantSize Größe in cm
+     * @param price Preis
+     * @param plantDescription Beschreibung
+     * @param careTips Pflegetipps
+     * @param category Kategorie (outdoor oder indoor)
+     * @param seller Vekäufer
+     * @param zipCode PLZ
+     * @param buyer Käufer
+     * @param sold Verkauft oder nicht boolean
      */
-    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, User buyer, Boolean sold, Boolean planter,String imageUrl) {
-        this.plantname = plantname;
+    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, User buyer, Boolean sold, Boolean planter,String imageUrl) {        this.plantname = plantname;
         this.plantSize = plantSize;
         this.price = price;
         this.plantDescription = plantDescription;
@@ -102,7 +102,6 @@ public class Plant {
         this.zipCode = zipCode;
         this.buyer = buyer;
         this.sold = sold;
-        this.planter = planter;
         this.imageUrl = imageUrl;
     }
 
@@ -118,7 +117,6 @@ public class Plant {
      * @param seller
      * @param zipCode
      * @param sold
-     * @param planter
      */
     public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, Boolean sold, Boolean planter, String imageUrl) {
         this.plantname = plantname;
@@ -136,6 +134,13 @@ public class Plant {
 
 
 
+    public void setBooster(Boolean booster){
+        this.booster = booster;
+    }
+
+    public Boolean getBooster(){
+        return booster;
+    }
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }

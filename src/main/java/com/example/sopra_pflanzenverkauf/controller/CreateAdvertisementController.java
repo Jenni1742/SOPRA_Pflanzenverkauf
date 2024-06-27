@@ -8,6 +8,7 @@ import com.example.sopra_pflanzenverkauf.service.CategoryService;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -47,7 +48,7 @@ public class CreateAdvertisementController {
     @RequestMapping (value="/createAdvertisement", method = RequestMethod.POST)
     public String createPlant(@ModelAttribute("plant") Plant newPlant,
                               @RequestParam("categoryname") String categoryname,
-                              @RequestParam("withPlanter") Boolean withPlanter){
+                              @Param("withPlanter") Boolean withPlanter){
 
         User currentUser = userService.getCurrentUser();
         newPlant.setSeller(currentUser);
@@ -56,7 +57,9 @@ public class CreateAdvertisementController {
 
         newPlant.setCategory(categoryService.getCategoryByName(categoryname));
 
-        newPlant.setPlanter(withPlanter);
+        if(withPlanter != null) {
+            newPlant.setPlanter(withPlanter);
+        }
 
         //Verkauft ist standardmäßig false
         plantService.persistPlant(newPlant);
