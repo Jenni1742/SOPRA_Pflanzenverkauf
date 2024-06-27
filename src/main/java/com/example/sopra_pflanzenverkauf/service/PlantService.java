@@ -78,7 +78,7 @@ public class PlantService {
     }
 
 
-    public List<Plant> findFilteredAndSortedPlants(Category category, String price, Boolean sold) {
+    public List<Plant> findFilteredAndSortedPlants(Category category, String sort, Boolean sold) {
         List<Plant> plants = plantRepository.findAll();
 
         if (category != null) {
@@ -91,13 +91,19 @@ public class PlantService {
                     .filter(plant -> plant.getSold().equals(sold))
                     .collect(Collectors.toList());
         }
-        if (price != null) {
-            switch (price) {
+        if (sort != null) {
+            switch (sort) {
                 case "price_asc":
                     plants.sort(Comparator.comparing(Plant::getPrice));
                     break;
                 case "price_desc":
                     plants.sort(Comparator.comparing(Plant::getPrice).reversed());
+                    break;
+                case "size_asc":
+                    plants.sort(Comparator.comparing(Plant::getPlantSize));
+                    break;
+                case "size_desc":
+                    plants.sort(Comparator.comparing(Plant::getPlantSize).reversed());
                     break;
             }
         }
