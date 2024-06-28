@@ -1,10 +1,8 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
-import com.example.sopra_pflanzenverkauf.entity.Category;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
-import com.example.sopra_pflanzenverkauf.service.CategoryService;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +27,10 @@ public class DeleteAdvertisementController {
 
     @Autowired
     private PlantRepository plantRepository;
+    @Autowired
+    private ErrorIDDoNotExistController errorIDDoNotExistController;
+    @Autowired
+    private ErrorDeleteAdvertisement errorDeleteAdvertisement;
 
 
     @GetMapping("/deleteAdvertisement/{id}")
@@ -37,18 +39,17 @@ public class DeleteAdvertisementController {
         model.addAttribute("plantId", plantId);
 
         Plant plant = plantRepository.findById(plantId)
-                .orElseThrow(() -> {
-                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "Plant not found");
-                });
+                .orElse(null);
+
         model.addAttribute("plant", plant);
 
-        if (userService.getCurrentUser() == plant.getSeller()){
+        if (plant == null) {
+            return "error/errorIDDoNotExist";
+        } else if (userService.getCurrentUser() == plant.getSeller()){
             return "deleteAdvertisement";
         } else {
-            return "error/404";
+            return "error/errorDeleteAdvertisement";
         }
-
-
     }
 
 

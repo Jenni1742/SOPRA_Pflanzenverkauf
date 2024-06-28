@@ -3,6 +3,7 @@ package com.example.sopra_pflanzenverkauf.controller;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
+import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,9 @@ public class ShowAdvertisementController {
     @Autowired
     private PlantRepository plantRepository;
 
+    @Autowired
+    private UserService userService;
+
     /**
      * Handles GET requests targeted at the showAdvertisement page.
      *
@@ -29,10 +33,15 @@ public class ShowAdvertisementController {
     @GetMapping ("/showAdvertisement/{id}")
     public String showPlant(@PathVariable("id") Integer plantId, Model model) {
         Plant plant = plantRepository.findById(plantId)
-                .orElseThrow(() -> {
-                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "Plant not found");
-                });
+                .orElse(null);
         model.addAttribute("plant", plant);
-        return "showAdvertisement";
+
+        if (plant == null) {
+            return "error/errorIDDoNotExist";
+        } else if (userService.getCurrentUser() == plant.getSeller()){
+            return "showAdvertisement";
+        } else {
+            return "error/errorShowAdvertisement";
+        }
     }
 }

@@ -46,12 +46,17 @@ public class PlantDetailController {
         User currentUser = userService.getCurrentUser();
 
         Plant plant = plantRepository.findById(plantId)
-                .orElseThrow(() -> {
-                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "Plant not found");
-                });
+                .orElse(null);
         model.addAttribute("plant", plant);
         model.addAttribute("currentUser", currentUser);
-        return "plant-detail";  // assuming the Thymeleaf template is named 'plant-detail.html'
+
+        if (plant == null) {
+            return "error/errorIDDoNotExist";
+        } else if (userService.getCurrentUser() != plant.getSeller() && plant.getSeller() != null){
+            return "plant-detail";
+        } else {
+            return "error/errorPlantDetails";
+        }
     }
 
     @PostMapping(path = "/plant-detail/{id}")

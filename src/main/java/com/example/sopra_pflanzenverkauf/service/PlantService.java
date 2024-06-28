@@ -78,7 +78,7 @@ public class PlantService {
     }
 
 
-    public List<Plant> findFilteredAndSortedPlants(Category category, String price, Boolean sold) {
+    public List<Plant> findFilteredAndSortedPlants(Category category, String sort, Boolean sold) {
         List<Plant> plants = plantRepository.findAll();
 
         if (category != null) {
@@ -91,29 +91,19 @@ public class PlantService {
                     .filter(plant -> plant.getSold().equals(sold))
                     .collect(Collectors.toList());
         }
-
-//         if (price != null && !price.isEmpty()) {
-//            // Assuming price is in format "min-max"
-//            String[] priceRange = price.split("-");
-//                if (priceRange.length == 2) {
-//                    try {
-//                        double minPrice = Double.parseDouble(priceRange[0]);
-//                        double maxPrice = Double.parseDouble(priceRange[1]);
-//                        plants = plants.stream()
-//                            .filter(plant -> plant.getPrice() >= minPrice && plant.getPrice() <= maxPrice)
-//                            .collect(Collectors.toList());
-//                    } catch (NumberFormatException e) {
-//                    // Handle exception
-//                }
-//            }
-//         }
-        if (price != null) {
-            switch (price) {
+        if (sort != null) {
+            switch (sort) {
                 case "price_asc":
                     plants.sort(Comparator.comparing(Plant::getPrice));
                     break;
                 case "price_desc":
                     plants.sort(Comparator.comparing(Plant::getPrice).reversed());
+                    break;
+                case "size_asc":
+                    plants.sort(Comparator.comparing(Plant::getPlantSize));
+                    break;
+                case "size_desc":
+                    plants.sort(Comparator.comparing(Plant::getPlantSize).reversed());
                     break;
             }
         }

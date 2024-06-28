@@ -3,6 +3,7 @@ package com.example.sopra_pflanzenverkauf.controller;
 import com.example.sopra_pflanzenverkauf.entity.Chat;
 import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
+import com.example.sopra_pflanzenverkauf.repository.ChatRepository;
 import com.example.sopra_pflanzenverkauf.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,9 @@ public class chatConfirmSaleController {
 
     @Autowired
     private LevelService levelService;
+
+    @Autowired
+    private ChatRepository chatRepository;
 
     /**
      * Handles GET requests targeted at the confirm sale page.
@@ -60,19 +64,26 @@ public class chatConfirmSaleController {
 
         User currentUser = userService.getCurrentUser();
 
-        Chat chat = chatService.getChatByChatId(chatId);
+        Chat chat = chatRepository.findById(chatId)
+                .orElse(null);
 
-        model.addAttribute("specificChat", chat);
+        if (chat == null) {
+            return "error/errorIDDoNotExist";
+        } else if (chat.getRecipientOfChat() == currentUser) {
+            model.addAttribute("specificChat", chat);
 
-        model.addAttribute("chatId", chatId);
+            model.addAttribute("chatId", chatId);
 
-        model.addAttribute("chatPlant", chat.getChatPlant());
+            model.addAttribute("chatPlant", chat.getChatPlant());
 
-        System.out.println(chat.getMessagesInChat().size());
+            System.out.println(chat.getMessagesInChat().size());
 
-        model.addAttribute("currentUser", currentUser);
+            model.addAttribute("currentUser", currentUser);
 
-        return "chatConfirmSale";
+            return "chatConfirmSale";
+        } else {
+            return "error/errorChatConfirmSaleNotAllowed";
+        }
     }
 
     @RequestMapping (value = "/chatConfirmSale/{chatId}", method = RequestMethod.POST)

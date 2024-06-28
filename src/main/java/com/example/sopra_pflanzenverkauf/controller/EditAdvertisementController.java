@@ -26,6 +26,9 @@ public class EditAdvertisementController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private UserService userService;
+
     /**
      * Handles GET requests targeted at the editAdvertisement page.
      *
@@ -34,15 +37,19 @@ public class EditAdvertisementController {
     @GetMapping("/editAdvertisement/{id}")
     public String editPlant(@PathVariable("id") Integer plantId, Model model) {
         Plant plant = plantRepository.findById(plantId)
-                .orElseThrow(() -> {
-                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "Plant not found");
-                });
+                .orElse(null);
         model.addAttribute("plant", plant);
 
         List<Category> categories = categoryService.findAllCategories();
         model.addAttribute("categories", categories);
 
-        return "editAdvertisement";
+        if (plant == null) {
+            return "error/errorIDDoNotExist";
+        } else if (userService.getCurrentUser() == plant.getSeller()){
+            return "editAdvertisement";
+        } else {
+            return "error/errorEditAdvertisement";
+        }
     }
 
 
