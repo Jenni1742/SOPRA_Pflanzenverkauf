@@ -95,10 +95,6 @@ public class EditAdvertisementController {
         //    currentPlant.setZipCode(newzipCode);
         //}
 
-        if(newimageUrl != null && !newimageUrl.isEmpty()){
-            currentPlant.setImageUrl(newimageUrl);
-        }
-
         plantService.updatePlant(currentPlant);
 
         return "redirect:/myAdvertisements";

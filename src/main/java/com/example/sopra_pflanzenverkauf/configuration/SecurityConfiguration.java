@@ -22,6 +22,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+                .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/login", "/register", "/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/console/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -44,11 +45,6 @@ public class SecurityConfiguration {
                         .clearAuthentication(true)
                         .deleteCookies("JSESSIONID")
                         .permitAll()
-                )
-                .csrf(csrf -> csrf
-                        .ignoringRequestMatchers("/console/**")//Deaktiviert CSRF-Schutz für die H2-Konsole
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) //Test
                 )
                 .headers(headers -> headers.frameOptions().sameOrigin() // Ermöglicht das Einbetten der H2-Konsole in Frames
                 );

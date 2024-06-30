@@ -284,7 +284,8 @@ public class TestDataLoader implements CommandLineRunner {
                 70321,
                 false,
                 false,
-                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg"
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg",
+                null
         );
         plantService.persistPlant(allium);
 
@@ -338,7 +339,8 @@ public class TestDataLoader implements CommandLineRunner {
                 70323,
                 false,
                 true,
-                "https://cdn.pixabay.com/photo/2016/05/24/17/42/lotus-1412858_1280.jpg"
+                "https://cdn.pixabay.com/photo/2016/05/24/17/42/lotus-1412858_1280.jpg",
+                null
 
         );
         plantService.persistPlant(melanostachy);
@@ -358,7 +360,8 @@ public class TestDataLoader implements CommandLineRunner {
                 70323,
                 false,
                 true,
-                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg"
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg",
+                null
 
         );
         plantService.persistPlant(prunus);
@@ -378,7 +381,8 @@ public class TestDataLoader implements CommandLineRunner {
                 70323,
                 false,
                 false,
-                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg"
+                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg",
+                null
 
         );
         plantService.persistPlant(occidentalis);
@@ -419,7 +423,8 @@ public class TestDataLoader implements CommandLineRunner {
                 56783,
                 false,
                 false,
-                "https://www.swr.de/swraktuell/baden-wuerttemberg/stuttgart/1713352797444%2Ctitanenwurz-uni-hohenheim-stuttgart-100~_v-16x9@2dL_-6c42aff4e68b43c7868c3240d3ebfa29867457da.jpg"
+                "https://www.swr.de/swraktuell/baden-wuerttemberg/stuttgart/1713352797444%2Ctitanenwurz-uni-hohenheim-stuttgart-100~_v-16x9@2dL_-6c42aff4e68b43c7868c3240d3ebfa29867457da.jpg",
+                null
         );
         plantService.persistPlant(titanenwurzel);
 
@@ -435,7 +440,8 @@ public class TestDataLoader implements CommandLineRunner {
                 23456,
                 false,
                 false,
-                "https://cdn.pixabay.com/photo/2018/09/13/18/18/heide-3675445_1280.jpg"
+                "https://cdn.pixabay.com/photo/2018/09/13/18/18/heide-3675445_1280.jpg",
+                null
         );
         plantService.persistPlant(heidekraut);
 
@@ -450,7 +456,8 @@ public class TestDataLoader implements CommandLineRunner {
                 23456,
                 false,
                 true,
-                "https://www.lubera.com/images/600/lotus-blatt-e1481172403391.jpg"
+                "https://www.lubera.com/images/600/lotus-blatt-e1481172403391.jpg",
+                null
         );
 
         plantService.persistPlant(lotus);
@@ -466,7 +473,8 @@ public class TestDataLoader implements CommandLineRunner {
                 34567,
                 false,
                 false,
-                "https://cdn.pixabay.com/photo/2019/02/25/20/29/houseplant-4020532_1280.jpg"
+                "https://cdn.pixabay.com/photo/2019/02/25/20/29/houseplant-4020532_1280.jpg",
+                null
         );
         plantService.persistPlant(kleingruen);
 
@@ -482,7 +490,8 @@ public class TestDataLoader implements CommandLineRunner {
                 56789,
                 false,
                 true,
-                "https://cdn.pixabay.com/photo/2011/04/06/15/05/garden-6239_1280.jpg"
+                "https://cdn.pixabay.com/photo/2011/04/06/15/05/garden-6239_1280.jpg",
+                null
         );
         plantService.persistPlant(jessica);
 
@@ -497,7 +506,8 @@ public class TestDataLoader implements CommandLineRunner {
                 70327,
                 false,
                 false,
-                "https://cdn.pixabay.com/photo/2017/04/03/07/30/blue-flower-2197679_1280.jpg"
+                "https://cdn.pixabay.com/photo/2017/04/03/07/30/blue-flower-2197679_1280.jpg",
+                null
         );
         plantService.persistPlant(blau);
 

@@ -24,7 +24,7 @@
             <h2 class="card-title" th:text="'Anzeige erstellen'"></h2>
         </div>
         <div class="row">
-            <form th:action="@{/createAdvertisement}" th:object="${plant}" method="post">
+            <form th:action="@{/createAdvertisement}" th:object="${plant}" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="mb-3">
                         <label for="plantname" class="form-label">Name der Pflanze</label>
@@ -93,7 +93,7 @@
 
                     Bildlink hinzufügen
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="imageUrl" th:field="*{imageUrl}" required>
+                        <input type="file" class="form-control" name="imageMp" id="imageMp" required>
                     </div>
 
                 </div>
