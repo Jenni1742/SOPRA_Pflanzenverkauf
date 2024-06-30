@@ -101,6 +101,10 @@
                 <div>
                     Pflanze:
                     <span th:text="${specificChat.getChatPlant().plantname}"></span>
+                    <span style="color: transparent">.....</span>
+                    Status:
+                    <span th:if="${specificChat.getChatPlant().sold == true}">verkauft</span>
+                    <span th:if="${specificChat.getChatPlant().sold == false}">nicht verkauft</span>
                 </div>
 
                 <!-- Pflanze um die es geht-->
