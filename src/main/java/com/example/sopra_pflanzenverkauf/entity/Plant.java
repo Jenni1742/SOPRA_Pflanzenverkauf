@@ -47,6 +47,10 @@ public class Plant {
     @Lob
     private byte[] imageTwo;
 
+    @Column(name = "Bilddaten3")
+    @Lob
+    private byte[] imageThree;
+
     @Column(name = "Pflegetipps")
     private String careTips;
 
@@ -322,6 +326,20 @@ public class Plant {
 
     public String getImageTwoDataBase64() {
         String image = Base64.encodeBase64String(this.imageTwo);
+        System.out.println(image);
+        return image;
+    }
+
+    public byte[] getImageThree() {
+        return imageThree;
+    }
+
+    public void setImageThree(byte[] imageThree) {
+        this.imageThree = imageThree;
+    }
+
+    public String getImageThreeDataBase64() {
+        String image = Base64.encodeBase64String(this.imageThree);
         System.out.println(image);
         return image;
     }
