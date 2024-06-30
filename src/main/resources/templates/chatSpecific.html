@@ -152,6 +152,7 @@
                             <span th:text="${message.getTimestamp().getHour()}" th:if="${message.getSender() == currentUser}"></span>
                             <span th:if="${message.getSender() == currentUser && message.getTimestamp().getMinute() >= 10}">:</span>
                             <span th:if="${message.getSender() == currentUser && message.getTimestamp().getMinute() < 10}" th:text=" ': 0' + ${message.getTimestamp().getMinute()}"></span>
+                            <span th:text="${message.getTimestamp().getMinute()}" th:if="${message.getSender() == currentUser && message.getTimestamp().getMinute() >= 10}"></span>
                             <span th:if="${message.getSender() == currentUser}"> Uhr</span>
                         </div>
                         <div class="details">
@@ -159,6 +160,7 @@
                             <span th:text="${message.getTimestamp().getHour()}" th:if="${message.getSender() != currentUser}">:</span>
                             <span th:if="${message.getSender() != currentUser && message.getTimestamp().getMinute() >= 10}">:</span>
                             <span th:if="${message.getSender() != currentUser && message.getTimestamp().getMinute() < 10}" th:text=" ': 0' + ${message.getTimestamp().getMinute()}"></span>
+                            <span th:text="${message.getTimestamp().getMinute()}" th:if="${message.getSender() != currentUser && message.getTimestamp().getMinute() >= 10}"></span>
                             <span th:if="${message.getSender() != currentUser}"> Uhr</span>
                         </div>
 
