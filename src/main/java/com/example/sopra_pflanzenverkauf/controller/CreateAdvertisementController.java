@@ -51,6 +51,7 @@ public class CreateAdvertisementController {
     public String createPlant(@ModelAttribute("plant") Plant newPlant,
                               @RequestParam("categoryname") String categoryname,
                               @RequestParam("imageMp") MultipartFile multipartFile,
+                              @RequestParam("imageMp2") MultipartFile multipartFileTwo,
                               @Param("withPlanter") Boolean withPlanter){
 
         User currentUser = userService.getCurrentUser();
@@ -60,6 +61,7 @@ public class CreateAdvertisementController {
 
         newPlant.setCategory(categoryService.getCategoryByName(categoryname));
 
+        //withPlanter ist standardmäßig false und wird hier dann auf true gesetzt
         if(withPlanter != null) {
             newPlant.setPlanter(withPlanter);
         }
@@ -71,6 +73,13 @@ public class CreateAdvertisementController {
                 e.printStackTrace();
             }
 
+            if (!multipartFileTwo.isEmpty()) {
+                try {
+                    newPlant.setImageTwo(multipartFile.getBytes());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
             //Verkauft ist standardmäßig false
             plantService.persistPlant(newPlant);
 

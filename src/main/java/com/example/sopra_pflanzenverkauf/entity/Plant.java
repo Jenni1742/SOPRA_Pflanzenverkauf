@@ -39,9 +39,13 @@ public class Plant {
     @Deprecated
     private String imageUrl;
 
-    @Column(name = "ImageData")
+    @Column(name = "Bilddaten1")
     @Lob
     private byte[] image;
+
+    @Column(name = "Bilddaten2")
+    @Lob
+    private byte[] imageTwo;
 
     @Column(name = "Pflegetipps")
     private String careTips;
@@ -306,6 +310,14 @@ public class Plant {
         String image = Base64.encodeBase64String(this.image);
         System.out.println(image);
         return image;
+    }
+
+    public byte[] getImageTwo() {
+        return imageTwo;
+    }
+
+    public void setImageTwo(byte[] imageTwo) {
+        this.imageTwo = imageTwo;
     }
 
 }
