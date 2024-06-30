@@ -70,17 +70,25 @@ public class MyAdvertisementsController {
 
     @PostMapping("/boostAdvertisement/{plantId}")
     public String boostAdvertisement(@PathVariable("plantId") Integer plantId, Model model) {
+        System.out.println("Bin HIER" + plantId);
         User currentUser = userService.getCurrentUser();
         Plant plant = plantService.findById(Math.toIntExact(plantId));
+
+        //Übernommen
+        List<Plant> plantList = currentUser.getPlantsToSell();
+
+        model.addAttribute("plantList", plantList);
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("coinCount", currentUser.getPlantCoinCount());
 
         if (currentUser.getPlantCoinCount() >= 1) {
             currentUser.setPlantCoinCount(currentUser.getPlantCoinCount() - 1);
             userService.save(currentUser);
             plant.setBooster(true);
             plantService.save(plant);
-            return "myAdvertisement";
+            return "redirect:/myAdvertisements";
         } else {
-            return "myAdvertisement";
+            return "redirect:/myAdvertisements";
         }
 
     }
