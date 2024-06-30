@@ -5,12 +5,14 @@ import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class MyAdvertisementsController {
@@ -65,6 +67,7 @@ public class MyAdvertisementsController {
 
         return "myAdvertisements";
     }
+    /**
     @PostMapping("/boostAdvertisement/{id}")
     public String boostAdvertisement(@PathVariable("id") Long plantId, Model model) {
         User currentUser = userService.getCurrentUser();
@@ -79,6 +82,20 @@ public class MyAdvertisementsController {
         } else {
             return "myAdvertisement";
         }
+
+    }
+     */
+
+    @PostMapping("/boostAdvertisement/{plantId}")
+    public ResponseEntity<Void> boostAdvertisement(@PathVariable Integer plantId) {
+        Optional<Plant> plantOpt = Optional.ofNullable(plantService.findById(plantId));
+        if (plantOpt.isPresent()) {
+            Plant plant = plantOpt.get();
+            plant.setBooster(true);
+            plantService.save(plant);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }
 

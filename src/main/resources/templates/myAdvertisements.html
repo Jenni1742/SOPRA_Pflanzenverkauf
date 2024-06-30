@@ -8,19 +8,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css\stylesheet.css">
+    <link rel="stylesheet" href="css/stylesheet.css">
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
 </head>
-<style>
-    body {
-        text-align: center;
-    }
-</style>
-
-</style>
-
 <body>
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
+
+<div>
+    <p th:text="${boostMessage}"></p>
+</div>
 
 <h1>Hallo, <span th:text="${currentUser.username}"></span>!</h1>
 
@@ -28,50 +29,19 @@
 <p>Deine aktuellen PlantCoins: <span th:text="${currentUser.plantCoinCount}"></span></p>
 
 <div class="container">
-
-
     <div class="card">
-        <p></p>
-        <p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill="currentColor" class="bi bi-shop"
-                 viewBox="0 0 16 16">
-                <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z"/>
-            </svg>
-        </p>
-        <p>Hier findest du deine Verkaufsanzeigen.</p>
-        <div style="flex: 0 0 auto; margin-right: 20px;">
-            <p th:if="${plantList.size()} == 0">
-                Aktuell hast du noch keine Verkaufsanzeigen, aber das muss nicht so bleiben!
-            </p>
-        </div>
-        <a href="http://localhost:8080/createAdvertisement">
-            <button type="button" class="btn btn-rePlantGreen">
-                Verkaufe deine Pflanzen
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-cash-coin" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0"/>
-                    <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195z"/>
-                    <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083q.088-.517.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1z"/>
-                    <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 6 6 0 0 1 3.13-1.567"/>
-                </svg>
-            </button>
-        </a>
-
         <div class="card-body">
-
             <div th:each="plant : ${plantList}" class="ad"
                  style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
                 <div style="flex: 0 0 auto; margin-right: 20px; width: 300px;">
                     <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
-                        <img th:if="${plant.imageUrl != null && plant.image == null}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]"
-                             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-                        <img th:if="${plant.image != null}" th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}" alt="Bild von [[${plant.name}]]"
+                        <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]"
                              style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                     </div>
                 </div>
                 <div style="flex: 1; padding-left: 20px; text-align: left">
                     <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
-                    <p th:text="${plant.category != null ? plant.category.categoryname : 'Keine Kategorie'}"></p>
+                    <p th:text="${plant.category != null ? plant.category.categoryname : 'Unknown category'}" style="font-style: italic;"></p>
                     <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
                     <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
                     <p th:if="${plant.planter}"><strong>Mit Übertopf</strong></p>
@@ -83,11 +53,9 @@
                     </p>
                     <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
                     <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-end;">
-                        <a th:href="@{/boostAdvertisement/{id}(id=${plant.plantId})}">
-                            <button type="button" class="btn btn-rePlantYellow">
-                                Boost für 10 PlantCoins einlösen
-                            </button>
-                        </a>
+                        <button type="button" class="btn btn-rePlantYellow" th:attr="onclick='confirmBoost(\'' + ${plant.plantId} + '\')'">
+                            Hier Boost kaufen!
+                        </button>
                         <a th:href="@{/showAdvertisement/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;">
                             <button type="button" class="btn btn-rePlantGreen">
                                 Ganze Anzeige ansehen
@@ -99,9 +67,8 @@
                         </a>
                     </div>
                 </div>
-
                 <div class="ad" style="position: relative;">
-                        <a th:href="@{/deleteAdvertisement/{id}(id=${plant.plantId})}">
+                    <a th:href="@{/deleteAdvertisement/{id}(id=${plant.plantId})}">
                         <button type="button" class="btn-rePlantHeart"
                                 style="top: -150px; right: 0px;  position: absolute;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#017101"
@@ -112,11 +79,8 @@
                             </svg>
                         </button>
                     </a>
-
-
                 </div>
             </div>
-
         </div>
         <div class="card-footer text-center card-footer-rePlant">
             <p></p>
@@ -124,6 +88,40 @@
     </div>
 </div>
 
+<!-- Boost Confirmation Modal -->
+<div class="modal fade" id="boostModal" tabindex="-1" aria-labelledby="boostModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="boostModalLabel">Anzeige boosten</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bist du sicher, dass du diese Anzeige für 1* PlantCoins boosten möchtest?
+            </div>
+            <div class="modal-footer">
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Abbrechen</button>
+                    <form id="boostForm" method="post" th:action="@{/boostAdvertisement/{id}(id=${plantId})}">
+                        <input type="hidden" id="plantId" name="plantId" value="">
+                        <button type="submit" class="btn btn-rePlantGreen">Boost bestätigen</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function confirmBoost(plantId) {
+        document.getElementById('plantId').value = plantId;
+        var boostModal = new bootstrap.Modal(document.getElementById('boostModal'));
+        boostModal.show();
+        console.log("Boosting plant with ID: " + plantId);
+
+    }
+
+</script>
 
 </body>
 </html>

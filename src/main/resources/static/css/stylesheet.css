@@ -653,3 +653,15 @@ p {
     margin-bottom: 20px;
     border-radius: 10px;
 }
+
+.btn-cancel {
+    background-color: #cccccc;
+    color: black;
+    border: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-cancel:hover {
+    background-color: #aaaaaa;
+    color: black;
+}
