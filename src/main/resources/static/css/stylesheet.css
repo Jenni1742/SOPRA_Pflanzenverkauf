@@ -53,6 +53,21 @@ body {
     background-color: transparent;
     border-color: transparent;
 }
+.btn-rePlantYellow {
+    background-color: #FFC107;
+    color: white;
+}
+.btn-rePlantYellow:hover {
+    background-color: black;
+    color: white;
+    border-color: #FFC107;
+}
+.btn-rePlantYellow:active {
+    background-color: #FFC107;
+    color: white;
+    border-color: #FFC107;
+<!-- SchattenFarbeBlauzuGrünwechseln -->
+}
 .btn-rePlantGreen {
     background-color: #017101;
     color: white;
@@ -631,18 +646,6 @@ p {
     margin: 5px;
 }
 
-.btn-rePlantYellow {
-    background-color: #FFC107;
-    color: white;
-    border: none;
-    margin: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.btn-rePlantYellow:hover {
-    background-color: #FF8C00;
-    color: black;
-}
  .button-container {
             display: flex;
             flex-direction: column;
