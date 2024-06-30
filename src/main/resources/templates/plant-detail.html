@@ -31,6 +31,10 @@
                                 <img th:if="${plant.imageTwo != null}" th:src="@{'data:image/jpeg;base64,'+${plant.getImageTwoDataBase64()}}" alt="Bild von [[${plant.name}]]"
                                      class="d-block w-100" >
                             </div>
+                            <div class="carousel-item" data-bs-interval="3000">
+                                <img th:if="${plant.imageTwo != null}" th:src="@{'data:image/jpeg;base64,'+${plant.getImageThreeDataBase64()}}" alt="Bild von [[${plant.name}]]"
+                                     class="d-block w-100" >
+                            </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

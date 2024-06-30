@@ -52,6 +52,7 @@ public class CreateAdvertisementController {
                               @RequestParam("categoryname") String categoryname,
                               @RequestParam("imageMp") MultipartFile multipartFile,
                               @RequestParam("imageMp2") MultipartFile multipartFileTwo,
+                              @RequestParam("imageMp3") MultipartFile multipartFileThree,
                               @Param("withPlanter") Boolean withPlanter){
 
         User currentUser = userService.getCurrentUser();
@@ -76,6 +77,14 @@ public class CreateAdvertisementController {
             if (!multipartFileTwo.isEmpty()) {
                 try {
                     newPlant.setImageTwo(multipartFileTwo.getBytes());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (!multipartFileThree.isEmpty()) {
+                try {
+                    newPlant.setImageThree(multipartFileThree.getBytes());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
