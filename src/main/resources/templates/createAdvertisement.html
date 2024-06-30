@@ -51,7 +51,7 @@
                     <div class="mb-3">
                         <label>Kategorie</label>
                         <select class="form-select" id="categoryname" name="categoryname" required>
-                            <option selected>Auswählen...</option>
+
 
                             <div th:each="category : ${categories}">
                                 <option><span th:text="${category.getCategoryname()}"></span></option>
@@ -96,6 +96,10 @@
                         <input type="file" class="form-control" name="imageMp" id="imageMp" required>
                     </div>
 
+                    <!--
+                    <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+                    <input class="form-control" type="file" id="formFileMultiple" multiple />
+                    -->
                 </div>
                 <div class="card-footer text-center card-footer-rePlant">
                     <button onclick="history.back()" type="button" class="btn btn-rePlantGrey">
