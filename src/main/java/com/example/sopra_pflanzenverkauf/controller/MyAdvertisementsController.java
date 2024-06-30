@@ -67,35 +67,23 @@ public class MyAdvertisementsController {
 
         return "myAdvertisements";
     }
-    /**
-    @PostMapping("/boostAdvertisement/{id}")
-    public String boostAdvertisement(@PathVariable("id") Long plantId, Model model) {
+
+    @PostMapping("/boostAdvertisement/{plantId}")
+    public String boostAdvertisement(@PathVariable("plantId") Integer plantId, Model model) {
         User currentUser = userService.getCurrentUser();
         Plant plant = plantService.findById(Math.toIntExact(plantId));
 
-        if (currentUser.getPlantCoinCount() >= 10) {
-            currentUser.setPlantCoinCount(currentUser.getPlantCoinCount() - 10);
+        if (currentUser.getPlantCoinCount() >= 1) {
+            currentUser.setPlantCoinCount(currentUser.getPlantCoinCount() - 1);
             userService.save(currentUser);
             plant.setBooster(true);
             plantService.save(plant);
-            return "home";
+            return "myAdvertisement";
         } else {
             return "myAdvertisement";
         }
 
     }
-     */
 
-    @PostMapping("/boostAdvertisement/{plantId}")
-    public ResponseEntity<Void> boostAdvertisement(@PathVariable Integer plantId) {
-        Optional<Plant> plantOpt = Optional.ofNullable(plantService.findById(plantId));
-        if (plantOpt.isPresent()) {
-            Plant plant = plantOpt.get();
-            plant.setBooster(true);
-            plantService.save(plant);
-            return ResponseEntity.ok().build();
-        }
-        return ResponseEntity.notFound().build();
-    }
 }
 

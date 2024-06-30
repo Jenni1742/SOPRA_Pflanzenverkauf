@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Meine Verkaufsanzeigen</title>
@@ -53,9 +53,9 @@
                     </p>
                     <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
                     <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-end;">
-                        <button type="button" class="btn btn-rePlantYellow" th:attr="onclick='confirmBoost(\'' + ${plant.plantId} + '\')'">
-                            Hier Boost kaufen!
-                        </button>
+                        <a th:href="@{/confirmBoost/{id}(id=${plant.plantId})}" class="btn btn-rePlantGreen">Boost bestätigen</a>
+
+                        </a>
                         <a th:href="@{/showAdvertisement/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;">
                             <button type="button" class="btn btn-rePlantGreen">
                                 Ganze Anzeige ansehen
@@ -79,7 +79,9 @@
                             </svg>
                         </button>
                     </a>
+
                 </div>
+
             </div>
         </div>
         <div class="card-footer text-center card-footer-rePlant">
@@ -88,38 +90,7 @@
     </div>
 </div>
 
-<!-- Boost Confirmation Modal -->
-<div class="modal fade" id="boostModal" tabindex="-1" aria-labelledby="boostModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="boostModalLabel">Anzeige boosten</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                Bist du sicher, dass du diese Anzeige für 1* PlantCoins boosten möchtest?
-            </div>
-            <div class="modal-footer">
-                <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" class="btn btn-cancel me-2" data-bs-dismiss="modal">Abbrechen</button>
-                    <form id="boostForm" method="post" th:action="@{/boostAdvertisement/{id}(id=${plantId})}">
-                        <input type="hidden" id="plantId" name="plantId" value="">
-                        <button type="submit" class="btn btn-rePlantGreen">Boost bestätigen</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
-    function confirmBoost(plantId) {
-        document.getElementById('plantId').value = plantId;
-        var boostModal = new bootstrap.Modal(document.getElementById('boostModal'));
-        boostModal.show();
-        console.log("Boosting plant with ID: " + plantId);
-
-    }
 
 </script>
 
