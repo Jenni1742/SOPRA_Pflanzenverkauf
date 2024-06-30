@@ -10,7 +10,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
@@ -23,7 +22,6 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/login", "/register", "/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/console/**").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
@@ -31,14 +29,14 @@ public class SecurityConfiguration {
                         .requestMatchers("/changePassword").permitAll()
                         .anyRequest().authenticated()
                 )
-                .csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                        .ignoringRequestMatchers("/console/**"))
-                // define the login-page, which is also accessible for everyone
-                .formLogin( formLogin -> formLogin
-                        .loginPage("/login").failureUrl("/login?error=true").permitAll()
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .failureUrl("/login?error=true")
+                        .permitAll()
                         .defaultSuccessUrl("/", true)
                         .usernameParameter("username")
-                        .passwordParameter("password"))
+                        .passwordParameter("password")
+                )
                 .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                         .logoutSuccessUrl("/login?logout")
@@ -47,7 +45,12 @@ public class SecurityConfiguration {
                         .deleteCookies("JSESSIONID")
                         .permitAll()
                 )
-                .headers(headers -> headers.frameOptions(Customizer.withDefaults()) // Ermöglicht das Einbetten der H2-Konsole in Frames
+                .csrf(csrf -> csrf
+                        .ignoringRequestMatchers("/console/**")//Deaktiviert CSRF-Schutz für die H2-Konsole
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()) //Test
+                )
+                .headers(headers -> headers.frameOptions().sameOrigin() // Ermöglicht das Einbetten der H2-Konsole in Frames
                 );
 
         // Deaktiviert header security. Ermöglicht Nutzung der H2 Console.
