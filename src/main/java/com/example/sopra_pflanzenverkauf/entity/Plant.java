@@ -320,4 +320,10 @@ public class Plant {
         this.imageTwo = imageTwo;
     }
 
+    public String getImageTwoDataBase64() {
+        String image = Base64.encodeBase64String(this.imageTwo);
+        System.out.println(image);
+        return image;
+    }
+
 }

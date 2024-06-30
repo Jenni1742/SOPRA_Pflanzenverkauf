@@ -75,7 +75,7 @@ public class CreateAdvertisementController {
 
             if (!multipartFileTwo.isEmpty()) {
                 try {
-                    newPlant.setImageTwo(multipartFile.getBytes());
+                    newPlant.setImageTwo(multipartFileTwo.getBytes());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
