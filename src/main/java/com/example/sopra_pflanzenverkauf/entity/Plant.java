@@ -1,6 +1,7 @@
 package com.example.sopra_pflanzenverkauf.entity;
 
 import jakarta.persistence.*;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,12 @@ public class Plant {
 
     //TODO Bilder einfügen können
     @Column(name = "Fotos")
+    @Deprecated
     private String imageUrl;
+
+    @Column(name = "ImageData")
+    @Lob
+    private byte[] image;
 
     @Column(name = "Pflegetipps")
     private String careTips;
@@ -92,7 +98,21 @@ public class Plant {
      * @param buyer Käufer
      * @param sold Verkauft oder nicht boolean
      */
-    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, User buyer, Boolean sold, Boolean planter,String imageUrl) {        this.plantname = plantname;
+    public Plant(
+            String plantname,
+            Integer plantSize,
+            double price,
+            String plantDescription,
+            String careTips,
+            Category category,
+            User seller,
+            Integer zipCode,
+            User buyer,
+            Boolean sold,
+            Boolean planter,
+            String imageUrl
+    ) {
+        this.plantname = plantname;
         this.plantSize = plantSize;
         this.price = price;
         this.plantDescription = plantDescription;
@@ -118,7 +138,20 @@ public class Plant {
      * @param zipCode
      * @param sold
      */
-    public Plant (String plantname, Integer plantSize, double price, String plantDescription, String careTips, Category category, User seller, Integer zipCode, Boolean sold, Boolean planter, String imageUrl) {
+    public Plant(
+            String plantname,
+            Integer plantSize,
+            double price,
+            String plantDescription,
+            String careTips,
+            Category category,
+            User seller,
+            Integer zipCode,
+            Boolean sold,
+            Boolean planter,
+            String imageUrl,
+            byte[] image
+    ) {
         this.plantname = plantname;
         this.plantSize = plantSize;
         this.price = price;
@@ -130,6 +163,7 @@ public class Plant {
         this.sold = sold;
         this.planter = planter;
         this.imageUrl = imageUrl;
+        this.image = image;
     }
 
 
@@ -146,6 +180,13 @@ public class Plant {
     }
     public String getImageUrl(){
         return imageUrl;
+    }
+
+    public void setImage(byte [] image) {
+        this.image = image;
+    }
+    public byte[] getImage(){
+        return image;
     }
 
     public Integer getPlantId() {
@@ -259,6 +300,12 @@ public class Plant {
 
     public void setPlanter(boolean planter) {
         this.planter = planter;
+    }
+
+    public String getImageDataBase64() {
+        String image = Base64.encodeBase64String(this.image);
+        System.out.println(image);
+        return image;
     }
 
 }

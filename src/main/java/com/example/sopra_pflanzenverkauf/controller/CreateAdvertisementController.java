@@ -14,7 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +50,7 @@ public class CreateAdvertisementController {
     @RequestMapping (value="/createAdvertisement", method = RequestMethod.POST)
     public String createPlant(@ModelAttribute("plant") Plant newPlant,
                               @RequestParam("categoryname") String categoryname,
+                              @RequestParam("imageMp") MultipartFile multipartFile,
                               @Param("withPlanter") Boolean withPlanter){
 
         User currentUser = userService.getCurrentUser();
@@ -61,11 +64,19 @@ public class CreateAdvertisementController {
             newPlant.setPlanter(withPlanter);
         }
 
-        //Verkauft ist standardmäßig false
-        plantService.persistPlant(newPlant);
+        if (!multipartFile.isEmpty()) {
+            try {
+                newPlant.setImage(multipartFile.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
+            //Verkauft ist standardmäßig false
+            plantService.persistPlant(newPlant);
 
+        }
         return "redirect:/myAdvertisements";
     }
-
 }
+
+
