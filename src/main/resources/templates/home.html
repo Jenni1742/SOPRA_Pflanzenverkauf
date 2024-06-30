@@ -67,7 +67,7 @@
                 </div>
                 <section class="ads">
                     <div th:each="plant : ${plants}" th:if="${plant.booster}">
-                        <div class="ad" style="display: flex; align-items: flex-start; border: 1px solid #017101; padding: 10px; margin: 10px; border-radius: 10px; background-color: #017101; color: white;">
+                        <div class="ad" style="display: flex; align-items: flex-start; border: 1px solid #017101; padding: 10px; margin: 10px; border-radius: 10px; background-color: #017101; color: white; position: relative;">
                             <div style="flex: 0 0 auto; margin-right: 20px; width: 160px;">
                                 <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
                                     <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
@@ -84,6 +84,40 @@
                                     <a th:href="@{/plant-detail/{id}(id=${plant.plantId})}" style="text-decoration: none;" class="btn-linkButton">
                                         <button type="button" class="btn btn-rePlantGreen">Mehr erfahren</button>
                                     </a>
+                                </div>
+                                <div style="position: absolute; top: 10px; right: 10px;">
+                                    <div th:if="${currentUser.getWishlistPlants().contains(plant) == true}">
+                                        <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal-${plant.plantId}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                            </svg>
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal-${plant.plantId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <form th:action="@{/delete (plant=${plant.plantId})}" id="plant" name="plant" method="post">
+                                                        <div class="modal-body">
+                                                            <p align="left">Bist Du sicher, dass du diese Pflanze aus deiner Merkliste entfernen möchtest?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Nein, Pflanze in der Merkliste lassen</button>
+                                                            <button type="submit" class="btn btn-rePlantGreen">Ja, Pflanze aus Merkliste entfernen</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <form th:action="@{/ (plant=${plant.plantId})}" id="plant2" name="plant" method="post">
+                                        <div th:if="${currentUser.getWishlistPlants().contains(plant) == false}">
+                                            <button type="submit" class="btn-rePlantHeartEmpty">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="red" class="bi bi-heart" viewBox="0 0 16 16">
+                                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
