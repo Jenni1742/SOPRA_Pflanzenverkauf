@@ -1,3 +1,9 @@
+h6 {
+    color: black;
+    font-size: large;
+}
+
+
 body {
     padding-top: 100px; /* Passe diesen Wert an die Höhe deiner Navbar an */
     font-family: Arial, sans-serif;
