@@ -151,16 +151,14 @@
                             <p th:text="${message.getContent()}" th:if="${message.getSender() == currentUser}" style="background-color: #959595 "></p>
                             <span th:text="${message.getTimestamp().getHour()}" th:if="${message.getSender() == currentUser}"></span>
                             <span th:if="${message.getSender() == currentUser && message.getTimestamp().getMinute() >= 10}">:</span>
-                            <span th:if="${message.getSender() == currentUser && message.getTimestamp().getMinute() < 10}">: 0</span>
-                            <span th:text="${message.getTimestamp().getMinute()}" th:if="${message.getSender() == currentUser}"></span>
+                            <span th:if="${message.getSender() == currentUser && message.getTimestamp().getMinute() < 10}" th:text=" ': 0' + ${message.getTimestamp().getMinute()}"></span>
                             <span th:if="${message.getSender() == currentUser}"> Uhr</span>
                         </div>
                         <div class="details">
                             <p th:text="${message.getContent()}" th:if="${message.getSender() != currentUser}" style="background-color: #017101; color: white "></p>
                             <span th:text="${message.getTimestamp().getHour()}" th:if="${message.getSender() != currentUser}">:</span>
                             <span th:if="${message.getSender() != currentUser && message.getTimestamp().getMinute() >= 10}">:</span>
-                            <span th:if="${message.getSender() != currentUser && message.getTimestamp().getMinute() < 10}">: 0</span>
-                            <span th:text="${message.getTimestamp().getMinute()}" th:if="${message.getSender() != currentUser}"></span>
+                            <span th:if="${message.getSender() != currentUser && message.getTimestamp().getMinute() < 10}" th:text=" ': 0' + ${message.getTimestamp().getMinute()}"></span>
                             <span th:if="${message.getSender() != currentUser}"> Uhr</span>
                         </div>
 
