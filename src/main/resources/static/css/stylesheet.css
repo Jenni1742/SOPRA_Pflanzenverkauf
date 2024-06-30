@@ -635,7 +635,7 @@ p {
     background-color: #FFC107;
     color: white;
     border: none;
-    margin: 5px;
+    margin: 0px;
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -671,3 +671,6 @@ p {
     background-color: #aaaaaa;
     color: black;
 }
+ .boosted-border {
+           border: 5px solid green;
+   }

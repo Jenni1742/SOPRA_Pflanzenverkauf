@@ -15,7 +15,6 @@
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
-
 <div class="container">
     <header>
         <div id="branding">
@@ -66,6 +65,31 @@
                             </div>
                     </form>
                 </div>
+                <section class="ads">
+                    <div th:each="plant : ${plants}" th:if="${plant.booster}">
+                        <div class="ad" style="display: flex; align-items: flex-start; border: 1px solid #017101; padding: 10px; margin: 10px; border-radius: 10px; background-color: #017101; color: white;">
+                            <div style="flex: 0 0 auto; margin-right: 20px; width: 160px;">
+                                <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
+                                    <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                                    <img th:if="${plant.image != null}" th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}" alt="Bild von [[${plant.name}]]"
+                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                            </div>
+                            <div style="flex: 1; padding-left: 20px;">
+                                <h2 th:text="${plant.plantname}" style="color: white;"></h2>
+                                <h6 th:text="${plant.category.categoryname}" style="font-style: italic;"></h6>
+                                <h6><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</h6>
+                                <h6><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></h6>
+                                <div style="text-align: right; margin-top: -22px;">
+                                    <a th:href="@{/plant-detail/{id}(id=${plant.plantId})}" style="text-decoration: none;" class="btn-linkButton">
+                                        <button type="button" class="btn btn-rePlantGreen">Mehr erfahren</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
                 <section class="ads">
                     <div th:each="plant : ${plants}" th:if="${plant.sold == false && plant.getSeller() != currentUser}" class="ad" style="display: flex; align-items: flex-start; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
                         <div style="flex: 0 0 auto; margin-right: 20px; width: 160px;">

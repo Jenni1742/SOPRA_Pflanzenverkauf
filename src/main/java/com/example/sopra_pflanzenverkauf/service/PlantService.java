@@ -78,7 +78,7 @@ public class PlantService {
     }
 
 
-    public List<Plant> findFilteredAndSortedPlants(Category category, String sort, Boolean sold) {
+    public List<Plant> findFilteredAndSortedPlants(Category category, String sort, Boolean sold, boolean booster) {
         List<Plant> plants = plantRepository.findAll();
 
         if (category != null) {
@@ -106,6 +106,9 @@ public class PlantService {
                     plants.sort(Comparator.comparing(Plant::getPlantSize).reversed());
                     break;
             }
+        }
+        if (booster) {
+            plants = plants.stream().filter(Plant::getBooster).collect(Collectors.toList());
         }
 
         return plants;

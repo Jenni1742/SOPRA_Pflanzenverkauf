@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
 @Controller
 public class HomeController {
 
@@ -44,21 +45,21 @@ public class HomeController {
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
 
-        List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price, false);
+        List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price, false, false);
+        if (plants == null) {
+            plants = new ArrayList<>();
+        }
+
+        List<Plant> boostedPlants = plantService.findFilteredAndSortedPlants(category, price, false, true);
 
         int i = 0;
         while (i < plants.size()) {
             Plant plant = plants.get(i);
             if (plant.getSeller() == currentUser || plant.getSold()) {
-                System.out.println("B");
-                plants.remove(plant);
-                System.out.println("B");
-                i = i;
+                plants.remove(i);
             } else {
-                i = i + 1;
+                i++;
             }
-            System.out.println(i);
-            System.out.println(plants.size());
         }
 
         model.addAttribute("plants", plants);
@@ -82,7 +83,7 @@ public class HomeController {
             }
         }
 
-        List<Plant> filteredPlants = plantService.findFilteredAndSortedPlants(selectedCategory, sort, false);
+        List<Plant> filteredPlants = plantService.findFilteredAndSortedPlants(selectedCategory, sort, false, true);
 
         filteredPlants = filteredPlants.stream()
                 .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
@@ -103,7 +104,7 @@ public class HomeController {
                 .filter(plant -> !(plant.getSeller() == currentUser))
                 .collect(Collectors.toList());
         model.addAttribute("plants", plants);
-        return "home"; // Name der HTML-Datei, die die Pflanzenliste anzeigt
+        return "home";
     }
 
     @PostMapping(path = "/")
