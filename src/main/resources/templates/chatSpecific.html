@@ -80,8 +80,17 @@
                         <span th:text="${specificChat.getRecipientOfChat().getUsername()}"></span>
                     </div>
                 </div>
-                <div th:if="${specificChat.getRecipientOfChat() == currentUser}">
+                <div th:if="${specificChat.getRecipientOfChat() == currentUser && specificChat.getSenderAccept() == true && specificChat.getRecipientAccept() == true}">
                     <div>Käufer:
+                        <a th:href="@{/showOtherProfileSeller/{userid}(userid=${specificChat.getSenderOfChat().userId})}">
+                            <img th:src="${specificChat.getSenderOfChat().getPicturePath()}" style="width: 30px; height: 30px; border-color: transparent"
+                                 onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'"
+                                 class="rounded-circle"></a>
+                        <span th:text="${specificChat.getSenderOfChat().getUsername()}"></span>
+                    </div>
+                </div>
+                <div th:if="${specificChat.getRecipientOfChat() == currentUser && (specificChat.getSenderAccept() == false || specificChat.getRecipientAccept() == false)}">
+                    <div>Kaufinteressent:
                         <a th:href="@{/showOtherProfileSeller/{userid}(userid=${specificChat.getSenderOfChat().userId})}">
                             <img th:src="${specificChat.getSenderOfChat().getPicturePath()}" style="width: 30px; height: 30px; border-color: transparent"
                                  onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'"
