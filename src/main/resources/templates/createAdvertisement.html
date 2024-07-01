@@ -51,8 +51,6 @@
                     <div class="mb-3">
                         <label>Kategorie</label>
                         <select class="form-select" id="categoryname" name="categoryname" required>
-
-
                             <div th:each="category : ${categories}">
                                 <option><span th:text="${category.getCategoryname()}"></span></option>
                             </div>

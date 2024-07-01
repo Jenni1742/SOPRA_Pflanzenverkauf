@@ -65,6 +65,7 @@ public class EditAdvertisementController {
                             @RequestParam(value="newplantDescription", required = false) String newplantDescription,
                             @RequestParam(value="newcareTips", required = false) String newcareTips,
                             @RequestParam(value="newzipCode", required = false) String newzipCode,
+                            @RequestParam(value="newselectCategory") String newselectCategory,
                             @RequestParam(value="newimageUrl", required = false) String newimageUrl,
                             Model model){
 
@@ -105,6 +106,8 @@ public class EditAdvertisementController {
         //if(newzipCode != null && !newzipCode.isEmpty()){
         //    currentPlant.setZipCode(newzipCode);
         //}
+
+        currentPlant.setCategory(categoryService.getCategoryByName(newselectCategory));
 
         plantService.updatePlant(currentPlant);
 
