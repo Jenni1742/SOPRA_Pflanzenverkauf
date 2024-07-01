@@ -76,6 +76,10 @@ body {
     background-color: #757575;
     color: white;
 }
+.btn-rePlantGreyLight {
+    background-color: lightslategray;
+    color: white;
+}
 .btn-rePlantGreen:hover {
     background-color: black;
     color: white;

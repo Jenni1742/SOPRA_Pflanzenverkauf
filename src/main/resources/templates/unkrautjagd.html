@@ -10,11 +10,18 @@
           crossorigin="anonymous"></script>
 
   <link rel="stylesheet" href="css/stylesheet.css">
+  <style>
+        .move-right {
+            margin-left: 40px;
+        }
+    </style>
 </head>
 <body>
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
-
+<div>
+  <button onclick="goBack()" class="btn btn-rePlantGreyLight move-right">Zurück</button>
+</div>
 <div class="container text-center">
   <h1>Unkrautjäger</h1>
   <p>Ziehe das Unkraut via Drag-And-Drop aus dem Garten und lege es in den Korb! Hast du 10 Unkrautmonster gesammelt, bekommst du 1 PlantCoin!</p>
@@ -43,9 +50,14 @@
     <div id="weeds-container"></div>
   </div>
 </div>
-
+<div>
+</div>
 <script src="js/unkrautGame.js"></script>
 <script>
+     function goBack() {
+            window.history.back();
+        }
+
   document.getElementById('collect-coin-form').addEventListener('submit', function (event) {
     const coinCount = document.getElementById('plantcoin-count').innerText;
     document.getElementById('coinCountInput').value = coinCount;
