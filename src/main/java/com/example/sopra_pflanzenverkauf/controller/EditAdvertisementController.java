@@ -7,6 +7,7 @@ import com.example.sopra_pflanzenverkauf.service.CategoryService;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,6 +58,8 @@ public class EditAdvertisementController {
     public String editPlant(@PathVariable("id") Integer plantId,
                             @RequestParam(value = "newplantname", required = false) String newplantname,
                             @RequestParam(value= "newlatinName", required = false) String newlatinName,
+                            @Param(value="withPlanterTrue") Boolean withPlanterTrue,
+                            @Param(value="withPlanterFalse") Boolean withPlanterFalse,
                             @RequestParam(value="newplantSize", required = false) Integer newplantSize,
                             @RequestParam(value="newprice", required = false) Double newprice,
                             @RequestParam(value="newplantDescription", required = false) String newplantDescription,
@@ -73,6 +76,14 @@ public class EditAdvertisementController {
 
         if(newlatinName != null && !newlatinName.isEmpty()){
             currentPlant.setLatinName(newlatinName);
+        }
+
+        if(withPlanterTrue == null){
+            currentPlant.setPlanter(false);
+        }
+
+        if(withPlanterFalse != null){
+            currentPlant.setPlanter(true);
         }
 
         if(newplantSize != null){
