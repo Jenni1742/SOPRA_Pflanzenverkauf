@@ -15,61 +15,63 @@
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
+<div class="container">
+    <h1>Willkommen bei den Pflanzenspielen!</h1>
 
-<div class="container mt-5">
-    <div class="row">
-        <h1>Willkommen zu den Pflanzenspielen!</h1>
+    <div class="card">
+        <p></p>
+
         <div class="col-10 offset-1">
-            <div class="white-box p-4 mb-4">
+            <div class="white-box p-3 mb-2">
                 <h2>Lass die Pflanzen sprießen!</h2>
-                <div class="row mb-4">
-                    <div class="col-10 offset-1 text-center">
+                <div class="row">
+                    <div class="col-7 offset-2 text-center">
                         <img src="images/plantCoins.png" alt="PlantCoins" class="responsive-image">
                     </div>
                 </div>
-                <p>Spiele spiele und sammle die "PlantCoins", um deine Anzeigen zu boosten.</p>
+                <h6>Spiele und sammle "PlantCoins", um deine Anzeigen zu boosten.</h6>
                 <a th:href="unkrautjagd" style="text-decoration: none;" class="btn-linkButton">
-                    <button type="button" class="btn btn-rePlantGreen mb-4">
+                    <button type="button" class="btn btn-rePlantGreen">
                         Zum Spiel
                     </button>
                 </a>
             </div>
         </div>
-    </div>
-    <div class="row mt-4">
+
         <div class="col-10 offset-1">
-            <div class="white-box p-4 mb-4">
-                <div class="row mb-4">
+            <div class="white-box p-3 mb-2">
+                <div class="row">
                     <h2>Brauchst du Entscheidungshilfe?</h2>
-                    <div class="col-10 offset-1 text-center">
-                        <img src="images/orakel.png" alt="Orakel" class="responsive-image">
-                    </div>
+                        <div class="col-5 offset-3">
+                            <img src="images/orakel2.png" alt="Orakel" class="responsive-image">
+                        </div>
                 </div>
-                <p>Du kannst dich nicht entscheiden, ob du eine Pflanze kaufen möchtest? Nutze das Orakel, um dich zu entscheiden.</p>
+                <h6>Du kannst dich nicht entscheiden, ob du eine Pflanze kaufen möchtest? Nutze das Orakel, für die Entscheidung!</h6>
                 <a th:href="gameLove" style="text-decoration: none;" class="btn-linkButton">
-                    <button type="button" class="btn btn-rePlantGreen mb-4">
+                    <button type="button" class="btn btn-rePlantGreen">
                         Zum Orakel
                     </button>
                 </a>
             </div>
         </div>
-    </div>
-    <div class="row mt-4">
         <div class="col-10 offset-1">
-            <div class="white-box p-4 mb-4">
-                <div class="row mb-4">
+            <div class="white-box p-3 mb-2">
+                <div class="row">
                     <h2>Es ist Quiz Zeit!</h2>
-                    <div class="col-10 offset-1 text-center">
-                        <img src="images/quiz.png" alt="QuizBild" class="responsive-image">
+                    <div class="col-6 offset-3 text-center">
+                        <img src="images/quiz2.png" alt="QuizBild" class="responsive-image">
                     </div>
                 </div>
-                <p>Teste dein Wissen über Pflanzen in unserem spannenden Quiz!</p>
+                <h6>Teste dein Wissen über Pflanzen in unserem spannenden Quiz!</h6>
                 <a th:href="quiz" style="text-decoration: none;" class="btn-linkButton">
-                    <button type="button" class="btn btn-rePlantGreen mb-4">
+                    <button type="button" class="btn btn-rePlantGreen">
                         Zum Quiz
                     </button>
                 </a>
             </div>
+        </div>
+        <div class="card-footer text-center card-footer-rePlant">
+            <p></p>
         </div>
     </div>
 </div>
