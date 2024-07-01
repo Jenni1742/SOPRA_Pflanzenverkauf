@@ -87,8 +87,9 @@
             <div class="input-group mb-3">
                 <label class="input-group-text" for="newselectCategory">Kategorie</label>
                 <select class="form-select" id="newselectCategory">
+                    <option><span th:text="${plant.getCategory().getCategoryname()}"></span></option>
                     <div th:each="category : ${categories}">
-                        <option><span th:text="${category.getCategoryname()}"></span></option>
+                        <option th:if="${plant.getCategory().getCategoryname() != category.getCategoryname()}"><span th:text="${category.getCategoryname()}"></span></option>
                     </div>
                 </select>
             </div>
