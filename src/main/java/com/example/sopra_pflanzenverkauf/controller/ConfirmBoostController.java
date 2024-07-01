@@ -27,44 +27,50 @@ public class ConfirmBoostController {
         @Autowired
         private PlantRepository plantRepository;
 
-        @GetMapping("/confirmBoost/{id}")
-        public String openConfirmBoost(@PathVariable("id") Integer plantId, Model model) {
-            Plant plant = plantRepository.findById(plantId).orElse(null);
+    @GetMapping("/confirmBoost/{id}")
+    public String openConfirmBoost(@PathVariable("id") Integer plantId, Model model) {
+        Plant plant = plantRepository.findById(plantId).orElse(null);
 
-            if (plant == null) {
-                return "error/errorIDDoNotExist";
-            }
-
-            User currentUser = userService.getCurrentUser();
-            if (!currentUser.equals(plant.getSeller())) {
-                return "error/unauthorizedAction";
-            }
-
-            model.addAttribute("plantId", plantId);
-            model.addAttribute("plant", plant);
-
-            return "confirmBoost";
+        if (plant == null) {
+            return "error/errorIDDoNotExist";
         }
 
-        @PostMapping("/confirmBoost/{id}")
-        public String confirmBoost(@PathVariable("id") Integer plantId, Model model) {
-            User currentUser = userService.getCurrentUser();
-            Plant plant = plantService.getPlantByPlantId(plantId);
-
-            if (!currentUser.equals(plant.getSeller()) || plant.getSold()) {
-                return "error/unauthorizedAction";
-            }
-
-            if (currentUser.getPlantCoinCount() < 1) {
-                model.addAttribute("boostMessage", "You do not have enough PlantCoins to boost this advertisement.");
-                return "myAdvertisements";
-            }
-
-            plant.setBooster(true);
-            currentUser.setPlantCoinCount(currentUser.getPlantCoinCount() - 1);
-            userService.save(currentUser);
-            plantService.save(plant);
-
-            return "redirect:/myAdvertisements";
+        User currentUser = userService.getCurrentUser();
+        if (currentUser == null || !currentUser.equals(plant.getSeller())) {
+            return "error/unauthorizedAction";
         }
+
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("plantId", plantId);
+        model.addAttribute("plant", plant);
+
+        return "confirmBoost";
     }
+
+    @PostMapping("/confirmBoost/{id}")
+    public String confirmBoost(@PathVariable("id") Integer plantId, Model model) {
+        User currentUser = userService.getCurrentUser();
+        Plant plant = plantService.getPlantByPlantId(plantId);
+
+        if (!currentUser.equals(plant.getSeller()) || plant.getSold()) {
+            return "error/unauthorizedAction";
+        }
+
+        if (currentUser.getPlantCoinCount() < 1) {
+            return "redirect:/notEnoughPlantCoins";
+        }
+
+        plant.setBooster(true);
+        currentUser.setPlantCoinCount(currentUser.getPlantCoinCount() - 1);
+        userService.save(currentUser);
+        plantService.save(plant);
+
+        return "redirect:/myAdvertisements";
+    }
+
+    @GetMapping("/notEnoughPlantCoins")
+    public String notEnoughPlantCoins() {
+        return "notEnoughPlantCoins";
+    }
+}
+

@@ -15,11 +15,7 @@
             text-align: center;
         }
     </style>
-    <script>
-        function showAlert() {
-            alert("Du hast nicht genug Plant Coins");
-        }
-    </script>
+
 </head>
 <body>
 
@@ -90,7 +86,6 @@
                         <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
                         <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-end;">
                             <a th:if="${!plant.booster}" th:href="@{/confirmBoost/{id}(id=${plant.plantId})}" th:attr="onclick=${currentUser.plantCoinCount < 10} ? 'showAlert()' : ''">
-
                                 <button type="button" class="btn btn-rePlantYellow">Boost kaufen</button>
                             </a>
                             <a th:if="${plant.booster}" th:href="@{/removeBoost/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;">
