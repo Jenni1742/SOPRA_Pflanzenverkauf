@@ -56,7 +56,20 @@
                     <p th:if="${plant.planter}"><strong>Mit Übertopf</strong></p>
                     <p><strong>Postleitzahl:</strong> <span th:text="${plant.zipCode}">00000</span></p>
                     <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}">Kategorie</span></p>
-                    <p><strong>Verkäufer*in:</strong> <span th:text="${plant.seller.username}">Verkäufer</span></p>
+
+                    <div th:if="${plant.seller != null}">
+                        <p><strong>Verkäufer*in:</strong>
+                            <a th:href="@{/showOtherProfileSeller/{userid}(userid=${plant.seller.userId})}" class="btn-linkVerkäufer">
+                                <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Verkäufer</span>
+                            </a>
+                        </p>
+                    </div>
+                    <div th:if="${plant.seller == null}">
+                        <p><strong>Verkäufer*in:</strong>
+                            <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Verkäufer</span>
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
