@@ -23,13 +23,7 @@ public class MyAdvertisementsController {
     @Autowired
     private UserService userService;
 
-    /**
-     * Handles GET requests targeted at the advertisements page.
-     *
-     * @return  the advertisements page
-     */
-
-    @RequestMapping(value = "/myAdvertisements", method = RequestMethod.GET)
+    @GetMapping("/myAdvertisements")
     public String showMyAdvertisementsPage(Model model) {
         User currentUser = userService.getCurrentUser();
         List<Plant> plantList = currentUser.getPlantsToSell();
@@ -41,57 +35,51 @@ public class MyAdvertisementsController {
         return "myAdvertisements";
     }
 
-    @RequestMapping(value = "/myAdvertisements/{plantId}", method = RequestMethod.POST)
-    public String removePlant(@PathVariable("plantId") Integer plantId,
-                              Model model) {
-        User currentUser = userService.getCurrentUser();
-
-        for (User user:userService.findAllUsers()) {
-            if(user.getWishlistPlants().contains(plantService.getPlantByPlantId(plantId))){
-                user.getWishlistPlants().remove(plantService.getPlantByPlantId(plantId));
-            }
-        }
-
-        currentUser.getPlantsToSell().remove(plantService.getPlantByPlantId(plantId));
-        userService.updatePlantsToSell(currentUser);
-
-        plantService.deletePlantByPlantId(plantId);
-        //model.addAttribute("message", "Pflanze erfolgreich gelöscht.");
-
-        /*
-        List<Plant> plantList = currentUser.getPlantsToSell();
-        model.addAttribute("plantList", plantList);
-         */
-
-        model.addAttribute("currentUser", currentUser);
-
-        return "myAdvertisements";
-    }
-
     @PostMapping("/boostAdvertisement/{plantId}")
     public String boostAdvertisement(@PathVariable("plantId") Integer plantId, Model model) {
-        System.out.println("Bin HIER" + plantId);
         User currentUser = userService.getCurrentUser();
-        Plant plant = plantService.findById(Math.toIntExact(plantId));
+        Plant plant = plantService.findById(plantId);
 
-        //Übernommen
+        if (plant == null || !currentUser.equals(plant.getSeller())) {
+            return "error/errorIDDoNotExist";
+        }
+
+        if (plant.getBooster()) {
+            model.addAttribute("boostMessage", "This advertisement is already boosted.");
+            return "myAdvertisements";
+        }
+
+        if (currentUser.getPlantCoinCount() < 1) {
+            model.addAttribute("boostMessage", "You do not have enough PlantCoins to boost this advertisement.");
+            return "myAdvertisements";
+        }
+
+        plant.setBooster(true);
+        currentUser.setPlantCoinCount(currentUser.getPlantCoinCount() - 1);
+        userService.save(currentUser);
+        plantService.save(plant);
+
+        return "redirect:/myAdvertisements";
+    }
+
+    @PostMapping("/removeBoost/{plantId}")
+    public String removeBoost(@PathVariable("plantId") Integer plantId, Model model) {
+        User currentUser = userService.getCurrentUser();
+        Plant plant = plantService.findById(plantId);
+
+        if (plant == null || !currentUser.equals(plant.getSeller())) {
+            return "error/errorIDDoNotExist";
+        }
+
+        plant.setBooster(false);
+        plantService.save(plant);
+
         List<Plant> plantList = currentUser.getPlantsToSell();
 
         model.addAttribute("plantList", plantList);
         model.addAttribute("currentUser", currentUser);
         model.addAttribute("coinCount", currentUser.getPlantCoinCount());
 
-        if (currentUser.getPlantCoinCount() >= 1) {
-            currentUser.setPlantCoinCount(currentUser.getPlantCoinCount() - 1);
-            userService.save(currentUser);
-            plant.setBooster(true);
-            plantService.save(plant);
-            return "redirect:/myAdvertisements";
-        } else {
-            return "redirect:/myAdvertisements";
-        }
-
+        return "redirect:/myAdvertisements";
     }
-
 }
-

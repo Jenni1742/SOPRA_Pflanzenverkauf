@@ -15,11 +15,21 @@
             text-align: center;
         }
     </style>
+    <script>
+        function showAlert() {
+            alert("Du hast nicht genug Plant Coins");
+        }
+    </script>
 </head>
 <body>
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
+<div>
+    <p th:text="${boostMessage}"></p>
+</div>
+
+<h1>Hallo, <span th:text="${currentUser.username}"></span>!</h1>
 <div class="container">
     <div class="container">
         <div class="card">
@@ -54,10 +64,12 @@
                 <img src="images\plantCoin.png" style="height: 20px; width: 20px;">
             </h6>
             <div class="card-body">
-                <div th:each="plant : ${plantList}" th:classappend="${plant.booster} ? 'boosted-border' : ''" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
-                    <div style="flex: 0 0 auto; margin-right: 20px; width: 270px;">
+                <div th:each="plant : ${plantList}"
+                     th:classappend="${plant.booster} ? 'boosted-border' : ''"
+                     style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
+                    <div style="flex: 0 0 auto; margin-right: 20px; width: 300px;">
                         <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
-                            <img th:if="${plant.imageUrl != null && plant.image == null}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]"
+                            <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]"
                                  style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                         </div>
                     </div>
@@ -65,9 +77,7 @@
                         <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
                         <p th:text="${plant.category != null ? plant.category.categoryname : 'Keine Kategorie'}" style="font-style: italic;"></p>
                         <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
-
-                        <!--
-                        <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
+    <!--                    <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
                         <p th:if="${plant.planter}"><strong>Mit Übertopf</strong></p>
                         <p><strong>Verkäufer*in:</strong>
                             <a th:href="@{/showOtherProfileSeller/{userid}(userid=${plant.seller.userId})}"
@@ -78,16 +88,18 @@
                         </p>-->
 
                         <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
-
                         <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-end;">
-                            <a th:if="${!plant.booster}" th:href="@{/confirmBoost/{id}(id=${plant.plantId})}">
-                                <button type="button" class="btn btn-rePlantYellow">
-                                    Boost kaufen
-                                </button>
+                            <a th:if="${!plant.booster}" th:href="@{/confirmBoost/{id}(id=${plant.plantId})}" th:attr="onclick=${currentUser.plantCoinCount < 10} ? 'showAlert()' : ''">
+
+                                <button type="button" class="btn btn-rePlantYellow">Boost kaufen</button>
+                            </a>
+                            <a th:if="${plant.booster}" th:href="@{/removeBoost/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;">
+                                <form th:action="@{/removeBoost/{id}(id=${plant.plantId})}" method="post" style="display:inline;">
+                                    <button type="submit" class="btn btn-rePlantRed">Boost entfernen</button>
+                                </form>
                             </a>
                             <a th:href="@{/showAdvertisement/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;">
-                                <button type="button" class="btn btn-rePlantGreen">
-                                    Ganze Anzeige ansehen
+                                <button type="button" class="btn btn-rePlantGreen">Ganze Anzeige ansehen
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
                                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
@@ -95,7 +107,6 @@
                                 </button>
                             </a>
                         </div>
-
                     </div>
                     <div class="ad" style="position: relative;">
                         <a th:href="@{/deleteAdvertisement/{id}(id=${plant.plantId})}">
@@ -107,7 +118,6 @@
                             </button>
                         </a>
                     </div>
-
                 </div>
             </div>
             <div class="card-footer text-center card-footer-rePlant">
