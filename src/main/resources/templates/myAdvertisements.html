@@ -52,12 +52,7 @@
                     <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
                     <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
                     <p th:if="${plant.planter}"><strong>Mit Übertopf</strong></p>
-                    <p><strong>Verkäufer*in:</strong>
-                        <a th:href="@{/showOtherProfileSeller/{userid}(userid=${plant.seller.userId})}"
-                           class="btn-linkVerkäufer">
-                            <span th:text="${plant.seller.username}">Verkäufer</span>
-                        </a>
-                    </p>
+                    <p th:if="${!plant.planter}"><strong>Ohne Übertopf</strong></p>
                     <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
                     <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-end;">
                         <a th:if="${!plant.booster}" th:href="@{/confirmBoost/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;">
