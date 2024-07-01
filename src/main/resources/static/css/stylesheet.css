@@ -56,7 +56,6 @@ body {
 .btn-rePlantYellow {
     background-color: #FFC107;
     color: white;
-    margin: 5px;
 }
 .btn-rePlantYellow:hover {
     background-color: black;
