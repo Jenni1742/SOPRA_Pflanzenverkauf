@@ -74,6 +74,10 @@
                     <th scope="row">Postleitzahl:</th>
                     <td th:text="${user.getPlz()}"/>
                 </tr>
+                <tr>
+                    <th scope="row">PlantCoins:</th>
+                    <td th:text="${user.getPlantCoinCount()}"></td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -584,6 +588,6 @@
             </table>
         </div>
     </div>
-
+</div>
 </body>
 </html>
