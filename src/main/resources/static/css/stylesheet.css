@@ -56,6 +56,7 @@ body {
 .btn-rePlantYellow {
     background-color: #FFC107;
     color: white;
+    margin: 5px;
 }
 .btn-rePlantYellow:hover {
     background-color: black;
@@ -646,18 +647,6 @@ p {
     margin: 5px;
 }
 
-.btn-rePlantYellow {
-    background-color: #FFC107;
-    color: white;
-    border: none;
-    margin: 0px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.btn-rePlantYellow:hover {
-    background-color: #FF8C00;
-    color: black;
-}
  .button-container {
             display: flex;
             flex-direction: column;
