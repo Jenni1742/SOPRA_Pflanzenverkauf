@@ -91,6 +91,7 @@ public class HomeController {
 
         model.addAttribute("filteredPlants", filteredPlants);
         model.addAttribute("selectedCategory", category);
+        model.addAttribute("selectedSort", sort);
 
         return "filteredPlants";
     }
