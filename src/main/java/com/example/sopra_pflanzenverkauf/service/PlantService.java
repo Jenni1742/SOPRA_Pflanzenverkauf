@@ -81,15 +81,23 @@ public class PlantService {
     public List<Plant> findFilteredAndSortedPlants(Category category, String sort, Boolean sold, boolean booster) {
         List<Plant> plants = plantRepository.findAll();
 
+        // Logging initial plants list size
+        System.out.println("Initial number of plants: " + plants.size());
+
         if (category != null) {
             plants = plants.stream()
                     .filter(plant -> plant.getCategory().equals(category))
                     .collect(Collectors.toList());
+            // Logging after category filtering
+            System.out.println("Number of plants after category filtering: " + plants.size());
         }
+
         if (sold != null) {
             plants = plants.stream()
                     .filter(plant -> plant.getSold().equals(sold))
                     .collect(Collectors.toList());
+            // Logging after sold filtering
+            System.out.println("Number of plants after sold filtering: " + plants.size());
         }
         if (sort != null) {
             switch (sort) {
@@ -106,10 +114,16 @@ public class PlantService {
                     plants.sort(Comparator.comparing(Plant::getPlantSize).reversed());
                     break;
             }
+            // Logging after sorting
+            System.out.println("Number of plants after sorting: " + plants.size());
         }
         if (booster) {
             plants = plants.stream().filter(Plant::getBooster).collect(Collectors.toList());
+            // Logging after booster filtering
+            System.out.println("Number of plants after booster filtering: " + plants.size());
         }
+        // Logging final plants list size
+        System.out.println("Final number of plants: " + plants.size());
 
         return plants;
     }
