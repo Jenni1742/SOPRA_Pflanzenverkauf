@@ -1,8 +1,8 @@
 #rePlantProgress-bar {
-    --progress: 0;
-    height: 6px;
-    width: 100px;
-    background-color: black;
+    --progress: 0; !important;
+    height: 10px; !important;
+    width: var(--progress); !important;
+    background-color: #FFC107;
 }
 
 

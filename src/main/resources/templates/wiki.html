@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Pflanzenwiki</title>
@@ -9,49 +9,54 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="css/stylesheet.css">
+    <link rel="stylesheet" href="/css/stylesheet.css">
 
-    <script defer src="progress.js"></script>
+    <script defer src="/js/progress.js"></script>
 
 </head>
 <body>
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
-
-    <div id="rePlantProgress-bar" style="position: fixed; ">
+    <div class="progress progress-bar progress-bar-striped progress-bar-animated" id="rePlantProgress-bar" style="position: fixed; z-index: +1; margin-top: -20px">
     </div>
+
 
 
 <div class="container">
     <div class="row">
         <div class="col-md-2">
-            <div class="card card-rePlant">
+            <div class="card card-rePlant" style="width: 180px">
                 <div class="card-head" align="center">
                     <p></p>
                     <h2>Übersicht:</h2>
                 </div>
-                <div class="card-body" style="color: #017101">
-                    <ul>
-                        <li>
-                            <a style="color: #017101" href="#Pflanzegießen">Pflanze gießen</a>
-                        </li>
-                        <p></p>
-                        <li>
-                        <a style="color: #017101" href="#Indoorpflanze">Hinweise zu Indoorpflanzen</a>
-                        </li>
-                        <p></p>
-                        <li>
-                        <a style="color: #017101" href="#Outdoorpflanze">Hinweise zu Outdoorpflanzen</a>
-                        </li>
-                    </ul>
+                <div class="card-body" style="text-align: center">
+                    <a href="#Pflanzegießen">
+                        <button class="btn btn-rePlantGreen" style="width: 144px">
+                            Pflanze gießen
+                        </button>
+                    </a>
+
+                    <p></p>
+
+                    <a href="#Indoorpflanze">
+                        <button class="btn btn-rePlantGreen" style="width: 144px">
+                            Indoorpflanzen
+                        </button>
+                    </a>
+
+                    <p></p>
+
+                    <a href="#Outdoorpflanze">
+                        <button class="btn btn-rePlantGreen" style="width: 144px">
+                            Outdoorpflanzen
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="col-md-9">
             <div class="card card-rePlant">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
                 <div class="card-head" align="center">
                     <p></p>
                     <h2>Herzlich Willkommen beim Pflanzenwiki!</h2>
