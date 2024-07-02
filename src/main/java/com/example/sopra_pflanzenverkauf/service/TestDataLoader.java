@@ -270,7 +270,9 @@ public class TestDataLoader implements CommandLineRunner {
         //Alessia kauft die Pflanze von Marko
         kaffeestrauch.setSellerWhenSold(markoPetric);
         plantService.updatePlant(kaffeestrauch);
+        markoPetric.setNumberOfSoldPlants(markoPetric.getNumberOfSoldPlants() + 1);
         userService.updateNumberOfSoldPlants(markoPetric);
+        alessiaSedelnikov.setNumberOfPurchasedPlants(alessiaSedelnikov.getNumberOfPurchasedPlants() + 1);
         userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
 
 
@@ -326,7 +328,9 @@ public class TestDataLoader implements CommandLineRunner {
         //Alessia kauft die Pflanze von Jennifer
         kniphofia.setSellerWhenSold(jenniferKaisner);
         plantService.updatePlant(kniphofia);
+        jenniferKaisner.setNumberOfSoldPlants(jenniferKaisner.getNumberOfSoldPlants() + 1);
         userService.updateNumberOfSoldPlants(jenniferKaisner);
+        alessiaSedelnikov.setNumberOfPurchasedPlants(alessiaSedelnikov.getNumberOfPurchasedPlants() + 1);
         userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
 
         Plant melanostachy = new Plant(
@@ -409,7 +413,9 @@ public class TestDataLoader implements CommandLineRunner {
         hahn.setSeller(null);
         hahn.setSellerWhenSold(alessiaSedelnikov);
         plantService.updatePlant(hahn);
+        alessiaSedelnikov.setNumberOfSoldPlants(alessiaSedelnikov.getNumberOfSoldPlants() + 1);
         userService.updateNumberOfSoldPlants(alessiaSedelnikov);
+        jenniferKaisner.setNumberOfPurchasedPlants(jenniferKaisner.getNumberOfPurchasedPlants() + 1);
         userService.updateNumberOfPurchasedPlants(jenniferKaisner);
 
         // Weitere Pflanzen

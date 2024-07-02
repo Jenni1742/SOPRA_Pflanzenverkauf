@@ -128,6 +128,10 @@ public class chatConfirmSaleController {
             plant.setSold(true);
             plantService.updatePlant(plant);
 
+            //Number of Purchased/Sold Plants anpassen
+            chat.getSenderOfChat().setNumberOfPurchasedPlants(chat.getSenderOfChat().getNumberOfPurchasedPlants() + 1);
+            chat.getRecipientOfChat().setNumberOfSoldPlants(chat.getRecipientOfChat().getNumberOfSoldPlants() + 1);
+
 
             //Levels anpassen
 
