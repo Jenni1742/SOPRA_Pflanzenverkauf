@@ -37,10 +37,16 @@ public class WishlistController {
 
 
         //currentUser.getWishlistPlants().remove(plantService.getPlantByName(plant));
-        //boolean s = currentUser.getWishlistPlants().contains(plantService.getPlantByPlantId(plant));
-        //System.out.println(s); //true
 
+
+        boolean s = currentUser.getWishlistPlants().contains(plantService.getPlantByPlantId(plant));
+        System.out.println(s); //true
+        System.out.println(plantService.getPlantByPlantId(plant).getPlantname());
         currentUser.getWishlistPlants().remove(plantService.getPlantByPlantId(plant));
+
+        //currentUser.getWishlistPlants().remove(plantService.getPlantByPlantId(plant));
+
+
 
         //currentUser.getWishlistPlants().removeAll(currentUser.getWishlistPlants()); //Funktioniert
 
