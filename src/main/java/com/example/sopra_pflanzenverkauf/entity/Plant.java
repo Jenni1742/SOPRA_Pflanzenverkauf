@@ -34,8 +34,7 @@ public class Plant {
     @Column(name = "Beschreibung der Pflanze")
     private String plantDescription;
 
-    //TODO Bilder einfügen können
-    @Column(name = "Fotos")
+    @Column(name = "Foto")
     @Deprecated
     private String imageUrl;
 
@@ -130,6 +129,7 @@ public class Plant {
         this.zipCode = zipCode;
         this.buyer = buyer;
         this.sold = sold;
+        this.planter = planter;
         this.imageUrl = imageUrl;
     }
 

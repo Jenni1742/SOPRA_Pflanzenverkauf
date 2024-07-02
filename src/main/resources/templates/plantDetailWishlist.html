@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pflanzendetails</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/stylesheet.css">
+</head>
+<body>
+
+<div th:insert="~{fragments/htmlHead :: navbar}"></div>
+
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+
+                <div class="col-md-4">
+                    <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.plantname}]]"
+                         class="img-fluid" style="border-radius: 10px; max-width: 100%; height: auto;">
+                    <a th:if="${plant.image != null}">
+                        <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" data-bs-interval="3000">
+                                    <img th:if="${plant.imageUrl != null}" th:src="@{${plant.imageUrl}}"
+                                         alt="Bild von [[${plant.name}]]"
+                                         class="d-block w-100">
+                                </div>
+                                <div class="carousel-item active" data-bs-interval="3000">
+                                    <img th:if="${plant.image != null}"
+                                         th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}"
+                                         alt="Bild von [[${plant.name}]]"
+                                         class="d-block w-100">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="3000">
+                                    <img th:if="${plant.imageTwo != null}"
+                                         th:src="@{'data:image/jpeg;base64,'+${plant.getImageTwoDataBase64()}}"
+                                         alt="Bild von [[${plant.name}]]"
+                                         class="d-block w-100">
+                                </div>
+                                <div class="carousel-item" data-bs-interval="3000">
+                                    <img th:if="${plant.imageThree != null}"
+                                         th:src="@{'data:image/jpeg;base64,'+${plant.getImageThreeDataBase64()}}"
+                                         alt="Bild von [[${plant.name}]]"
+                                         class="d-block w-100">
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-8">
+                    <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
+                    <p><strong>Lateinischer Name:</strong> <span th:text="${plant.latinName}">Lateinischer Name</span>
+                    </p>
+                    <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
+                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span> €</p>
+                    <p><strong>Beschreibung:</strong> <span th:text="${plant.plantDescription}">Beschreibung</span></p>
+                    <p th:if="${plant.planter}"><strong>Mit Übertopf</strong></p>
+                    <p th:if="${!plant.planter}"><strong>Ohne Übertopf</strong></p>
+                    <p><strong>Postleitzahl:</strong> <span th:text="${plant.zipCode}">00000</span></p>
+                    <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}">Kategorie</span></p>
+
+                    <div th:if="${plant.seller != null}">
+                        <p><strong>Verkäufer*in:</strong>
+                            <a th:href="@{/showOtherProfileSeller/{userid}(userid=${plant.seller.userId})}"
+                               class="btn-linkVerkäufer">
+                                <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Verkäufer</span>
+                            </a>
+                        </p>
+                    </div>
+                    <div th:if="${plant.seller == null}">
+                        <p><strong>Verkäufer*in:</strong>
+                            <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Verkäufer</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="ad" style=" position: relative; top: 10px; right: 10px;" >
+                <!-- Button trigger modal -->
+                <div th:if="${currentUser.getWishlistPlants().contains(plant) == true}">
+                    <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            style="top: -135px; right: 0px;  position: absolute;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill=red class="bi bi-heart-fill"
+                             viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                        </svg>
+                    </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form th:action="@{/plantDetailWishlist/delete/{id} (id = ${plant.plantId})}" id="plant"
+                                      name="plant"
+                                      method="post">
+                                    <div class="modal-body">
+                                        <p align="left">Bist Du sicher, dass du diese Pflanze aus deiner Merkliste
+                                            entfernen
+                                            möchtest?</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Nein,
+                                            Pflanze in
+                                            der Merkliste lassen
+                                        </button>
+                                        <button type="submit" class="btn btn-rePlantGreen">Ja, Pflanze aus Merkliste
+                                            entfernen
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="card-footer text-center card-footer-rePlant">
+            <a href="http://localhost:8080/wishlist">
+                <button type="button" class="btn btn-rePlantGrey">
+                    Schließen
+                </button>
+            </a>
+            <form th:action="@{/chatSpecific}" method="get" style="text-decoration: none;">
+                <input type="hidden" name="recipientUsername" th:value="${plant.seller.username}"/>
+                <input type="hidden" name="plantToBuyID" th:value="${plant.plantId}"/>
+                <input type="hidden" name="plantToBuyName" th:value="${plant.plantname}"/>
+                <button type="submit" class="btn btn-rePlantGreen btn-inline-flex">
+                    Nachricht schreiben
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         class="bi bi-send" viewBox="0 0 16 16">
+                        <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z"/>
+                    </svg>
+                </button>
+            </form>
+
+
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>
