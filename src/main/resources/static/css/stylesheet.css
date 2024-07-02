@@ -1,3 +1,11 @@
+#rePlantProgress-bar {
+    --progress: 0;
+    height: 6px;
+    width: 100px;
+    background-color: black;
+}
+
+
 h6 {
     color: black;
     font-size: large;
