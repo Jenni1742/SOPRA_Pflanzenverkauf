@@ -271,6 +271,7 @@ public class TestDataLoader implements CommandLineRunner {
 
         );
 
+        /**
         File fnew=new File("C:\\Users\\hornu\\IdeaProjects\\SOPRA_Pflanzenverkauf\\src\\main\\resources\\static\\images\\plantPictures\\lotus-1412858_1280.jpg");
         BufferedImage originalImage=ImageIO.read(fnew);
         ByteArrayOutputStream baos=new ByteArrayOutputStream();
@@ -278,6 +279,7 @@ public class TestDataLoader implements CommandLineRunner {
         byte[] imageInByte=baos.toByteArray();
 
         melanostachy.setImage(imageInByte);
+         */
 
         plantService.persistPlant(melanostachy);
         Plant kaffeestrauch = new Plant(
