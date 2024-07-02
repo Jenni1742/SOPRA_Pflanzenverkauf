@@ -112,6 +112,7 @@ public class HomeController {
     public String addToWishlist(@RequestParam("plant") Integer plant,
                                 Map<String, Object> model) {
         User currentUser = userService.getCurrentUser();
+        System.out.println(plantService.getPlantByPlantId(plant).getPlantname());
 
         if (currentUser != null && plant != null) {
             currentUser.getWishlistPlants().add(plantService.getPlantByPlantId(plant));
@@ -127,6 +128,7 @@ public class HomeController {
     public String removePlantFromWishlist(@RequestParam("plant") Integer plant,
                                           Map<String, Object> model) {
         User currentUser = userService.getCurrentUser();
+        System.out.println(plantService.getPlantByPlantId(plant).getPlantname());
 
         currentUser.getWishlistPlants().remove(plantService.getPlantByPlantId(plant));
 
