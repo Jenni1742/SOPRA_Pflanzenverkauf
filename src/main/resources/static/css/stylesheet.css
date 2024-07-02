@@ -61,6 +61,21 @@ body {
     background-color: transparent;
     border-color: transparent;
 }
+.btn-rePlantOrange {
+    background-color: #FF6700;
+    color: white;
+}
+.btn-rePlantOrange:hover {
+    background-color: black;
+    color: white;
+    border-color: #FF6700;
+}
+.btn-rePlantOrange:active {
+    background-color: #FF6700;
+    color: white;
+    border-color: #FF6700;
+<!-- SchattenFarbeBlauzuGrünwechseln -->
+}
 .btn-rePlantYellow {
     background-color: #FFC107;
     color: white;

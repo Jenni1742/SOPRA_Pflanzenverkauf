@@ -25,7 +25,6 @@
     <p th:text="${boostMessage}"></p>
 </div>
 
-<h1>Hallo, <span th:text="${currentUser.username}"></span>!</h1>
 <div class="container">
     <div class="container">
         <div class="card">
@@ -84,13 +83,13 @@
                         </p>-->
 
                         <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
-                        <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-end;">
+                        <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-end">
                             <a th:if="${!plant.booster}" th:href="@{/confirmBoost/{id}(id=${plant.plantId})}" th:attr="onclick=${currentUser.plantCoinCount < 10} ? 'showAlert()' : ''">
                                 <button type="button" class="btn btn-rePlantYellow">Boost kaufen</button>
                             </a>
                             <a th:if="${plant.booster}" th:href="@{/removeBoost/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;">
                                 <form th:action="@{/removeBoost/{id}(id=${plant.plantId})}" method="post" style="display:inline;">
-                                    <button type="submit" class="btn btn-rePlantRed">Boost entfernen</button>
+                                    <button type="submit" class="btn btn-rePlantOrange">Boost entfernen</button>
                                 </form>
                             </a>
                             <a th:href="@{/showAdvertisement/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;">
@@ -105,7 +104,7 @@
                     </div>
                     <div class="ad" style="position: relative;">
                         <a th:href="@{/deleteAdvertisement/{id}(id=${plant.plantId})}">
-                            <button type="button" class="btn-rePlantHeart" style="top: -135px; right: 0px;  position: absolute;">
+                            <button type="button" class="btn-rePlantHeart" style="top: -145px; right: 0px;  position: absolute;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#017101" class="bi bi-trash" viewBox="0 0 16 16">
                                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
                                     <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
