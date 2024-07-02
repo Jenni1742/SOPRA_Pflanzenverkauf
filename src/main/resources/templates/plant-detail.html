@@ -20,7 +20,8 @@
             <div class="row">
 
                 <div class="col-md-4">
-                    <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.plantname}]]"
+                    <img th:if="${plant.imageUrl != null && plant.image == null}" th:src="@{${plant.imageUrl}}"
+                         alt="Bild von [[${plant.plantname}]]"
                          class="img-fluid" style="border-radius: 10px; max-width: 100%; height: auto;">
                     <a th:if="${plant.image != null}">
                         <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -30,24 +31,27 @@
                                          alt="Bild von [[${plant.name}]]"
                                          class="d-block w-100">
                                 </div>
-                                <div class="carousel-item active" data-bs-interval="3000">
-                                    <img th:if="${plant.image != null}"
-                                         th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}"
-                                         alt="Bild von [[${plant.name}]]"
-                                         class="d-block w-100">
-                                </div>
-                                <div class="carousel-item" data-bs-interval="3000">
-                                    <img th:if="${plant.imageTwo != null}"
-                                         th:src="@{'data:image/jpeg;base64,'+${plant.getImageTwoDataBase64()}}"
-                                         alt="Bild von [[${plant.name}]]"
-                                         class="d-block w-100">
-                                </div>
-                                <div class="carousel-item" data-bs-interval="3000">
-                                    <img th:if="${plant.imageThree != null}"
-                                         th:src="@{'data:image/jpeg;base64,'+${plant.getImageThreeDataBase64()}}"
-                                         alt="Bild von [[${plant.name}]]"
-                                         class="d-block w-100">
-                                </div>
+                                <a th:if="${plant.image != null}">
+                                    <div class="carousel-item" data-bs-interval="3000">
+                                        <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}"
+                                             alt="Bild von [[${plant.name}]]"
+                                             class="d-block w-100">
+                                    </div>
+                                </a>
+                                <a th:if="${plant.imageTwo != null}">
+                                    <div class="carousel-item" data-bs-interval="3000">
+                                        <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageTwoDataBase64()}}"
+                                             alt="Bild von [[${plant.name}]]"
+                                             class="d-block w-100">
+                                    </div>
+                                </a>
+                                <a th:if="${plant.imageThree != null}">
+                                    <div class="carousel-item" data-bs-interval="3000">
+                                        <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageThreeDataBase64()}}"
+                                             alt="Bild von [[${plant.name}]]"
+                                             class="d-block w-100">
+                                    </div>
+                                </a>
                             </div>
                             <button class="carousel-control-prev" type="button"
                                     data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
@@ -77,7 +81,8 @@
 
                     <div th:if="${plant.seller != null}">
                         <p><strong>Verkäufer*in:</strong>
-                            <a th:href="@{/showOtherProfileSeller/{userid}(userid=${plant.seller.userId})}" class="btn-linkVerkäufer">
+                            <a th:href="@{/showOtherProfileSeller/{userid}(userid=${plant.seller.userId})}"
+                               class="btn-linkVerkäufer">
                                 <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Verkäufer</span>
                             </a>
                         </p>
@@ -100,24 +105,30 @@
                             style="top: -135px; right: 0px;  position: absolute;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill=red class="bi bi-heart-fill"
                              viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                            <path fill-rule="evenodd"
+                                  d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
                         </svg>
                     </button>
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form th:action="@{/plant-detail/delete/{id} (id = ${plant.plantId})}" id="plant" name="plant"
+                                <form th:action="@{/plant-detail/delete/{id} (id = ${plant.plantId})}" id="plant"
+                                      name="plant"
                                       method="post">
                                     <div class="modal-body">
-                                        <p align="left">Bist Du sicher, dass du diese Pflanze aus deiner Merkliste entfernen
+                                        <p align="left">Bist Du sicher, dass du diese Pflanze aus deiner Merkliste
+                                            entfernen
                                             möchtest?</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Nein, Pflanze in
+                                        <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Nein,
+                                            Pflanze in
                                             der Merkliste lassen
                                         </button>
-                                        <button type="submit" class="btn btn-rePlantGreen">Ja, Pflanze aus Merkliste entfernen
+                                        <button type="submit" class="btn btn-rePlantGreen">Ja, Pflanze aus Merkliste
+                                            entfernen
                                         </button>
                                     </div>
                                 </form>
@@ -129,8 +140,10 @@
 
                 <form th:action="@{/plant-detail/{id} (id = ${plant.plantId})}" id="plant2" name="plant" method="post">
                     <div th:if="${currentUser.getWishlistPlants().contains(plant) == false}">
-                        <button type="submit" class="btn-rePlantHeartEmpty" style="top: -430px; right: 0px;  position: absolute;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="red" class="bi bi-heart"
+                        <button type="submit" class="btn-rePlantHeartEmpty"
+                                style="top: -430px; right: 0px;  position: absolute;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="red"
+                                 class="bi bi-heart"
                                  viewBox="0 0 16 16">
                                 <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
                             </svg>
@@ -140,7 +153,6 @@
 
 
             </div>
-
 
 
         </div>
@@ -164,8 +176,6 @@
 
         </div>
     </div>
-
-
 
 
 </div>

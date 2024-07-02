@@ -5,6 +5,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
@@ -344,6 +348,15 @@ public class TestDataLoader implements CommandLineRunner {
                 null
 
         );
+
+        File fnew=new File("C:\\Users\\hornu\\IdeaProjects\\SOPRA_Pflanzenverkauf\\src\\main\\resources\\static\\images\\plantPictures\\lotus-1412858_1280.jpg");
+        BufferedImage originalImage=ImageIO.read(fnew);
+        ByteArrayOutputStream baos=new ByteArrayOutputStream();
+        ImageIO.write(originalImage, "jpg", baos );
+        byte[] imageInByte=baos.toByteArray();
+
+        melanostachy.setImage(imageInByte);
+
         plantService.persistPlant(melanostachy);
 
         //Jennifer fügt Pflanze ihrer Merkliste hinzu
