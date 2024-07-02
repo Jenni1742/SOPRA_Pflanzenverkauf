@@ -26,10 +26,14 @@ public class SellerRankingController {
     @RequestMapping(value = "/sellerRanking", method = RequestMethod.GET)
     public String showSellerRankingPage(Model model) {
 
-        model.addAttribute("currentUser", userService.getCurrentUser());
+        User currentUser = userService.getCurrentUser();
+        model.addAttribute("currentUser", currentUser);
 
         List<User> users = userService.findAllByOrderByNumberOfSoldPlantsDesc();
         model.addAttribute("users", users);
+
+        Integer rank = users.indexOf(currentUser) + 1;
+        model.addAttribute("rank", rank);
 
         return "sellerRanking";
     }

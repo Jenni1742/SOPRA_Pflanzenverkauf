@@ -22,15 +22,14 @@
     <div class="card">
         <p></p>
         <p>
-            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill="currentColor" class="bi bi-award-fill" viewBox="0 0 16 16">
-                <path d="m8 0 1.669.864 1.858.282.842 1.68 1.337 1.32L13.4 6l.306 1.854-1.337 1.32-.842 1.68-1.858.282L8 12l-1.669-.864-1.858-.282-.842-1.68-1.337-1.32L2.6 6l-.306-1.854 1.337-1.32.842-1.68L6.331.864z"/>
-                <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1z"/>
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-trophy-fill" viewBox="0 0 16 16">
+                <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935"/>
             </svg>
         </p>
-        <p>Hier findest du das Käuferranking.</p>
+        <p>Hier findest du die Käufer-Rangliste.</p>
         <div style="flex: 0 0 auto; margin-right: 20px;">
             <p th:if="${users.size()} == 0">
-                Aktuell sind noch keine Benutzer in der Käuferrangliste enthalten.
+                Aktuell sind noch keine Benutzer in der Käufer-Rangliste enthalten.
             </p>
         </div>
         <a href="http://localhost:8080/">
@@ -41,10 +40,12 @@
                 </svg>
             </button>
         </a>
+        <p></p>
+        <h6>Dein Rang: <span th:text="${rank}"></span>.</h6>
 
         <div class="card-body">
 
-            <!--<ol class="list-group list-group-numbered">-->
+            <ol class="list-group list-group-numbered" style="font-weight: bold; font-size: xx-large;">
 
                 <div th:each="user : ${users}" class="ad list-group-item" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
                     <div style="flex: 0 0 auto; margin-right: 20px;">
@@ -55,11 +56,11 @@
                         <img th:src="${user.picturePath}" alt="Profilbild" onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'" class="rounded-circle">
                     </div>
                     <div style="flex: 1; padding-left: 20px; text-align: left">
-                        <h2 th:text="${user.username}" style="color: #017101;"></h2>
+                        <h2 th:text="${user.username}" style="color: #017101"></h2>
 
-                        <p><strong>Anzahl gekaufter Pflanzen:</strong> <span th:text="${user.getPurchasedPlants().size()}">Anzahl gekaufter Pflanzen</span></p>
+                        <p style="font-weight: normal"><strong>Anzahl gekaufter Pflanzen:</strong> <span th:text="${user.getPurchasedPlants().size()}">Anzahl gekaufter Pflanzen</span></p>
 
-                        <p><strong>Käufelevel:</strong> <span th:text="${user.buyingLevel.levelname}">Käuferlevel</span></p>
+                        <p style="font-weight: normal"><strong>Käufelevel:</strong> <span th:text="${user.buyingLevel.levelname}">Käuferlevel</span></p>
                         <div>
                             <a th:href="@{/showOtherProfileBuyer/{userid}(userid=${user.userId})}" class="btn-linkButton">
                                 <button type="button" class="btn btn-rePlantGreen">
@@ -73,10 +74,17 @@
                         </div>
                     </div>
                 </div>
-            <!--</ol>-->
+            </ol>
         </div>
         <div class="card-footer text-center card-footer-rePlant">
             <p></p>
+            <div style="text-align: center">
+                <a href="#">
+                    <button class="btn btn-rePlantGrey">
+                        Nach oben
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
 </div>
