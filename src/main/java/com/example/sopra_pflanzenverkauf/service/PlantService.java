@@ -84,6 +84,7 @@ public class PlantService {
         // Logging initial plants list size
         System.out.println("Initial number of plants: " + plants.size());
 
+        // Apply filters based on parameters
         if (category != null) {
             plants = plants.stream()
                     .filter(plant -> plant.getCategory().equals(category))
@@ -99,6 +100,27 @@ public class PlantService {
             // Logging after sold filtering
             System.out.println("Number of plants after sold filtering: " + plants.size());
         }
+
+        if (booster) {
+            // Filter for plants with booster
+            List<Plant> boosterPlants = plants.stream()
+                    .filter(Plant::getBooster)
+                    .collect(Collectors.toList());
+
+            // Logging before booster filtering
+            System.out.println("Number of plants with booster before filtering: " + boosterPlants.size());
+
+            // If there are booster plants, use them; otherwise, use all plants
+            plants = boosterPlants.isEmpty() ? plants : boosterPlants;
+
+            // Logging after booster filtering
+            System.out.println("Number of plants after booster filtering: " + plants.size());
+
+            // Debugging which plants are boosted
+            plants.forEach(plant -> System.out.println("Boosted plant: " + plant.getPlantId()));
+        }
+
+        // Apply sorting based on sort parameter
         if (sort != null) {
             switch (sort) {
                 case "price_asc":
@@ -113,15 +135,13 @@ public class PlantService {
                 case "size_desc":
                     plants.sort(Comparator.comparing(Plant::getPlantSize).reversed());
                     break;
+                default:
+                    break;
             }
             // Logging after sorting
             System.out.println("Number of plants after sorting: " + plants.size());
         }
-        if (booster) {
-            plants = plants.stream().filter(Plant::getBooster).collect(Collectors.toList());
-            // Logging after booster filtering
-            System.out.println("Number of plants after booster filtering: " + plants.size());
-        }
+
         // Logging final plants list size
         System.out.println("Final number of plants: " + plants.size());
 
