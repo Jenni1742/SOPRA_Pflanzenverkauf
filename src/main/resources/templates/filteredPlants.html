@@ -34,13 +34,15 @@
                     <div class="mb-3">
                         <label class="form-label">Kategorie:</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="category" id="indoor" value="indoor">
+                            <input class="form-check-input" type="radio" name="category" id="indoor" value="indoor"
+                                   th:checked="${selectedCategory == 'indoor'}">
                             <label class="form-check-label" for="indoor">
                                 Zimmerpflanze
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="category" id="outdoor" value="outdoor">
+                            <input class="form-check-input" type="radio" name="category" id="outdoor" value="outdoor"
+                                   th:checked="${selectedCategory == 'outdoor'}">
                             <label class="form-check-label" for="outdoor">
                                 Outdoorpflanze
                             </label>
