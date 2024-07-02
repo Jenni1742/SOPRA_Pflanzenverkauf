@@ -255,6 +255,31 @@ public class TestDataLoader implements CommandLineRunner {
         → Gekaufte P K auf null (purchasedPlants)
         */
 
+        Plant melanostachy = new Plant(
+                "Salix melanostachys",
+                25,
+                180,
+                "melanostachy ist eine Pflanze, die im Juni blüht.",
+                "Halbschatten und gleichmäßige Feuchtigkeit.",
+                zimmerpflanze,
+                franziskaHornung,
+                70323,
+                false,
+                true,
+                "https://cdn.pixabay.com/photo/2016/05/24/17/42/lotus-1412858_1280.jpg",
+                null
+
+        );
+
+        File fnew=new File("C:\\Users\\hornu\\IdeaProjects\\SOPRA_Pflanzenverkauf\\src\\main\\resources\\static\\images\\plantPictures\\lotus-1412858_1280.jpg");
+        BufferedImage originalImage=ImageIO.read(fnew);
+        ByteArrayOutputStream baos=new ByteArrayOutputStream();
+        ImageIO.write(originalImage, "jpg", baos );
+        byte[] imageInByte=baos.toByteArray();
+
+        melanostachy.setImage(imageInByte);
+
+        plantService.persistPlant(melanostachy);
         Plant kaffeestrauch = new Plant(
                 "Kaffeestrauch",
                 50,
@@ -333,31 +358,6 @@ public class TestDataLoader implements CommandLineRunner {
         userService.updateNumberOfSoldPlants(jenniferKaisner);
         userService.updateNumberOfPurchasedPlants(alessiaSedelnikov);
 
-        Plant melanostachy = new Plant(
-                "Salix melanostachys",
-                25,
-                180,
-                "melanostachy ist eine Pflanze, die im Juni blüht.",
-                "Halbschatten und gleichmäßige Feuchtigkeit.",
-                zimmerpflanze,
-                franziskaHornung,
-                70323,
-                false,
-                true,
-                "https://cdn.pixabay.com/photo/2016/05/24/17/42/lotus-1412858_1280.jpg",
-                null
-
-        );
-
-        File fnew=new File("C:\\Users\\hornu\\IdeaProjects\\SOPRA_Pflanzenverkauf\\src\\main\\resources\\static\\images\\plantPictures\\lotus-1412858_1280.jpg");
-        BufferedImage originalImage=ImageIO.read(fnew);
-        ByteArrayOutputStream baos=new ByteArrayOutputStream();
-        ImageIO.write(originalImage, "jpg", baos );
-        byte[] imageInByte=baos.toByteArray();
-
-        melanostachy.setImage(imageInByte);
-
-        plantService.persistPlant(melanostachy);
 
         //Jennifer fügt Pflanze ihrer Merkliste hinzu
         //jenniferKaisner.getWishlistPlants().add(melanostachy);
