@@ -103,9 +103,9 @@ public class EditAdvertisementController {
             currentPlant.setCareTips(newcareTips);
         }
 
-        //if(newzipCode != null && !newzipCode.isEmpty()){
-        //    currentPlant.setZipCode(newzipCode);
-        //}
+        if(newzipCode != null && !newzipCode.isEmpty()){
+          currentPlant.setZipCode(newzipCode);
+        }
 
         currentPlant.setCategory(categoryService.getCategoryByName(newselectCategory));
 

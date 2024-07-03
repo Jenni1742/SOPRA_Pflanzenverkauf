@@ -57,7 +57,7 @@ public class Plant {
     private boolean sold = false;
 
     @Column(name = "Postleitzahl")
-    private Integer zipCode;
+    private String zipCode;
 
     @Column(name = "Booster")
     private boolean booster = false;
@@ -113,7 +113,7 @@ public class Plant {
             String careTips,
             Category category,
             User seller,
-            Integer zipCode,
+            String zipCode,
             User buyer,
             Boolean sold,
             Boolean planter,
@@ -154,7 +154,7 @@ public class Plant {
             String careTips,
             Category category,
             User seller,
-            Integer zipCode,
+            String zipCode,
             Boolean sold,
             Boolean planter,
             String imageUrl,
@@ -247,11 +247,11 @@ public class Plant {
         this.careTips = careTips;
     }
 
-    public Integer getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(Integer zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
