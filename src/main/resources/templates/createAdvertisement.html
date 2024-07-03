@@ -27,7 +27,7 @@
             <form th:action="@{/createAdvertisement}" th:object="${plant}" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <div class="mb-3">
-                        <label for="plantname" class="form-label">Name der Pflanze</label>
+                        <label for="plantname" class="form-label">Name der Pflanze:</label>
                         <input type="text" class="form-control" pattern="[A-Za-z]{1,20}" id="plantname" name="plantname"
                                th:field="*{plantname}"
                                required
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="latinName" class="form-label">Lateinischer Name (optional)</label>
+                        <label for="latinName" class="form-label">Lateinischer Name (optional):</label>
                         <input type="text" class="form-control" id="latinName" name="latinName" th:field="*{latinName}">
                     </div>
 
@@ -50,7 +50,7 @@
                     <p></p>
 
                     <div class="mb-3">
-                        <label>Kategorie</label>
+                        <label>Kategorie:</label>
                         <select class="form-select" id="categoryname" name="categoryname" required>
                             <div th:each="category : ${categories}">
                                 <option><span th:text="${category.getCategoryname()}"></span></option>
@@ -59,31 +59,31 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="price" class="form-label">Preis (in €)</label>
+                        <label for="price" class="form-label">Preis (in €):</label>
                         <input type="number" min="0" step="0.01" size="3" class="form-control" id="price" name="price"
                                th:field="*{price}" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="plantSize" class="form-label">Größe (in cm)</label>
+                        <label for="plantSize" class="form-label">Größe (in cm):</label>
                         <input type="number" min="0" class="form-control" id="plantSize" name="plantSize"
                                th:field="*{plantSize}" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="plantDescription" class="form-label">Beschreibung</label>
+                        <label for="plantDescription" class="form-label">Beschreibung:</label>
                         <textarea class="form-control" id="plantDescription" name="plantDescription"
                                   th:field="*{plantDescription}" required></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label for="careTips" class="form-label">Pflegetipps</label>
+                        <label for="careTips" class="form-label">Pflegetipps:</label>
                         <textarea class="form-control" id="careTips" name="careTips" th:field="*{careTips}"
                                   required></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label for="zipCode" class="form-label">Postleitzahl</label>
+                        <label for="zipCode" class="form-label">Postleitzahl:</label>
                         <input type="text" title="Postleitzahl mit 5 Stellen" pattern="^[0-9]{5}$" class="form-control"
                                id="zipCode" name="zipCode" th:field="*{zipCode}"
                                required>
