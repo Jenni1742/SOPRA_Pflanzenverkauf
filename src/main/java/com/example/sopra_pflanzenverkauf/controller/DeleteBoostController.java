@@ -43,7 +43,7 @@ public class DeleteBoostController {
         } else if (userService.getCurrentUser() == plant.getSeller()){
             return "deleteBoost";
         } else {
-            return "error/errorDeleteAdvertisement";
+            return "error/errorDeleteBoost";
         }
 
     }
