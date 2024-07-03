@@ -32,7 +32,7 @@
                 Aktuell ist die Liste noch leer, aber das muss nicht so bleiben!
             </p>
         </div>
-        <a href="http://localhost:8080/">
+        <a href="http://localhost:8080/" class="btn-linkButton">
             <button type="button" class="btn btn-rePlantGreen">
                 Entdecke mehr Secondhand-Pflanzen
             </button>
@@ -67,7 +67,7 @@
                     </div>
                     <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
                     <div style="text-align: right; margin-top: -28px;">
-                        <a th:href="@{/plantDetailWishlist/{id}(id=${plant.plantId})}" style="text-decoration: none;">
+                        <a th:href="@{/plantDetailWishlist/{id}(id=${plant.plantId})}" class="btn-linkButton">
                             <button type="button" class="btn btn-rePlantGreen">
                                 Mehr erfahren
                             </button>
@@ -136,7 +136,7 @@
         <div class="card-footer text-center card-footer-rePlant">
             <p></p>
             <div style="text-align: center">
-                <a href="#">
+                <a href="#" class="btn-linkButton">
                     <button class="btn btn-rePlantGrey">
                         Nach oben
                     </button>

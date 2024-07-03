@@ -12,6 +12,10 @@
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
+<div>
+    <button onclick="history.back()" class="btn btn-rePlantGrey move-right">Zurück</button>
+</div>
+
 <div class="quiz-container container mt-5">
     <h1 th:text="${quiz.title}">Plant Knowledge Quiz</h1>
 
@@ -30,7 +34,7 @@
             </div>
         </div>
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
-        <button type="submit" class="btn btn-primary">Quiz Abschließen</button>
+        <button type="submit" class="btn btn-rePlantGreen">Quiz Abschließen</button>
     </form>
 </div>
 
