@@ -153,9 +153,9 @@ public class DeleteProfileController {
 
             //userService.persistUser(currentUser);
             userService.deleteUserById(currentUser.getUserId());
-            model.addAttribute("userprofilGelöscht", "Das Userprofil wurde erfolgreich gelöscht.");
+            model.addAttribute("userprofilGelöscht", "Das Benutzerprofil wurde erfolgreich gelöscht.");
         } else {
-            model.addAttribute("PasswortIstNichtKorrekt", "Das Passwort ist inkorrekt. Das Userprofil wurde nicht gelöscht.");
+            model.addAttribute("PasswortIstNichtKorrekt", "Das eingegebene Passwort ist inkorrekt. Dein Benutzerprofil wurde nicht gelöscht.");
             return "deleteProfile";
         }
 

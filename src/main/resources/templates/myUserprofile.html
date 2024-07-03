@@ -85,7 +85,18 @@
                 </tr>
                 <tr>
                     <th scope="row">PlantCoins:</th>
-                    <td th:text="${plantCoins}"></td>
+                    <td>
+                        <span th:text="${currentUser.plantCoinCount}"></span>
+                        <img src="\images\plantCoin.png" style="height: 20px; width: 20px;">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Anzahl verkaufter Pflanzen:</th>
+                    <td th:text="${currentUser.getNumberOfSoldPlants()}"/>
+                </tr>
+                <tr>
+                    <th scope="row">Anzahl gekaufter Pflanzen:</th>
+                    <td th:text="${currentUser.getNumberOfPurchasedPlants()}"/>
                 </tr>
                 </tbody>
             </table>
@@ -120,11 +131,11 @@
                             <form th:action="@{/myUserprofile}" method="post">
                                 <!-- Problem: Doppelte Nachfrage bei Änderung mit zwischendurch Fehlermeldung-->
                                 <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />-->
-                                <div class="mb-3">
+                                <div class="mb-3" style="text-align: left">
                                     <label for= oldPassword class="form-label">Aktuelles Passwort:</label>
                                     <input type="password" class="form-control" id="oldPassword" name="oldPassword" titel="Gebe dein aktuelles Passwort ein." required>
                                 </div>
-                                <div class="mb-3">
+                                <div class="mb-3" style="text-align: left">
                                     <label for=newPassword class="form-label">Neues Passwort:</label>
                                     <input type="password" class="form-control" id="newPassword" name="newPassword" pattern=".{8,}" title="Das Passwort muss 8 oder mehr Zeichen haben" required>
                                 </div>

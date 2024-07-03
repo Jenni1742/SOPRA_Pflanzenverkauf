@@ -67,7 +67,7 @@ public class ChangeProfileController {
                 currentUser.setEmail(newEmail);
                 userService.updateEmail(currentUser);
             } else {
-                model.addAttribute("emailExistiertBereits","Diese Email Adresse existiert bereits");
+                model.addAttribute("emailExistiertBereits","Diese Email Adresse existiert bereits. Versuche es mit einer anderen E-Mail Adresse.");
                 model.addAttribute("currentUser", currentUser);
                 return "/changeProfile";
             }

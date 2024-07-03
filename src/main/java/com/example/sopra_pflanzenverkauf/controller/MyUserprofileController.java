@@ -60,9 +60,9 @@ public class MyUserprofileController {
         if (bCryptPasswordEncoder.matches(oldPassword, currentUser.getPassword())) {
             currentUser.setPassword(bCryptPasswordEncoder.encode(newPassword));
             userService.updateUserPassword(currentUser);
-            model.addAttribute("passwortErfolgreichGeändert", "Passwort erfolgreich geändert.");
+            model.addAttribute("passwortErfolgreichGeändert", "Dein Passwort wurde erfolgreich geändert.");
         } else {
-            model.addAttribute("altesPasswortIstNichtKorrekt", "Altes Passwort ist inkorrekt.");
+            model.addAttribute("altesPasswortIstNichtKorrekt", "Das eingegebene aktuelle Passwort ist inkorrekt, bitte versuche es erneut.");
         }
 
         model.addAttribute("currentUser", currentUser);
