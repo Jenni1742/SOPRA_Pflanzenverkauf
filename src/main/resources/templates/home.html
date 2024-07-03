@@ -28,7 +28,7 @@
     <div th:if="${plants.size() != 0}">
         <div class="row">
             <div class="col-md-3">
-                <div class="rounded-box mb-3 margin-top-20">
+                <div class="rounded-box mb-3 margin-top-20" style="border-color: #017101; border-style: solid; border-radius: 10px; padding: 10px">
                     <h4>Filtern</h4>
                     <form method="get" action = "/filteredPlants">
                     <div class="mb-3">
@@ -211,6 +211,16 @@
                 </section>
             </div>
         </div>
+    </div>
+</div>
+<div class="card-footer text-center card-footer-rePlant">
+    <p></p>
+    <div style="text-align: center">
+        <a href="#">
+            <button class="btn btn-rePlantGreen">
+                Nach oben
+            </button>
+        </a>
     </div>
 </div>
 
