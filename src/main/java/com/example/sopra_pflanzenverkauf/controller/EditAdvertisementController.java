@@ -12,8 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -33,7 +34,7 @@ public class EditAdvertisementController {
     /**
      * Handles GET requests targeted at the editAdvertisement page.
      *
-     * @return  the editAdvertisement page
+     * @return the editAdvertisement page
      */
     @GetMapping("/editAdvertisement/{id}")
     public String editPlant(@PathVariable("id") Integer plantId, Model model) {
@@ -46,7 +47,7 @@ public class EditAdvertisementController {
 
         if (plant == null) {
             return "error/errorIDDoNotExist";
-        } else if (userService.getCurrentUser() == plant.getSeller()){
+        } else if (userService.getCurrentUser() == plant.getSeller()) {
             return "editAdvertisement";
         } else {
             return "error/errorEditAdvertisement";
@@ -54,57 +55,84 @@ public class EditAdvertisementController {
     }
 
 
-    @RequestMapping(value="/editAdvertisement/{id}",  method = RequestMethod.POST)
+    @RequestMapping(value = "/editAdvertisement/{id}", method = RequestMethod.POST)
     public String editPlant(@PathVariable("id") Integer plantId,
                             @RequestParam(value = "newplantname", required = false) String newplantname,
-                            @RequestParam(value= "newlatinName", required = false) String newlatinName,
-                            @Param(value="withPlanterTrue") Boolean withPlanterTrue,
-                            @Param(value="withPlanterFalse") Boolean withPlanterFalse,
-                            @RequestParam(value="newplantSize", required = false) Integer newplantSize,
-                            @RequestParam(value="newprice", required = false) Double newprice,
-                            @RequestParam(value="newplantDescription", required = false) String newplantDescription,
-                            @RequestParam(value="newcareTips", required = false) String newcareTips,
-                            @RequestParam(value="newzipCode", required = false) String newzipCode,
-                            @RequestParam(value="newselectCategory") String newselectCategory,
-                            @RequestParam(value="newimageUrl", required = false) String newimageUrl,
-                            Model model){
+                            @RequestParam(value = "newlatinName", required = false) String newlatinName,
+                            @Param(value = "withPlanterTrue") Boolean withPlanterTrue,
+                            @Param(value = "withPlanterFalse") Boolean withPlanterFalse,
+                            @RequestParam(value = "newplantSize", required = false) Integer newplantSize,
+                            @RequestParam(value = "newprice", required = false) Double newprice,
+                            @RequestParam(value = "newplantDescription", required = false) String newplantDescription,
+                            @RequestParam(value = "newcareTips", required = false) String newcareTips,
+                            @RequestParam(value = "newzipCode", required = false) String newzipCode,
+                            @RequestParam(value = "newselectCategory") String newselectCategory,
+                            @RequestParam(value = "newimageUrl", required = false) String newimageUrl,
+                            @RequestParam(value = "newImageMp", required = false) MultipartFile multipartFile,
+                            @RequestParam(value = "newImageMp2", required = false) MultipartFile multipartFileTwo,
+                            @RequestParam(value = "newImageMp3", required = false) MultipartFile multipartFileThree,
+                            Model model) {
 
         Plant currentPlant = plantService.getPlantByPlantId(plantId);
 
-        if(newplantname != null && !newplantname.isEmpty()){
+        if (newplantname != null && !newplantname.isEmpty()) {
             currentPlant.setPlantname(newplantname);
         }
 
-        if(newlatinName != null && !newlatinName.isEmpty()){
+        if (newlatinName != null && !newlatinName.isEmpty()) {
             currentPlant.setLatinName(newlatinName);
         }
 
-        if(withPlanterTrue == null){
+        if (withPlanterTrue == null) {
             currentPlant.setPlanter(false);
         }
 
-        if(withPlanterFalse != null){
+        if (withPlanterFalse != null) {
             currentPlant.setPlanter(true);
         }
 
-        if(newplantSize != null){
+        if (newplantSize != null) {
             currentPlant.setPlantSize(newplantSize);
         }
 
-        if(newprice != null) {
+        if (newprice != null) {
             currentPlant.setPrice(newprice);
         }
 
-        if(newplantDescription != null && !newplantDescription.isEmpty()){
+        if (newplantDescription != null && !newplantDescription.isEmpty()) {
             currentPlant.setPlantDescription(newplantDescription);
         }
 
-        if(newcareTips != null && !newcareTips.isEmpty()){
+        if (newcareTips != null && !newcareTips.isEmpty()) {
             currentPlant.setCareTips(newcareTips);
         }
 
-        if(newzipCode != null && !newzipCode.isEmpty()){
-          currentPlant.setZipCode(newzipCode);
+        if (newzipCode != null && !newzipCode.isEmpty()) {
+            currentPlant.setZipCode(newzipCode);
+        }
+
+        if (!multipartFile.isEmpty()) {
+            try {
+                currentPlant.setImage(multipartFile.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (!multipartFileTwo.isEmpty()) {
+            try {
+                currentPlant.setImageTwo(multipartFileTwo.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (!multipartFileThree.isEmpty()) {
+            try {
+                currentPlant.setImageThree(multipartFileThree.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         currentPlant.setCategory(categoryService.getCategoryByName(newselectCategory));
