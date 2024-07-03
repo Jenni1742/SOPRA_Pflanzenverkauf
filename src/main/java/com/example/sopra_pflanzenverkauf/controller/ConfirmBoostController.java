@@ -56,21 +56,28 @@ public class ConfirmBoostController {
             return "error/unauthorizedAction";
         }
 
-        if (currentUser.getPlantCoinCount() < 1) {
-            return "redirect:/notEnoughPlantCoins";
+        if (currentUser.getPlantCoinCount() < 10) {
+            model.addAttribute("NichtGenugCoins", "Du hast nicht genug PlantCoins, um eine Verkaufsanzeige zu boosten.");
+            model.addAttribute("plant", plant);
+            model.addAttribute("currentUser", currentUser);
+            model.addAttribute("plantId", plantId);
+            return "/confirmBoost";
         }
 
         plant.setBooster(true);
-        currentUser.setPlantCoinCount(currentUser.getPlantCoinCount() - 1);
+        currentUser.setPlantCoinCount(currentUser.getPlantCoinCount() - 10);
         userService.save(currentUser);
         plantService.save(plant);
 
         return "redirect:/myAdvertisements";
     }
 
+    /*
     @GetMapping("/notEnoughPlantCoins")
     public String notEnoughPlantCoins() {
         return "notEnoughPlantCoins";
     }
+
+     */
 }
 
