@@ -21,10 +21,6 @@
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
-<div>
-    <p th:text="${boostMessage}"></p>
-</div>
-
 <div class="container">
     <div class="container">
         <div class="card">
@@ -54,7 +50,7 @@
                 </button>
             </a>
             <p></p>
-            <h6>Mit PlantCoins kannst du deine Anzeigen boosten und sie auf der Startseite hervorheben. Jede Boosting-Aktion kostet 10 PlantCoins.</h6>
+            <h6>Mit PlantCoins kannst du deine Anzeigen boosten um sie auf der Startseite hervorzuheben. Jeder Boost kostet 10 PlantCoins.</h6>
             <h6>Deine aktuellen PlantCoins: <span th:text="${currentUser.plantCoinCount}"></span>
                 <img src="images\plantCoin.png" style="height: 20px; width: 20px;">
             </h6>
@@ -89,10 +85,8 @@
                             <a th:if="${!plant.booster}" th:href="@{/confirmBoost/{id}(id=${plant.plantId})}" th:attr="onclick=${currentUser.plantCoinCount < 10} ? 'showAlert()' : ''">
                                 <button type="button" class="btn btn-rePlantYellow">Boost kaufen</button>
                             </a>
-                            <a th:if="${plant.booster}" th:href="@{/removeBoost/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;">
-                                <form th:action="@{/removeBoost/{id}(id=${plant.plantId})}" method="post" style="display:inline;">
-                                    <button type="submit" class="btn btn-rePlantOrange">Boost entfernen</button>
-                                </form>
+                            <a th:if="${plant.booster}" th:href="@{/deleteBoost/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;">
+                                    <button type="button" class="btn btn-rePlantOrange">Boost entfernen</button>
                             </a>
                             <a th:href="@{/showAdvertisement/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;">
                                 <button type="button" class="btn btn-rePlantGreen">Ganze Anzeige ansehen
