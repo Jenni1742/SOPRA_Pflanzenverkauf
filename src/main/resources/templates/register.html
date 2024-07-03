@@ -34,7 +34,7 @@
         </div>
 
         <div class="card-body">
-            <form th:action="@{/register}" th:object="${newUser}" method="post">
+            <form th:action="@{/register}" th:object="${newUser}" method="post" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for= newUsername class="form-label">Benutzername:</label>
                     <input type="text" class="form-control" id="newUsername" name="newUsername" required
@@ -68,6 +68,11 @@
                     <label for= newPicturePath class="form-label">Profilbild (Bildlink):</label>
                     <input type="text" class="form-control" id="newPicturePath" name="newPicturePath" required>
                 </div>
+
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" name="imageMp" id="imageMp" required>
+                </div>
+
                 <div class="mb-3">
                     <label for="password1" class="form-label">Passwort</label>
                     <input type="password" class="form-control" id="password1" name="password1"
