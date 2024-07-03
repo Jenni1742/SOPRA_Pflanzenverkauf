@@ -29,22 +29,23 @@ public class ConfirmBoostController {
 
     @GetMapping("/confirmBoost/{id}")
     public String openConfirmBoost(@PathVariable("id") Integer plantId, Model model) {
-        Plant plant = plantRepository.findById(plantId).orElse(null);
+
+        model.addAttribute("plantId", plantId);
+        model.addAttribute("currentUser", userService.getCurrentUser());
+
+        Plant plant = plantRepository.findById(plantId)
+                .orElse(null);
+
+        model.addAttribute("plant", plant);
 
         if (plant == null) {
             return "error/errorIDDoNotExist";
+        } else if (userService.getCurrentUser() == plant.getSeller() && plant.getBooster() == false){
+            return "confirmBoost";
+        } else {
+            return "error/errorConfirmBoost";
         }
 
-        User currentUser = userService.getCurrentUser();
-        if (currentUser == null || !currentUser.equals(plant.getSeller())) {
-            return "error/unauthorizedAction";
-        }
-
-        model.addAttribute("currentUser", currentUser);
-        model.addAttribute("plantId", plantId);
-        model.addAttribute("plant", plant);
-
-        return "confirmBoost";
     }
 
     @PostMapping("/confirmBoost/{id}")
@@ -52,9 +53,6 @@ public class ConfirmBoostController {
         User currentUser = userService.getCurrentUser();
         Plant plant = plantService.getPlantByPlantId(plantId);
 
-        if (!currentUser.equals(plant.getSeller()) || plant.getSold()) {
-            return "error/unauthorizedAction";
-        }
 
         if (currentUser.getPlantCoinCount() < 10) {
             model.addAttribute("NichtGenugCoins", "Du hast nicht genug PlantCoins, um eine Verkaufsanzeige zu boosten.");
@@ -72,12 +70,5 @@ public class ConfirmBoostController {
         return "redirect:/myAdvertisements";
     }
 
-    /*
-    @GetMapping("/notEnoughPlantCoins")
-    public String notEnoughPlantCoins() {
-        return "notEnoughPlantCoins";
-    }
-
-     */
 }
 
