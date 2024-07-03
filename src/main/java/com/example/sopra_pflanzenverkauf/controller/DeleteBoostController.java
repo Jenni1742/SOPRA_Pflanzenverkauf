@@ -40,7 +40,7 @@ public class DeleteBoostController {
 
         if (plant == null) {
             return "error/errorIDDoNotExist";
-        } else if (userService.getCurrentUser() == plant.getSeller()){
+        } else if (userService.getCurrentUser() == plant.getSeller() && plant.getBooster() == true){
             return "deleteBoost";
         } else {
             return "error/errorDeleteBoost";
