@@ -21,6 +21,7 @@ public class showOtherProfileBuyerController {
 
     @GetMapping("/showOtherProfileBuyer/{userid}")
     public String showUserDetailBuyer(@PathVariable("userid") Integer userId, Model model) {
+        model.addAttribute("currentUser", userService.getCurrentUser());
         User user = userRepository.findById(userId)
                 .orElse(null);
         model.addAttribute("user", user);

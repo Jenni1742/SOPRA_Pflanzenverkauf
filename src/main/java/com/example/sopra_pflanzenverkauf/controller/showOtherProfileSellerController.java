@@ -24,6 +24,7 @@ public class showOtherProfileSellerController {
         User user = userRepository.findById(userId)
                 .orElse(null);
         model.addAttribute("user", user);
+        model.addAttribute("currentUser", userService.getCurrentUser());
 
         if (user == null) {
             return "error/errorIDDoNotExist";
