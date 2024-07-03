@@ -74,7 +74,18 @@
                 </tr>
                 <tr>
                     <th scope="row">PlantCoins:</th>
-                    <td th:text="${user.getPlantCoinCount()}"></td>
+                    <td>
+                        <span th:text="${user.plantCoinCount}"></span>
+                        <img src="\images\plantCoin.png" style="height: 20px; width: 20px;">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Anzahl verkaufter Pflanzen:</th>
+                    <td th:text="${user.getNumberOfSoldPlants()}"/>
+                </tr>
+                <tr>
+                    <th scope="row">Anzahl gekaufter Pflanzen:</th>
+                    <td th:text="${user.getNumberOfPurchasedPlants()}"/>
                 </tr>
                 </tbody>
             </table>
@@ -101,7 +112,7 @@
                     <!-- Level1 -->
                     <td scope="row">
                         <div th:if="${user.getPurchasedPlants().size()<1}">
-                            <p>Dieser Benutzer hat aktuell noch kein Käuferlevel abgeschlossen.</p>
+                            <p><span th:text="${user.getUsername()}"></span> hat aktuell noch kein Käuferlevel abgeschlossen.</p>
                         </div>
                         <div th:if="${user.getPurchasedPlants().size()>=1}">
                             <!-- Button trigger modal -->
@@ -118,7 +129,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 1 (Sprössling) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 1 (Sprössling) abgeschlossen:</p>
                                             <p>Kaufe 1 Pflanze.</p>
                                         </div>
                                     </div>
@@ -143,7 +154,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 2 (Grüner-Daumen) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 2 (Grüner-Daumen) abgeschlossen:</p>
                                             <p>Kaufe 5 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -168,7 +179,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 3 (Pflanzenfreund) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 3 (Pflanzenfreund) abgeschlossen:</p>
                                             <p>Kaufe 10 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -195,7 +206,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 4 (Gärtner-Novize) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 4 (Gärtner-Novize) abgeschlossen:</p>
                                             <p>Kaufe 15 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -220,7 +231,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 5 (Blattmeister) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 5 (Blattmeister) abgeschlossen:</p>
                                             <p>Kaufe 25 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -245,7 +256,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 6 (Wurzelprofi) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 6 (Wurzelprofi) abgeschlossen:</p>
                                             <p>Kaufe 35 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -272,7 +283,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 7 (Pflanzenliebhaber) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 7 (Pflanzenliebhaber) abgeschlossen:</p>
                                             <p>Kaufe 50 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -297,7 +308,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 8 (Botanik-Experte) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 8 (Botanik-Experte) abgeschlossen:</p>
                                             <p>Kaufe 75 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -322,7 +333,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 9 (Meister des Gartens) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 9 (Meister des Gartens) abgeschlossen:</p>
                                             <p>Kaufe 100 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -350,7 +361,7 @@
                     <!-- Level1 -->
                     <td scope="row">
                         <div th:if="${user.getSoldPlantsList().size()<1}">
-                            <p>Dieser User hat aktuell noch kein Verkäuferlevel abgeschlossen.</p>
+                            <p><span th:text="${user.getUsername()}"></span> hat aktuell noch kein Verkäuferlevel abgeschlossen.</p>
                         </div>
                         <div th:if="${user.getSoldPlantsList().size()>=1}">
                             <!-- Button trigger modal -->
@@ -367,7 +378,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 1 (Sprössling) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 1 (Sprössling) abgeschlossen:</p>
                                             <p>Verkaufe 1 Pflanze.</p>
                                         </div>
                                     </div>
@@ -392,7 +403,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 2 (Grüner-Daumen) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 2 (Grüner-Daumen) abgeschlossen:</p>
                                             <p>Verkaufe 5 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -417,7 +428,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 3 (Pflanzenfreund) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 3 (Pflanzenfreund) abgeschlossen:</p>
                                             <p>Verkaufe 10 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -444,7 +455,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 4 (Gärtner-Novize) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 4 (Gärtner-Novize) abgeschlossen:</p>
                                             <p>Verkaufe 15 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -469,7 +480,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 5 (Blattmeister) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 5 (Blattmeister) abgeschlossen:</p>
                                             <p>Verkaufe 25 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -494,7 +505,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 6 (Wurzelprofi) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 6 (Wurzelprofi) abgeschlossen:</p>
                                             <p>Verkaufe 35 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -521,7 +532,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 7 (Pflanzenliebhaber) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 7 (Pflanzenliebhaber) abgeschlossen:</p>
                                             <p>Verkaufe 50 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -546,7 +557,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 8 (Botanik-Experte) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 8 (Botanik-Experte) abgeschlossen:</p>
                                             <p>Verkaufe 75 Pflanzen.</p>
                                         </div>
                                     </div>
@@ -571,7 +582,7 @@
                                             <p>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="float: right;"></button>
                                             </p>
-                                            <p>Level 9 (Meister des Gartens) abgeschlossen:</p>
+                                            <p><span th:text="${user.getUsername()}"></span> hat Level 9 (Meister des Gartens) abgeschlossen:</p>
                                             <p>Verkaufe 100 Pflanzen.</p>
                                         </div>
                                     </div>
