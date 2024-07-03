@@ -20,33 +20,44 @@
             <div class="row">
 
                 <div class="col-md-4">
-                    <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.plantname}]]"
+                    <img th:if="${plant.imageUrl != null && plant.image == null}" th:src="@{${plant.imageUrl}}"
+                         alt="Bild von [[${plant.plantname}]]"
                          class="img-fluid" style="border-radius: 10px; max-width: 100%; height: auto;">
-                    <a th:if="${plant.image != null}">
-                        <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div th:if="${plant.image != null}">
+                        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel"
+                             style="width: 300px; height: 300px">
                             <div class="carousel-inner">
-                                <div class="carousel-item active" data-bs-interval="3000">
+
+                                <div class="carousel-item active" data-bs-interval="3000"
+                                     style="width: 300px; height: 300px">
                                     <img th:if="${plant.imageUrl != null}" th:src="@{${plant.imageUrl}}"
                                          alt="Bild von [[${plant.name}]]"
                                          class="d-block w-100">
+
                                 </div>
-                                <div class="carousel-item active" data-bs-interval="3000">
-                                    <img th:if="${plant.image != null}"
-                                         th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}"
-                                         alt="Bild von [[${plant.name}]]"
-                                         class="d-block w-100">
+                                <div th:if="${plant.image != null}">
+                                    <div class="carousel-item" data-bs-interval="3000"
+                                         style="width: 300px; height: 300px">
+                                        <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}"
+                                             alt="Bild von [[${plant.name}]]"
+                                             class="d-block w-100">
+                                    </div>
                                 </div>
-                                <div class="carousel-item" data-bs-interval="3000">
-                                    <img th:if="${plant.imageTwo != null}"
-                                         th:src="@{'data:image/jpeg;base64,'+${plant.getImageTwoDataBase64()}}"
-                                         alt="Bild von [[${plant.name}]]"
-                                         class="d-block w-100">
+                                <div th:if="${plant.imageTwo != null}">
+                                    <div class="carousel-item" data-bs-interval="3000"
+                                         style="width: 300px; height: 300px">
+                                        <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageTwoDataBase64()}}"
+                                             alt="Bild von [[${plant.name}]]"
+                                             class="d-block w-100">
+                                    </div>
                                 </div>
-                                <div class="carousel-item" data-bs-interval="3000">
-                                    <img th:if="${plant.imageThree != null}"
-                                         th:src="@{'data:image/jpeg;base64,'+${plant.getImageThreeDataBase64()}}"
-                                         alt="Bild von [[${plant.name}]]"
-                                         class="d-block w-100">
+                                <div th:if="${plant.imageThree != null}">
+                                    <div class="carousel-item" data-bs-interval="3000"
+                                         style="width: 300px; height: 300px">
+                                        <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageThreeDataBase64()}}"
+                                             alt="Bild von [[${plant.name}]]"
+                                             class="d-block w-100">
+                                    </div>
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button"
@@ -60,7 +71,7 @@
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
-                    </a>
+                    </div>
                 </div>
 
                 <div class="col-md-8">
@@ -92,11 +103,11 @@
                 </div>
             </div>
 
-            <div class="ad" style=" position: relative; top: 10px; right: 10px;" >
+            <div class="ad" style=" position: relative; top: 10px; right: 10px;">
                 <!-- Button trigger modal -->
                 <div th:if="${currentUser.getWishlistPlants().contains(plant) == true}">
                     <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            style="top: -135px; right: 0px;  position: absolute;">
+                            style="top: -440px; right: 0px;  position: absolute;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill=red class="bi bi-heart-fill"
                              viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
