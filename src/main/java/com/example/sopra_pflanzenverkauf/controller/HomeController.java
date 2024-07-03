@@ -83,7 +83,7 @@ public class HomeController {
             }
         }
 
-        List<Plant> filteredPlants = plantService.findFilteredAndSortedPlants(selectedCategory, sort, false, true);
+        List<Plant> filteredPlants = plantService.findFilteredAndSortedPlants(selectedCategory, sort, false, false);
 
         filteredPlants = filteredPlants.stream()
                 .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
