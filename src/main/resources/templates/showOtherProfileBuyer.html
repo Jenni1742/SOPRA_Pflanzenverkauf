@@ -80,6 +80,10 @@
                     </td>
                 </tr>
                 <tr>
+                    <th scope="row">Aktive Verkaufsanzeigen:</th>
+                    <td th:text="${user.getPlantsToSell().size()}"/>
+                </tr>
+                <tr>
                     <th scope="row">Anzahl verkaufter Pflanzen:</th>
                     <td th:text="${user.getNumberOfSoldPlants()}"/>
                 </tr>
