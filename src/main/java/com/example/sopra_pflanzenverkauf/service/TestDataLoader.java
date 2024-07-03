@@ -6,11 +6,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.sql.Timestamp;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 
@@ -263,7 +265,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Halbschatten und gleichmäßige Feuchtigkeit.",
                 zimmerpflanze,
                 franziskaHornung,
-                70323,
+                "70323",
                 false,
                 true,
                 "https://cdn.pixabay.com/photo/2016/05/24/17/42/lotus-1412858_1280.jpg",
@@ -271,15 +273,12 @@ public class TestDataLoader implements CommandLineRunner {
 
         );
 
-        /**
-        File fnew=new File("C:\\Users\\hornu\\IdeaProjects\\SOPRA_Pflanzenverkauf\\src\\main\\resources\\static\\images\\plantPictures\\lotus-1412858_1280.jpg");
+        File fnew=new File("src/main/resources/static/images/plantPictures/lotus-1412858_1280.jpg");
         BufferedImage originalImage=ImageIO.read(fnew);
         ByteArrayOutputStream baos=new ByteArrayOutputStream();
-        ImageIO.write(originalImage, "jpg", baos );
-        byte[] imageInByte=baos.toByteArray();
-
-        melanostachy.setImage(imageInByte);
-         */
+         ImageIO.write(originalImage, "jpg", baos );
+         byte[] imageInByte=baos.toByteArray();
+         melanostachy.setImage(imageInByte);
 
         plantService.persistPlant(melanostachy);
         Plant kaffeestrauch = new Plant(
@@ -290,7 +289,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Hin und wieder mal gießen. Etwas Kaffe mit ins Wasser geben",
                 zimmerpflanze,
                 null,
-                12345,
+                "12345",
                 alessiaSedelnikov,
                 true,
                 false,
@@ -315,7 +314,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Regelmäßig gießen und im Halbschatten halten.",
                 outdoorpflanze,
                 alessiaSedelnikov,
-                70321,
+                "56789",
                 false,
                 false,
                 "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg",
@@ -348,7 +347,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Nicht zu viel gießen und viel Licht.",
                 outdoorpflanze,
                 null,
-                70321,
+                "70321",
                 alessiaSedelnikov,
                 true,
                 false,
@@ -377,7 +376,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Einfach nur in die Sonne stellen.",
                 zimmerpflanze,
                 aylinaAshkenov,
-                70323,
+                "74231",
                 false,
                 true,
                 "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg",
@@ -398,7 +397,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Sonne und hohe Luftfeuchtigkeit sind notwendig!",
                 zimmerpflanze,
                 jenniferKaisner,
-                70323,
+                "71234",
                 false,
                 false,
                 "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg",
@@ -415,7 +414,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Sonne und hohe Luftfeuchtigkeit sind notwendig!",
                 zimmerpflanze,
                 alessiaSedelnikov,
-                70323,
+                "70444",
                 jenniferKaisner,
                 true,
                 false,
@@ -442,7 +441,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Du musst schon studieren, um zu wissen, wie man mit dieser Pflanze umgehen muss",
                 outdoorpflanze,
                 alessiaSedelnikov,
-                56783,
+                "70355",
                 false,
                 false,
                 "https://www.swr.de/swraktuell/baden-wuerttemberg/stuttgart/1713352797444%2Ctitanenwurz-uni-hohenheim-stuttgart-100~_v-16x9@2dL_-6c42aff4e68b43c7868c3240d3ebfa29867457da.jpg",
@@ -459,7 +458,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Hin und wieder mal gießen. Ganz viel Sonne!",
                 zimmerpflanze,
                 aylinaAshkenov,
-                23456,
+                "70367",
                 false,
                 false,
                 "https://cdn.pixabay.com/photo/2018/09/13/18/18/heide-3675445_1280.jpg",
@@ -475,7 +474,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Jede woche mit 100 ml bewässern",
                 zimmerpflanze,
                 aylinaAshkenov,
-                23456,
+                "70321",
                 false,
                 true,
                 "https://www.lubera.com/images/600/lotus-blatt-e1481172403391.jpg",
@@ -492,7 +491,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Jede woche mit 500 ml bewässern",
                 zimmerpflanze,
                 markoPetric,
-                34567,
+                "45678",
                 false,
                 false,
                 "https://cdn.pixabay.com/photo/2019/02/25/20/29/houseplant-4020532_1280.jpg",
@@ -509,7 +508,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Wasser, Sonne und Liebe",
                 outdoorpflanze,
                 jenniferKaisner,
-                56789,
+                "70321",
                 false,
                 true,
                 "https://cdn.pixabay.com/photo/2011/04/06/15/05/garden-6239_1280.jpg",
@@ -525,7 +524,7 @@ public class TestDataLoader implements CommandLineRunner {
                 "Wasser, Sonne und Liebe",
                 outdoorpflanze,
                 aylinaAshkenov,
-                70327,
+                "12345",
                 false,
                 false,
                 "https://cdn.pixabay.com/photo/2017/04/03/07/30/blue-flower-2197679_1280.jpg",
