@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Map;
 
 @Controller
@@ -41,6 +43,7 @@ public class ChangeProfileController {
 
     @PostMapping(path = "/changeProfile")
     public String changeProfile(@RequestParam("newPicturePath") String newPicturePath,
+                                @RequestParam(value = "newImageMp", required = false) MultipartFile multipartFile,
                                 @RequestParam("newFirstName") String newFirstName,
                                 @RequestParam("newLastName") String newLastName,
                                 @RequestParam("newEmail") String newEmail,
@@ -54,6 +57,15 @@ public class ChangeProfileController {
             currentUser.setPicturePath(newPicturePath);
             userService.updatePicturePath(currentUser);
         }
+
+        if (!multipartFile.isEmpty()) {
+            try {
+                currentUser.setImage(multipartFile.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         if (!newFirstName.isEmpty()) {
             currentUser.setFirstName(newFirstName);
             userService.updateFirstName(currentUser);
