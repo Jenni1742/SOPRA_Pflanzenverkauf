@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Controller
-public class DeleteAdvertisementController {
+public class DeleteBoostController {
 
     @Autowired
     private UserService userService;
@@ -25,16 +25,13 @@ public class DeleteAdvertisementController {
 
     @Autowired
     private PlantRepository plantRepository;
-    @Autowired
-    private ErrorIDDoNotExistController errorIDDoNotExistController;
-    @Autowired
-    private ErrorDeleteAdvertisementController errorDeleteAdvertisement;
 
 
-    @GetMapping("/deleteAdvertisement/{id}")
+    @GetMapping("/deleteBoost/{id}")
     public String openDeletePlant(@PathVariable("id") Integer plantId, Model model) {
 
         model.addAttribute("plantId", plantId);
+        model.addAttribute("currentUser", userService.getCurrentUser());
 
         Plant plant = plantRepository.findById(plantId)
                 .orElse(null);
@@ -43,38 +40,33 @@ public class DeleteAdvertisementController {
 
         if (plant == null) {
             return "error/errorIDDoNotExist";
-        } else if (userService.getCurrentUser() == plant.getSeller()){
-            return "deleteAdvertisement";
+        } else if (userService.getCurrentUser() == plant.getSeller() && plant.getBooster() == true){
+            return "deleteBoost";
         } else {
-            return "error/errorDeleteAdvertisement";
+            return "error/errorDeleteBoost";
         }
+
     }
 
 
-    @PostMapping("/deleteAdvertisement/{id}")
+    @PostMapping("/deleteBoost/{id}")
     public String deletePlant(@PathVariable("id") Integer plantId, Model model) {
 
         User currentUser = userService.getCurrentUser();
 
-        if (currentUser == plantService.getPlantByPlantId(plantId).getSeller() && !plantService.getPlantByPlantId(plantId).getSold()) {
+        Plant plant = plantService.findById(plantId);
 
-            for (User user : userService.findAllUsers()) {
-                if (user.getWishlistPlants().contains(plantService.getPlantByPlantId(plantId))) {
-                    user.getWishlistPlants().remove(plantService.getPlantByPlantId(plantId));
-                }
-            }
+        plant.setBooster(false);
+        plantService.save(plant);
 
-            plantService.deletePlantByPlantId(plantId);
+        List<Plant> plantList = currentUser.getPlantsToSell();
 
-            List<Plant> plantList = userService.getCurrentUser().getPlantsToSell();
-            model.addAttribute("plantList", plantList);
-        }
-        /** TODO Fehlermeldung anzeigen, wenn löschen nicht erlaubt ist
-         else {
-         model.addAttribute("pflanzeLöschenNichtErlaubt", "Du kannst diese Pflanze nicht löschen, da du nicht der Verkäufer bist oder sie schon verkauft wurde.");
-         }
-         */
+        model.addAttribute("plantList", plantList);
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("coinCount", currentUser.getPlantCoinCount());
+
 
         return "redirect:/myAdvertisements";
+
     }
 }

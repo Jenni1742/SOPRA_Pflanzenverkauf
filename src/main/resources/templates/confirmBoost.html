@@ -13,44 +13,28 @@
 <body>
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
+<div th:if="${NichtGenugCoins}" class="alert alert-danger" th:text="${NichtGenugCoins}"></div>
 
 <div class="container">
-    <!-- Überprüfung ob genügend PlantCoins vorhanden sind -->
-    <div th:if="${currentUser != null}">
-        <div th:if="${currentUser.plantCoinCount < 1}">
-            <div class="alert alert-danger" role="alert">
-                Du hast nicht genug PlantCoins, um diese Aktion durchzuführen.
+    <form th:action="@{/confirmBoost/{id}(id=${plantId})}" method="post" class="form-horizontal">
+        <h1> Verkaufsanzeige Boosten: </h1>
+        <div class="card card-rePlant">
+            <div class="card-head">
+                <p align="center" style="color: red">Bist du dir sicher, dass du diese Verkaufsanzeige für 10 PlantCoins boosten möchtest? </p>
             </div>
-            <a href="/notEnoughPlantCoins" class="btn btn-danger">Zurück</a>
-        </div>
-
-        <form th:if="${currentUser.plantCoinCount >= 1}" th:action="@{/confirmBoost/{id}(id=${plantId})}" method="post" class="form-horizontal">
-            <h1> Verkaufsanzeige Boosten: </h1>
-            <div class="card card-rePlant">
-                <div class="card-head">
-                    <p align="center" style="color: red">Bist du dir sicher, dass du diese Verkaufsanzeige für 1 PlantCoin boosten möchtest? </p>
+            <div class="card-body">
+                <div class="card-footer text-center card-footer-rePlant">
+                    <p>Folgende Pflanze soll geboosted werden: <span th:text="${plant.plantname}"></span></p>
                 </div>
-                <div class="card-body">
-                    <div class="card-footer text-center card-footer-rePlant">
-                        <p>Folgende Pflanze soll geboosted werden: <span th:text="${plant.plantname}"></span></p>
-                    </div>
-                    <div class="card-footer-rePlant">
-                        <a href="/myAdvertisements" class="btn-linkButton">
-                            <button type="button" class="btn btn-rePlantGrey">Verkaufsanzeige nicht boosten</button>
-                        </a>
-                        <button type="submit" class="btn btn-rePlantGreen">Verkaufsanzeige boosten</button>
-                    </div>
+                <div class="card-footer-rePlant">
+                    <a href="/myAdvertisements" class="btn-linkButton">
+                        <button type="button" class="btn btn-rePlantGrey">Verkaufsanzeige nicht boosten</button>
+                    </a>
+                    <button type="submit" class="btn btn-rePlantGreen">Verkaufsanzeige boosten</button>
                 </div>
             </div>
-        </form>
-    </div>
-
-    <div th:if="${currentUser == null}">
-        <div class="alert alert-danger" role="alert">
-            Benutzer ist nicht eingeloggt oder Benutzerinformationen sind nicht verfügbar.
         </div>
-        <a href="/login" class="btn btn-danger">Zur Login-Seite</a>
-    </div>
+    </form>
 </div>
 
 </body>

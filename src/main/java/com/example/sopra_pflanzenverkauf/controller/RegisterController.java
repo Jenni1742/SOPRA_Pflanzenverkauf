@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -39,7 +41,7 @@ public class RegisterController {
     /**
      * Handles GET requests targeted at the register page.
      *
-     * @return  the register page
+     * @return the register page
      */
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String showRegisterPage(Model model) {
@@ -55,13 +57,14 @@ public class RegisterController {
                                 @RequestParam("newEmail") String newEmail,
                                 @RequestParam("newPLZ") String newPLZ,
                                 @RequestParam("newPicturePath") String newPicturePath,
+                                @RequestParam("imageMp") MultipartFile multipartFile,
                                 @RequestParam("password1") String password1,
                                 @RequestParam("password2") String password2,
                                 Model model) {
 
         if (userService.getUserByUsername(newUsername) == null) {
             if (userService.getUserByEmail(newEmail) != null) {
-                model.addAttribute("mailExistiertBereits","Diese Email Adresse existiert bereits.");
+                model.addAttribute("mailExistiertBereits", "Diese Email Adresse existiert bereits.");
                 return "register";
             } else {
                 if (password1.equals(password2)) {
@@ -83,6 +86,12 @@ public class RegisterController {
 
                     newUser.setPicturePath(newPicturePath);
                     userService.updatePicturePath(newUser);
+
+                    try {
+                        newUser.setImage(multipartFile.getBytes());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                     newUser.setPassword(password1);
                     userService.updateUserPassword(newUser);
@@ -107,7 +116,7 @@ public class RegisterController {
                 }
             }
         } else {
-            model.addAttribute("usernameExistiertBereits","Dieser Benutzername existiert bereits.");
+            model.addAttribute("usernameExistiertBereits", "Dieser Benutzername existiert bereits.");
             return "register";
         }
     }

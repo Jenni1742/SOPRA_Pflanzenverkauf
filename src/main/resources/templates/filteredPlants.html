@@ -28,7 +28,7 @@
 
     <div class="row">
         <div class="col-md-3">
-            <div class="rounded-box mb-3 margin-top-20">
+            <div class="rounded-box mb-3 margin-top-20" style="border-color: #017101; border-style: solid; border-radius: 10px; padding: 10px">
                 <h4>Filtern</h4>
                 <form method="get" action = "/filteredPlants">
                     <div class="mb-3">
@@ -99,7 +99,7 @@
 
                         <h6><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></h6>
                         <div style="text-align: right; margin-top: -22px;">
-                            <a th:href="@{/plant-detail/{id}(id=${plant.plantId})}" style="text-decoration: none;">
+                            <a th:href="@{/plant-detail/{id}(id=${plant.plantId})}" class="btn-linkButton">
                                 <button type="button" class="btn btn-rePlantGreen">
                                     Mehr erfahren
                                 </button>
@@ -148,6 +148,16 @@
                 </div>
             </section>
         </div>
+    </div>
+</div>
+<div class="card-footer text-center card-footer-rePlant">
+    <p></p>
+    <div style="text-align: center">
+        <a href="#" class="btn-linkButton">
+            <button class="btn btn-rePlantGreen">
+                Nach oben
+            </button>
+        </a>
     </div>
 </div>
 

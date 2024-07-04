@@ -21,10 +21,6 @@
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 
-<div>
-    <p th:text="${boostMessage}"></p>
-</div>
-
 <div class="container">
     <div class="container">
         <div class="card">
@@ -41,7 +37,7 @@
                     Aktuell hast du noch keine Verkaufsanzeigen, aber das muss nicht so bleiben!
                 </p>
             </div>
-            <a href="http://localhost:8080/createAdvertisement">
+            <a href="http://localhost:8080/createAdvertisement" class="btn-linkButton">
                 <button type="button" class="btn btn-rePlantGreen">
                     Verkaufe deine Pflanzen
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -54,7 +50,7 @@
                 </button>
             </a>
             <p></p>
-            <h6>Mit PlantCoins kannst du deine Anzeigen boosten und sie auf der Startseite hervorheben. Jede Boosting-Aktion kostet 10 PlantCoins.</h6>
+            <h6>Mit PlantCoins kannst du deine Anzeigen boosten um sie auf der Startseite hervorzuheben. Jeder Boost kostet 10 PlantCoins.</h6>
             <h6>Deine aktuellen PlantCoins: <span th:text="${currentUser.plantCoinCount}"></span>
                 <img src="images\plantCoin.png" style="height: 20px; width: 20px;">
             </h6>
@@ -86,15 +82,13 @@
 
                         <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
                         <div style="display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-end">
-                            <a th:if="${!plant.booster}" th:href="@{/confirmBoost/{id}(id=${plant.plantId})}" th:attr="onclick=${currentUser.plantCoinCount < 10} ? 'showAlert()' : ''">
+                            <a th:if="${!plant.booster}" th:href="@{/confirmBoost/{id}(id=${plant.plantId})}" th:attr="onclick=${currentUser.plantCoinCount < 10} ? 'showAlert()' : ''" class="btn-linkButton">
                                 <button type="button" class="btn btn-rePlantYellow">Boost kaufen</button>
                             </a>
-                            <a th:if="${plant.booster}" th:href="@{/removeBoost/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;">
-                                <form th:action="@{/removeBoost/{id}(id=${plant.plantId})}" method="post" style="display:inline;">
-                                    <button type="submit" class="btn btn-rePlantOrange">Boost entfernen</button>
-                                </form>
+                            <a th:if="${plant.booster}" th:href="@{/deleteBoost/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;" class="btn-linkButton">
+                                    <button type="button" class="btn btn-rePlantOrange">Boost entfernen</button>
                             </a>
-                            <a th:href="@{/showAdvertisement/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;">
+                            <a th:href="@{/showAdvertisement/{id}(id=${plant.plantId})}" style="text-decoration: none; background: none; border: none; cursor: pointer;" class="btn-linkButton">
                                 <button type="button" class="btn btn-rePlantGreen">Ganze Anzeige ansehen
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
@@ -118,7 +112,7 @@
             </div>
             <div class="card-footer text-center card-footer-rePlant">
                 <p></p>
-                <a href="#">
+                <a href="#" class="btn-linkButton">
                     <button class="btn btn-rePlantGreen">
                         Nach oben
                     </button>

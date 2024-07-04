@@ -1,6 +1,7 @@
 package com.example.sopra_pflanzenverkauf.entity;
 
 import jakarta.persistence.*;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 
 import java.util.ArrayList;
@@ -52,7 +53,12 @@ public class User {
     private Level sellingLevel;
 
     @Column(name = "Profilbild")
+    @Deprecated
     private String picturePath;
+
+    @Column(name = "ProfilbildNeu")
+    @Lob
+    private byte[] image;
 
     @Column(name = "Anzahl gekaufter Pflanzen")
     private Integer numberOfPurchasedPlants = 0;
@@ -445,6 +451,20 @@ public class User {
         List<Chat> chatList = this.getReceivedChat();
         chatList.addAll(this.getSentChat());
         return chatList;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getImageDataBase64() {
+        String image = Base64.encodeBase64String(this.image);
+        System.out.println(image);
+        return image;
     }
 
 }
