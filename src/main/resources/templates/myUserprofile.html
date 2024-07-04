@@ -35,7 +35,8 @@
                     <th scope="row" rowspan="3">
                         <!-- Button trigger modal -->
                         <button type="button" class="btn btn-Profilbild" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            <img th:src="${currentUser.getPicturePath()}" alt="Profilbild" onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'" class="rounded-circle">
+                            <!--<img th:src="${currentUser.getPicturePath() }" alt="Profilbild" onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'" class="rounded-circle"> -->
+                            <img th:if="${currentUser.image != null}" th:src="@{'data:image/jpeg;base64,'+${currentUser.getImageDataBase64()}}" alt="Profilbild " class="rounded-circle" >
                         </button>
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

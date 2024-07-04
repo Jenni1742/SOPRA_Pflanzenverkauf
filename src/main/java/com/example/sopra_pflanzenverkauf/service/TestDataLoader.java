@@ -107,6 +107,7 @@ public class TestDataLoader implements CommandLineRunner {
 
     @Autowired
     private MessageService messageService;
+
     /**
      * Executed during Spring boot startup.
      *
@@ -187,7 +188,8 @@ public class TestDataLoader implements CommandLineRunner {
         jenniferKaisner.setPlz("72108");
         jenniferKaisner.setBuyingLevel(level1);
         jenniferKaisner.setSellingLevel(level1);
-        jenniferKaisner.setPicturePath("https://media.rimondo.net/1363699/conversions/4e431791-5f31-4f3e-9d2f-61eef8ffd846-400.webp?v=1637496632");
+        //jenniferKaisner.setPicturePath("https://media.rimondo.net/1363699/conversions/4e431791-5f31-4f3e-9d2f-61eef8ffd846-400.webp?v=1637496632");
+        jenniferKaisner.setImage(jenniferKaisner.imageInBytes("src/main/resources/static/images/profilpictures/ProfilbildJenni.jpg"));
         jenniferKaisner.setRoles(userRoles);
         userService.persistUser(jenniferKaisner);
 
@@ -201,7 +203,8 @@ public class TestDataLoader implements CommandLineRunner {
         aylinaAshkenov.setPlz("70199");
         aylinaAshkenov.setBuyingLevel(level0);
         aylinaAshkenov.setSellingLevel(level1);
-        aylinaAshkenov.setPicturePath("https://i.pinimg.com/236x/35/b1/61/35b1618bc1108909ac81f289f0814699.jpg");
+        //aylinaAshkenov.setPicturePath("https://i.pinimg.com/236x/35/b1/61/35b1618bc1108909ac81f289f0814699.jpg");
+        aylinaAshkenov.setImage(aylinaAshkenov.imageInBytes("src/main/resources/static/images/profilpictures/ProfilbildAylina.jpg"));
         aylinaAshkenov.setRoles(userRoles);
         userService.persistUser(aylinaAshkenov);
 
@@ -214,7 +217,8 @@ public class TestDataLoader implements CommandLineRunner {
         alessiaSedelnikov.setPlz("71283");
         alessiaSedelnikov.setBuyingLevel(level1);
         alessiaSedelnikov.setSellingLevel(level1);
-        alessiaSedelnikov.setPicturePath("https://i.pinimg.com/236x/94/fe/45/94fe45409a5fb7909b655e0987798216.jpg");
+        //alessiaSedelnikov.setPicturePath("https://i.pinimg.com/236x/94/fe/45/94fe45409a5fb7909b655e0987798216.jpg");
+        alessiaSedelnikov.setImage(alessiaSedelnikov.imageInBytes("src/main/resources/static/images/profilpictures/ProfilbildAlessia.jpg"));
         alessiaSedelnikov.setRoles(userRoles);
         alessiaSedelnikov.setPlantCoinCount(100);
         userService.persistUser(alessiaSedelnikov);
@@ -228,7 +232,8 @@ public class TestDataLoader implements CommandLineRunner {
         markoPetric.setPlz("70128");
         markoPetric.setBuyingLevel(level0);
         markoPetric.setSellingLevel(level1);
-        markoPetric.setPicturePath("https://i.pinimg.com/474x/81/47/f6/8147f66671e37ef12238c49e42346953.jpg");
+        //markoPetric.setPicturePath("https://i.pinimg.com/474x/81/47/f6/8147f66671e37ef12238c49e42346953.jpg");
+        markoPetric.setImage(markoPetric.imageInBytes("src/main/resources/static/images/profilpictures/ProfilbildMarko.jpg"));
         markoPetric.setRoles(userRoles);
         userService.persistUser(markoPetric);
 
@@ -241,7 +246,8 @@ public class TestDataLoader implements CommandLineRunner {
         franziskaHornung.setPlz("78292");
         franziskaHornung.setBuyingLevel(level0);
         franziskaHornung.setSellingLevel(level1);
-        franziskaHornung.setPicturePath("https://i.pinimg.com/236x/0a/ea/c8/0aeac8c1c7a0cebb97a01a26794498ac.jpg");
+        //franziskaHornung.setPicturePath("https://i.pinimg.com/236x/0a/ea/c8/0aeac8c1c7a0cebb97a01a26794498ac.jpg");
+        franziskaHornung.setImage(franziskaHornung.imageInBytes("src/main/resources/static/images/profilpictures/ProfilbildFranzi.jpg"));
         franziskaHornung.setRoles(userRoles);
         userService.persistUser(franziskaHornung);
 
@@ -273,14 +279,9 @@ public class TestDataLoader implements CommandLineRunner {
 
         );
 
-        File fnew=new File("src/main/resources/static/images/plantPictures/lotus-1412858_1280.jpg");
-        BufferedImage originalImage=ImageIO.read(fnew);
-        ByteArrayOutputStream baos=new ByteArrayOutputStream();
-         ImageIO.write(originalImage, "jpg", baos );
-         byte[] imageInByte=baos.toByteArray();
-         melanostachy.setImage(imageInByte);
-
+        melanostachy.setImage(melanostachy.imageInBytes("src/main/resources/static/images/plantPictures/lotus-1412858_1280.jpg"));
         plantService.persistPlant(melanostachy);
+
         Plant kaffeestrauch = new Plant(
                 "Kaffeestrauch",
                 50,

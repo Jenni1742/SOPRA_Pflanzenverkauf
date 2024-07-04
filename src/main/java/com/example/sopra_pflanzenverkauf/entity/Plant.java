@@ -1,8 +1,14 @@
 package com.example.sopra_pflanzenverkauf.entity;
 
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.apache.tomcat.util.codec.binary.Base64;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -343,5 +349,18 @@ public class Plant {
         System.out.println(image);
         return image;
     }
+
+    public byte[] imageInBytes (String pathname) throws IOException {
+        if (pathname == null) {
+            throw new NullPointerException();
+        }
+        File file=new File(pathname);
+        BufferedImage originalImage= ImageIO.read(file);
+        ByteArrayOutputStream baos=new ByteArrayOutputStream();
+        ImageIO.write(originalImage, "jpg", baos );
+        return baos.toByteArray();
+    }
+
+
 
 }
