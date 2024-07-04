@@ -67,7 +67,6 @@ public class EditAdvertisementController {
                             @RequestParam(value = "newcareTips", required = false) String newcareTips,
                             @RequestParam(value = "newzipCode", required = false) String newzipCode,
                             @RequestParam(value = "newselectCategory") String newselectCategory,
-                            @RequestParam(value = "newimageUrl", required = false) String newimageUrl,
                             @RequestParam(value = "newImageMp", required = false) MultipartFile multipartFile,
                             @RequestParam(value = "newImageMp2", required = false) MultipartFile multipartFileTwo,
                             @RequestParam(value = "newImageMp3", required = false) MultipartFile multipartFileThree,
