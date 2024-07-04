@@ -592,6 +592,10 @@ public class TestDataLoader implements CommandLineRunner {
         messageService.updateMessage(message5);
         chatService.updateChat(chatTest);
 
+        chatTest.setSenderAccept(true);
+        chatTest.setRecipientAccept(true);
+        chatService.updateChat(chatTest);
+
 
 
     }
