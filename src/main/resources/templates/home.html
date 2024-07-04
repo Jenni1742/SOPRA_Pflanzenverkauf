@@ -179,7 +179,7 @@
                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <form th:action="@{/delete (plant = ${plant.plantId})}" id="plant" name="plant" method="post">
+                                        <form th:action="@{/delete (plant = ${plant.plantId})}" id="plant3" name="plant" method="post">
                                             <div class="modal-body">
                                                 <p align="left">Bist Du sicher, dass du diese Pflanze aus deiner Merkliste entfernen möchtest?</p>
                                             </div>
@@ -194,7 +194,7 @@
                         </div>
 
 
-                            <form th:action="@{/ (plant = ${plant.plantId})}" id="plant2" name="plant" method="post">
+                            <form th:action="@{/ (plant = ${plant.plantId})}" id="plant4" name="plant" method="post">
                             <div th:if="${currentUser.getWishlistPlants().contains(plant) == false}">
                                 <button  type="submit" class="btn-rePlantHeartEmpty" style="top: -160px; right: 0px;  position: absolute;">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="red" class="bi bi-heart" viewBox="0 0 16 16">
