@@ -56,7 +56,6 @@ public class RegisterController {
                                 @RequestParam("newLastName") String newLastName,
                                 @RequestParam("newEmail") String newEmail,
                                 @RequestParam("newPLZ") String newPLZ,
-                                @RequestParam("newPicturePath") String newPicturePath,
                                 @RequestParam("imageMp") MultipartFile multipartFile,
                                 @RequestParam("password1") String password1,
                                 @RequestParam("password2") String password2,
@@ -84,8 +83,6 @@ public class RegisterController {
                     newUser.setPlz(newPLZ);
                     userService.updatePLZ(newUser);
 
-                    newUser.setPicturePath(newPicturePath);
-                    userService.updatePicturePath(newUser);
 
                     try {
                         newUser.setImage(multipartFile.getBytes());
