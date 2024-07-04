@@ -57,11 +57,11 @@ public class User {
     @JoinColumn(name = "Verkäuferlevel")
     private Level sellingLevel;
 
-    @Column(name = "Profilbild")
+    @Column(name = "ProfilbildAlt")
     @Deprecated
     private String picturePath;
 
-    @Column(name = "ProfilbildNeu")
+    @Column(name = "Profilbild")
     @Lob
     private byte[] image;
 
