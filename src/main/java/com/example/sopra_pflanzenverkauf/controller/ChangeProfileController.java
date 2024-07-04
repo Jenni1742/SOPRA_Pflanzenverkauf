@@ -52,7 +52,6 @@ public class ChangeProfileController {
 
         User currentUser = userService.getCurrentUser();
 
-
         if (!newPicturePath.isEmpty()) {
             currentUser.setPicturePath(newPicturePath);
             userService.updatePicturePath(currentUser);
