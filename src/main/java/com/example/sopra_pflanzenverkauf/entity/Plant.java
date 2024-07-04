@@ -44,15 +44,15 @@ public class Plant {
     @Deprecated
     private String imageUrl;
 
-    @Column(name = "Bilddaten1")
+    @Column(name = "Bild1")
     @Lob
     private byte[] image;
 
-    @Column(name = "Bilddaten2")
+    @Column(name = "Bild2")
     @Lob
     private byte[] imageTwo;
 
-    @Column(name = "Bilddaten3")
+    @Column(name = "Bild3")
     @Lob
     private byte[] imageThree;
 
