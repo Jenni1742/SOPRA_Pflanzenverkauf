@@ -1,0 +1,120 @@
+.slider-container {
+    width: 100%;
+    position: relative;
+    height: 50px;
+}
+
+.range-slider {
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+}
+
+.range-slider input[type="range"] {
+    pointer-events: all;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    position: absolute;
+    height: 8px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #017101;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.range-slider input[type="range"]::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #017101;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.range-slider .range-track {
+    position: absolute;
+    height: 8px;
+    background: #017101;
+    border-radius: 5px;
+    z-index: 0;
+}
+
+.values {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+/* Neuer Code für den Größen-Slider */
+.slide-container {
+    width: 100%;
+    position: relative;
+    height: 50px;
+}
+
+.slide-container .range-slider {
+    width: 100%;
+    position: absolute;
+    pointer-events: none;
+}
+
+.slide-container input[type="range"] {
+    pointer-events: all;
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    position: absolute;
+    height: 8px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+}
+
+.slide-container input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #017101;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.slide-container input[type="range"]::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #017101;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+}
+
+.slide-container .range-track {
+    position: absolute;
+    height: 8px;
+    background: #017101;
+    border-radius: 5px;
+    z-index: 0;
+}
+
+.slide-container .values {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
