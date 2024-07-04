@@ -9,13 +9,10 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css\stylesheet.css">
-    <style>
-        body {
-            padding-top: 0px;
-        }
-    </style>
 </head>
 <body>
+<div th:insert="~{fragments/htmlHead :: navbar}"></div>
+
 <div th:if="${emailExistiertBereits}" class="alert alert-danger" th:text="${emailExistiertBereits}"></div>
 <div class="container">
     <div class="card card-rePlant">
