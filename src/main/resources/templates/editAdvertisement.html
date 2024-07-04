@@ -22,111 +22,106 @@
             <h2 class="card-title" th:text="'Anzeige bearbeiten'"></h2>
         </div>
 
-        <form th:action="@{/editAdvertisement/{id}(id=${plant.plantId})}" method="post" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="newplantname" class="form-label">Name der Pflanze</label>
-                <input type="text" class="form-control" id="newplantname" name="newplantname"
-                       th:placeholder="${plant.plantname}">
-            </div>
-
-            <div class="mb-3">
-                <label for="newlatinName" class="form-label">Lateinischer Name (optional)</label>
-                <input type="text" class="form-control" id="newlatinName" name="newlatinName"
-                       th:placeholder="${plant.latinName}">
-            </div>
-
-            <div th:if="${plant.planter}">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="withPlanterTrue" id="withPlanterTrue" checked>
-                    <label class="form-check-label" for="withPlanterTrue">
-                        Inklusive Übertopf?
-                    </label>
+        <div class="card-body">
+            <form th:action="@{/editAdvertisement/{id}(id=${plant.plantId})}" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="newplantname" class="form-label">Name der Pflanze:</label>
+                    <input type="text" class="form-control" id="newplantname" name="newplantname"
+                           th:placeholder="${plant.plantname}">
                 </div>
-            </div>
 
-            <div th:if="${!plant.planter}">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="withPlanterFalse" id="withPlanterFalse">
-                    <label class="form-check-label" for="withPlanterFalse">
-                        Inklusive Übertopf?
-                    </label>
+                <div class="mb-3">
+                    <label for="newlatinName" class="form-label">Lateinischer Name (optional):</label>
+                    <input type="text" class="form-control" id="newlatinName" name="newlatinName"
+                           th:placeholder="${plant.latinName}">
                 </div>
-            </div>
 
-            <div class="mb-3">
-                <label for="newplantSize" class="form-label">Größe (in cm)</label>
-                <input type="number" min="0" class="form-control" id="newplantSize" name="newplantSize"
-                       th:placeholder="${plant.plantSize}">
-            </div>
-
-            <div class="mb-3">
-                <label for="newprice" class="form-label">Preis (in €)</label>
-                <input type="number" min="0" step="0.01" size="3" class="form-control" id="newprice" name="newprice"
-                       th:placeholder="${plant.price}">
-            </div>
-
-
-            <div class="mb-3">
-                <label for="newplantDescription" class="form-label">Beschreibung</label>
-                <textarea class="form-control" id="newplantDescription" name="newplantDescription"
-                          th:placeholder="${plant.plantDescription}"></textarea>
-            </div>
-
-            <div class="mb-3">
-                <label for="newcareTips" class="form-label">Pflegetipps</label>
-                <textarea class="form-control" id="newcareTips" name="newcareTips"
-                          th:placeholder="${plant.careTips}"></textarea>
-            </div>
-
-            <div class="mb-3">
-                <label for="newzipCode" class="form-label">Postleitzahl</label>
-                <input type="text" title="Postleitzahl mit 5 Stellen" pattern="^[0-9]{5}$" class="form-control"
-                       id="newzipCode" name="newzipCode" th:placeholder="${plant.zipCode}">
-            </div>
-
-            Kategorie:
-            <div class="input-group mb-3">
-                <select class="form-select" id="newselectCategory" name="newselectCategory">
-                    <option><span th:text="${plant.getCategory().getCategoryname()}"></span></option>
-                    <div th:each="category : ${categories}">
-                        <option th:if="${!plant.getCategory().equals(category)}"><span
-                                th:text="${category.getCategoryname()}"></span></option>
+                <div th:if="${plant.planter}">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="withPlanterTrue" id="withPlanterTrue" checked>
+                        <label class="form-check-label" for="withPlanterTrue">
+                            Inklusive Übertopf?
+                        </label>
                     </div>
-                </select>
-            </div>
+                </div>
 
-            Bildlink hinzufügen
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" id="newimageUrl" name="newimageUrl"
-                       th:placeholder="${plant.imageUrl}">
-            </div>
+                <div th:if="${!plant.planter}">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="withPlanterFalse" id="withPlanterFalse">
+                        <label class="form-check-label" for="withPlanterFalse">
+                            Inklusive Übertopf?
+                        </label>
+                    </div>
+                </div>
 
-            Bilder
-            <div class="input-group mb-3">
-                <input type="file" class="form-control" name="newImageMp" id="newImageMp">
-            </div>
+                <div class="mb-3">
+                    <label for="newplantSize" class="form-label">Größe (in cm):</label>
+                    <input type="number" min="0" class="form-control" id="newplantSize" name="newplantSize"
+                           th:placeholder="${plant.plantSize}">
+                </div>
 
-            <div class="input-group mb-3">
-                <input type="file" class="form-control" name="newImageMp2" id="newImageMp2">
-            </div>
+                <div class="mb-3">
+                    <label for="newprice" class="form-label">Preis (in €):</label>
+                    <input type="number" min="0" step="0.01" size="3" class="form-control" id="newprice" name="newprice"
+                           th:placeholder="${plant.price}">
+                </div>
 
-            <div class="input-group mb-3">
-                <input type="file" class="form-control" name="newImageMp3" id="newImageMp3">
-            </div>
 
-            <div class="card-footer text-center card-footer-rePlant">
-                <a href="http://localhost:8080/myAdvertisements" class="btn-linkButton btn-linkButton">
-                    <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Schließen</button>
-                </a>
-                <button type="submit" class="btn btn-rePlantGreen">Speichern
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                         class="bi bi-floppy" viewBox="0 0 16 16">
-                        <path d="M11 2H9v3h2z"/>
-                        <path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z"/>
-                    </svg>
-                </button>
-            </div>
-        </form>
+                <div class="mb-3">
+                    <label for="newplantDescription" class="form-label">Beschreibung:</label>
+                    <textarea class="form-control" id="newplantDescription" name="newplantDescription"
+                              th:placeholder="${plant.plantDescription}"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="newcareTips" class="form-label">Pflegetipps:</label>
+                    <textarea class="form-control" id="newcareTips" name="newcareTips"
+                              th:placeholder="${plant.careTips}"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="newzipCode" class="form-label">Postleitzahl:</label>
+                    <input type="text" title="Postleitzahl mit 5 Stellen" pattern="^[0-9]{5}$" class="form-control"
+                           id="newzipCode" name="newzipCode" th:placeholder="${plant.zipCode}">
+                </div>
+
+                Kategorie:
+                <div class="input-group mb-3">
+                    <select class="form-select" id="newselectCategory" name="newselectCategory">
+                        <option><span th:text="${plant.getCategory().getCategoryname()}"></span></option>
+                        <div th:each="category : ${categories}">
+                            <option th:if="${!plant.getCategory().equals(category)}"><span
+                                    th:text="${category.getCategoryname()}"></span></option>
+                        </div>
+                    </select>
+                </div>
+
+                Bilder:
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" name="newImageMp" id="newImageMp">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" name="newImageMp2" id="newImageMp2">
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" name="newImageMp3" id="newImageMp3">
+                </div>
+
+                <div class="card-footer text-center card-footer-rePlant">
+                    <button onclick="history.back()" type="button" class="btn btn-rePlantGrey">Schließen
+                    </button>
+                    <button type="submit" class="btn btn-rePlantGreen">Speichern
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-floppy" viewBox="0 0 16 16">
+                            <path d="M11 2H9v3h2z"/>
+                            <path d="M1.5 0h11.586a1.5 1.5 0 0 1 1.06.44l1.415 1.414A1.5 1.5 0 0 1 16 2.914V14.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 14.5v-13A1.5 1.5 0 0 1 1.5 0M1 1.5v13a.5.5 0 0 0 .5.5H2v-4.5A1.5 1.5 0 0 1 3.5 9h9a1.5 1.5 0 0 1 1.5 1.5V15h.5a.5.5 0 0 0 .5-.5V2.914a.5.5 0 0 0-.146-.353l-1.415-1.415A.5.5 0 0 0 13.086 1H13v4.5A1.5 1.5 0 0 1 11.5 7h-7A1.5 1.5 0 0 1 3 5.5V1H1.5a.5.5 0 0 0-.5.5m3 4a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 .5-.5V1H4zM3 15h10v-4.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5z"/>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 </body>

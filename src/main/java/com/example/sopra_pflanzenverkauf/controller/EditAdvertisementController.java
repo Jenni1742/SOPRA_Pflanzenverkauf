@@ -139,7 +139,9 @@ public class EditAdvertisementController {
 
         plantService.updatePlant(currentPlant);
 
-        return "redirect:/myAdvertisements";
+        model.addAttribute("plant", currentPlant);
+
+        return "/showAdvertisement";
     }
 
 }
