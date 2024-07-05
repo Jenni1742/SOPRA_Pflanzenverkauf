@@ -21,15 +21,15 @@
         <div id="branding">
             <h1 style="color:#017101;">Gefilterte Pflanzen:</h1>
         </div>
-        <div th:if="${filteredPlants.size() == 0 || filteredPlants == null}" class="alert alert-warning" role="alert">
+        <div th:if="${plants.size() == 0 || plants == null}" class="alert alert-warning" role="alert">
             Keine Pflanzen gefunden. Versuche es mit einem anderen Filter.
         </div>
     </header>
 
 
     <div class="row">
-        <div class="col-md-3" style="padding-top: 28px">
-            <div class="rounded-box mb-3 margin-top-20" style="border-color: #017101; border-style: solid; border-width: 2px; border-radius: 10px; padding: 10px">
+        <div class="col-md-3">
+            <div class="rounded-box mb-3 margin-top-20" style="border-color: #017101; border-style: solid; border-radius: 10px; padding: 10px">
                 <h4>Filtern</h4>
                 <form method="get" action = "/filteredPlants">
                     <div class="mb-3">
@@ -85,7 +85,7 @@
         </div>
         <div class="col-md-9">
             <div class="d-flex justify-content-end mb-3">
-                <form method="get" action="/filteredPlants" id="sortForm">
+                <form method="get" action="/sortPlants" id="sortForm">
                         <div class="rounded-box d-flex align-items-center">
                             <label for="sortField" class="form-label me-2 mb-0">Sortieren:</label>
                             <select id="sortField" class="form-select" name="sort" onchange="document.getElementById('sortForm').submit();">
@@ -99,13 +99,10 @@
                 </form>
             </div>
             <section class="ads">
-                <div th:each="plant : ${filteredPlants}" th:if="${plant.getSeller() != currentUser}" class="ad" style="display: flex; align-items: flex-start; border: 1px solid #017101; padding: 10px; margin: 10px; border-radius: 10px;">
+                <div th:each="plant : ${plants}" th:if="${plant.getSeller() != currentUser}" class="ad" style="display: flex; align-items: flex-start; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
                     <div style="flex: 0 0 auto; margin-right: 20px; width: 160px;">
                         <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
-                            <img th:if="${plant.imageUrl != null && plant.image == null}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]"
-                                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-                            <img th:if="${plant.image != null}" th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}" alt="Bild von [[${plant.name}]]"
-                                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                            <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                         </div>
                     </div>
                     <div style="flex: 1; padding-left: 20px;">
@@ -183,8 +180,7 @@
         </div>
     </div>
 </div>
-
-<div th:if="${filteredPlants.size() != 0}" class="card-footer text-center card-footer-rePlant">
+<div class="card-footer text-center card-footer-rePlant">
     <p></p>
     <div style="text-align: center">
         <a href="#" class="btn-linkButton">

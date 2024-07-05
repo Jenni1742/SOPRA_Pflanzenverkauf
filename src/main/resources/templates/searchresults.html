@@ -82,6 +82,7 @@
             </div>
             <div class="col-md-9">
                 <div class="d-flex justify-content-end mb-3">
+                    <form method= "get" action = "/sortPlants" id= sortForm>
                     <div class="rounded-box d-flex align-items-center">
                         <label for="sortField" class="form-label me-2 mb-0">Sortieren:</label>
                         <select id="sortField" class="form-select" name="sort">
@@ -92,6 +93,7 @@
                             <option value="size_desc">Größe absteigend</option>
                         </select>
                     </div>
+                    </form>
                 </div>
                 <section class="ads">
                     <div th:each="plant : ${plants}" class="ad" style="display: flex; align-items: flex-start; border: 1px solid #017101; padding: 10px; margin: 10px; border-radius: 10px;">

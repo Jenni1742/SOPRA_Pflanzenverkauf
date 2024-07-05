@@ -34,7 +34,12 @@ public class HomeController {
     public String showHome(Model model,
                            @RequestParam(value = "query", required = false) String query,
                            @RequestParam(value = "category", required = false) Category category,
-                           @RequestParam(value = "price", required = false) String price)  {
+                           @RequestParam(value = "price", required = false) String price,
+                           @RequestParam(name = "planter", required = false) String planter,
+                           @RequestParam(name = "priceMin", required = false) Integer priceMin,
+                           @RequestParam(name = "priceMax", required = false) Integer priceMax,
+                           @RequestParam(name = "sizeMin", required = false) Integer sizeMin,
+                           @RequestParam(name = "sizeMax", required = false) Integer sizeMax)  {
 
         User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", userService.getCurrentUser());
@@ -45,12 +50,12 @@ public class HomeController {
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
 
-        List<Plant> plants = plantService.findFilteredAndSortedPlants(category, price, false, false);
+        List<Plant> plants = plantService.getFilteredPlants(category, planter,  false);
         if (plants == null) {
             plants = new ArrayList<>();
         }
 
-        List<Plant> boostedPlants = plantService.findFilteredAndSortedPlants(category, price, false, true);
+        List<Plant> boostedPlants = plantService.getFilteredPlants(category, planter, false);
 
         int i = 0;
         while (i < plants.size()) {
@@ -67,9 +72,14 @@ public class HomeController {
         return "home";
     }
     @GetMapping("/filteredPlants")
-    public String showFilteredPlants(Model model,
-                                     @RequestParam(value = "category", required = false) String category,
-                                     @RequestParam(value = "sort", required = false) String sort) {
+    public String getFilteredPlants(
+            @RequestParam(name = "category", required = false) String category,
+            @RequestParam(name = "planter", required = false) String planter,
+            @RequestParam(name = "priceMin", required = false) Integer priceMin,
+            @RequestParam(name = "priceMax", required = false) Integer priceMax,
+            @RequestParam(name = "sizeMin", required = false) Integer sizeMin,
+            @RequestParam(name = "sizeMax", required = false) Integer sizeMax,
+            Model model) {
 
         User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", currentUser);
@@ -83,18 +93,26 @@ public class HomeController {
             }
         }
 
-        List<Plant> filteredPlants = plantService.findFilteredAndSortedPlants(selectedCategory, sort, false, false);
-
-        filteredPlants = filteredPlants.stream()
+        List<Plant> plants = plantService.getFilteredPlants(selectedCategory, planter, false);
+        plants = plants.stream()
                 .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
                 .collect(Collectors.toList());
 
-        model.addAttribute("filteredPlants", filteredPlants);
-        model.addAttribute("selectedCategory", category);
-        model.addAttribute("selectedSort", sort);
-
+        model.addAttribute("plants", plants);
         return "filteredPlants";
     }
+
+    @GetMapping("/sortPlants")
+    public String sortPlants(
+            @RequestParam(name = "sort", required = false) String sort,
+            Model model) {
+
+        List<Plant> plants = plantService.getAllPlants();
+        plants = plantService.sortPlants(plants, sort);
+        model.addAttribute("plants", plants);
+        return "filteredPlants";
+    }
+
     @GetMapping("/plants")
     public String getPlants(Model model) {
 
