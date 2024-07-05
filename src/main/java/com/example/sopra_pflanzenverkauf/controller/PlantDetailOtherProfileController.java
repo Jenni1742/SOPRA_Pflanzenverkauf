@@ -36,20 +36,22 @@ public class PlantDetailOtherProfileController {
      }
      */
 
-    @GetMapping("/plantDetailSeller/{id}")
+    @GetMapping("/plantDetailOtherProfile/{id}")
     public String showPlantDetailWishlist(@PathVariable("id") Integer plantId, Model model) {
 
         User currentUser = userService.getCurrentUser();
 
         Plant plant = plantRepository.findById(plantId)
                 .orElse(null);
+
         model.addAttribute("plant", plant);
         model.addAttribute("currentUser", currentUser);
-        model.addAttribute("sellerId", plant.getSeller().getUserId());
+
 
         if (plant == null) {
             return "error/errorIDDoNotExist";
         } else if (userService.getCurrentUser() != plant.getSeller() && plant.getSeller() != null){
+            model.addAttribute("sellerId", plant.getSeller().getUserId());
             return "plantDetailOtherProfile";
         } else {
             return "error/errorPlantDetails";
