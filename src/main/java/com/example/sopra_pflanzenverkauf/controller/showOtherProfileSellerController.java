@@ -48,14 +48,18 @@ public class showOtherProfileSellerController {
         User currentUser = userService.getCurrentUser();
         System.out.println(plantService.getPlantByPlantId(plant).getPlantname());
 
+        Plant plantObject = plantService.getPlantByPlantId(plant);
+
         if (currentUser != null && plant != null) {
             currentUser.getWishlistPlants().add(plantService.getPlantByPlantId(plant));
 
             userService.updateWishlist(currentUser);
         }
 
+        Integer userId = plantObject.getSeller().getUserId();
+
         model.put("currentUser", currentUser);
-        return "redirect:/plant-detail/" + plant;
+        return "redirect:/showOtherProfileSeller/" + userId + "#Verkaufsanzeigen";
     }
 
     @PostMapping(path = "/showOtherProfileSeller/delete")
@@ -68,8 +72,10 @@ public class showOtherProfileSellerController {
 
         userService.updateWishlist(currentUser);
 
+        Plant plantObject = plantService.getPlantByPlantId(plant);
+        Integer userId = plantObject.getSeller().getUserId();
 
         model.put("currentUser", currentUser);
-        return "redirect:/plant-detail/" + plant;
+        return "redirect:/showOtherProfileSeller/" + userId + "#Verkaufsanzeigen";
     }
 }

@@ -1,5 +1,6 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
+import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.repository.UserRepository;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
@@ -52,8 +53,11 @@ public class showOtherProfileBuyerController {
             userService.updateWishlist(currentUser);
         }
 
+        Plant plantObject = plantService.getPlantByPlantId(plant);
+        Integer userId = plantObject.getSeller().getUserId();
+
         model.put("currentUser", currentUser);
-        return "redirect:/plant-detail/" + plant;
+        return "redirect:/showOtherProfileSeller/" + userId + "#Verkaufsanzeigen";
     }
 
     @PostMapping(path = "/showOtherProfileBuyer/delete")
@@ -67,7 +71,10 @@ public class showOtherProfileBuyerController {
         userService.updateWishlist(currentUser);
 
 
+        Plant plantObject = plantService.getPlantByPlantId(plant);
+        Integer userId = plantObject.getSeller().getUserId();
+
         model.put("currentUser", currentUser);
-        return "redirect:/plant-detail/" + plant;
+        return "redirect:/showOtherProfileSeller/" + userId + "#Verkaufsanzeigen";
     }
 }
