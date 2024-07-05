@@ -19,6 +19,23 @@
 <body>
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
+ <div style="text-align: center">
+     <button onclick="history.back()" type="button" class="btn btn-rePlantGrey">
+         Zurück
+     </button>
+     <a href="/sellerRanking" class="btn-linkButton">
+         <button type="button" class="btn btn-rePlantGreen">
+            Zur Verkäufer-Rangliste
+         </button>
+     </a>
+     <a href="/buyerRanking" class="btn-linkButton">
+         <button type="button" class="btn btn-rePlantGreen">
+             Zur Käufer-Rangliste
+         </button>
+     </a>
+
+ </div>
+
 
 <div class="container">
     <div class="card">
@@ -99,11 +116,6 @@
                 </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="card-footer text-center card-footer-rePlant">
-            <button onclick="history.back()" type="button" class="btn btn-rePlantGrey">
-                Schließen
-            </button>
         </div>
     </div>
 

@@ -88,7 +88,7 @@
 
                     <div th:if="${plant.seller != null}">
                         <p><strong>Verkäufer*in:</strong>
-                            <a th:href="@{/showOtherProfileSeller/{userid}(userid=${plant.seller.userId})}"
+                            <a th:href="@{/showOtherProfile/{userid}(userid=${plant.seller.userId})}"
                                class="btn-linkVerkäufer">
                                 <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Verkäufer</span>
                             </a>
@@ -118,7 +118,7 @@
                              aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <form th:action="@{/plantDetailWishlist/delete/{id} (id = ${plant.plantId})}" id="plant"
+                                    <form th:action="@{/plantDetailSeller/delete/{id} (id = ${plant.plantId})}" id="plant"
                                           name="plant"
                                           method="post">
                                         <div class="modal-body">
@@ -140,12 +140,24 @@
                             </div>
                         </div>
                     </div>
+                    <form th:action="@{/plantDetailSeller/{id} (id = ${plant.plantId})}" id="plant2" name="plant" method="post">
+                        <div th:if="${currentUser.getWishlistPlants().contains(plant) == false}">
+                            <button type="submit" class="btn-rePlantHeartEmpty"
+                                    style="top: 15px; right: 10px;  position: absolute;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="red"
+                                     class="bi bi-heart"
+                                     viewBox="0 0 16 16">
+                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
                 </div>
 
             </div>
         </div>
         <div class="card-footer text-center card-footer-rePlant">
-            <a href="http://localhost:8080/wishlist" class="btn-linkButton">
+            <a th:href="@{/showOtherProfile/{userid} (userid = ${sellerId})}" class="btn-linkButton">
                 <button type="button" class="btn btn-rePlantGrey">
                     Schließen
                 </button>

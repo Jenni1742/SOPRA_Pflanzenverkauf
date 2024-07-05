@@ -87,7 +87,7 @@
             <div class="chat-header">
                 <div th:if="${specificChat.getRecipientOfChat() != currentUser}">
                     <div>Verkäufer:
-                        <a th:href="@{/showOtherProfileSeller/{userid}(userid=${specificChat.getRecipientOfChat().userId})}">
+                        <a th:href="@{/showOtherProfile/{userid}(userid=${specificChat.getRecipientOfChat().userId})}">
                             <img th:src="@{'data:image/jpeg;base64,'+${specificChat.getRecipientOfChat().getImageDataBase64()}}" style="width: 30px; height: 30px; border-color: transparent"
                                 onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'"
                                 class="rounded-circle"></a>
@@ -96,7 +96,7 @@
                 </div>
                 <div th:if="${specificChat.getRecipientOfChat() == currentUser && specificChat.getSenderAccept() == true && specificChat.getRecipientAccept() == true}">
                     <div>Käufer:
-                        <a th:href="@{/showOtherProfileSeller/{userid}(userid=${specificChat.getSenderOfChat().userId})}">
+                        <a th:href="@{/showOtherProfile/{userid}(userid=${specificChat.getSenderOfChat().userId})}">
                             <img th:src="@{'data:image/jpeg;base64,'+${specificChat.getSenderOfChat().getImageDataBase64()}}" style="width: 30px; height: 30px; border-color: transparent"
                                  onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'"
                                  class="rounded-circle"></a>
@@ -105,7 +105,7 @@
                 </div>
                 <div th:if="${specificChat.getRecipientOfChat() == currentUser && (specificChat.getSenderAccept() == false || specificChat.getRecipientAccept() == false)}">
                     <div>Kaufinteressent:
-                        <a th:href="@{/showOtherProfileSeller/{userid}(userid=${specificChat.getSenderOfChat().userId})}">
+                        <a th:href="@{/showOtherProfile/{userid}(userid=${specificChat.getSenderOfChat().userId})}">
                             <img th:src="@{'data:image/jpeg;base64,'+${specificChat.getSenderOfChat().getImageDataBase64()}}"  style="width: 30px; height: 30px; border-color: transparent"
                                  onerror="this.src='https://th.bing.com/th/id/OIP.XtTIQssAnGqeIM85DP-kBwHaHa?pid=ImgDet&w=178&h=178&c=7&dpr=1,5'"
                                  class="rounded-circle"></a>
@@ -192,7 +192,6 @@
                         </svg>
                     </button>
                     <div style="color: transparent">.</div>
-                </div>
             </form>
                     <div th:if="${specificChat.getRecipientOfChat() != currentUser}">
                         <div th:if="${specificChat.getSenderAccept() == false}">

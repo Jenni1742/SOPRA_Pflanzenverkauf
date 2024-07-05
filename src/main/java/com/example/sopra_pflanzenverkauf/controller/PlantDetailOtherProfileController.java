@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.Map;
 
 @Controller
-public class PlantDetailSellerController {
+public class PlantDetailOtherProfileController {
     @Autowired
     private PlantService plantService;
     @Autowired
@@ -45,11 +45,12 @@ public class PlantDetailSellerController {
                 .orElse(null);
         model.addAttribute("plant", plant);
         model.addAttribute("currentUser", currentUser);
+        model.addAttribute("sellerId", plant.getSeller().getUserId());
 
         if (plant == null) {
             return "error/errorIDDoNotExist";
         } else if (userService.getCurrentUser() != plant.getSeller() && plant.getSeller() != null){
-            return "plantDetailSeller";
+            return "plantDetailOtherProfile";
         } else {
             return "error/errorPlantDetails";
         }
@@ -82,6 +83,6 @@ public class PlantDetailSellerController {
 
 
         model.put("currentUser", currentUser);
-        return "redirect:/wishlist";
+        return "redirect:/plantDetailSeller/{id}";
     }
 }

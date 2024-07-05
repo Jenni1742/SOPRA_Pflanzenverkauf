@@ -88,7 +88,7 @@
 
                     <div th:if="${plant.seller != null}">
                         <p><strong>Verkäufer*in:</strong>
-                            <a th:href="@{/showOtherProfileSeller/{userid}(userid=${plant.seller.userId})}"
+                            <a th:href="@{/showOtherProfile/{userid}(userid=${plant.seller.userId})}"
                                class="btn-linkVerkäufer">
                                 <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Verkäufer</span>
                             </a>

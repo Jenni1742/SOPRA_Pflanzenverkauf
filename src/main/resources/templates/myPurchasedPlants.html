@@ -60,7 +60,7 @@
                     <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
                     <div th:if="${plant.sellerWhenSold != null}">
                         <p><strong>Verkäufer*in:</strong>
-                            <a th:href="@{/showOtherProfileSeller/{userid}(userid=${plant.sellerWhenSold.userId})}" class="btn-linkVerkäufer">
+                            <a th:href="@{/showOtherProfile/{userid}(userid=${plant.sellerWhenSold.userId})}" class="btn-linkVerkäufer">
                                 <span th:text="${plant.sellerWhenSold?.username} ?: 'Unbekannter Verkäufer'">Verkäufer</span>
                             </a>
                         </p>

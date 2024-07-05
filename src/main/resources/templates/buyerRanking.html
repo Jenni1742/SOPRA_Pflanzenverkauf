@@ -74,7 +74,7 @@
 
                         <p style="font-weight: normal"><strong>Käufelevel:</strong> <span th:text="${user.buyingLevel.levelname}">Käuferlevel</span></p>
                         <div>
-                            <a th:href="@{/showOtherProfileBuyer/{userid}(userid=${user.userId})}" class="btn-linkButton">
+                            <a th:href="@{/showOtherProfile/{userid}(userid=${user.userId})}" class="btn-linkButton">
                                 <button type="button" class="btn btn-rePlantGreen">
                                     Profil ansehen
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
