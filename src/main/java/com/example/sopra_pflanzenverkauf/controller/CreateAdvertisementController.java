@@ -49,6 +49,7 @@ public class CreateAdvertisementController {
 
     @RequestMapping (value="/createAdvertisement", method = RequestMethod.POST)
     public String createPlant(@ModelAttribute("plant") Plant newPlant,
+                              @Param("latinName") String latinName,
                               @RequestParam("categoryname") String categoryname,
                               @RequestParam("imageMp") MultipartFile multipartFile,
                               @RequestParam("imageMp2") MultipartFile multipartFileTwo,
@@ -61,6 +62,10 @@ public class CreateAdvertisementController {
         userService.updatePlantsToSell(currentUser);
 
         newPlant.setCategory(categoryService.getCategoryByName(categoryname));
+
+        if(latinName.isEmpty()){
+            newPlant.setLatinName(null);
+        }
 
         //withPlanter ist standardmäßig false und wird hier dann auf true gesetzt
         if(withPlanter != null) {
