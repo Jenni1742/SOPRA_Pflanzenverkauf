@@ -42,7 +42,7 @@ public class ChangeProfileController {
 
 
     @PostMapping(path = "/changeProfile")
-    public String changeProfile(@RequestParam("newPicturePath") String newPicturePath,
+    public String changeProfile(
                                 @RequestParam(value = "newImageMp", required = false) MultipartFile multipartFile,
                                 @RequestParam("newFirstName") String newFirstName,
                                 @RequestParam("newLastName") String newLastName,
@@ -51,11 +51,6 @@ public class ChangeProfileController {
                                 Model model) {
 
         User currentUser = userService.getCurrentUser();
-
-        if (!newPicturePath.isEmpty()) {
-            currentUser.setPicturePath(newPicturePath);
-            userService.updatePicturePath(currentUser);
-        }
 
         if (!multipartFile.isEmpty()) {
             try {

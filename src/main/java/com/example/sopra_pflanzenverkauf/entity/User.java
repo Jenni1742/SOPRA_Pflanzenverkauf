@@ -57,10 +57,6 @@ public class User {
     @JoinColumn(name = "Verkäuferlevel")
     private Level sellingLevel;
 
-    @Column(name = "ProfilbildAlt")
-    @Deprecated
-    private String picturePath;
-
     @Column(name = "Profilbild")
     @Lob
     private byte[] image;
@@ -129,7 +125,7 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.plz = plz;
-        this.picturePath = picturePath;
+        //this.picturePath = picturePath;
         this.password = password;
     }
 
@@ -317,23 +313,6 @@ public class User {
         this.roles = roles;
     }
 
-    /**
-     * Gets picture path.
-     *
-     * @return the picture path
-     * */
-    public String getPicturePath() {
-        return picturePath;
-    }
-
-    /**
-     * Sets picture path.
-     *
-     * @param picturePath the picture path
-     */
-    public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
-    }
 
     public java.util.List<Plant> getPlantsToSell() {
         return plantsToSell;
