@@ -157,9 +157,12 @@
 
         </div>
         <div class="card-footer text-center card-footer-rePlant">
-            <button onclick="history.back()" type="button" class="btn btn-rePlantGrey">
-                Schließen
-            </button>
+            <a href="/" class="btn-linkButton">
+                <button type="button" class="btn btn-rePlantGrey">
+                    Schließen
+                </button>
+            </a>
+
             <form th:action="@{/chatSpecific}" method="get" style="text-decoration: none;">
                 <input type="hidden" name="recipientUsername" th:value="${plant.seller.username}"/>
                 <input type="hidden" name="plantToBuyID" th:value="${plant.plantId}"/>
