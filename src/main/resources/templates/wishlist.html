@@ -39,9 +39,8 @@
         </a>
         <div class="card-body">
 
-
-            <div th:each="plant : ${currentUser.getWishlistPlants()}" class="ad" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
-                <div style="flex: 0 0 auto; margin-right: 20px; width: 300px;">
+            <div th:each="plant : ${currentUser.getWishlistPlants()}" class="ad" style="display: flex; align-items: flex-start; border: 1px solid #017101; padding: 10px; margin: 10px; border-radius: 10px;">
+                <div style="flex: 0 0 auto; margin-right: 20px; width: 160px;">
                     <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
                         <img th:if="${plant.imageUrl}" th:src="@{${plant.imageUrl}}" alt="Bild von [[${plant.name}]]" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                         <img th:if="${plant.image != null}" th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}" alt="Bild von [[${plant.name}]]"
@@ -50,8 +49,10 @@
                 </div>
                 <div style="flex: 1; padding-left: 20px; text-align: left">
                     <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
-                    <p th:text="${plant.category.categoryname}" style="font-style: italic;"></p>
-                    <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
+                    <h6 th:text="${plant.category.categoryname}" style="font-style: italic;"></h6>
+                    <p></p>
+                    <h6><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</h6>
+                    <!--
                     <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
                     <div th:if="${plant.seller != null}">
                         <p><strong>Verkäufer*in:</strong>
@@ -65,8 +66,9 @@
                             <span th:text="${plant.seller?.username} ?: 'Unbekannter Verkäufer'">Verkäufer</span>
                         </p>
                     </div>
-                    <p><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></p>
-                    <div style="text-align: right; margin-top: -28px;">
+                    -->
+                    <h6><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></h6>
+                    <div style="text-align: right; margin-top: -22px;">
                         <a th:href="@{/plantDetailWishlist/{id}(id=${plant.plantId})}" class="btn-linkButton">
                             <button type="button" class="btn btn-rePlantGreen">
                                 Mehr erfahren
@@ -80,7 +82,7 @@
                 <div class="ad" style="position: relative;">
 
                 <!-- Button trigger modal -->
-                <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal" style="top: -150px; right: 0px;  position: absolute;">
+                <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal" style="top: 0px; right: 0px;  position: absolute;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
                     </svg>
