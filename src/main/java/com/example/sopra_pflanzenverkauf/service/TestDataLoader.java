@@ -313,7 +313,7 @@ public class TestDataLoader implements CommandLineRunner {
                 alessiaSedelnikov,
                 "56789",
                 false,
-                false,
+                true,
                 "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg",
                 null
         );

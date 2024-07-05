@@ -86,9 +86,9 @@ public class PlantService {
                     .collect(Collectors.toList());
         }
 
-        if (planter != null && !planter.isEmpty()) {
+        if (planter != null ) {
             plants = plants.stream()
-                    .filter(plant -> "planter".equals(plant.getPlanter())) //ich glaube richtig: plant.getPlanter()
+                    .filter(plant ->  plant.getPlanter())
                     .collect(Collectors.toList());
         }
 
