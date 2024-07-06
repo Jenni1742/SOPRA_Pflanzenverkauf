@@ -555,6 +555,41 @@ public class TestDataLoader implements CommandLineRunner {
         blau.setImage(blau.imageInBytes("src/main/resources/static/images/plantPictures/Blau.jpg"));
         plantService.persistPlant(blau);
 
+        Plant sonnenblumensamen = new Plant(
+                "Sonnenblumensamen",
+                1,
+                10,
+                "Sonnenblumen sind sehr schöne Pflanzen. Mit diesen Samen kannst du deine Sonnenblume selbst einpflanzen wo auch immer du möchtest.",
+                "Viel gießen nach dem Einsetzen in die Erde.",
+                samen,
+                franziskaHornung,
+                "71696",
+                false,
+                false,
+                null
+        );
+        //https://d2gg9evh47fn9z.cloudfront.net/1600px_COLOURBOX6162159.jpg
+        sonnenblumensamen.setImage(sonnenblumensamen.imageInBytes("src/main/resources/static/images/plantPictures/Sonnenblumensamen.jpg"));
+        plantService.persistPlant(sonnenblumensamen);
+
+        Plant kürbissamen = new Plant(
+                "Kürbissamen",
+                1,
+                10,
+                "Habe Kürbissuppe gemacht und ziemlich viele Samen übrig. Möchte euch auch die Möglichkeit bieten, selbst Kürbisse anbauen zu können.",
+                "Viel gießen nach dem Einsetzen in die Erde.",
+                samen,
+                franziskaHornung,
+                "71696",
+                false,
+                false,
+                null
+        );
+        //https://www.plantopedia.de/wp-content/uploads/2019/10/hokkaido-kuerbis-samen-pb.jpg
+        kürbissamen.setImage(kürbissamen.imageInBytes("src/main/resources/static/images/plantPictures/Kürbissamen.jpg"));
+        https://www.saatgut-dillmann.de/media/5e/34/00/1646305387/2441_B040KuerbisHokkaidoUchikiKuriBio.jpg
+        kürbissamen.setImageTwo(kleingruen.imageInBytes("src/main/resources/static/images/plantPictures/Kürbissamen2.jpg"));
+        plantService.persistPlant(kürbissamen);
 
 
         Chat chatTest = new Chat();
