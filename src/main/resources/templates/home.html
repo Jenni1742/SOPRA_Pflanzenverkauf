@@ -118,29 +118,33 @@
                                     </a>
                                 </div>
                                 <div style="position: absolute; top: 10px; right: 10px;">
-                                    <div th:if="${currentUser.getWishlistPlants().contains(plant) == true}">
-                                        <button type="button" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal-${plant.plantId}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                                            </svg>
-                                        </button>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal-${plant.plantId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <form th:action="@{/delete (plant=${plant.plantId})}" id="plant" name="plant" method="post">
-                                                        <div class="modal-body">
-                                                            <p align="left">Bist Du sicher, dass du diese Pflanze aus deiner Merkliste entfernen möchtest?</p>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Nein, Pflanze in der Merkliste lassen</button>
-                                                            <button type="submit" class="btn btn-rePlantGreen">Ja, Pflanze aus Merkliste entfernen</button>
-                                                        </div>
-                                                    </form>
+
+                                    <form th:action="@{/delete (plant=${plant.plantId})}" id="plant" name="plant" method="post">
+                                        <div th:if="${currentUser.getWishlistPlants().contains(plant) == true}">
+                                            <button type="submit" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal-${plant.plantId}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                                </svg>
+                                            </button>
+                                            <!-- Modal -->
+                                            <!--
+                                            <div class="modal fade" id="exampleModal-${plant.plantId}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <form th:action="@{/delete (plant=${plant.plantId})}" id="plant" name="plant" method="post">
+                                                            <div class="modal-body">
+                                                                <p align="left">Bist Du sicher, dass du diese Pflanze aus deiner Merkliste entfernen möchtest?</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Nein, Pflanze in der Merkliste lassen</button>
+                                                                <button type="submit" class="btn btn-rePlantGreen">Ja, Pflanze aus Merkliste entfernen</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                         </div>
-                                    </div>
+                                    </form>
                                     <form th:action="@{/ (plant=${plant.plantId})}" id="plant2" name="plant" method="post">
                                         <div th:if="${currentUser.getWishlistPlants().contains(plant) == false}">
                                             <button type="submit" class="btn-rePlantHeartEmpty">
@@ -200,33 +204,31 @@
 
                         <div class="ad" style="position: relative;">
                             <form th:action="@{/delete (plant = ${plant.plantId})}" id="plant3" name="plant" method="post">
+                                <!-- Button trigger modal -->
+                                <div th:if="${currentUser.getWishlistPlants().contains(plant) == true}">
+                                    <button  type="submit" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal" style="top: -160px; right: 0px;  position: absolute;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+                                        </svg>
+                                    </button>
+                                <!-- Modal -->
+                                    <!--
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
 
-                            <!-- Button trigger modal -->
-                            <div th:if="${currentUser.getWishlistPlants().contains(plant) == true}">
-                                <button  type="button" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal" style="top: -160px; right: 0px;  position: absolute;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-                                    </svg>
-                                </button>
-                            <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-
-                                                <div class="modal-body">
-                                                    <p align="left">Bist Du sicher, dass du diese Pflanze aus deiner Merkliste entfernen möchtest?</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Nein, Pflanze in der Merkliste lassen</button>
-                                                    <button type="submit" class="btn btn-rePlantGreen">Ja, Pflanze aus Merkliste entfernen</button>
-                                                </div>
+                                                    <div class="modal-body">
+                                                        <p align="left">Bist Du sicher, dass du diese Pflanze aus deiner Merkliste entfernen möchtest?</p>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-rePlantGrey" data-bs-dismiss="modal">Nein, Pflanze in der Merkliste lassen</button>
+                                                        <button type="submit" class="btn btn-rePlantGreen">Ja, Pflanze aus Merkliste entfernen</button>
+                                                    </div>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
-                            </div>
                             </form>
-
-
 
                             <form th:action="@{/ (plant = ${plant.plantId})}" id="plant4" name="plant" method="post">
                             <div th:if="${currentUser.getWishlistPlants().contains(plant) == false}">

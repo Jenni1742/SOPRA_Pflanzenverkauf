@@ -71,7 +71,7 @@ public class PlantDetailOtherProfileController {
         }
 
         model.put("currentUser", currentUser);
-        return "redirect:/plantDetailSeller/{id}";
+        return "redirect:/plantDetailOtherProfile/{id}";
     }
 
     @PostMapping(path = "/plantDetailSeller/delete/{id}")
@@ -85,6 +85,6 @@ public class PlantDetailOtherProfileController {
 
 
         model.put("currentUser", currentUser);
-        return "redirect:/plantDetailSeller/{id}";
+        return "redirect:/plantDetailOtherProfile/{id}";
     }
 }
