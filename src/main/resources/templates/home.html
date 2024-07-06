@@ -108,10 +108,18 @@
                                 </div>
                             </div>
                             <div style="flex: 1; padding-left: 20px;">
-                                <spanh2><strong>BOOSTER ANZEIGE: </strong><span th:text="${plant.plantname}" style="color: white;"></span><h2>
-                                <h6 th:text="${plant.category.categoryname}" style="font-style: italic;"></h6>
-                                <h6><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</h6>
-                                <h6><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></h6>
+                                <div th:if="${(plants.size()-1) > plants.indexOf(plant)}">
+                                    <a th:id="'B' + ${plants.get(plants.indexOf(plant)+1).plantId}">
+                                        <h2><span th:text="${plant.plantname}" style="color: white"></span></h2>
+                                    </a>
+                                </div>
+                                <div th:if="${(plants.size()-1) <= plants.indexOf(plant)}">
+                                    <h2><span th:text="${plant.plantname}" style="color: white"></span></h2>
+                                </div>
+
+                                <h6 th:text="${plant.category.categoryname}" style="font-style: italic; color: white"></h6>
+                                <h6 style="color: white"><strong style="color: white">Preis:</strong> <span th:text="${plant.price}" style="color: white">0.00</span>0 €</h6>
+                                <h6><strong style="color: white">PLZ:</strong> <span th:text="${plant.zipCode}" style="color: white">PLZ</span></h6>
                                 <div style="text-align: right; margin-top: -22px;">
                                     <a th:href="@{/plant-detail/{id}(id=${plant.plantId})}" style="text-decoration: none;" class="btn-linkButton">
                                         <button type="button" class="btn btn-rePlantGreen">Mehr erfahren</button>
@@ -170,7 +178,15 @@
                             </div>
                         </div>
                         <div style="flex: 1; padding-left: 20px;">
-                            <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
+                            <div th:if="${(plants.size()-1) > plants.indexOf(plant)}">
+                                <a th:id="${plants.get(plants.indexOf(plant)+1).plantId}">
+                                    <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
+                                </a>
+                            </div>
+                            <div th:if="${(plants.size()-1) <= plants.indexOf(plant)}">
+                                <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
+                            </div>
+
                             <h6 th:text="${plant.category.categoryname}" style="font-style: italic;"></h6>
                             <p></p>
                             <h6><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</h6>

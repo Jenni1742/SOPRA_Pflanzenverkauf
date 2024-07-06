@@ -56,7 +56,7 @@ public class ShowOtherProfileController {
         Integer userId = plantObject.getSeller().getUserId();
 
         model.put("currentUser", currentUser);
-        return "redirect:/showOtherProfile/" + userId + "#Verkaufsanzeigen";
+        return "redirect:/showOtherProfile/" + userId + "#" + plant;
     }
 
     @PostMapping(path = "/showOtherProfile/delete")

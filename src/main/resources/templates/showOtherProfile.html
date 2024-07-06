@@ -660,7 +660,10 @@
                     </div>
                     -->
 
+                    <a th:id="${plant.plantId}">
                     <h6><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></h6>
+                    </a>
+
                     <div style="text-align: right; margin-top: -22px;">
                         <a th:href="@{/plantDetailOtherProfile/{id}(id=${plant.plantId})}" style="text-decoration: none;" class="btn-linkButton">
                             <button type="button" class="btn btn-rePlantGreen">

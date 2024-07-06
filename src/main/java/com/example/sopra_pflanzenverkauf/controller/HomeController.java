@@ -149,8 +149,17 @@ public class HomeController {
             userService.updateWishlist(currentUser);
         }
 
+
+
         model.put("currentUser", currentUser);
-        return "redirect:/";
+        Plant plantObject = plantService.getPlantByPlantId(plant);
+        if (plantObject.getBooster() == true) {
+            return "redirect:/" + "#B" + plant;
+        } else {
+            return "redirect:/" + "#" + plant;
+        }
+
+
     }
 
     @PostMapping(path = "/delete")
@@ -165,6 +174,11 @@ public class HomeController {
 
 
         model.put("currentUser", currentUser);
-        return "redirect:/";
+        Plant plantObject = plantService.getPlantByPlantId(plant);
+        if (plantObject.getBooster() == true) {
+            return "redirect:/" + "#B" + plant;
+        } else {
+            return "redirect:/" + "#" + plant;
+        }
     }
 }
