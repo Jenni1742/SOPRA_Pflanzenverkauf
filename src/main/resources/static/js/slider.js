@@ -1,64 +1,81 @@
-const slider1 = document.getElementById('slider-1');
-const slider2 = document.getElementById('slider-2');
-const track = document.getElementById('track');
-const value1 = document.getElementById('value-1');
-const value2 = document.getElementById('value-2');
-const maxVal = slider1.max;
+document.addEventListener('DOMContentLoaded', function() {
+    // Preis-Schieberegler initialisieren
+    const priceSliderMin = document.getElementById('slider-1');
+    const priceSliderMax = document.getElementById('slider-2');
+    const priceValueMin = document.getElementById('value-1');
+    const priceValueMax = document.getElementById('value-2');
 
-function updateTrack() {
-    const percent1 = (slider1.value / maxVal) * 100;
-    const percent2 = (slider2.value / maxVal) * 100;
-    track.style.left = percent1 + '%';
-    track.style.width = (percent2 - percent1) + '%';
-    value1.textContent = slider1.value + ' EUR';
-    value2.textContent = slider2.value + ' EUR';
-}
+    // Funktion zur Aktualisierung der Preis-Schieberegler-Anzeige
+    function updatePriceRange() {
+        const minPrice = priceSliderMin.value;
+        const maxPrice = priceSliderMax.value;
 
-slider1.addEventListener('input', () => {
-    if (parseInt(slider1.value) > parseInt(slider2.value)) {
-        slider1.value = slider2.value;
+        priceValueMin.textContent = minPrice + ' EUR';
+        priceValueMax.textContent = (maxPrice < 100) ? (maxPrice + ' EUR') : '>100 EUR';
+
+        // Update des Bereichs zwischen den Handles
+            const rangeWidth = (maxPrice - minPrice) / (priceSliderMax.max - priceSliderMin.min) * 100;
+            const rangeLeft = (minPrice - priceSliderMin.min) / (priceSliderMax.max - priceSliderMin.min) * 100;
+
+            const rangeTrack = document.querySelector('.range-track-price');
+            rangeTrack.style.width = rangeWidth + '%';
+            rangeTrack.style.left = rangeLeft + '%';
     }
-    updateTrack();
-});
 
-slider2.addEventListener('input', () => {
-    if (parseInt(slider2.value) < parseInt(slider1.value)) {
-        slider2.value = slider1.value;
+    // Eventlistener für Änderungen der Preis-Schieberegler
+    priceSliderMin.addEventListener('input', function() {
+        if (parseInt(priceSliderMin.value) > parseInt(priceSliderMax.value)) {
+            priceSliderMin.value = priceSliderMax.value;
+        }
+        updatePriceRange();
+    });
+
+    priceSliderMax.addEventListener('input', function() {
+        if (parseInt(priceSliderMax.value) < parseInt(priceSliderMin.value)) {
+            priceSliderMax.value = priceSliderMin.value;
+        }
+        updatePriceRange();
+    });
+
+    // Größe-Schieberegler initialisieren
+    const sizeSliderMin = document.getElementById('slider-size-1');
+    const sizeSliderMax = document.getElementById('slider-size-2');
+    const sizeValueMin = document.getElementById('value-size-1');
+    const sizeValueMax = document.getElementById('value-size-2');
+
+    // Funktion zur Aktualisierung der Größe-Schieberegler-Anzeige
+    function updateSizeRange() {
+        const minSize = sizeSliderMin.value;
+        const maxSize = sizeSliderMax.value;
+
+        sizeValueMin.textContent = minSize + ' cm';
+        sizeValueMax.textContent = (maxSize < 100) ? (maxSize + ' cm') : '>100 cm';
+
+        // Update des Bereichs zwischen den Handles
+            const rangeWidth = (maxSize - minSize) / (sizeSliderMax.max - sizeSliderMin.min) * 100;
+            const rangeLeft = (minSize - sizeSliderMin.min) / (sizeSliderMax.max - sizeSliderMin.min) * 100;
+
+            const rangeTrack = document.querySelector('.range-track-size');
+            rangeTrack.style.width = rangeWidth + '%';
+            rangeTrack.style.left = rangeLeft + '%';
     }
-    updateTrack();
+
+    // Eventlistener für Änderungen der Größe-Schieberegler
+    sizeSliderMin.addEventListener('input', function() {
+        if (parseInt(sizeSliderMin.value) > parseInt(sizeSliderMax.value)) {
+            sizeSliderMin.value = sizeSliderMax.value;
+        }
+        updateSizeRange();
+    });
+
+    sizeSliderMax.addEventListener('input', function() {
+        if (parseInt(sizeSliderMax.value) < parseInt(sizeSliderMin.value)) {
+            sizeSliderMax.value = sizeSliderMin.value;
+        }
+        updateSizeRange();
+    });
+
+    // Initialisierung der Schieberegler beim Laden der Seite
+    updatePriceRange();
+    updateSizeRange();
 });
-
-updateTrack();
-
-/* Neuer Code für den Größen-Slider */
-const sliderSize1 = document.getElementById('slider-size-1');
-const sliderSize2 = document.getElementById('slider-size-2');
-const trackSize = document.getElementById('track-size');
-const valueSize1 = document.getElementById('value-size-1');
-const valueSize2 = document.getElementById('value-size-2');
-const maxSizeVal = sliderSize1.max;
-
-function updateSizeTrack() {
-    const percent1 = (sliderSize1.value / maxSizeVal) * 100;
-    const percent2 = (sliderSize2.value / maxSizeVal) * 100;
-    trackSize.style.left = percent1 + '%';
-    trackSize.style.width = (percent2 - percent1) + '%';
-    valueSize1.textContent = sliderSize1.value + ' cm';
-    valueSize2.textContent = sliderSize2.value + ' cm';
-}
-
-sliderSize1.addEventListener('input', () => {
-    if (parseInt(sliderSize1.value) > parseInt(sliderSize2.value)) {
-        sliderSize1.value = sliderSize2.value;
-    }
-    updateSizeTrack();
-});
-
-sliderSize2.addEventListener('input', () => {
-    if (parseInt(sliderSize2.value) < parseInt(sliderSize1.value)) {
-        sliderSize2.value = sliderSize1.value;
-    }
-    updateSizeTrack();
-});
-
-updateSizeTrack();

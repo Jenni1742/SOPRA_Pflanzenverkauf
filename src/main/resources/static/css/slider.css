@@ -1,16 +1,17 @@
+/* Slider für Preis */
 .slider-container {
     width: 100%;
     position: relative;
     height: 50px;
 }
 
-.range-slider {
+.slider-container .range-slider {
     width: 100%;
     position: absolute;
     pointer-events: none;
 }
 
-.range-slider input[type="range"] {
+.slider-container input[type="range"] {
     pointer-events: all;
     -webkit-appearance: none;
     appearance: none;
@@ -22,7 +23,7 @@
     outline: none;
 }
 
-.range-slider input[type="range"]::-webkit-slider-thumb {
+.slider-container input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 18px;
@@ -34,7 +35,7 @@
     z-index: 1;
 }
 
-.range-slider input[type="range"]::-moz-range-thumb {
+.slider-container input[type="range"]::-moz-range-thumb {
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -44,21 +45,24 @@
     z-index: 1;
 }
 
-.range-slider .range-track {
+.slider-container .range-track {
     position: absolute;
     height: 8px;
-    background: #017101;
+    background: #017101; /* Grüne Farbe für den ausgewählten Bereich */
     border-radius: 5px;
     z-index: 0;
+    top: 50%; /* vertikal zentrieren */
+    transform: translateY(-50%);
+    left: 0;
 }
 
-.values {
+.slider-container .values {
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
 }
 
-/* Neuer Code für den Größen-Slider */
+/* Slider für Größe */
 .slide-container {
     width: 100%;
     position: relative;
@@ -108,9 +112,12 @@
 .slide-container .range-track {
     position: absolute;
     height: 8px;
-    background: #017101;
+    background: #017101; /* Grüne Farbe für den ausgewählten Bereich */
     border-radius: 5px;
     z-index: 0;
+    top: 50%; /* vertikal zentrieren */
+    transform: translateY(-50%);
+    left: 0;
 }
 
 .slide-container .values {

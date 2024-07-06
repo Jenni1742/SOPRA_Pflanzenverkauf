@@ -92,13 +92,13 @@ public class PlantService {
 
         if (priceMin != null && priceMax != null) {
             plants = plants.stream()
-                    .filter(plant -> plant.getPrice() >= priceMin && plant.getPrice() <= priceMax)
+                    .filter(plant -> plant.getPrice() >= priceMin && (priceMax < 100 ? plant.getPrice() <= priceMax : plant.getPrice() > 100))
                     .collect(Collectors.toList());
         }
 
         if (sizeMin != null && sizeMax != null) {
             plants = plants.stream()
-                    .filter(plant -> plant.getPlantSize() >= sizeMin && plant.getPlantSize() <= sizeMax)
+                    .filter(plant -> plant.getPlantSize() >= sizeMin && (sizeMax < 100 ? plant.getPlantSize() <= sizeMax : plant.getPlantSize() > 100))
                     .collect(Collectors.toList());
         }
         if (booster) {
