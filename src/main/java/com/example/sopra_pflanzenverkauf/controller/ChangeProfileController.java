@@ -55,6 +55,7 @@ public class ChangeProfileController {
         if (!multipartFile.isEmpty()) {
             try {
                 currentUser.setImage(multipartFile.getBytes());
+                userService.persistUser(currentUser);
             } catch (IOException e) {
                 e.printStackTrace();
             }
