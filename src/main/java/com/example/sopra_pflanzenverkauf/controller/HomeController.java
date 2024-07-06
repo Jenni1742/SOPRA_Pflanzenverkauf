@@ -99,6 +99,7 @@ public class HomeController {
                 .collect(Collectors.toList());
 
         model.addAttribute("plants", plants);
+        model.addAttribute("selectedCategory", category);
         return "filteredPlants";
     }
 
