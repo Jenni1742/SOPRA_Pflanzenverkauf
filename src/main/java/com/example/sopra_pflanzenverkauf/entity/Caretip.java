@@ -14,6 +14,7 @@ public class Caretip {
     private String title;
 
     @Column(name = "Pflegetipp")
+    @Lob
     private String caretip;
 
     @ManyToOne

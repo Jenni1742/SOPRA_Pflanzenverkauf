@@ -50,6 +50,7 @@ public class CreateAdvertisementController {
     @RequestMapping (value="/createAdvertisement", method = RequestMethod.POST)
     public String createPlant(@ModelAttribute("plant") Plant newPlant,
                               @Param("latinName") String latinName,
+                              @RequestParam("price") Double price,
                               @RequestParam("categoryname") String categoryname,
                               @RequestParam("imageMp") MultipartFile multipartFile,
                               @RequestParam("imageMp2") MultipartFile multipartFileTwo,
@@ -66,6 +67,8 @@ public class CreateAdvertisementController {
         if(latinName.isEmpty()){
             newPlant.setLatinName(null);
         }
+
+        newPlant.setPrice(price);
 
         //withPlanter ist standardmäßig false und wird hier dann auf true gesetzt
         if(withPlanter != null) {

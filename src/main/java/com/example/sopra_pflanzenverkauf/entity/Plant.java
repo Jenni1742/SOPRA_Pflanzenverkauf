@@ -38,6 +38,7 @@ public class Plant {
     private double price;
 
     @Column(name = "Beschreibung der Pflanze")
+    @Lob
     private String plantDescription;
 
     @Column(name = "Foto")
@@ -57,6 +58,7 @@ public class Plant {
     private byte[] imageThree;
 
     @Column(name = "Pflegetipps")
+    @Lob
     private String careTips;
 
     @Column(name = "Verkauft")

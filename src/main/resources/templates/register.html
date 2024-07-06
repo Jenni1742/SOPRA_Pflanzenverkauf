@@ -13,9 +13,11 @@
         body {
             padding-top: 0px;
         }
+
         .form-label {
             font-size: small;
         }
+
         .form-control {
             font-size: small;
         }
@@ -30,70 +32,96 @@
 <div class="container">
     <div class="card card-rePlant">
         <div class="card-header text-center">
-            <h3  class="card-title text-center" th:text="'Userprofil erstellen'"></h3>
+            <h3 class="card-title text-center" th:text="'Userprofil erstellen'"></h3>
         </div>
 
         <div class="card-body">
-            <form th:action="@{/register}" th:object="${newUser}" method="post" enctype="multipart/form-data">
+            <form class="row g-3 needs-validation" novalidate th:action="@{/register}" th:object="${newUser}"
+                  method="post" enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label for= newUsername class="form-label">Benutzername:</label>
+                    <label for=newUsername class="form-label">Benutzername:</label>
                     <input type="text" class="form-control" id="newUsername" name="newUsername" required
                            pattern="[A-Za-z0-9]{1,30}"
                            title="Bitte trage hier Deinen Username ein. Erlaubt sind Buchstaben und Zahlen bis maximal 30 Zeichen.">
+                    <div class="invalid-feedback">
+                        Bitte gib einen Benutzernamen ein.
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label for= newFirstName class="form-label">Vorname:</label>
+                    <label for=newFirstName class="form-label">Vorname:</label>
                     <input type="text" class="form-control" id="newFirstName" name="newFirstName" required
-                           pattern="[A-Za-z\-\s]{1,100}"
-                           title="Bitte trage hier Deinen Vorname ein. Doppelnamen können mit Leerzeichen oder Bindestrich geschrieben werden.">
+                           pattern="[A-Za-z\-\s]{1,100}">
+                    <div class="invalid-feedback">
+                        Bitte trage hier deinen Vorname ein. Doppelnamen können mit Leerzeichen oder Bindestrich
+                        geschrieben werden.
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label for= newLastName class="form-label">Nachname:</label>
+                    <label for=newLastName class="form-label">Nachname:</label>
                     <input type="text" class="form-control" id="newLastName" name="newLastName" required
-                           pattern="[A-Za-z\-\s]{1,100}"
-                           title="Bitte trage hier Deinen Nachname ein. Doppelnamen können mit Leerzeichen oder Bindestrich geschrieben werden.">
+                           pattern="[A-Za-z\-\s]{1,100}">
+                    <div class="invalid-feedback">
+                        Bitte trage hier deinen Nachname ein. Doppelnamen können mit Leerzeichen oder Bindestrich
+                        geschrieben werden.
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label for= newEmail class="form-label">E-mail Adresse:</label>
+                    <label for=newEmail class="form-label">E-mail Adresse:</label>
                     <input type="text" class="form-control" id="newEmail" name="newEmail" required
                            pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-                           title="Eine E-Mail Adresse der Form 'characters@characters.domain'. Die Buchstaben müssen klein geschrieben sein. Die Domain muss mindestens aus zwei Buchstaben von a bis z bestehen.">
+                           title="">
+                    <div class="invalid-feedback">
+                        Eine E-Mail Adresse der Form 'characters@characters.domain'. Die Buchstaben müssen klein
+                        geschrieben sein. Die Domain muss mindestens aus zwei Buchstaben von a bis z bestehen.
+                    </div>
                 </div>
                 <div class="mb-3">
-                    <label for= newPLZ class="form-label">Postleitzahl:</label>
-                    <input type="text" class="form-control" title="Postleitzahl mit 5 Stellen" required
+                    <label for=newPLZ class="form-label">Postleitzahl:</label>
+                    <input type="text" class="form-control" required
                            pattern="^[0-9]{5}$" id="newPLZ" name="newPLZ">
+                    <div class="invalid-feedback">
+                        Die Postleitzahl muss aus 5 Stellen bestehen.
+                    </div>
                 </div>
 
                 <div class="input-group mb-3">
-                    <input type="file" class="form-control" name="imageMp" id="imageMp" >
+                    <input type="file" class="form-control" name="imageMp" id="imageMp">
+                    <div class="valid-feedback">
+                        Du kannst unter Profil ändern jederzeit ein Bild hochladen und dein Profilbild ändern.
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="password1" class="form-label">Passwort</label>
                     <input type="password" class="form-control" id="password1" name="password1"
-                           pattern=".{8,}" title="Das Passwort muss 8 oder mehr Zeichen haben"
+                           pattern=".{8,}"
                            required>
+                    <div class="invalid-feedback">
+                        Das Passwort muss aus mindestens 8 Stellen bestehen.
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label for="password2" class="form-label">Passwort bestätigen</label>
                     <input type="password" class="form-control" id="password2" name="password2"
-                           pattern=".{8,}" title="Das Passwort muss 8 oder mehr Zeichen haben"
+                           pattern=".{8,}"
                            required>
+                    <div class="invalid-feedback">
+                        Das Passwort muss aus mindestens 8 Stellen bestehen.
+                    </div>
                 </div>
-        <div class="card-footer text-center card-footer-rePlant">
-            <button onclick="history.back()" type="button" class="btn btn-rePlantGrey">
-                Schließen
-            </button>
-            <button type="submit" class="btn btn-rePlantGreen">Profil erstellen</button>
-        </div>
+                <div class="card-footer text-center card-footer-rePlant">
+                    <button onclick="history.back()" type="button" class="btn btn-rePlantGrey">
+                        Schließen
+                    </button>
+                    <button type="submit" class="btn btn-rePlantGreen">Profil erstellen</button>
+                </div>
             </form>
         </div>
 
 
-
     </div>
 </div>
+<script src="js/validateUserinput.js"></script>
 
 </body>
 </html>
