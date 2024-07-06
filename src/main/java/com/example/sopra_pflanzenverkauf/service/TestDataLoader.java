@@ -102,6 +102,8 @@ public class TestDataLoader implements CommandLineRunner {
     @Autowired
     private MessageService messageService;
 
+    @Autowired
+    private CaretipService caretipService;
     /**
      * Executed during Spring boot startup.
      *
@@ -603,8 +605,62 @@ public class TestDataLoader implements CommandLineRunner {
         chatTest.setRecipientAccept(true);
         chatService.updateChat(chatTest);
 
+    // create caretips-----------------------------------------------------------------------------------------------
 
+        //https://www.mein-schoener-garten.de/gartenpraxis/indoor/zimmerpflanzen-giessen-39259
+        Caretip gießenIndoor = new Caretip();
+        gießenIndoor.setCategory(zimmerpflanze);
+        gießenIndoor.setTitle("Zimmerpflanze gießen");
+        gießenIndoor.setCaretip("Zimmerpflanzen möchten im Idealfall so versorgt werden wie an ihrem Naturstandort. Bei starker Sonneneinstrahlung und höheren Temperaturen steigt der Wasserbedarf. In einem lufttrockenen Raum muss mehr gegossen werden als in einem luftfeuchten Raum.");
+        caretipService.persistCaretip(gießenIndoor);
 
+        //https://pflanzling.de/zimmerpflanzen-pflegen/erde-fuer-zimmerpflanzen/
+        Caretip erde = new Caretip();
+        erde.setCategory(zimmerpflanze);
+        erde.setTitle("Passende Erde für die Zimmerpflanze");
+        erde.setCaretip("Zimmerpflanzenerde ist der Nährboden deiner Pflanze. Gute Erde erkennt man dran, dass sie luftig und locker ist. Ist die Erde bereits beim Kauf klumpig, sehr grob oder sogar feucht, handelt es sich um minderwertige Erde, welche man eher meiden sollte.");
+        caretipService.persistCaretip(erde);
+
+        //https://www.gartengemeinschaft.de/blumentopf-groessen-und-materialien/
+        Caretip blumentopfZimmerpflanze = new Caretip();
+        blumentopfZimmerpflanze.setCategory(zimmerpflanze);
+        blumentopfZimmerpflanze.setTitle("Richtige Größe vom Blumentopf");
+        blumentopfZimmerpflanze.setCaretip("Das Größenverhältnis zwischen Blumentopf und Pflanze muss stimmen. Deshalb sollte der Blumentopf zweimal so tief und groß wie der Wurzelballen der Pflanze sein. ");
+        caretipService.persistCaretip(blumentopfZimmerpflanze);
+
+        //https://gartnwissn.de/garten-richtig-giessen-wann-wie-viel-wie-oft/
+        Caretip gießen = new Caretip();
+        gießen.setCategory(outdoorpflanze);
+        gießen.setTitle("Garten richtig gießen");
+        gießen.setCaretip("Den Garten wenn möglich immer frühmorgens vor Sonnenaufgang zwischen 4 und 6 Uhr gießen.");
+        caretipService.persistCaretip(gießen);
+
+        //https://www.gartennatur.com/substrat-erde-boden
+        Caretip bodenbeschaffenheit = new Caretip();
+        bodenbeschaffenheit.setCategory(outdoorpflanze);
+        bodenbeschaffenheit.setTitle("Richtiger Boden für deine Pflanze");
+        bodenbeschaffenheit.setCaretip(" Fette Böden mit einem hohen Lehmanteil können Wasser gut speichern und für die Pflanzen verfügbar machen. Sandige Böden hingegen haben eine geringere Speicherfähigkeit und werden von Pflanzen bevorzugt, die es eher trockener mögen.");
+        caretipService.persistCaretip(bodenbeschaffenheit);
+
+        //https://www.gartengemeinschaft.de/blumentopf-groessen-und-materialien/
+        Caretip blumentopf = new Caretip();
+        blumentopf.setCategory(outdoorpflanze);
+        blumentopf.setTitle("Richtige Größe vom Blumentopf");
+        blumentopf.setCaretip("Das Größenverhältnis zwischen Blumentopf und Pflanze muss stimmen. Deshalb sollte der Blumentopf zweimal so tief und groß wie der Wurzelballen der Pflanze sein. ");
+        caretipService.persistCaretip(blumentopf);
+
+        //https://www.mein-schoener-garten.de/themen/aussaat
+       Caretip aussaat = new Caretip();
+       aussaat.setCategory(samen);
+       aussaat.setTitle("Richtiger Aussaatzeitpunkt");
+       aussaat.setCaretip("Zimmerpflanzen nicht vor März aussäen. Der Grund hierfür ist, dass es zuvor meist schlichtweg tagsüber noch zu dunkel ist. Bei der Direktsaat im Beet hängt der Aussaat-Termin von der Winterhärte und dem Keimverhalten der jeweiligen Pflanzen ab. ");
+       caretipService.persistCaretip(aussaat);
+
+       Caretip guteBedingungen = new Caretip();
+       guteBedingungen.setCategory(samen);
+       guteBedingungen.setTitle("Gute Keimbedingungen");
+       guteBedingungen.setCaretip("Damit die ausgesäten Samen gut keimen können, benötigen sie ausreichend Wärme und eine hohe Luftfeuchtigkeit. Im Zimmer leiden die Keimlinge oft unter einer zu trockenen Zimmerluft – hier ist eine Abdeckung der Samenkörner besonders wichtig.");
+       caretipService.persistCaretip(guteBedingungen);
     }
 }
 

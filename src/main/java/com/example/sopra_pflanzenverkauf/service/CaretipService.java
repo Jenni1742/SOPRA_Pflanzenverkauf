@@ -22,11 +22,23 @@ public class CaretipService {
         return caretipRepository.findAll();
     }
 
+    public Caretip persistCaretip(Caretip caretip) {
+        return caretipRepository.save(caretip);
+    }
+
+    public Caretip upateCaretip(Caretip caretip) {
+        return caretipRepository.save(caretip);
+    }
+
     public List<Caretip> getCaretipsByCategory(Category category) {
         return caretipRepository.findByCategory(category);
     }
 
     public Caretip getCaretipById (Integer caretipId) {
         return caretipRepository.findByCaretipId(caretipId);
+    }
+
+    public Caretip getByTitle (String title) {
+        return caretipRepository.findByTitle(title);
     }
 }

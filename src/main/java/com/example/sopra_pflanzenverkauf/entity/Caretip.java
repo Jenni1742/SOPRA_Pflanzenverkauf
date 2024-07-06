@@ -10,6 +10,9 @@ public class Caretip {
     @Column(name = "PflegetippID")
     private Integer caretipId;
 
+    @Column(name = "Titel")
+    private String title;
+
     @Column(name = "Pflegetipp")
     private String caretip;
 
@@ -41,5 +44,13 @@ public class Caretip {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

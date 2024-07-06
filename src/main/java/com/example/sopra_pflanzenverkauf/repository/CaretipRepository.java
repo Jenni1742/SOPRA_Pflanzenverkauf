@@ -12,4 +12,6 @@ public interface CaretipRepository extends JpaRepository<Caretip, Integer> {
     List<Caretip> findByCategory(Category category);
 
     Caretip findByCaretipId(Integer caretipId);
+
+    Caretip findByTitle(String title);
 }
