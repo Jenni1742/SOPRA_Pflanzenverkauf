@@ -149,8 +149,6 @@ public class HomeController {
             userService.updateWishlist(currentUser);
         }
 
-
-
         model.put("currentUser", currentUser);
         Plant plantObject = plantService.getPlantByPlantId(plant);
         if (plantObject.getBooster() == true) {

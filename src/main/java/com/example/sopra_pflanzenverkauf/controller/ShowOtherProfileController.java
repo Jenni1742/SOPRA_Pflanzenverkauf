@@ -56,7 +56,14 @@ public class ShowOtherProfileController {
         Integer userId = plantObject.getSeller().getUserId();
 
         model.put("currentUser", currentUser);
-        return "redirect:/showOtherProfile/" + userId + "#" + plant;
+
+        if (plantObject.getSeller().getPlantsToSell().get(0) == plantObject) {
+            return "redirect:/showOtherProfile/" + userId + "#Verkaufsanzeigen";
+        } else {
+            return "redirect:/showOtherProfile/" + userId + "#" + plant;
+        }
+
+
     }
 
     @PostMapping(path = "/showOtherProfile/delete")
@@ -73,7 +80,11 @@ public class ShowOtherProfileController {
         Integer userId = plantObject.getSeller().getUserId();
 
         model.put("currentUser", currentUser);
-        return "redirect:/showOtherProfile/" + userId + "#Verkaufsanzeigen";
+        if (plantObject.getSeller().getPlantsToSell().get(0) == plantObject) {
+            return "redirect:/showOtherProfile/" + userId + "#Verkaufsanzeigen";
+        } else {
+            return "redirect:/showOtherProfile/" + userId + "#" + plant;
+        }
     }
 }
 

@@ -179,13 +179,20 @@
                         </div>
                         <div style="flex: 1; padding-left: 20px;">
                             <div th:if="${(plants.size()-1) > plants.indexOf(plant)}">
+                                <!--Pflanze bekommt die ID der darunter liegenden -->
                                 <a th:id="${plants.get(plants.indexOf(plant)+1).plantId}">
                                     <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
                                 </a>
                             </div>
-                            <div th:if="${(plants.size()-1) <= plants.indexOf(plant)}">
+
+                            <div th:if="${(plants.size()-1) == plants.indexOf(plant)}">
+                                <a th:id="${plant.plantId}">
                                 <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
+                                </a>
                             </div>
+
+
+
 
                             <h6 th:text="${plant.category.categoryname}" style="font-style: italic;"></h6>
                             <p></p>
