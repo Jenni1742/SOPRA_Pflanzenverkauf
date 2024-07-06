@@ -50,12 +50,12 @@ public class HomeController {
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
 
-        List<Plant> plants = plantService.getFilteredPlants(category, planter,  false);
+        List<Plant> plants = plantService.getFilteredPlants(category, planter, priceMin, priceMax, sizeMin, sizeMax,  false);
         if (plants == null) {
             plants = new ArrayList<>();
         }
 
-        List<Plant> boostedPlants = plantService.getFilteredPlants(category, planter, false);
+        List<Plant> boostedPlants = plantService.getFilteredPlants(category, planter, priceMin, priceMax, sizeMin, sizeMax, false);
 
         int i = 0;
         while (i < plants.size()) {
@@ -93,7 +93,7 @@ public class HomeController {
             }
         }
 
-        List<Plant> plants = plantService.getFilteredPlants(selectedCategory, planter, false);
+        List<Plant> plants = plantService.getFilteredPlants(selectedCategory, planter, priceMin, priceMax, sizeMin, sizeMax, false);
         plants = plants.stream()
                 .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
                 .collect(Collectors.toList());

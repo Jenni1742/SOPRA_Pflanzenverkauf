@@ -75,7 +75,7 @@ public class PlantService {
                 .collect(Collectors.toList());
     }
     //, Integer priceMin, Integer priceMax, Integer sizeMin, Integer sizeMax
-    public List<Plant> getFilteredPlants(Category category, String planter, boolean booster) {
+    public List<Plant> getFilteredPlants(Category category, String planter,Integer priceMin, Integer priceMax, Integer sizeMin, Integer sizeMax, boolean booster) {
         List<Plant> plants = getAllPlants();
 
         if (category != null) {
@@ -90,17 +90,17 @@ public class PlantService {
                     .collect(Collectors.toList());
         }
 
-//        if (priceMin != null && priceMax != null) {
-//            plants = plants.stream()
-//                    .filter(plant -> plant.getPrice() >= priceMin && plant.getPrice() <= priceMax)
-//                    .collect(Collectors.toList());
-//        }
-//
-//        if (sizeMin != null && sizeMax != null) {
-//            plants = plants.stream()
-//                    .filter(plant -> plant.getPlantSize() >= sizeMin && plant.getPlantSize() <= sizeMax)
-//                    .collect(Collectors.toList());
-//        }
+        if (priceMin != null && priceMax != null) {
+            plants = plants.stream()
+                    .filter(plant -> plant.getPrice() >= priceMin && plant.getPrice() <= priceMax)
+                    .collect(Collectors.toList());
+        }
+
+        if (sizeMin != null && sizeMax != null) {
+            plants = plants.stream()
+                    .filter(plant -> plant.getPlantSize() >= sizeMin && plant.getPlantSize() <= sizeMax)
+                    .collect(Collectors.toList());
+        }
         if (booster) {
             // Filter for plants with booster
             List<Plant> boosterPlants = plants.stream()
