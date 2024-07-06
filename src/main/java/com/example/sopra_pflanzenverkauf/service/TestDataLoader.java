@@ -270,11 +270,9 @@ public class TestDataLoader implements CommandLineRunner {
                 "70323",
                 false,
                 true,
-                "https://cdn.pixabay.com/photo/2016/05/24/17/42/lotus-1412858_1280.jpg",
                 null
-
         );
-
+        //https://cdn.pixabay.com/photo/2016/05/24/17/42/lotus-1412858_1280.jpg
         melanostachy.setImage(melanostachy.imageInBytes("src/main/resources/static/images/plantPictures/SalixMelanostachys.jpg"));
         plantService.persistPlant(melanostachy);
 
@@ -289,10 +287,9 @@ public class TestDataLoader implements CommandLineRunner {
                 "12345",
                 alessiaSedelnikov,
                 true,
-                false,
-                "https://www.blumen-brueder.de/Content/files/1886/Coffea-arabica-600x800-proportionalsmallest.webp"
+                false
         );
-
+        //https://www.blumen-brueder.de/Content/files/1886/Coffea-arabica-600x800-proportionalsmallest.webp
         kaffeestrauch.setImage(kaffeestrauch.imageInBytes("src/main/resources/static/images/plantPictures/Kaffeestrauch.jpg"));
         plantService.persistPlant(kaffeestrauch);
 
@@ -316,9 +313,9 @@ public class TestDataLoader implements CommandLineRunner {
                 "56789",
                 false,
                 true,
-                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg",
                 null
         );
+        //https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg
         allium.setImage(allium.imageInBytes("src/main/resources/static/images/plantPictures/Allium.jpg"));
         plantService.persistPlant(allium);
 
@@ -350,9 +347,9 @@ public class TestDataLoader implements CommandLineRunner {
                 "70321",
                 alessiaSedelnikov,
                 true,
-                false,
-                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier3kniphofia_03_0734dfd3c0.jpg"
+                false
         );
+        //https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier3kniphofia_03_0734dfd3c0.jpg
         kniphofia.setImage(kniphofia.imageInBytes("src/main/resources/static/images/plantPictures/Kniphofia.jpg"));
         plantService.persistPlant(kniphofia);
 
@@ -380,10 +377,10 @@ public class TestDataLoader implements CommandLineRunner {
                 "74231",
                 false,
                 true,
-                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg",
                 null
 
         );
+        //https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Prunus_subhirtella_autumnalis_811bfd6a1f.jpg
         prunus.setImage(prunus.imageInBytes("src/main/resources/static/images/plantPictures/PrunusSubhirtella.jpg"));
         plantService.persistPlant(prunus);
 
@@ -402,10 +399,10 @@ public class TestDataLoader implements CommandLineRunner {
                 "71234",
                 false,
                 false,
-                "https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg",
                 null
 
         );
+        //https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_Cephalanthus_occidentalis_2c068fa11a.jpg
         occidentalis.setImage(occidentalis.imageInBytes("src/main/resources/static/images/plantPictures/Cephalanthus.jpg"));
         plantService.persistPlant(occidentalis);
 
@@ -420,10 +417,10 @@ public class TestDataLoader implements CommandLineRunner {
                 "70444",
                 jenniferKaisner,
                 true,
-                false,
-                "https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg"
+                false
 
         );
+        //https://gaerten.uni-hohenheim.de/typo3temp/_processed_/csm_HD_DE_HOH_DP_2013_-_00301i_d44bb98a17.jpg
         hahn.setImage(hahn.imageInBytes("src/main/resources/static/images/plantPictures/Hahnenfussgewächs.jpg"));
         plantService.persistPlant(hahn);
 
@@ -448,9 +445,9 @@ public class TestDataLoader implements CommandLineRunner {
                 "70355",
                 false,
                 false,
-                "https://www.swr.de/swraktuell/baden-wuerttemberg/stuttgart/1713352797444%2Ctitanenwurz-uni-hohenheim-stuttgart-100~_v-16x9@2dL_-6c42aff4e68b43c7868c3240d3ebfa29867457da.jpg",
                 null
         );
+        //https://www.swr.de/swraktuell/baden-wuerttemberg/stuttgart/1713352797444%2Ctitanenwurz-uni-hohenheim-stuttgart-100~_v-16x9@2dL_-6c42aff4e68b43c7868c3240d3ebfa29867457da.jpg
         titanenwurzel.setImage(titanenwurzel.imageInBytes("src/main/resources/static/images/plantPictures/Titanenwurzel.jpg"));
         plantService.persistPlant(titanenwurzel);
 
@@ -466,9 +463,9 @@ public class TestDataLoader implements CommandLineRunner {
                 "70367",
                 false,
                 false,
-                "https://cdn.pixabay.com/photo/2018/09/13/18/18/heide-3675445_1280.jpg",
                 null
         );
+        //https://cdn.pixabay.com/photo/2018/09/13/18/18/heide-3675445_1280.jpg
         heidekraut.setImage(heidekraut.imageInBytes("src/main/resources/static/images/plantPictures/Heidekraut.jpg"));
         plantService.persistPlant(heidekraut);
 
@@ -483,9 +480,9 @@ public class TestDataLoader implements CommandLineRunner {
                 "70321",
                 false,
                 true,
-                "https://www.lubera.com/images/600/lotus-blatt-e1481172403391.jpg",
                 null
         );
+        //https://www.lubera.com/images/600/lotus-blatt-e1481172403391.jpg
         lotus.setImage(lotus.imageInBytes("src/main/resources/static/images/plantPictures/Lotus.jpg"));
         plantService.persistPlant(lotus);
 
@@ -500,9 +497,9 @@ public class TestDataLoader implements CommandLineRunner {
                 "45678",
                 false,
                 false,
-                "https://cdn.pixabay.com/photo/2019/02/25/20/29/houseplant-4020532_1280.jpg",
                 null
         );
+        //https://cdn.pixabay.com/photo/2019/02/25/20/29/houseplant-4020532_1280.jpg
         kleingruen.setImage(kleingruen.imageInBytes("src/main/resources/static/images/plantPictures/KleinePflanze.jpg"));
         plantService.persistPlant(kleingruen);
 
@@ -518,9 +515,9 @@ public class TestDataLoader implements CommandLineRunner {
                 "70321",
                 false,
                 true,
-                "https://cdn.pixabay.com/photo/2011/04/06/15/05/garden-6239_1280.jpg",
                 null
         );
+        //https://cdn.pixabay.com/photo/2011/04/06/15/05/garden-6239_1280.jpg
         jessica.setImage(jessica.imageInBytes("src/main/resources/static/images/plantPictures/Jessica.jpg"));
         plantService.persistPlant(jessica);
 
@@ -535,9 +532,9 @@ public class TestDataLoader implements CommandLineRunner {
                 "12345",
                 false,
                 false,
-                "https://cdn.pixabay.com/photo/2017/04/03/07/30/blue-flower-2197679_1280.jpg",
                 null
         );
+        //https://cdn.pixabay.com/photo/2017/04/03/07/30/blue-flower-2197679_1280.jpg
         blau.setImage(blau.imageInBytes("src/main/resources/static/images/plantPictures/Blau.jpg"));
         plantService.persistPlant(blau);
 

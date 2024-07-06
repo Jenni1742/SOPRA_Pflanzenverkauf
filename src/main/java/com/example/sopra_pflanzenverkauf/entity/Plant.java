@@ -41,10 +41,6 @@ public class Plant {
     @Lob
     private String plantDescription;
 
-    @Column(name = "Foto")
-    @Deprecated
-    private String imageUrl;
-
     @Column(name = "Bild1")
     @Lob
     private byte[] image;
@@ -124,8 +120,7 @@ public class Plant {
             String zipCode,
             User buyer,
             Boolean sold,
-            Boolean planter,
-            String imageUrl
+            Boolean planter
     ) {
         this.plantname = plantname;
         this.plantSize = plantSize;
@@ -138,7 +133,6 @@ public class Plant {
         this.buyer = buyer;
         this.sold = sold;
         this.planter = planter;
-        this.imageUrl = imageUrl;
     }
 
     /**
@@ -165,7 +159,6 @@ public class Plant {
             String zipCode,
             Boolean sold,
             Boolean planter,
-            String imageUrl,
             byte[] image
     ) {
         this.plantname = plantname;
@@ -178,7 +171,6 @@ public class Plant {
         this.zipCode = zipCode;
         this.sold = sold;
         this.planter = planter;
-        this.imageUrl = imageUrl;
         this.image = image;
     }
 
@@ -190,12 +182,6 @@ public class Plant {
 
     public Boolean getBooster(){
         return booster;
-    }
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-    public String getImageUrl(){
-        return imageUrl;
     }
 
     public void setImage(byte [] image) {

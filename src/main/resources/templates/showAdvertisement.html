@@ -19,64 +19,55 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-4">
-                    <img th:if="${plant.imageUrl != null && plant.image == null}" th:src="@{${plant.imageUrl}}"
-                         alt="Bild von [[${plant.plantname}]]"
-                         class="img-fluid" style="border-radius: 10px; max-width: 100%; height: auto;">
-                    <div th:if="${plant.image != null}">
-                        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel"
-                             style="width: 300px; height: 300px">
-                            <div class="carousel-inner">
 
+
+                    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel"
+                         style="width: 300px; height: 300px">
+                        <div class="carousel-inner">
+                            <div th:if="${plant.image != null}">
                                 <div class="carousel-item active" data-bs-interval="3000"
                                      style="width: 300px; height: 300px">
-                                    <img th:if="${plant.imageUrl != null}" th:src="@{${plant.imageUrl}}"
+                                    <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}"
                                          alt="Bild von [[${plant.name}]]"
                                          class="d-block w-100">
-
-                                </div>
-                                <div th:if="${plant.image != null}">
-                                    <div class="carousel-item" data-bs-interval="3000"
-                                         style="width: 300px; height: 300px">
-                                        <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}"
-                                             alt="Bild von [[${plant.name}]]"
-                                             class="d-block w-100">
-                                    </div>
-                                </div>
-                                <div th:if="${plant.imageTwo != null}">
-                                    <div class="carousel-item" data-bs-interval="3000"
-                                         style="width: 300px; height: 300px">
-                                        <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageTwoDataBase64()}}"
-                                             alt="Bild von [[${plant.name}]]"
-                                             class="d-block w-100">
-                                    </div>
-                                </div>
-                                <div th:if="${plant.imageThree != null}">
-                                    <div class="carousel-item" data-bs-interval="3000"
-                                         style="width: 300px; height: 300px">
-                                        <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageThreeDataBase64()}}"
-                                             alt="Bild von [[${plant.name}]]"
-                                             class="d-block w-100">
-                                    </div>
                                 </div>
                             </div>
-                            <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+                            <div th:if="${plant.imageTwo != null}">
+                                <div class="carousel-item" data-bs-interval="3000"
+                                     style="width: 300px; height: 300px">
+                                    <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageTwoDataBase64()}}"
+                                         alt="Bild von [[${plant.name}]]"
+                                         class="d-block w-100">
+                                </div>
+                            </div>
+                            <div th:if="${plant.imageThree != null}">
+                                <div class="carousel-item" data-bs-interval="3000"
+                                     style="width: 300px; height: 300px">
+                                    <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageThreeDataBase64()}}"
+                                         alt="Bild von [[${plant.name}]]"
+                                         class="d-block w-100">
+                                </div>
+                            </div>
                         </div>
+                        <button class="carousel-control-prev" type="button"
+                                data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button"
+                                data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
                 </div>
 
                 <div class="col-md-8">
                     <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
-                    <p th:if="${plant.latinName != null}"><strong>Lateinischer Name:</strong> <span th:text="${plant.latinName}">Lateinischer Name</span></p>
-                    <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}" style="font-style: italic;">Kategorie</span></p>
+                    <p th:if="${plant.latinName != null}"><strong>Lateinischer Name:</strong> <span
+                            th:text="${plant.latinName}">Lateinischer Name</span></p>
+                    <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}"
+                                                         style="font-style: italic;">Kategorie</span></p>
                     <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
                     <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
                     <p th:if="${plant.planter}"><strong>Mit Übertopf</strong></p>
@@ -90,8 +81,10 @@
 
             <div class="ad" style="position: relative;">
                 <a th:href="@{/deleteAdvertisement/{id}(id=${plant.plantId})}">
-                    <button type="button" class="btn-rePlantHeart" style="top: -135px; right: 0px;  position: absolute;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#017101" class="bi bi-trash" viewBox="0 0 16 16">
+                    <button type="button" class="btn-rePlantHeart"
+                            style="top: -135px; right: 0px;  position: absolute;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#017101"
+                             class="bi bi-trash" viewBox="0 0 16 16">
                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
                             <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
                         </svg>
@@ -107,10 +100,12 @@
                 </button>
             </a>
 
-            <a th:href="@{/editAdvertisement/{id}(id=${plant.plantId})}" style="text-decoration: none;" class="btn-linkButton">
+            <a th:href="@{/editAdvertisement/{id}(id=${plant.plantId})}" style="text-decoration: none;"
+               class="btn-linkButton">
                 <button type="button" class="btn btn-rePlantGreen">
                     Angaben ändern
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="auto" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="auto" fill="currentColor"
+                         class="bi bi-pencil" viewBox="0 0 16 16">
                         <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
                     </svg>
                 </button>

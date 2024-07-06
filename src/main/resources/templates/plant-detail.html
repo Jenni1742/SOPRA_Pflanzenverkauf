@@ -20,21 +20,13 @@
             <div class="row">
 
                 <div class="col-md-4">
-                    <img th:if="${plant.imageUrl != null && plant.image == null}" th:src="@{${plant.imageUrl}}"
-                         alt="Bild von [[${plant.plantname}]]"
-                         class="img-fluid" style="border-radius: 10px; max-width: 100%; height: auto;">
+
                     <div th:if="${plant.image != null}">
                         <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" style="width: 300px; height: 300px">
                             <div class="carousel-inner">
 
-                                <div class="carousel-item active" data-bs-interval="3000" style="width: 300px; height: 300px">
-                                    <img th:if="${plant.imageUrl != null}" th:src="@{${plant.imageUrl}}"
-                                         alt="Bild von [[${plant.name}]]"
-                                         class="d-block w-100">
-
-                                </div>
                                 <div th:if="${plant.image != null}">
-                                    <div class="carousel-item" data-bs-interval="3000" style="width: 300px; height: 300px">
+                                    <div class="carousel-item active" data-bs-interval="3000" style="width: 300px; height: 300px">
                                         <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}"
                                              alt="Bild von [[${plant.name}]]"
                                              class="d-block w-100">
