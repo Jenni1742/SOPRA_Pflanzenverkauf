@@ -48,9 +48,10 @@
                 </div>
                 <div style="flex: 1; padding-left: 20px; text-align: left">
                     <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
-                    <h6 th:text="${plant.category.categoryname}" style="font-style: italic;"></h6>
+                    <!--<h6 th:text="${plant.category.categoryname}" style="font-style: italic;"></h6>-->
                     <p></p>
-                    <h6><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</h6>
+                    <h7><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</h7>
+                    <p></p>
                     <!--
                     <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
                     <div th:if="${plant.seller != null}">
@@ -66,14 +67,14 @@
                         </p>
                     </div>
                     -->
-                    <h6><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></h6>
-                    <div style="text-align: right; margin-top: -22px;">
+                    <!--<h6><strong>PLZ:</strong> <span th:text="${plant.zipCode}">PLZ</span></h6>-->
+
                         <a th:href="@{/plantDetailWishlist/{id}(id=${plant.plantId})}" class="btn-linkButton">
                             <button type="button" class="btn btn-rePlantGreen">
                                 Mehr erfahren
                             </button>
                         </a>
-                    </div>
+
                 </div>
 
 
@@ -82,7 +83,7 @@
 
                     <!-- Button trigger modal -->
                     <form th:action="@{/wishlist (plant = ${plant.plantId})}" id="plant" name="plant" method="post">
-                    <button type="submit" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal" style="top: 0px; right: 0px;  position: absolute;">
+                    <button type="submit" class="btn-rePlantHeart" data-bs-toggle="modal" data-bs-target="#exampleModal" style="top: 60px; right: 0px;  position: absolute;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="auto" fill=red class="bi bi-heart-fill" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
                         </svg>
