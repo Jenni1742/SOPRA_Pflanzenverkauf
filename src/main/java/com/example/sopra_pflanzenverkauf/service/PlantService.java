@@ -124,6 +124,9 @@ public class PlantService {
     }
 
     public List<Plant> sortPlants(List<Plant> plants, String sort) {
+        if (sort == null) {
+            return plants;
+        }
         switch (sort) {
             case "price_asc":
                 plants = plants.stream()

@@ -108,9 +108,18 @@ public class HomeController {
             @RequestParam(name = "sort", required = false) String sort,
             Model model) {
 
+        User currentUser = userService.getCurrentUser();
+        model.addAttribute("currentUser", currentUser);
+
         List<Plant> plants = plantService.getAllPlants();
         plants = plantService.sortPlants(plants, sort);
+
+        plants = plants.stream()
+                .filter(plant -> plant.getSeller() != currentUser && !plant.getSold())
+                .collect(Collectors.toList());
+
         model.addAttribute("plants", plants);
+        model.addAttribute("selectedSort", sort);
         return "filteredPlants";
     }
 
