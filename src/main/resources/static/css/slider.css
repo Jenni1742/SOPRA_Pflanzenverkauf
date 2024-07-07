@@ -51,9 +51,6 @@
     background: #017101; /* Grüne Farbe für den ausgewählten Bereich */
     border-radius: 5px;
     z-index: 0;
-    top: 50%; /* vertikal zentrieren */
-    transform: translateY(-50%);
-    left: 0;
 }
 
 .slider-container .values {
@@ -115,9 +112,6 @@
     background: #017101; /* Grüne Farbe für den ausgewählten Bereich */
     border-radius: 5px;
     z-index: 0;
-    top: 50%; /* vertikal zentrieren */
-    transform: translateY(-50%);
-    left: 0;
 }
 
 .slide-container .values {
