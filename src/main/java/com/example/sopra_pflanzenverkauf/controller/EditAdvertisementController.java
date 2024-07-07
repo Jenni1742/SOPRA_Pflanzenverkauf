@@ -67,6 +67,8 @@ public class EditAdvertisementController {
                             @RequestParam(value = "newcareTips", required = false) String newcareTips,
                             @RequestParam(value = "newzipCode", required = false) String newzipCode,
                             @RequestParam(value = "newselectCategory") String newselectCategory,
+                            @Param(value = "deleteImageTwo") Boolean deleteImageTwo,
+                            @Param(value = "deleteImageThree") Boolean deleteImageThree,
                             @RequestParam(value = "newImageMp", required = false) MultipartFile multipartFile,
                             @RequestParam(value = "newImageMp2", required = false) MultipartFile multipartFileTwo,
                             @RequestParam(value = "newImageMp3", required = false) MultipartFile multipartFileThree,
@@ -108,6 +110,14 @@ public class EditAdvertisementController {
 
         if (newzipCode != null && !newzipCode.isEmpty()) {
             currentPlant.setZipCode(newzipCode);
+        }
+
+        if(deleteImageTwo != null){
+            currentPlant.setImageTwo(null);
+        }
+
+        if(deleteImageThree != null){
+            currentPlant.setImageThree(null);
         }
 
         if (!multipartFile.isEmpty()) {

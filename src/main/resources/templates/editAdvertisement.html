@@ -23,7 +23,8 @@
         </div>
 
         <div class="card-body">
-            <form th:action="@{/editAdvertisement/{id}(id=${plant.plantId})}" method="post" enctype="multipart/form-data">
+            <form th:action="@{/editAdvertisement/{id}(id=${plant.plantId})}" method="post"
+                  enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="newplantname" class="form-label">Name der Pflanze:</label>
                     <input type="text" class="form-control" id="newplantname" name="newplantname"
@@ -38,7 +39,8 @@
 
                 <div th:if="${plant.planter}">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="withPlanterTrue" id="withPlanterTrue" checked>
+                        <input class="form-check-input" type="checkbox" name="withPlanterTrue" id="withPlanterTrue"
+                               checked>
                         <label class="form-check-label" for="withPlanterTrue">
                             Inklusive Übertopf?
                         </label>
@@ -97,16 +99,84 @@
                 </div>
 
                 Bilder:
+                <table class="table" style="background-color: transparent">
+                    <tr>
+                        <th scope="col">
+                            <div th:if="${plant.image != null}">
+                            Bild 1
+                            </div>
+                            <div th:if="${plant.image != null}">
+                                <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}"
+                                     style="width: 200px">
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div th:if="${plant.imageTwo != null}">
+                            Bild 2
+                            </div>
+                            <div th:if="${plant.imageTwo != null}">
+                                <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageTwoDataBase64()}}"
+                                     style="width: 200px">
+                            </div>
+                        </th>
+                        <th scope="col">
+                            <div th:if="${plant.imageThree != null}">
+                            Bild 3
+                            </div>
+                            <div th:if="${plant.imageThree != null}">
+                                <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageThreeDataBase64()}}"
+                                     style="width: 200px">
+                            </div>
+                        </th>
+                    </tr>
+
+                </table>
+
+                Bild 1 ändern:
                 <div class="input-group mb-3">
                     <input type="file" class="form-control" name="newImageMp" id="newImageMp">
                 </div>
 
+                <div th:if="${plant.imageTwo == null}">
+                    Bild 2 einfügen:
+                </div>
+                <div th:if="${plant.imageTwo != null}">
+                    Bild 2 ändern:
+                </div>
                 <div class="input-group mb-3">
                     <input type="file" class="form-control" name="newImageMp2" id="newImageMp2">
                 </div>
+                <div th:if="${plant.imageTwo != null}">
+                    Bild 2 löschen:
 
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="deleteImageTwo" id="deleteImageTwo">
+                        <label class="form-check-label" for="deleteImageTwo">
+                            Bild löschen
+                        </label>
+                    </div>
+                </div>
+
+                <p></p>
+
+                <div th:if="${plant.imageThree == null}">
+                    Bild 3 einfügen:
+                </div>
+                <div th:if="${plant.imageThree != null}">
+                    Bild 3 ändern:
+                </div>
                 <div class="input-group mb-3">
                     <input type="file" class="form-control" name="newImageMp3" id="newImageMp3">
+                </div>
+                <div th:if="${plant.imageThree != null}">
+                    Bild 3 löschen:
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="deleteImageThree" id="deleteImageThree">
+                        <label class="form-check-label" for="deleteImageThree">
+                            Bild löschen
+                        </label>
+                    </div>
                 </div>
 
                 <div class="card-footer text-center card-footer-rePlant">
