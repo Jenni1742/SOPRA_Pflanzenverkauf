@@ -86,38 +86,6 @@ public class DeleteProfileController {
                 }
             }
 
-
-            System.out.println("E");
-            //Löscht alle zum Verkauf stehenden Pflanzen
-            while (!currentUser.getPlantsToSell().isEmpty()) {
-                plantService.deletePlantByPlantId(currentUser.getPlantsToSell().removeFirst().getPlantId());
-            }
-
-            System.out.println("F");
-            //Leert die eigene Merkliste
-            while (!currentUser.getWishlistPlants().isEmpty()) {
-                currentUser.getWishlistPlants().clear();
-                userService.updateWishlist(currentUser);
-            }
-            System.out.println("G");
-
-            //Ändert bei anderen Usern den Käufer zu unbekannt in der Liste der verkauften Pflanzen
-            while (!currentUser.getPurchasedPlants().isEmpty()) {
-                if (currentUser.getPurchasedPlants().getFirst().getSeller() == null) {
-                    Integer plantId = currentUser.getPurchasedPlants().getFirst().getPlantId();
-                    currentUser.getPurchasedPlants().removeFirst();
-                    plantService.deletePlantByPlantId(plantId);
-                } else {
-                    currentUser.getPurchasedPlants().getFirst().setBuyer(null);
-                    plantService.updateBuyer(currentUser.getPurchasedPlants().getFirst());
-                    currentUser.getPurchasedPlants().removeFirst();
-                }
-
-            }
-
-
-            System.out.println("1");
-
             //Löscht alle gesendeten Nachrichten
             while (!currentUser.getSentMessages().isEmpty()) {
                 Message message = currentUser.getSentMessages().getFirst();
@@ -150,6 +118,39 @@ public class DeleteProfileController {
             }
 
             System.out.println("Hallo");
+
+            System.out.println("E");
+            //Löscht alle zum Verkauf stehenden Pflanzen
+            while (!currentUser.getPlantsToSell().isEmpty()) {
+                plantService.deletePlantByPlantId(currentUser.getPlantsToSell().removeFirst().getPlantId());
+            }
+
+            System.out.println("F");
+            //Leert die eigene Merkliste
+            while (!currentUser.getWishlistPlants().isEmpty()) {
+                currentUser.getWishlistPlants().clear();
+                userService.updateWishlist(currentUser);
+            }
+            System.out.println("G");
+
+            //Ändert bei anderen Usern den Käufer zu unbekannt in der Liste der verkauften Pflanzen
+            while (!currentUser.getPurchasedPlants().isEmpty()) {
+                if (currentUser.getPurchasedPlants().getFirst().getSeller() == null) {
+                    Integer plantId = currentUser.getPurchasedPlants().getFirst().getPlantId();
+                    currentUser.getPurchasedPlants().removeFirst();
+                    plantService.deletePlantByPlantId(plantId);
+                } else {
+                    currentUser.getPurchasedPlants().getFirst().setBuyer(null);
+                    plantService.updateBuyer(currentUser.getPurchasedPlants().getFirst());
+                    currentUser.getPurchasedPlants().removeFirst();
+                }
+
+            }
+
+
+            System.out.println("1");
+
+
 
             //userService.persistUser(currentUser);
             userService.deleteUserById(currentUser.getUserId());
