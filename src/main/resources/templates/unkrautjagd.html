@@ -20,7 +20,12 @@
 
 <div th:insert="~{fragments/htmlHead :: navbar}"></div>
 <div>
-  <button onclick="goBack()" class="btn btn-rePlantGrey move-right">Zurück</button>
+  <!--<button onclick="goBack()" class="btn btn-rePlantGrey move-right">Zurück</button>-->
+  <a href="/gameOverview" class="btn-linkButton">
+    <button type="button" class="btn btn-rePlantGrey  move-right">
+      Schließen
+    </button>
+  </a>
 </div>
 <div class="container text-center">
   <h1>Unkrautjäger</h1>
