@@ -1,5 +1,6 @@
 package com.example.sopra_pflanzenverkauf.controller;
 
+import com.example.sopra_pflanzenverkauf.service.CaretipService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ public class CareTipsController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private CaretipService caretipService;
     /**
      * Request Mapping after a successful login.
      *
@@ -23,6 +26,8 @@ public class CareTipsController {
     public String showCareTipsPage(Map<String, Object> model) {
 
         model.put("currentUser", userService.getCurrentUser());
+
+        model.put("careTipsService", caretipService);
 
         return "careTips";
     }
