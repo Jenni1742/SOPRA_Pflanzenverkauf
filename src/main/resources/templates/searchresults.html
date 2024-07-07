@@ -54,25 +54,25 @@
                         <label class="form-label">Preis:</label>
                         <div class="slider-container">
                             <div class="values">
-                                <span id="value-1">0 EUR</span>
-                                <span id="value-2">>100 EUR</span>
+                                <span id="value-1" th:text="${priceMin} + ' EUR'">0 EUR</span>
+                                <span id="value-2" th:text="${priceMax} + ' EUR'">>100 EUR</span>
                             </div>
                             <div class="range-slider">
-                                <input type="range" name = "priceMin" min="0" max="100" value="0" id="slider-1">
-                                <input type="range" name = "priceMax" min="0" max="100" value="100" id="slider-2">
-                                <div class="range-track range-track-price" ></div>
+                                <input type="range" name="priceMin" min="0" max="100" th:value="${priceMin}" id="slider-1">
+                                <input type="range" name="priceMax" min="0" max="100" th:value="${priceMax}" id="slider-2">
+                                <div class="range-track range-track-price"></div>
                             </div>
                         </div>
                         <label class="form-label">Größe:</label>
-                        <div class="slide-container">
+                        <div class="slider-container">
                             <div class="values">
-                                <span id="value-size-1">1 cm</span>
-                                <span id="value-size-2">>100 cm</span>
+                                <span id="value-size-1" th:text="${sizeMin} + ' cm'">1 cm</span>
+                                <span id="value-size-2" th:text="${sizeMax} + ' cm'">>100 cm</span>
                             </div>
                             <div class="range-slider">
-                                <input type="range" name = "sizeMin" min="1" max="100" value="1" id="slider-size-1">
-                                <input type="range" name = "sizeMax" min="1" max="100" value="100" id="slider-size-2">
-                                <div class="range-track range-track-size" ></div>
+                                <input type="range" name="sizeMin" min="1" max="100" th:value="${sizeMin}" id="slider-size-1">
+                                <input type="range" name="sizeMax" min="1" max="100" th:value="${sizeMax}" id="slider-size-2">
+                                <div class="range-track range-track-size"></div>
                             </div>
                         </div>
                     </div>

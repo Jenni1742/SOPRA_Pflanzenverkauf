@@ -75,10 +75,10 @@ public class HomeController {
     public String getFilteredPlants(
             @RequestParam(name = "category", required = false) String category,
             @RequestParam(name = "planter", required = false) String planter,
-            @RequestParam(name = "priceMin", required = false) Integer priceMin,
-            @RequestParam(name = "priceMax", required = false) Integer priceMax,
-            @RequestParam(name = "sizeMin", required = false) Integer sizeMin,
-            @RequestParam(name = "sizeMax", required = false) Integer sizeMax,
+            @RequestParam(name = "priceMin", required = false, defaultValue = "0") Integer priceMin,
+            @RequestParam(name = "priceMax", required = false, defaultValue = "100") Integer priceMax,
+            @RequestParam(name = "sizeMin", required = false, defaultValue = "0") Integer sizeMin,
+            @RequestParam(name = "sizeMax", required = false, defaultValue = "100") Integer sizeMax,
             Model model) {
 
         User currentUser = userService.getCurrentUser();
@@ -100,6 +100,11 @@ public class HomeController {
 
         model.addAttribute("plants", plants);
         model.addAttribute("selectedCategory", category);
+        model.addAttribute("priceMin", priceMin);
+        model.addAttribute("priceMax", priceMax);
+        model.addAttribute("sizeMin", sizeMin);
+        model.addAttribute("sizeMax", sizeMax);
+        model.addAttribute("planter", planter);
         return "filteredPlants";
     }
 
