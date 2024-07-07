@@ -38,7 +38,7 @@
 
         <div class="chat-users">
         <!-- Hier können Benutzer angezeigt werden -->
-                <div th:each="chat : ${currentUser.getSentAndReceivedChats()}">
+                <div th:each="chat : ${chatList}">
                     <form th:action="@{/chatSpecific/{chatId} (chatId = ${chat.getChatId()})}" method="get">
                         <button class="ad btn-chat">
                             <div style="top: 0px; right: 100px;  position: relative;">
