@@ -45,12 +45,48 @@
 
 
             <div th:each="plant : ${currentUser.getPurchasedPlants()}" class="ad" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin: 10px; border-radius: 10px;">
-                <div style="flex: 0 0 auto; margin-right: 20px; width: 300px;">
-                    <div style="position: relative; width: 100%; padding-top: 100%; overflow: hidden; border-radius: 10px;">
-                         <img th:if="${plant.image != null}" th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}" alt="Bild von [[${plant.name}]]"
-                             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+
+                <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel"
+                     style="width: 300px; height: 300px">
+                    <div class="carousel-inner">
+                        <div th:if="${plant.image != null}">
+                            <div class="carousel-item active" data-bs-interval="3000"
+                                 style="width: 300px; height: 300px">
+                                <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageDataBase64()}}"
+                                     alt="Bild von [[${plant.name}]]"
+                                     class="d-block w-100">
+                            </div>
+                        </div>
+                        <div th:if="${plant.imageTwo != null}">
+                            <div class="carousel-item" data-bs-interval="3000"
+                                 style="width: 300px; height: 300px">
+                                <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageTwoDataBase64()}}"
+                                     alt="Bild von [[${plant.name}]]"
+                                     class="d-block w-100">
+                            </div>
+                        </div>
+                        <div th:if="${plant.imageThree != null}">
+                            <div class="carousel-item" data-bs-interval="3000"
+                                 style="width: 300px; height: 300px">
+                                <img th:src="@{'data:image/jpeg;base64,'+${plant.getImageThreeDataBase64()}}"
+                                     alt="Bild von [[${plant.name}]]"
+                                     class="d-block w-100">
+                            </div>
+                        </div>
                     </div>
+                    <button class="carousel-control-prev" type="button"
+                            data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button"
+                            data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
+
+
                 <div style="flex: 1; padding-left: 20px; text-align: left">
                     <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
                     <p th:if="${plant.getLatinName() != null}"><strong>Lateinischer Name:</strong> <span th:text="${plant.latinName}">Lateinischer Name</span></p>
