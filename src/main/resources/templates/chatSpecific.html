@@ -144,7 +144,7 @@
                     um den Deal abzuschließen. Er/Sie wurde über deine Bestätigung informiert.
                 </div>
                 <div th:if="${specificChat != null}">
-                    <div th:each="message : ${specificChat.getMessagesInChat()}"
+                    <div th:each="message : ${messages}"
                          th:class="${message.sender == currentUser} ? 'outgoing' : 'incoming'">
 
                         <div class="details">

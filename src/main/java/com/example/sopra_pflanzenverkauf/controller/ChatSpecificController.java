@@ -15,6 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 public class ChatSpecificController {
@@ -80,12 +83,26 @@ public class ChatSpecificController {
         model.addAttribute("chatId", chatObject.getChatId());
         model.addAttribute("specificChat", chatObject);
         model.addAttribute("chatPlant", plant);
+
+
+
+            List<Message> messages = chatObject.getMessagesInChat();
+            Collections.reverse(messages);
+            model.addAttribute("messages", messages);
+
         } else {
             model.addAttribute("specificChat", chat1 );
             model.addAttribute("chatId", chat1.getChatId());
             model.addAttribute("chatPlant", chat1.getChatPlant());
+
+            List<Message> messages = chat1.getMessagesInChat();
+            Collections.reverse(messages);
+            model.addAttribute("messages", messages);
+
         }
         model.addAttribute("currentUser", userService.getCurrentUser());
+
+
 
         return "redirect:/chat";
     }
@@ -109,6 +126,10 @@ public class ChatSpecificController {
             model.addAttribute("chatPlant", chat.getChatPlant());
 
             System.out.println(chat.getMessagesInChat().size());
+
+            List<Message> messages = chat.getMessagesInChat();
+            Collections.reverse(messages);
+            model.addAttribute("messages", messages);
 
 
             model.addAttribute("currentUser", currentUser);
@@ -146,6 +167,10 @@ public class ChatSpecificController {
 
         messageService.updateMessage(message);
         chatService.updateChat(chat);
+
+        List<Message> messages = chat.getMessagesInChat();
+        Collections.reverse(messages);
+        model.addAttribute("messages", messages);
 
         return "redirect:/chatSpecific/{chatId}";
     }
