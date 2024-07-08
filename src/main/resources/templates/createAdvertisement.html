@@ -42,8 +42,7 @@
                     <div class="mb-3">
                         <label for="latinName" class="form-label">Lateinischer Name (optional):</label>
                         <input type="text" class="form-control" pattern="[A-Za-z]" id="latinName" name="latinName"
-                               th:field="*{latinName}"
-                               title="Füllen Sie dieses Feld aus. (Nur Buchstaben von A-Z in Groß- und Kleinschreibweise)">
+                               th:field="*{latinName}">
                         <div class="valid-feedback">
                             Dieses Feld muss nicht ausgefüllt werden, aber sehr cool, wenn du es getan hast
                         </div>
@@ -75,18 +74,18 @@
                     <div class="mb-3">
                         <label for="plantDescription" class="form-label">Beschreibung:</label>
                         <textarea class="form-control" id="plantDescription" name="plantDescription"
-                                  th:field="*{plantDescription}" required></textarea>
+                                  th:field="*{plantDescription}"  maxlength="500"  required></textarea>
                         <div class="invalid-feedback">
-                            Beschreibe deine Pflanze in ein paar Sätzen.
+                            Beschreibe deine Pflanze in ein paar Sätzen (maximal 500 Zeichen).
                         </div>
                     </div>
 
                     <div class="mb-3">
                         <label for="careTips" class="form-label">Pflegetipps:</label>
                         <textarea class="form-control" id="careTips" name="careTips" th:field="*{careTips}"
-                                  required></textarea>
+                                  maxlength="500" required></textarea>
                         <div class="invalid-feedback">
-                            Bitte gib einen Pflegetipp für deine Pflanze ein. Worauf muss der Käufer besonders achten?
+                            Bitte gib einen Pflegetipp für deine Pflanze ein. Worauf muss der Käufer besonders achten? (maximal 500 Zeichen)
                         </div>
                     </div>
 
@@ -108,9 +107,6 @@
                             Anklicken, wenn ein Übertopf dabei ist, ansonsten so lassen.
                         </div>
                     </div>
-
-                    <p></p>
-
 
                     <div class="mb-3">
                         <label for="zipCode" class="form-label">Postleitzahl:</label>

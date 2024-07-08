@@ -25,16 +25,18 @@
         <div class="card-body">
             <form th:action="@{/editAdvertisement/{id}(id=${plant.plantId})}" method="post"
                   enctype="multipart/form-data">
-                <div class="mb-3">
+                <div class="mb-3 ">
                     <label for="newplantname" class="form-label">Name der Pflanze:</label>
-                    <input type="text" class="form-control" id="newplantname" name="newplantname"
-                           th:placeholder="${plant.plantname}">
+                    <input type="text" pattern="[A-Za-z]{1,20}" class="form-control" id="newplantname" name="newplantname"
+                           th:placeholder="${plant.plantname}"
+                    title="Nur Buchstaben von A-Z in Groß- und Kleinschreibweise und maximal 20 Zeichen.">
                 </div>
 
                 <div class="mb-3">
                     <label for="newlatinName" class="form-label">Lateinischer Name (optional):</label>
-                    <input type="text" class="form-control" id="newlatinName" name="newlatinName"
-                           th:placeholder="${plant.latinName}">
+                    <input type="text" pattern="[A-Za-z]" class="form-control" id="newlatinName" name="newlatinName"
+                           th:placeholder="${plant.latinName}"
+                    title="Nur Buchstaben von A-Z in Groß- und Kleinschreibweise.">
                 </div>
 
                 Kategorie:
@@ -49,7 +51,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="newprice" class="form-label">Preis (in €):</label>
+                    <label for="newprice" class="form-label">Preis (in €): Wenn du die Pflanze verschenken möchtest, gib 0 ein.</label>
                     <input type="number" min="0" step="0.01" size="3" class="form-control" id="newprice" name="newprice"
                            th:placeholder="${plant.price}">
                 </div>
@@ -57,13 +59,15 @@
                 <div class="mb-3">
                     <label for="newplantDescription" class="form-label">Beschreibung:</label>
                     <textarea class="form-control" id="newplantDescription" name="newplantDescription"
-                              th:placeholder="${plant.plantDescription}"></textarea>
+                              th:placeholder="${plant.plantDescription}"
+                              title="Maximal 500 Zeichen."></textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="newcareTips" class="form-label">Pflegetipps:</label>
                     <textarea class="form-control" id="newcareTips" name="newcareTips"
-                              th:placeholder="${plant.careTips}"></textarea>
+                              th:placeholder="${plant.careTips}"
+                              title="Maximal 500 Zeichen."></textarea>
                 </div>
 
                 <div class="mb-3">
@@ -155,9 +159,8 @@
                             Bild löschen
                         </label>
                     </div>
+                    <p></p>
                 </div>
-
-                <p></p>
 
                 <div th:if="${plant.imageThree == null}">
                     Bild 3 einfügen:
@@ -178,6 +181,9 @@
                         </label>
                     </div>
                 </div>
+
+
+
 
                 <div class="card-footer text-center card-footer-rePlant">
                     <button onclick="history.back()" type="button" class="btn btn-rePlantGrey">Schließen
