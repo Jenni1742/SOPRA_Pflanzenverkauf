@@ -77,7 +77,7 @@ public class HomeController {
             @RequestParam(name = "planter", required = false) String planter,
             @RequestParam(name = "priceMin", required = false, defaultValue = "0") Integer priceMin,
             @RequestParam(name = "priceMax", required = false, defaultValue = "100") Integer priceMax,
-            @RequestParam(name = "sizeMin", required = false, defaultValue = "0") Integer sizeMin,
+            @RequestParam(name = "sizeMin", required = false, defaultValue = "1") Integer sizeMin,
             @RequestParam(name = "sizeMax", required = false, defaultValue = "100") Integer sizeMax,
             Model model) {
 
