@@ -69,11 +69,11 @@
                     <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}"
                                                          style="font-style: italic;">Kategorie</span></p>
                     <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
+                    <p><strong>Beschreibung:</strong> <span th:text="${plant.plantDescription}">Beschreibung</span></p>
+                    <p><strong>Pflegetipps:</strong> <span th:text="${plant.careTips}">Pflegetipps</span></p>
                     <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
                     <p th:if="${plant.planter}"><strong>Mit Übertopf</strong></p>
                     <p th:if="${!plant.planter}"><strong>Ohne Übertopf</strong></p>
-                    <p><strong>Beschreibung:</strong> <span th:text="${plant.plantDescription}">Beschreibung</span></p>
-                    <p><strong>Pflegetipps:</strong> <span th:text="${plant.careTips}">Pflegetipps</span></p>
                     <p><strong>Postleitzahl:</strong> <span th:text="${plant.zipCode}">00000</span></p>
                 </div>
 

@@ -24,130 +24,128 @@
         <div class="card-header text-center">
             <h3 class="card-title" th:text="'Verkaufsanzeige erstellen'"></h3>
         </div>
-        <div class="row">
 
+            <div class="card-body">
                 <form class="row g-3 needs-validation" novalidate th:action="@{/createAdvertisement}" th:object="${plant}" method="post"
                       enctype="multipart/form-data">
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="plantname" class="form-label">Name der Pflanze:</label>
-                            <input type="text" class="form-control" pattern="[A-Za-z]{1,20}" id="plantname"
-                                   name="plantname"
-                                   th:field="*{plantname}"
-                                   required>
-                            <div class="invalid-feedback">
-                                Fülle bitte dieses Feld aus. (Nur Buchstaben von A-Z in Groß- und Kleinschreibweise und maximal 20 Zeichen.)
-                            </div>
+                    <div class="mb-3">
+                        <label for="plantname" class="form-label">Name der Pflanze:</label>
+                        <input type="text" class="form-control" pattern="[A-Za-z]{1,20}" id="plantname"
+                               name="plantname"
+                               th:field="*{plantname}"
+                               required>
+                        <div class="invalid-feedback">
+                            Fülle bitte dieses Feld aus. (Nur Buchstaben von A-Z in Groß- und Kleinschreibweise und maximal 20 Zeichen.)
                         </div>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="latinName" class="form-label">Lateinischer Name (optional):</label>
-                            <input type="text" class="form-control" pattern="[A-Za-z]" id="latinName" name="latinName"
-                                   th:field="*{latinName}"
-                                   title="Füllen Sie dieses Feld aus. (Nur Buchstaben von A-Z in Groß- und Kleinschreibweise)">
-                            <div class="valid-feedback">
-                                Dieses Feld muss nicht ausgefüllt werden, aber sehr cool, wenn du es getan hast
-                            </div>
+                    <div class="mb-3">
+                        <label for="latinName" class="form-label">Lateinischer Name (optional):</label>
+                        <input type="text" class="form-control" pattern="[A-Za-z]" id="latinName" name="latinName"
+                               th:field="*{latinName}"
+                               title="Füllen Sie dieses Feld aus. (Nur Buchstaben von A-Z in Groß- und Kleinschreibweise)">
+                        <div class="valid-feedback">
+                            Dieses Feld muss nicht ausgefüllt werden, aber sehr cool, wenn du es getan hast
                         </div>
+                    </div>
 
-
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="withPlanter" id="withPlanter">
-                            <label class="form-check-label" for="withPlanter">
-                                Inklusive Übertopf?
-                            </label>
-                            <div class="valid-feedback">
-                                Anklicken, wenn ein Übertopf dabei ist, ansonsten so lassen.
+                    <div class="mb-3">
+                        <label>Kategorie:</label>
+                        <select class="form-select" id="categoryname" name="categoryname" required>
+                            <option selected disabled value="">Auswählen...</option>
+                            <div th:each="category : ${categories}">
+                                <option><span th:text="${category.getCategoryname()}"></span></option>
                             </div>
+                        </select>
+                        <div class="invalid-feedback">
+                            Bitte wähle eine Kategorie aus.
                         </div>
+                    </div>
 
-                        <p></p>
-
-                        <div class="mb-3">
-                            <label>Kategorie:</label>
-                            <select class="form-select" id="categoryname" name="categoryname" required>
-                                <option selected disabled value="">Auswählen...</option>
-                                <div th:each="category : ${categories}">
-                                    <option><span th:text="${category.getCategoryname()}"></span></option>
-                                </div>
-                            </select>
-                            <div class="invalid-feedback">
-                                Bitte wähle eine Kategorie aus.
-                            </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Preis (in €):</label>
+                        <input type="number" min="0" step="0.01" size="3" class="form-control" id="price"
+                               name="price"
+                               required>
+                        <div class="invalid-feedback">
+                            Bitte gib einen Preis ein. Wenn du die Pflanze verschenken möchtest, gib 0 ein.
                         </div>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="price" class="form-label">Preis (in €):</label>
-                            <input type="number" min="0" step="0.01" size="3" class="form-control" id="price"
-                                   name="price"
-                                   required>
-                            <div class="invalid-feedback">
-                                Bitte gib einen Preis ein. Wenn du die Pflanze verschenken möchtest, gib 0 ein.
-                            </div>
+                    <div class="mb-3">
+                        <label for="plantDescription" class="form-label">Beschreibung:</label>
+                        <textarea class="form-control" id="plantDescription" name="plantDescription"
+                                  th:field="*{plantDescription}" required></textarea>
+                        <div class="invalid-feedback">
+                            Beschreibe deine Pflanze in ein paar Sätzen.
                         </div>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="plantSize" class="form-label">Größe (in cm):</label>
-                            <input type="number" min="1" class="form-control" id="plantSize" name="plantSize"
-                                   th:field="*{plantSize}" required>
-                            <div class="invalid-feedback">
-                                Bitte gib eine Größe an. Bei Samen bitte 1 eintragen.
-                            </div>
+                    <div class="mb-3">
+                        <label for="careTips" class="form-label">Pflegetipps:</label>
+                        <textarea class="form-control" id="careTips" name="careTips" th:field="*{careTips}"
+                                  required></textarea>
+                        <div class="invalid-feedback">
+                            Bitte gib einen Pflegetipp für deine Pflanze ein. Worauf muss der Käufer besonders achten?
                         </div>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="plantDescription" class="form-label">Beschreibung:</label>
-                            <textarea class="form-control" id="plantDescription" name="plantDescription"
-                                      th:field="*{plantDescription}" required></textarea>
-                            <div class="invalid-feedback">
-                                Beschreibe deine Pflanze in ein paar Sätzen.
-                            </div>
+                    <div class="mb-3">
+                        <label for="plantSize" class="form-label">Größe (in cm):</label>
+                        <input type="number" min="1" class="form-control" id="plantSize" name="plantSize"
+                               th:field="*{plantSize}" required>
+                        <div class="invalid-feedback">
+                            Bitte gib eine Größe an. Bei Samen bitte 1 eintragen.
                         </div>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="careTips" class="form-label">Pflegetipps:</label>
-                            <textarea class="form-control" id="careTips" name="careTips" th:field="*{careTips}"
-                                      required></textarea>
-                            <div class="invalid-feedback">
-                                Bitte gib einen Pflegetipp für deine Pflanze ein. Worauf muss der Käufer besonders achten?
-                            </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="withPlanter" id="withPlanter">
+                        <label class="form-check-label" for="withPlanter">
+                            Inklusive Übertopf?
+                        </label>
+                        <div class="valid-feedback">
+                            Anklicken, wenn ein Übertopf dabei ist, ansonsten so lassen.
                         </div>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="zipCode" class="form-label">Postleitzahl:</label>
-                            <input type="text"  pattern="^[0-9]{5}$" class="form-control"
-                                   id="zipCode" name="zipCode" th:field="*{zipCode}"
-                                   required>
-                            <div class="invalid-feedback">
-                                Die Postleitzahl muss aus 5 Stellen bestehen.
-                            </div>
+                    <p></p>
+
+
+                    <div class="mb-3">
+                        <label for="zipCode" class="form-label">Postleitzahl:</label>
+                        <input type="text"  pattern="^[0-9]{5}$" class="form-control"
+                               id="zipCode" name="zipCode" th:field="*{zipCode}"
+                               required>
+                        <div class="invalid-feedback">
+                            Die Postleitzahl muss aus 5 Stellen bestehen.
                         </div>
+                    </div>
 
 
-                        Bilder hochladen (mindestens 1)
-                        <p></p>
-                        Bild 1:
-                        <div class="input-group mb-3">
-                            <input type="file" class="form-control" name="imageMp" id="imageMp" required>
-                            <div class="invalid-feedback">
-                                Bitte lade ein Bild deiner Pflanze hoch.
-                            </div>
+                    Bilder hochladen (mindestens 1)
+                    <p></p>
+                    Bild 1:
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" name="imageMp" id="imageMp" required>
+                        <div class="invalid-feedback">
+                            Bitte lade ein Bild deiner Pflanze hoch.
                         </div>
+                    </div>
 
-                        Bild 2:
-                        <div class="input-group mb-3">
-                            <input type="file" class="form-control" name="imageMp2" id="imageMp2">
-                            <div class="valid-feedback">
-                               Du kannst gerne noch ein weiteres Bild hochladen.
-                            </div>
+                    Bild 2:
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" name="imageMp2" id="imageMp2">
+                        <div class="valid-feedback">
+                           Du kannst gerne noch ein weiteres Bild hochladen.
                         </div>
+                    </div>
 
-                        Bild 3:
-                        <div class="input-group mb-3">
-                            <input type="file" class="form-control" name="imageMp3" id="imageMp3">
-                            <div class="valid-feedback">
-                                Du kannst gerne noch ein weiteres Bild hochladen.
-                            </div>
+                    Bild 3:
+                    <div class="input-group mb-3">
+                        <input type="file" class="form-control" name="imageMp3" id="imageMp3">
+                        <div class="valid-feedback">
+                            Du kannst gerne noch ein weiteres Bild hochladen.
                         </div>
                     </div>
 
@@ -165,8 +163,9 @@
                         </button>
                     </div>
                 </form>
+            </div>
 
-        </div>
+
     </div>
 </div>
 <script src="js/validateUserinput.js"></script>

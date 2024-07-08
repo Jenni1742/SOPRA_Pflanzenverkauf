@@ -99,8 +99,11 @@
                     <p th:if="${plant.getLatinName() != null}"><strong>Lateinischer Name:</strong> <span th:text="${plant.latinName}">Lateinischer Name</span></p>
                     <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}" style="font-style: italic;">Kategorie</span></p>
                     <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span>0 €</p>
+                    <p><strong>Beschreibung:</strong> <span th:text="${plant.plantDescription}">Beschreibung</span></p>
+                    <p><strong>Pflegetipps:</strong> <span th:text="${plant.careTips}">Pflegetipps</span></p>
                     <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">cm</span> cm</p>
-
+                    <p th:if="${plant.planter}"><strong>Mit Übertopf</strong></p>
+                    <p th:if="${!plant.planter}"><strong>Ohne Übertopf</strong></p>
                     <div th:if="${plant.buyer != null}">
                         <p><strong>Käufer*in:</strong>
                         <a th:href="@{/showOtherProfile/{userid}(userid=${plant.buyer.userId})}" class="btn-linkVerkäufer">
@@ -113,11 +116,6 @@
                             <span th:text="${plant.buyer?.username} ?: 'Unbekannter Käufer'">Käufer</span>
                         </p>
                     </div>
-
-                    <p><strong>Beschreibung:</strong> <span th:text="${plant.plantDescription}">Beschreibung</span></p>
-                    <p th:if="${plant.planter}"><strong>Mit Übertopf</strong></p>
-                    <p th:if="${!plant.planter}"><strong>Ohne Übertopf</strong></p>
-                    <p><strong>Pflegetipps:</strong> <span th:text="${plant.careTips}">Pflegetipps</span></p>
                 </div>
             </div>
         </div>
