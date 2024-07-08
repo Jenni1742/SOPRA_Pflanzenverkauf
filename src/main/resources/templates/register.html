@@ -39,72 +39,80 @@
             <form class="row g-3 needs-validation" novalidate th:action="@{/register}" th:object="${newUser}"
                   method="post" enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label for=newUsername class="form-label">Benutzername:</label>
+                    <label for=newUsername class="form-label" style="font-size: medium">Benutzername:</label>
                     <input type="text" class="form-control" id="newUsername" name="newUsername" required
                            pattern="[A-Za-z0-9]{1,30}"
-                           title="Bitte trage hier Deinen Username ein. Erlaubt sind Buchstaben und Zahlen bis maximal 30 Zeichen.">
+                           title="Bitte trage einen Benutzername ein. Erlaubt sind Buchstaben und Zahlen bis maximal 30 Zeichen.">
                     <div class="invalid-feedback">
-                        Bitte gib einen Benutzernamen ein.
+                        Bitte gib einen Benutzernamen ein. Erlaubt sind Buchstaben und Zahlen bis maximal 30 Zeichen.
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for=newFirstName class="form-label">Vorname:</label>
+                    <label for=newFirstName class="form-label" style="font-size: medium">Vorname:</label>
                     <input type="text" class="form-control" id="newFirstName" name="newFirstName" required
-                           pattern="[A-Za-z\-\s]{1,100}">
+                           pattern="[A-Za-z\-\s]{1,100}"
+                            title="Bitte trage deinen Vornamen ein. Doppelnamen können mit Leerzeichen oder Bindestrich geschrieben werden.">
                     <div class="invalid-feedback">
-                        Bitte trage hier deinen Vorname ein. Doppelnamen können mit Leerzeichen oder Bindestrich
+                        Bitte trage deinen Vornamen ein. Doppelnamen können mit Leerzeichen oder Bindestrich
                         geschrieben werden.
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for=newLastName class="form-label">Nachname:</label>
+                    <label for=newLastName class="form-label" style="font-size: medium">Nachname:</label>
                     <input type="text" class="form-control" id="newLastName" name="newLastName" required
-                           pattern="[A-Za-z\-\s]{1,100}">
+                           pattern="[A-Za-z\-\s]{1,100}"
+                           title="Bitte trage deinen Nachnamen ein. Doppelnamen können mit Leerzeichen oder Bindestrich geschrieben werden.">
                     <div class="invalid-feedback">
-                        Bitte trage hier deinen Nachname ein. Doppelnamen können mit Leerzeichen oder Bindestrich
+                        Bitte trage deinen Nachnamen ein. Doppelnamen können mit Leerzeichen oder Bindestrich
                         geschrieben werden.
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for=newEmail class="form-label">E-mail Adresse:</label>
+                    <label for=newEmail class="form-label" style="font-size: medium">E-mail Adresse:</label>
                     <input type="text" class="form-control" id="newEmail" name="newEmail" required
                            pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
-                           title="">
+                           title="Bitte trage deine E-Mail-Adresse der Form 'characters@characters.domain' ein. Die Buchstaben müssen
+                           kleingeschrieben sein. Die Domain muss mindestens aus zwei Buchstaben von a bis z bestehen.">
                     <div class="invalid-feedback">
-                        Eine E-Mail Adresse der Form 'characters@characters.domain'. Die Buchstaben müssen klein
-                        geschrieben sein. Die Domain muss mindestens aus zwei Buchstaben von a bis z bestehen.
+                        Bitte trage deine E-Mail-Adresse der Form 'characters@characters.domain' ein. Die Buchstaben müssen
+                        kleingeschrieben sein. Die Domain muss mindestens aus zwei Buchstaben von a bis z bestehen.
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for=newPLZ class="form-label">Postleitzahl:</label>
+                    <label for=newPLZ class="form-label" style="font-size: medium">Postleitzahl:</label>
                     <input type="text" class="form-control" required
-                           pattern="^[0-9]{5}$" id="newPLZ" name="newPLZ">
+                           pattern="^[0-9]{5}$" id="newPLZ" name="newPLZ"
+                           title="Die Postleitzahl muss aus 5 Stellen bestehen.">
                     <div class="invalid-feedback">
                         Die Postleitzahl muss aus 5 Stellen bestehen.
                     </div>
                 </div>
 
+                <div>Profilbild:</div>
                 <div class="input-group mb-3">
-                    <input type="file" class="form-control" name="imageMp" id="imageMp">
+                    <input type="file" class="form-control" name="imageMp" id="imageMp"
+                           title="Du kannst optional ein Profilbild hochladen. Du kannst auch nachträglich unter Profil ändern ein Bild hochladen oder dein Profilbild ändern.">
                     <div class="valid-feedback">
-                        Du kannst unter Profil ändern jederzeit ein Bild hochladen und dein Profilbild ändern.
+                        Du kannst optional ein Profilbild hochladen. Du kannst auch nachträglich unter Profil ändern ein Bild hochladen oder dein Profilbild ändern.
                     </div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="password1" class="form-label">Passwort</label>
+                    <label for="password1" class="form-label" style="font-size: medium">Passwort:</label>
                     <input type="password" class="form-control" id="password1" name="password1"
                            pattern=".{8,}"
-                           required>
+                           required
+                           title="Das Passwort muss aus mindestens 8 Stellen bestehen.">
                     <div class="invalid-feedback">
                         Das Passwort muss aus mindestens 8 Stellen bestehen.
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="password2" class="form-label">Passwort bestätigen</label>
+                    <label for="password2" class="form-label" style="font-size: medium">Passwort bestätigen:</label>
                     <input type="password" class="form-control" id="password2" name="password2"
                            pattern=".{8,}"
-                           required>
+                           required
+                           title="Das Passwort muss aus mindestens 8 Stellen bestehen.">
                     <div class="invalid-feedback">
                         Das Passwort muss aus mindestens 8 Stellen bestehen.
                     </div>
