@@ -65,13 +65,13 @@
                     <h2 th:text="${plant.plantname}" style="color: #017101;"></h2>
                     <p th:if="${plant.latinName != null}"><strong>Lateinischer Name:</strong> <span  th:text="${plant.latinName}">Lateinischer Name</span>
                     </p>
-                    <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
+                    <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}">Kategorie</span></p>
                     <p><strong>Preis:</strong> <span th:text="${plant.price}">0.00</span> €</p>
                     <p><strong>Beschreibung:</strong> <span th:text="${plant.plantDescription}">Beschreibung</span></p>
+                    <p><strong>Größe:</strong> <span th:text="${plant.plantSize}">0</span> cm</p>
                     <p th:if="${plant.planter}"><strong>Mit Übertopf</strong></p>
                     <p th:if="${!plant.planter}"><strong>Ohne Übertopf</strong></p>
                     <p><strong>Postleitzahl:</strong> <span th:text="${plant.zipCode}">00000</span></p>
-                    <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}">Kategorie</span></p>
 
                     <div th:if="${plant.seller != null}">
                         <p><strong>Verkäufer*in:</strong>
