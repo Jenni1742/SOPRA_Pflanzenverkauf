@@ -24,7 +24,12 @@ public class SearchController {
     private UserService userService;
 
     @GetMapping("/searchresults")
-    public String search(@RequestParam("query") String query, Model model) {
+    public String search(@RequestParam("query") String query,
+                         @RequestParam(name = "priceMin", required = false) Integer priceMin,
+                         @RequestParam(name = "priceMax", required = false) Integer priceMax,
+                         @RequestParam(name = "sizeMin", required = false) Integer sizeMin,
+                         @RequestParam(name = "sizeMax", required = false) Integer sizeMax,
+                         Model model) {
         List<Plant> results = plantService.searchPlantsByName(query);
 
         System.out.println("A");
@@ -55,6 +60,10 @@ public class SearchController {
         System.out.println("Search query received: " + query);  // Logging für Debugging
 
         model.addAttribute("currentUser", currentUser);
+        model.addAttribute("priceMin", 0);
+        model.addAttribute("priceMax", 100);
+        model.addAttribute("sizeMin", 1);
+        model.addAttribute("sizeMax", 100);
         return "searchresults";
     }
 
