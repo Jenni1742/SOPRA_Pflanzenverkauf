@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const maxPrice = priceSliderMax.value;
 
         priceValueMin.textContent = minPrice + ' EUR';
-        priceValueMax.textContent = (maxPrice < 100) ? (maxPrice + ' EUR') : '>100 EUR';
+        //priceValueMax.textContent = (maxPrice < 100) ? (maxPrice + ' EUR') : '100 EUR und mehr';
+        priceValueMax.textContent = (maxPrice == 100) ? '100 EUR und mehr' : maxPrice + ' EUR';
 
         // Update des Bereichs zwischen den Handles
             const rangeWidth = (maxPrice - minPrice) / (priceSliderMax.max - priceSliderMin.min) * 100;
@@ -49,7 +50,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const maxSize = sizeSliderMax.value;
 
         sizeValueMin.textContent = minSize + ' cm';
-        sizeValueMax.textContent = (maxSize < 100) ? (maxSize + ' cm') : '>100 cm';
+        //sizeValueMax.textContent = (maxSize < 100) ? (maxSize + ' cm') : '100 cm und mehr';
+        sizeValueMax.textContent = (maxSize == 100) ? '100 cm und mehr' : maxSize + ' cm';
 
         // Update des Bereichs zwischen den Handles
             const rangeWidth = (maxSize - minSize) / (sizeSliderMax.max - sizeSliderMin.min) * 100;

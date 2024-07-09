@@ -77,6 +77,10 @@ public class PlantService {
     public List<Plant> getFilteredAndSortedPlants(Category category, String planter, Integer priceMin, Integer priceMax, Integer sizeMin, Integer sizeMax, String sort, boolean booster) {
         List<Plant> plants = getAllPlants();
 
+        // Define maximum values for price and size
+        final int MAX_PRICE = 100001; // Assuming this is a higher limit for demonstration
+        final int MAX_SIZE = 500; // Assuming this is a higher limit for demonstration
+
         if (category != null) {
             plants = plants.stream()
                     .filter(plant -> category.equals(plant.getCategory()))
@@ -89,15 +93,26 @@ public class PlantService {
                     .collect(Collectors.toList());
         }
 
+//        if (priceMin != null && priceMax != null) {
+//            plants = plants.stream()
+//                    .filter(plant -> plant.getPrice() >= priceMin && (priceMax < 100 ? plant.getPrice() <= priceMax : plant.getPrice() >= 100))
+//                    .collect(Collectors.toList());
+//        }
+//
+//        if (sizeMin != null && sizeMax != null) {
+//            plants = plants.stream()
+//                    .filter(plant -> plant.getPlantSize() >= sizeMin && (sizeMax < 100 ? plant.getPlantSize() <= sizeMax : plant.getPlantSize() >= 100))
+//                    .collect(Collectors.toList());
+//        }
         if (priceMin != null && priceMax != null) {
             plants = plants.stream()
-                    .filter(plant -> plant.getPrice() >= priceMin && (priceMax < 100 ? plant.getPrice() <= priceMax : plant.getPrice() > 100))
+                    .filter(plant -> plant.getPrice() >= priceMin && plant.getPrice() <= (priceMax == 100 ? MAX_PRICE : priceMax))
                     .collect(Collectors.toList());
         }
 
         if (sizeMin != null && sizeMax != null) {
             plants = plants.stream()
-                    .filter(plant -> plant.getPlantSize() >= sizeMin && (sizeMax < 100 ? plant.getPlantSize() <= sizeMax : plant.getPlantSize() > 100))
+                    .filter(plant -> plant.getPlantSize() >= sizeMin && plant.getPlantSize() <= (sizeMax == 100 ? MAX_SIZE : sizeMax))
                     .collect(Collectors.toList());
         }
 

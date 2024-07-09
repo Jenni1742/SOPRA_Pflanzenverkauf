@@ -57,7 +57,7 @@
                         <div class="slider-container">
                             <div class="values">
                                 <span id="value-1" th:text="${priceMin} + ' EUR'">0 EUR</span>
-                                <span id="value-2" th:text="${priceMax} + ' EUR'">>100 EUR</span>
+                                <span id="value-2" th:text="${priceMax} == 100 ? '100 EUR und mehr' : ${priceMax} + ' EUR'">100 EUR und mehr</span>
                             </div>
                             <div class="range-slider">
                                 <input type="range" name="priceMin" min="0" max="100" th:value="${priceMin}" id="slider-1">
@@ -69,7 +69,7 @@
                         <div class="slider-container">
                             <div class="values">
                                 <span id="value-size-1" th:text="${sizeMin} + ' cm'">1 cm</span>
-                                <span id="value-size-2" th:text="${sizeMax} + ' cm'">>100 cm</span>
+                                <span id="value-size-2" th:text="${sizeMax} == 100 ? '100 cm und mehr' : ${sizeMax} + ' EUR'">100 cm und mehr</span>
                             </div>
                             <div class="range-slider">
                                 <input type="range" name="sizeMin" min="1" max="100" th:value="${sizeMin}" id="slider-size-1">
