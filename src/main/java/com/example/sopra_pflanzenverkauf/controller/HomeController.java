@@ -30,7 +30,6 @@ public class HomeController {
     @Autowired
     private CategoryService categoryService;
 
-
     @GetMapping("/")
     public String showHome(Model model,
                            @RequestParam(value = "query", required = false) String query,
@@ -70,6 +69,10 @@ public class HomeController {
         }
 
         model.addAttribute("plants", plants);
+        model.addAttribute("priceMin", 0);
+        model.addAttribute("priceMax", 100);
+        model.addAttribute("sizeMin", 1);
+        model.addAttribute("sizeMax", 100);
 
         return "home";
     }
