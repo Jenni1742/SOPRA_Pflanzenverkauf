@@ -98,7 +98,7 @@ public class HomeController {
         model.addAttribute("currentUser", currentUser);
 
         Category selectedCategory = null;
-        if(category!=null){
+        if(category!=null && !category.isEmpty() ){
             if(category.equals("indoor")){
                 selectedCategory= categoryService.getCategoryByName("Zimmerpflanze");
             }else if (category.equals("outdoor")) {
@@ -111,11 +111,11 @@ public class HomeController {
                 .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
                 .collect(Collectors.toList());
         model.addAttribute("selectedCategory", category);
+        model.addAttribute("planter", planter);
         model.addAttribute("priceMin", priceMin);
         model.addAttribute("priceMax", priceMax);
         model.addAttribute("sizeMin", sizeMin);
         model.addAttribute("sizeMax", sizeMax);
-        model.addAttribute("planter", planter);
         model.addAttribute("selectedSort", sort);
         model.addAttribute("plants", plants);
 
@@ -123,7 +123,7 @@ public class HomeController {
     }
     @GetMapping("/restoreFilteredPlants")
     public String restoreFilteredPlants(HttpSession session, Model model) {
-        Category category = (Category) session.getAttribute("category");
+        String category = (String) session.getAttribute("category");
         String planter = (String) session.getAttribute("planter");
         Integer priceMin = (Integer) session.getAttribute("priceMin");
         Integer priceMax = (Integer) session.getAttribute("priceMax");
@@ -137,7 +137,7 @@ public class HomeController {
         User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", currentUser);
         Category selectedCategory = null;
-        if(category!=null){
+        if(category!=null && !category.isEmpty()){
             if(category.equals("indoor")){
                 selectedCategory= categoryService.getCategoryByName("Zimmerpflanze");
             }else if (category.equals("outdoor")) {
