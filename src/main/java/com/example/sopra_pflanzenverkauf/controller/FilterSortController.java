@@ -37,6 +37,11 @@ public class FilterSortController {
             HttpSession session,
             Model model) {
 
+        // Wenn keine Sortierkriterien angegeben sind, die aktuellen aus der Session verwenden
+        if (sort == null || sort.isEmpty()) {
+            sort = (String) session.getAttribute("sort");
+        }
+
         // Filterwerte in der Session speichern
         session.setAttribute("category", category);
         session.setAttribute("planter", planter);
@@ -62,6 +67,7 @@ public class FilterSortController {
         plants = plants.stream()
                 .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
                 .collect(Collectors.toList());
+
         model.addAttribute("selectedCategory", category);
         model.addAttribute("planter", planter);
         model.addAttribute("priceMin", priceMin);
@@ -88,6 +94,7 @@ public class FilterSortController {
 
         User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", currentUser);
+
         Category selectedCategory = null;
         if(category!=null && !category.isEmpty()){
             if(category.equals("indoor")){
