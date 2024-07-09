@@ -74,8 +74,7 @@ public class PlantService {
                 .limit(3)
                 .collect(Collectors.toList());
     }
-    //, Integer priceMin, Integer priceMax, Integer sizeMin, Integer sizeMax
-    public List<Plant> getFilteredPlants(Category category, String planter,Integer priceMin, Integer priceMax, Integer sizeMin, Integer sizeMax, boolean booster) {
+    public List<Plant> getFilteredAndSortedPlants(Category category, String planter, Integer priceMin, Integer priceMax, Integer sizeMin, Integer sizeMax, String sort, boolean booster) {
         List<Plant> plants = getAllPlants();
 
         if (category != null) {
@@ -84,9 +83,9 @@ public class PlantService {
                     .collect(Collectors.toList());
         }
 
-        if (planter != null ) {
+        if (planter != null) {
             plants = plants.stream()
-                    .filter(plant ->  plant.getPlanter())
+                    .filter(plant -> plant.getPlanter())
                     .collect(Collectors.toList());
         }
 
@@ -101,60 +100,130 @@ public class PlantService {
                     .filter(plant -> plant.getPlantSize() >= sizeMin && (sizeMax < 100 ? plant.getPlantSize() <= sizeMax : plant.getPlantSize() > 100))
                     .collect(Collectors.toList());
         }
+
         if (booster) {
-            // Filter for plants with booster
             List<Plant> boosterPlants = plants.stream()
                     .filter(Plant::getBooster)
                     .collect(Collectors.toList());
-
-            // Logging before booster filtering
-            System.out.println("Number of plants with booster before filtering: " + boosterPlants.size());
-
-            // If there are booster plants, use them; otherwise, use all plants
             plants = boosterPlants.isEmpty() ? plants : boosterPlants;
+        }
 
-            // Logging after booster filtering
-            System.out.println("Number of plants after booster filtering: " + plants.size());
-
-            // Debugging which plants are boosted
-            plants.forEach(plant -> System.out.println("Boosted plant: " + plant.getPlantId()));
+        if (sort != null) {
+            switch (sort) {
+                case "price_asc":
+                    plants = plants.stream()
+                            .sorted(Comparator.comparing(Plant::getPrice))
+                            .collect(Collectors.toList());
+                    break;
+                case "price_desc":
+                    plants = plants.stream()
+                            .sorted(Comparator.comparing(Plant::getPrice).reversed())
+                            .collect(Collectors.toList());
+                    break;
+                case "size_asc":
+                    plants = plants.stream()
+                            .sorted(Comparator.comparing(Plant::getPlantSize))
+                            .collect(Collectors.toList());
+                    break;
+                case "size_desc":
+                    plants = plants.stream()
+                            .sorted(Comparator.comparing(Plant::getPlantSize).reversed())
+                            .collect(Collectors.toList());
+                    break;
+                default:
+                    // Keine Sortierung
+                    break;
+            }
         }
 
         return plants;
     }
 
-    public List<Plant> sortPlants(List<Plant> plants, String sort) {
-        if (sort == null) {
-            return plants;
-        }
-        switch (sort) {
-            case "price_asc":
-                plants = plants.stream()
-                        .sorted(Comparator.comparing(Plant::getPrice))
-                        .collect(Collectors.toList());
-                break;
-            case "price_desc":
-                plants = plants.stream()
-                        .sorted(Comparator.comparing(Plant::getPrice).reversed())
-                        .collect(Collectors.toList());
-                break;
-            case "size_asc":
-                plants = plants.stream()
-                        .sorted(Comparator.comparing(Plant::getPlantSize))
-                        .collect(Collectors.toList());
-                break;
-            case "size_desc":
-                plants = plants.stream()
-                        .sorted(Comparator.comparing(Plant::getPlantSize).reversed())
-                        .collect(Collectors.toList());
-                break;
-            default:
-                // Unsortiert
-                break;
-        }
-
-        return plants;
-    }
+//    public List<Plant> getFilteredAndSortedPlants(Category category, String planter, Integer priceMin, Integer priceMax, Integer sizeMin, Integer sizeMax, boolean booster, String sort) {
+//        List<Plant> plants = getFilteredPlants(category, planter, priceMin, priceMax, sizeMin, sizeMax, booster);
+//        return sortPlants(plants, sort);
+//    }
+//
+//    public List<Plant> getFilteredPlants(Category category, String planter,Integer priceMin, Integer priceMax, Integer sizeMin, Integer sizeMax, boolean booster) {
+//        List<Plant> plants = getAllPlants();
+//
+//        if (category != null) {
+//            plants = plants.stream()
+//                    .filter(plant -> category.equals(plant.getCategory()))
+//                    .collect(Collectors.toList());
+//        }
+//
+//        if (planter != null ) {
+//            plants = plants.stream()
+//                    .filter(plant ->  plant.getPlanter())
+//                    .collect(Collectors.toList());
+//        }
+//
+//        if (priceMin != null && priceMax != null) {
+//            plants = plants.stream()
+//                    .filter(plant -> plant.getPrice() >= priceMin && (priceMax < 100 ? plant.getPrice() <= priceMax : plant.getPrice() > 100))
+//                    .collect(Collectors.toList());
+//        }
+//
+//        if (sizeMin != null && sizeMax != null) {
+//            plants = plants.stream()
+//                    .filter(plant -> plant.getPlantSize() >= sizeMin && (sizeMax < 100 ? plant.getPlantSize() <= sizeMax : plant.getPlantSize() > 100))
+//                    .collect(Collectors.toList());
+//        }
+//        if (booster) {
+//            // Filter for plants with booster
+//            List<Plant> boosterPlants = plants.stream()
+//                    .filter(Plant::getBooster)
+//                    .collect(Collectors.toList());
+//
+//            // Logging before booster filtering
+//            System.out.println("Number of plants with booster before filtering: " + boosterPlants.size());
+//
+//            // If there are booster plants, use them; otherwise, use all plants
+//            plants = boosterPlants.isEmpty() ? plants : boosterPlants;
+//
+//            // Logging after booster filtering
+//            System.out.println("Number of plants after booster filtering: " + plants.size());
+//
+//            // Debugging which plants are boosted
+//            plants.forEach(plant -> System.out.println("Boosted plant: " + plant.getPlantId()));
+//        }
+//
+//        return plants;
+//    }
+//
+//    public List<Plant> sortPlants(List<Plant> plants, String sort) {
+//        if (sort == null) {
+//            return plants;
+//        }
+//        switch (sort) {
+//            case "price_asc":
+//                plants = plants.stream()
+//                        .sorted(Comparator.comparing(Plant::getPrice))
+//                        .collect(Collectors.toList());
+//                break;
+//            case "price_desc":
+//                plants = plants.stream()
+//                        .sorted(Comparator.comparing(Plant::getPrice).reversed())
+//                        .collect(Collectors.toList());
+//                break;
+//            case "size_asc":
+//                plants = plants.stream()
+//                        .sorted(Comparator.comparing(Plant::getPlantSize))
+//                        .collect(Collectors.toList());
+//                break;
+//            case "size_desc":
+//                plants = plants.stream()
+//                        .sorted(Comparator.comparing(Plant::getPlantSize).reversed())
+//                        .collect(Collectors.toList());
+//                break;
+//            default:
+//                // Unsortiert
+//                break;
+//        }
+//
+//        return plants;
+//    }
 
     public void deletePlantByPlantId(Integer plantID) {
         plantRepository.deleteById(plantID);
