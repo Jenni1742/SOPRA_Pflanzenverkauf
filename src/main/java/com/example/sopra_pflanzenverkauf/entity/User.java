@@ -49,14 +49,6 @@ public class User {
     @Column(name = "aktiviert")
     private boolean enabled = true;
 
-    @ManyToOne
-    @JoinColumn(name = "Käuferlevel")
-    private Level buyingLevel;
-
-    @ManyToOne
-    @JoinColumn(name = "Verkäuferlevel")
-    private Level sellingLevel;
-
     @Column(name = "Profilbild")
     @Lob
     private byte[] image;
@@ -70,10 +62,13 @@ public class User {
     @Column(name = "Anzahl PlantCoins")
     private Integer plantCoinCount = 0;
 
+    @ManyToOne
+    @JoinColumn(name = "Käuferlevel")
+    private Level buyingLevel;
 
-
-    //TODO Wird wahrscheinlich nicht benötigt
-
+    @ManyToOne
+    @JoinColumn(name = "Verkäuferlevel")
+    private Level sellingLevel;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "benutzer_rolle", joinColumns = @JoinColumn(name = "BenutzerID"), inverseJoinColumns = @JoinColumn(name = "RollenID"))
