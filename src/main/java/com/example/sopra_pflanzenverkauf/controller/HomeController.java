@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +23,7 @@ import java.util.stream.Collectors;
 
 
 @Controller
+@SessionAttributes({"filteredPlants", "searchQuery"})
 public class HomeController {
 
     @Autowired
@@ -40,7 +43,12 @@ public class HomeController {
                            @RequestParam(name = "priceMax", required = false) Integer priceMax,
                            @RequestParam(name = "sizeMin", required = false) Integer sizeMin,
                            @RequestParam(name = "sizeMax", required = false) Integer sizeMax,
-                           @RequestParam(name = "sort", required = false) String sort, HttpSession session)  {
+                           @RequestParam(name = "sort", required = false) String sort, HttpSession session, SessionStatus sessionStatus)  {
+        // Remove session attributes
+        //session.removeAttribute("filteredPlants");
+        session.removeAttribute("searchQuery");
+        session.removeAttribute("searchResults");
+        sessionStatus.setComplete();
 
         User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", userService.getCurrentUser());
