@@ -69,11 +69,6 @@ public class DeleteAdvertisementController {
             List<Plant> plantList = userService.getCurrentUser().getPlantsToSell();
             model.addAttribute("plantList", plantList);
         }
-        /** TODO Fehlermeldung anzeigen, wenn löschen nicht erlaubt ist
-         else {
-         model.addAttribute("pflanzeLöschenNichtErlaubt", "Du kannst diese Pflanze nicht löschen, da du nicht der Verkäufer bist oder sie schon verkauft wurde.");
-         }
-         */
 
         return "redirect:/myAdvertisements";
     }
