@@ -45,7 +45,8 @@ public class HomeController {
                            @RequestParam(name = "sizeMax", required = false) Integer sizeMax,
                            @RequestParam(name = "sort", required = false) String sort, HttpSession session, SessionStatus sessionStatus)  {
         // Remove session attributes
-        //session.removeAttribute("filteredPlants");
+        session.removeAttribute("filteredPlants");
+        session.removeAttribute("sort");
         session.removeAttribute("searchQuery");
         session.removeAttribute("searchResults");
         sessionStatus.setComplete();
