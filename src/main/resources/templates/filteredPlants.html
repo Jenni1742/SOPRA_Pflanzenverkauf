@@ -81,12 +81,16 @@
                         <input type="hidden" name="sort" th:value="${selectedSort}">
                     </div>
                     <!--<button type="submit" class="btn btn-rePlantGreen">Filter anwenden</button>-->
-                    <a th:href="@{/filteredPlants(category=${selectedCategory}, planter=${planter}, priceMin=${priceMin}, priceMax=${priceMax}, sizeMin=${sizeMin}, sizeMax=${sizeMax}, sort=${selectedSort})}">
-                        <button type = "submit"class="btn btn-rePlantGreen">Filter anwenden</button>
-                    </a>
-
+                    <div style="text-align: center">
+                        <a th:href="@{/filteredPlants(category=${selectedCategory}, planter=${planter}, priceMin=${priceMin}, priceMax=${priceMax}, sizeMin=${sizeMin}, sizeMax=${sizeMax}, sort=${selectedSort})}" class="btn-linkButton">
+                            <button type = "submit"class="btn btn-rePlantGreen" style="width: 160px">Filter anwenden</button>
+                        </a>
+                    </div>
                 </form>
-                <a href="/filteredPlants" class="btn btn-rePlantGreen mt-2" style="margin-top: 10px;">Filter zurücksetzen</a>
+                <div style="text-align: center">
+                    <a href="/filteredPlants" class="btn btn-rePlantGreen mt-2" style="margin-top: 10px; width: 160px">Filter zurücksetzen</a>
+                </div>
+
             </div>
         </div>
         <div class="col-md-9">
