@@ -44,6 +44,8 @@ public class CreateAdvertisementController {
         List<Category> categories = categoryService.findAllCategories();
         model.addAttribute("categories", categories);
 
+        model.addAttribute("currentUser", userService.getCurrentUser());
+
         return "createAdvertisement";
     }
 
@@ -55,9 +57,11 @@ public class CreateAdvertisementController {
                               @RequestParam("imageMp") MultipartFile multipartFile,
                               @RequestParam("imageMp2") MultipartFile multipartFileTwo,
                               @RequestParam("imageMp3") MultipartFile multipartFileThree,
-                              @Param("withPlanter") Boolean withPlanter){
+                              @Param("withPlanter") Boolean withPlanter,
+                              Model model){
 
         User currentUser = userService.getCurrentUser();
+        model.addAttribute("currentUser", userService.getCurrentUser());
         newPlant.setSeller(currentUser);
         currentUser.getPlantsToSell().add(newPlant);
         userService.updatePlantsToSell(currentUser);
