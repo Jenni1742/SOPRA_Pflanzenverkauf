@@ -114,6 +114,7 @@ public class ChatSpecificController {
 
         List<Chat> chatList = currentUser.getReceivedChat();
         chatList.addAll(currentUser.getSentChat());
+        Collections.reverse(chatList);
         model.addAttribute("chatList", chatList); //Auskommentieren
 
         System.out.println("BBB");
@@ -185,6 +186,7 @@ public class ChatSpecificController {
 
             List<Chat> chatList = currentUser.getReceivedChat();
             chatList.addAll(currentUser.getSentChat());
+            Collections.reverse(chatList);
             model.addAttribute("chatList", chatList); //Auskommentieren
 
             /*
@@ -263,6 +265,7 @@ public class ChatSpecificController {
 
         List<Chat> chatList = currentUser.getReceivedChat();
         chatList.addAll(currentUser.getSentChat());
+        Collections.reverse(chatList);
         model.addAttribute("chatList", chatList); //Auskommentieren
 
         /*
