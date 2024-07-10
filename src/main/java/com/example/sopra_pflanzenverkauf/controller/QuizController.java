@@ -26,8 +26,9 @@ public class QuizController {
 
     @GetMapping
     public String showQuiz(Model model) {
-        shuffleQuiz(quizService.getQuiz());
-        model.addAttribute("quiz", quizService.getQuiz());
+        Quiz quiz = quizService.getQuiz();
+        shuffleAndLimitQuiz(quiz, 5); // Limit auf 5 Fragen
+        model.addAttribute("quiz", quiz);
 
         User user = userService.getCurrentUser();
         model.addAttribute("coinCount", user.getPlantCoinCount());
@@ -63,10 +64,12 @@ public class QuizController {
 
         return "quizResult";
     }
-    private void shuffleQuiz(Quiz quiz) {
+
+    private void shuffleAndLimitQuiz(Quiz quiz, int limit) {
         List<Question> questions = quiz.getQuestions();
         Collections.shuffle(questions);
-        for (Question question : questions) {
+        quiz.setQuestions(questions.subList(0, Math.min(limit, questions.size())));
+        for (Question question : quiz.getQuestions()) {
             Collections.shuffle(question.getAnswers());
         }
     }
