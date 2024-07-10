@@ -177,7 +177,7 @@ public class TestDataLoader implements CommandLineRunner {
         // create users-------------------------------------------------------------------------------------------------
         User jenniferKaisner = new User();
         jenniferKaisner.setUsername("JenniferK");
-        jenniferKaisner.setPassword("1234");
+        jenniferKaisner.setPassword("12345678");
         jenniferKaisner.setFirstName("Jennifer");
         jenniferKaisner.setLastName("Kaisner");
         jenniferKaisner.setEmail("Jennifer.Kaisner@mail.com");
@@ -187,12 +187,13 @@ public class TestDataLoader implements CommandLineRunner {
         //jenniferKaisner.setPicturePath("https://media.rimondo.net/1363699/conversions/4e431791-5f31-4f3e-9d2f-61eef8ffd846-400.webp?v=1637496632");
         jenniferKaisner.setImage(jenniferKaisner.imageInBytes("src/main/resources/static/images/profilpictures/ProfilbildJenni.jpg"));
         jenniferKaisner.setRoles(userRoles);
+        jenniferKaisner.setPlantCoinCount(9);
         userService.persistUser(jenniferKaisner);
 
 
         User aylinaAshkenov = new User();
         aylinaAshkenov.setUsername("AylinaA");
-        aylinaAshkenov.setPassword("1234");
+        aylinaAshkenov.setPassword("12345678");
         aylinaAshkenov.setFirstName("Aylina");
         aylinaAshkenov.setLastName("Ashkenov");
         aylinaAshkenov.setEmail("aylinaaa.akv@mail.com");
@@ -206,7 +207,7 @@ public class TestDataLoader implements CommandLineRunner {
 
         User alessiaSedelnikov = new User();
         alessiaSedelnikov.setUsername("AlessiaS");
-        alessiaSedelnikov.setPassword("1234");
+        alessiaSedelnikov.setPassword("12345678");
         alessiaSedelnikov.setFirstName("Alessia");
         alessiaSedelnikov.setLastName("Sedelnikov");
         alessiaSedelnikov.setEmail("alessia.sedelnikov@mail.com");
@@ -221,7 +222,7 @@ public class TestDataLoader implements CommandLineRunner {
 
         User markoPetric = new User();
         markoPetric.setUsername("MarkoP");
-        markoPetric.setPassword("1234");
+        markoPetric.setPassword("12345678");
         markoPetric.setFirstName("Marko");
         markoPetric.setLastName("Petric");
         markoPetric.setEmail("marko.petric@mail.com");
@@ -235,7 +236,7 @@ public class TestDataLoader implements CommandLineRunner {
 
         User franziskaHornung = new User();
         franziskaHornung.setUsername("FranziH");
-        franziskaHornung.setPassword("1234");
+        franziskaHornung.setPassword("12345678");
         franziskaHornung.setFirstName("Franziska");
         franziskaHornung.setLastName("Hornung");
         franziskaHornung.setEmail("franziskaHornung@mail.com");
