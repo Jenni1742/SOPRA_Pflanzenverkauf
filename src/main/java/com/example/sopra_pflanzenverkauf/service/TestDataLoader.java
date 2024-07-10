@@ -319,7 +319,13 @@ public class TestDataLoader implements CommandLineRunner {
         allium.setLatinName(null);
         //https://gaerten.uni-hohenheim.de/fileadmin/_processed_/csm_pfl-quartier2allium_03_e929dc3231.jpg
         allium.setImage(allium.imageInBytes("src/main/resources/static/images/plantPictures/Allium.jpg"));
+        allium.setImageTwo(allium.imageInBytes("src/main/resources/static/images/plantPictures/Allium2.jpg"));
+        //https://cdstar.shh.mpg.de/bitstreams/EAEA0-19C1-DD89-718D-0/full.jpg
+        allium.setImageThree(allium.imageInBytes("src/main/resources/static/images/plantPictures/Allium3.jpg"));
+
         plantService.persistPlant(allium);
+
+
 
         /*
         A1- K hat P in Merkliste und der V löscht sein Profil --Funktioniert
