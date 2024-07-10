@@ -5,6 +5,7 @@ import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.repository.PlantRepository;
 import com.example.sopra_pflanzenverkauf.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -74,8 +75,13 @@ public class PlantService {
                 .limit(3)
                 .collect(Collectors.toList());
     }
-    public List<Plant> getFilteredAndSortedPlants(Category category, String planter, Integer priceMin, Integer priceMax, Integer sizeMin, Integer sizeMax, String sort, boolean booster) {
-        List<Plant> plants = getAllPlants();
+    public List<Plant> getFilteredAndSortedPlants(Category category, String planter, Integer priceMin, Integer priceMax, Integer sizeMin, Integer sizeMax, String sort, boolean booster, HttpSession session) {
+        //List<Plant> plants = getAllPlants();
+        List<Plant> plants = (List<Plant>) session.getAttribute("searchResults");
+
+        if (plants == null) {
+            plants = getAllPlants();
+        }
 
         // Define maximum values for price and size
         final int MAX_PRICE = 100001; // Assuming this is a higher limit for demonstration

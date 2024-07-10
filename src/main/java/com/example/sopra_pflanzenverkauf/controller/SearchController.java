@@ -4,6 +4,7 @@ import com.example.sopra_pflanzenverkauf.entity.Plant;
 import com.example.sopra_pflanzenverkauf.entity.User;
 import com.example.sopra_pflanzenverkauf.service.PlantService;
 import com.example.sopra_pflanzenverkauf.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ public class SearchController {
                          @RequestParam(name = "priceMax", required = false) Integer priceMax,
                          @RequestParam(name = "sizeMin", required = false) Integer sizeMin,
                          @RequestParam(name = "sizeMax", required = false) Integer sizeMax,
+                         HttpSession session,
                          Model model) {
         List<Plant> results = plantService.searchPlantsByName(query);
 
@@ -54,6 +56,8 @@ public class SearchController {
             System.out.println(i);
             System.out.println(results.size());
         }
+        session.setAttribute("searchResults", results);  // Save search results in session
+        session.setAttribute("query", query);  // Save query in session
 
         model.addAttribute("query", query);
         model.addAttribute("plants", results);

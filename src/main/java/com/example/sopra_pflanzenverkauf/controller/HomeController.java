@@ -40,7 +40,7 @@ public class HomeController {
                            @RequestParam(name = "priceMax", required = false) Integer priceMax,
                            @RequestParam(name = "sizeMin", required = false) Integer sizeMin,
                            @RequestParam(name = "sizeMax", required = false) Integer sizeMax,
-                           @RequestParam(name = "sort", required = false) String sort)  {
+                           @RequestParam(name = "sort", required = false) String sort, HttpSession session)  {
 
         User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", userService.getCurrentUser());
@@ -51,12 +51,12 @@ public class HomeController {
             return "searchresults";  // Leitet zur Suchergebnisseite weiter, wenn eine Suchanfrage vorhanden ist
         }
 
-        List<Plant> plants = plantService.getFilteredAndSortedPlants(category, planter, priceMin, priceMax, sizeMin, sizeMax,  null, false);
+        List<Plant> plants = plantService.getFilteredAndSortedPlants(category, planter, priceMin, priceMax, sizeMin, sizeMax,  null, false, session);
         if (plants == null) {
             plants = new ArrayList<>();
         }
 
-        List<Plant> boostedPlants = plantService.getFilteredAndSortedPlants(category, planter, priceMin, priceMax, sizeMin, sizeMax, null, false);
+        List<Plant> boostedPlants = plantService.getFilteredAndSortedPlants(category, planter, priceMin, priceMax, sizeMin, sizeMax, null, false, session);
 
         int i = 0;
         while (i < plants.size()) {

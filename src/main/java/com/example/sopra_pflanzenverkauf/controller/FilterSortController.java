@@ -53,6 +53,8 @@ public class FilterSortController {
 
         User currentUser = userService.getCurrentUser();
         model.addAttribute("currentUser", currentUser);
+        // Überprüfen, ob Suchergebnisse vorhanden sind
+        List<Plant> plants = plantService.getFilteredAndSortedPlants(null, null, priceMin, priceMax, sizeMin, sizeMax, sort, false, session);
 
         Category selectedCategory = null;
         if(category!=null && !category.isEmpty() ){
@@ -63,7 +65,7 @@ public class FilterSortController {
             }
         }
 
-        List<Plant> plants = plantService.getFilteredAndSortedPlants(selectedCategory, planter, priceMin, priceMax, sizeMin, sizeMax, sort, false);
+        plants = plantService.getFilteredAndSortedPlants(selectedCategory, planter, priceMin, priceMax, sizeMin, sizeMax, sort, false, session);
         plants = plants.stream()
                 .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
                 .collect(Collectors.toList());
@@ -104,7 +106,7 @@ public class FilterSortController {
             }
         }
 
-        List<Plant> filteredPlants = plantService.getFilteredAndSortedPlants(selectedCategory, planter, priceMin, priceMax, sizeMin, sizeMax, sort, false);
+        List<Plant> filteredPlants = plantService.getFilteredAndSortedPlants(selectedCategory, planter, priceMin, priceMax, sizeMin, sizeMax, sort, false, session);
         filteredPlants = filteredPlants.stream()
                 .filter(plant -> plant.getSeller() != null && !plant.getSeller().equals(currentUser))
                 .collect(Collectors.toList());
