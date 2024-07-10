@@ -576,7 +576,7 @@ public class TestDataLoader implements CommandLineRunner {
         Plant kürbissamen = new Plant(
                 "Kürbissamen",
                 1,
-                10,
+                9,
                 "Habe Kürbissuppe gemacht und ziemlich viele Samen übrig. Möchte euch auch die Möglichkeit bieten, selbst Kürbisse anbauen zu können.",
                 "Viel gießen nach dem Einsetzen in die Erde.",
                 samen,

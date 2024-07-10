@@ -46,6 +46,12 @@
                                 Outdoorpflanze
                             </label>
                         </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="category" id="seeds" value="seeds" th:checked="${selectedCategory == 'seeds'}">
+                            <label class="form-check-label" for="seeds">
+                                Samen
+                            </label>
+                        </div>
                         <label class="form-label">Übertopf:</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="planter" id="planter" value="true" th:checked="${planter == 'true'}">

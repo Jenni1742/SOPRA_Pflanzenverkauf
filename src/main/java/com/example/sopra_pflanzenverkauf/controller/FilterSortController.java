@@ -62,6 +62,8 @@ public class FilterSortController {
                 selectedCategory= categoryService.getCategoryByName("Zimmerpflanze");
             }else if (category.equals("outdoor")) {
                 selectedCategory = categoryService.getCategoryByName("Outdoorpflanze");
+            } else if (category.equals("seeds")) {
+                selectedCategory = categoryService.getCategoryByName("Samen");
             }
         }
 
@@ -103,6 +105,8 @@ public class FilterSortController {
                 selectedCategory= categoryService.getCategoryByName("Zimmerpflanze");
             }else if (category.equals("outdoor")) {
                 selectedCategory = categoryService.getCategoryByName("Outdoorpflanze");
+            }else if (category.equals("seeds")) {
+                selectedCategory = categoryService.getCategoryByName("Samen");
             }
         }
 
