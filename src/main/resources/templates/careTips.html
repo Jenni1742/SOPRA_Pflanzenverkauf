@@ -93,7 +93,7 @@
                             th:text="${plant.latinName}">Lateinischer Name</span></p>
                     <p><strong>Kategorie:</strong> <span th:text="${plant.category.categoryname}"
                                                          style="font-style: italic;">Kategorie</span></p>
-                    <p><strong>Pflegetipps des verkäufers:</strong> <span th:text="${plant.careTips}">Pflegetipps</span></p>
+                    <p><strong>Pflegetipps des Verkäufers:</strong> <span th:text="${plant.careTips}">Pflegetipps</span></p>
                     <strong>Allgemeine Pflegetipps:</strong>
                     <div th:each="careTip : ${careTipsService.getCaretipsByCategory(plant.getCategory())}">
                         <ul class="list-unstyled">
