@@ -215,7 +215,7 @@ public class TestDataLoader implements CommandLineRunner {
         alessiaSedelnikov.setBuyingLevel(level1);
         alessiaSedelnikov.setSellingLevel(level1);
         //alessiaSedelnikov.setPicturePath("https://i.pinimg.com/236x/94/fe/45/94fe45409a5fb7909b655e0987798216.jpg");
-        alessiaSedelnikov.setImage(alessiaSedelnikov.imageInBytes("src/main/resources/static/images/profilpictures/ProfilbildAlessia.jpg"));
+        alessiaSedelnikov.setImage(alessiaSedelnikov.imageInBytes("src/main/resources/static/images/profilpictures/Alessia PB.jpg"));
         alessiaSedelnikov.setRoles(userRoles);
         alessiaSedelnikov.setPlantCoinCount(100);
         userService.persistUser(alessiaSedelnikov);
