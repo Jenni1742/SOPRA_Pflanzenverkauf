@@ -92,7 +92,7 @@ public class ChatSpecificController {
 
 
             List<Message> messages = chatObject.getMessagesInChat();
-            Collections.reverse(messages);
+            //Collections.reverse(messages);
             model.addAttribute("messages", messages);
 
 
@@ -104,7 +104,7 @@ public class ChatSpecificController {
             model.addAttribute("chatPlant", chat1.getChatPlant());
 
             List<Message> messages = chat1.getMessagesInChat();
-            Collections.reverse(messages);
+            //Collections.reverse(messages);
             model.addAttribute("messages", messages);
 
         }
@@ -178,7 +178,7 @@ public class ChatSpecificController {
             System.out.println(chat.getMessagesInChat().size());
 
             List<Message> messages = chat.getMessagesInChat();
-            Collections.reverse(messages);
+            //Collections.reverse(messages);
             model.addAttribute("messages", messages);
 
 
@@ -260,7 +260,7 @@ public class ChatSpecificController {
         chatService.updateChat(chat);
 
         List<Message> messages = chat.getMessagesInChat();
-        Collections.reverse(messages);
+        //Collections.reverse(messages);
         model.addAttribute("messages", messages);
 
         List<Chat> chatList = currentUser.getReceivedChat();

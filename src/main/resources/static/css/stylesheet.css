@@ -21,7 +21,7 @@ body {
     width: 248px;
 }
 .btn-chat {
-    background-color: #017101;
+    background-color: #2FAC2D;
     border-color: black;
     border: 1px solid;
     padding: 10px;
@@ -489,6 +489,7 @@ p {
     background-color: #ffffff;
 }
 
+
 .typing-area input{
     height: 50px;
     width: 70%;
@@ -511,6 +512,7 @@ p {
     background-color: #017101;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 10px;
 }
 
 .typing-area button i {
